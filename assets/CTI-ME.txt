@@ -1,0 +1,2 @@
+assets/baleni.mp4 = sem nahraj video baleni hradu (mp4, max ~2MB, doporucene 960px). Stranka ho automaticky zobrazi.
+Fotky zatim jedou z liveho webu agenturamarco.cz - po nasazeni je stahneme sem.
