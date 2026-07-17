@@ -1,0 +1,24 @@
+name: Mirror assets from agenturamarco.cz
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/sources.txt"]
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install pillow
+      - run: python scripts/mirror_assets.py
+      - run: |
+          git config user.name "asset-mirror"
+          git config user.email "actions@github.com"
+          git add assets/mirror
+          git diff --cached --quiet || git commit -m "mirror: komprimované assety z agenturamarco.cz"
+          git push
