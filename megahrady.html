@@ -389,6 +389,23 @@
   .hbody p{color:var(--navy-soft);font-weight:600;line-height:1.75}
   .hbody ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
   .hbody li{font-family:'Baloo 2';font-weight:700;font-size:.82rem;background:rgba(56,182,255,.14);color:var(--navy);padding:6px 14px;border-radius:30px}
+  /* ---- flotila: horizontální carousel ---- */
+  .fleet{padding-top:70px}
+  .fleet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .fleet-nav{display:flex;gap:10px}
+  .fleet-nav button{width:48px;height:48px;border:none;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3rem;cursor:pointer;display:grid;place-items:center;transition:transform .25s ease,background .25s ease}
+  .fleet-nav button:hover{background:var(--gold);color:var(--navy);transform:scale(1.08)}
+  .fleet-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,300px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px 4px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .fleet-track::-webkit-scrollbar{display:none}
+  .fcard{scroll-snap-align:start;background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.22,.9,.3,1),box-shadow .35s ease}
+  .fcard:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(27,58,99,.22)}
+  .fcard .fimg{aspect-ratio:4/3;width:100%;object-fit:cover;display:block;background:#dfeefb}
+  .fcard .fmeta{padding:18px 20px 22px}
+  .fcard .ftag{font-family:'Baloo 2';font-weight:800;font-size:.72rem;letter-spacing:.08em;color:var(--sky);text-transform:uppercase}
+  .fcard h3{font-family:'Baloo 2';font-weight:800;font-size:1.18rem;color:var(--navy);margin-top:4px;line-height:1.25}
+  .fleet-hint{text-align:center;font-family:'Caveat',cursive;font-size:1.35rem;color:var(--navy-soft);margin-top:6px}
+  @media (min-width:1024px){.fleet-hint{display:none}}
+  @media (prefers-reduced-motion:reduce){.fcard,.fleet-nav button{transition:none}.fcard:hover{transform:none}}
   /* ---- video baleni: emphasized ---- */
   .baleni{background:linear-gradient(150deg,var(--navy) 0%,#24467a 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
   .baleni .h2{color:#fff}
@@ -470,7 +487,7 @@
   <div class="wrap">
     <div class="hrady-rows">
       <div class="hrow">
-        <div class="himg" style="background-image:url('https://www.agenturamarco.cz/userFiles/e196e8c5-d685-4a62-94a0-aede478f2e8e.jpeg')"></div>
+        <div class="himg" style="background-image:url('assets/mirror/e196e8c5-d685-4a62-94a0-aede478f2e8e.webp')"></div>
         <div class="hbody">
           <span class="tag">NEJOBLÍBENĚJŠÍ</span>
           <h3>WipeOut</h3>
@@ -479,7 +496,7 @@
         </div>
       </div>
       <div class="hrow">
-        <div class="himg" style="background-image:url('https://www.agenturamarco.cz/userFiles/img_4594.jpg')"></div>
+        <div class="himg" style="background-image:url('assets/mirror/img_4594.webp')"></div>
         <div class="hbody">
           <span class="tag">KAPACITA AŽ 15 DĚTÍ</span>
           <h3>Megakombi</h3>
@@ -488,7 +505,7 @@
         </div>
       </div>
       <div class="hrow">
-        <div class="himg" style="background-image:url('https://www.agenturamarco.cz/userFiles/250430-21.jpg')"></div>
+        <div class="himg" style="background-image:url('assets/mirror/250430-21.webp')"></div>
         <div class="hbody">
           <span class="tag new">NOVINKA</span>
           <h3>Hrací centrum Gorila</h3>
@@ -497,6 +514,37 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="block fleet" id="flotila">
+  <div class="wrap">
+    <div class="fleet-head">
+      <div>
+        <span class="eyebrow">Celá nabídka</span>
+        <h2 class="h2">Flotila 12 hradů a skluzavek</h2>
+        <p class="sub">Od obřích atrakcí pro obecní dny po hrady na zahradu — vyberte si a my přivezeme, postavíme a pohlídáme.</p>
+      </div>
+      <div class="fleet-nav" aria-hidden="false">
+        <button type="button" data-dir="-1" aria-label="Posunout doleva">‹</button>
+        <button type="button" data-dir="1" aria-label="Posunout doprava">›</button>
+      </div>
+    </div>
+    <div class="fleet-track" id="fleetTrack" tabindex="0" aria-label="Nabídka hradů — posouvejte do stran">
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/e196e8c5-d685-4a62-94a0-aede478f2e8e.webp" alt="WipeOut"><div class="fmeta"><span class="ftag">Aréna</span><h3>WipeOut</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/img_4594.webp" alt="Megakombi"><div class="fmeta"><span class="ftag">Až 15 dětí</span><h3>Megakombi</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/250430-21.webp" alt="Hrací centrum Gorila"><div class="fmeta"><span class="ftag">Novinka</span><h3>Hrací centrum Gorila</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/532023447_4027214070829518_3843933207197036257_n.webp" alt="Hrad Kombi"><div class="fmeta"><span class="ftag">Klasika 5×5 m</span><h3>Hrad Kombi</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/533522968_760628653281733_2922422477871146915_n.webp" alt="Minikombi"><div class="fmeta"><span class="ftag">Na zahradu 3×4 m</span><h3>Minikombi</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/onderko-1-27.webp" alt="Velká skluzavka"><div class="fmeta"><span class="ftag">Obr 7×4×6 m</span><h3>Velká skluzavka</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/img_2996.webp" alt="Střední skluzavka"><div class="fmeta"><span class="ftag">6×3,5×5 m</span><h3>Střední skluzavka</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/20230812-IMG_9519.webp" alt="Vodní skluzavka"><div class="fmeta"><span class="ftag">Letní hit</span><h3>Vodní skluzavka</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/mala-skluzavka-patrola.webp" alt="Skluzavka Tlapková patrola"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Skluzavka Tlapková patrola</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/skluzavka_20spongebob_202.webp" alt="Skluzavka SpongeBob"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Skluzavka SpongeBob</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/cervna-02-2023-4.webp" alt="Překážková dráha"><div class="fmeta"><span class="ftag">Závodní</span><h3>Překážková dráha</h3></div></div>
+      <div class="fcard"><img class="fimg" loading="lazy" decoding="async" src="assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp" alt="Skákací bazén"><div class="fmeta"><span class="ftag">Zábava navíc</span><h3>Skákací bazén</h3></div></div>
+    </div>
+    <p class="fleet-hint">← posouvej prstem →</p>
   </div>
 </section>
 
@@ -509,7 +557,7 @@
     </div>
     <div class="baleni-frame">
       <span class="baleni-badge">SBALENO ZA PÁR MINUT</span>
-      <video src="assets/baleni.mp4" controls muted playsinline preload="metadata"
+      <video src="assets/baleni.mp4" poster="assets/mirror/onderko-1-30.webp" controls muted playsinline preload="metadata"
         onerror="this.closest('.baleni-frame').style.display='none';document.getElementById('baleni-fallback').style.display='block'"></video>
     </div>
     <p id="baleni-fallback" style="display:none;text-align:center;margin-top:30px;font-weight:700;color:rgba(255,255,255,.7)">Video balení právě připravujeme — brzy tady!</p>
@@ -528,12 +576,12 @@
       <h2 class="h2">Mega hrady v akci</h2>
     </div>
     <div class="gal">
-      <a href="https://www.agenturamarco.cz/userFiles/e196e8c5-d685-4a62-94a0-aede478f2e8e.jpeg"><img loading="lazy" src="https://www.agenturamarco.cz/userFiles/e196e8c5-d685-4a62-94a0-aede478f2e8e.jpeg" alt="Mega hrad na akci"></a>
-      <a href="https://www.agenturamarco.cz/userFiles/img_4594.jpg"><img loading="lazy" src="https://www.agenturamarco.cz/userFiles/img_4594.jpg" alt="Megakombi"></a>
-      <a href="https://www.agenturamarco.cz/userFiles/250430-21.jpg"><img loading="lazy" src="https://www.agenturamarco.cz/userFiles/250430-21.jpg" alt="Hrací centrum Gorila"></a>
-      <a href="https://www.agenturamarco.cz/userFiles/onderko-1-30.jpg"><img loading="lazy" src="https://www.agenturamarco.cz/userFiles/onderko-1-30.jpg" alt="Děti na mega hradu"></a>
-      <a href="https://www.agenturamarco.cz/userFiles/20230813-image00009.jpg"><img loading="lazy" src="https://www.agenturamarco.cz/userFiles/20230813-image00009.jpg" alt="Mega hrad na obecním dni"></a>
-      <a href="https://www.agenturamarco.cz/userFiles/onderko-1-27.jpg"><img loading="lazy" src="https://www.agenturamarco.cz/userFiles/onderko-1-27.jpg" alt="Mega skluzavka"></a>
+      <a href="assets/mirror/e196e8c5-d685-4a62-94a0-aede478f2e8e.webp"><img loading="lazy" src="assets/mirror/e196e8c5-d685-4a62-94a0-aede478f2e8e.webp" alt="Mega hrad na akci"></a>
+      <a href="assets/mirror/img_4594.webp"><img loading="lazy" src="assets/mirror/img_4594.webp" alt="Megakombi"></a>
+      <a href="assets/mirror/250430-21.webp"><img loading="lazy" src="assets/mirror/250430-21.webp" alt="Hrací centrum Gorila"></a>
+      <a href="assets/mirror/onderko-1-30.webp"><img loading="lazy" src="assets/mirror/onderko-1-30.webp" alt="Děti na mega hradu"></a>
+      <a href="assets/mirror/20230813-image00009.webp"><img loading="lazy" src="assets/mirror/20230813-image00009.webp" alt="Mega hrad na obecním dni"></a>
+      <a href="assets/mirror/onderko-1-27.webp"><img loading="lazy" src="assets/mirror/onderko-1-27.webp" alt="Mega skluzavka"></a>
     </div>
   </div>
 </section>
@@ -552,6 +600,12 @@
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
   document.querySelectorAll('.hrow,.baleni').forEach(function(el){io.observe(el)});
+  var tr = document.getElementById('fleetTrack');
+  document.querySelectorAll('.fleet-nav button').forEach(function(b){
+    b.addEventListener('click', function(){
+      tr.scrollBy({left: 320 * (+b.dataset.dir), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    });
+  });
 })();
 </script>
 <footer>
