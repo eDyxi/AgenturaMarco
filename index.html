@@ -78,6 +78,14 @@
   #pbg::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.22) 43%,rgba(255,244,208,.5) 49%,rgba(255,255,255,.34) 52%,rgba(216,192,255,.26) 57%,transparent 68%);background-size:300% 100%;mix-blend-mode:screen;animation:waveSweep 7s linear infinite}
   @keyframes waveSweep{0%{background-position:120% 0}100%{background-position:-160% 0}}
   @media(prefers-reduced-motion:reduce){#pbg::after{animation:none;display:none}}
+  /* ---- color flow inside the gold background waves: L→R travel + darker pulse ---- */
+  .wave-flow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .wave-flow .wf-g{animation:wfPulse 5s ease-in-out infinite}
+  .wave-flow .wf-r{animation:wfSlide 9s linear infinite;will-change:transform}
+  .wave-flow .wf-r2{animation-duration:12s;animation-delay:-4s}
+  @keyframes wfSlide{from{transform:translateX(0)}to{transform:translateX(1600px)}}
+  @keyframes wfPulse{0%,100%{opacity:.45}50%{opacity:.85}}
+  @media(prefers-reduced-motion:reduce){.wave-flow .wf-g,.wave-flow .wf-r{animation:none}.wave-flow{opacity:.3}}
   .pbw{position:absolute;will-change:transform}
   .pbw .pb{display:block;position:relative;border-radius:50% 50% 48% 48%;
     box-shadow:inset -6px -8px 14px rgba(0,0,0,.12),inset 8px 8px 16px rgba(255,255,255,.5);
@@ -373,6 +381,27 @@
 </head>
 <body class="intro-lock">
 <div id="pbg" aria-hidden="true">
+  <svg class="wave-flow" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <clipPath id="wfClipA"><path d="M0 260 C260 200 420 340 700 300 C980 260 1120 160 1340 210 C1450 235 1540 300 1600 290 L1600 470 C1400 500 1240 420 1000 460 C760 500 560 420 320 450 C180 468 60 430 0 440 Z"/></clipPath>
+      <clipPath id="wfClipB"><path d="M0 640 C220 590 460 700 760 660 C1060 620 1240 700 1440 660 C1500 648 1560 640 1600 645 L1600 830 C1380 870 1180 780 920 820 C660 860 420 790 180 830 C110 841 40 830 0 820 Z"/></clipPath>
+      <linearGradient id="wfGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#c98a10" stop-opacity="0"/>
+        <stop offset=".22" stop-color="#c98a10" stop-opacity=".5"/>
+        <stop offset=".28" stop-color="#b97c0a" stop-opacity=".6"/>
+        <stop offset=".34" stop-color="#c98a10" stop-opacity=".5"/>
+        <stop offset=".5" stop-color="#c98a10" stop-opacity="0"/>
+        <stop offset=".72" stop-color="#c98a10" stop-opacity=".5"/>
+        <stop offset=".78" stop-color="#b97c0a" stop-opacity=".6"/>
+        <stop offset=".84" stop-color="#c98a10" stop-opacity=".5"/>
+        <stop offset="1" stop-color="#c98a10" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g class="wf-g">
+      <g clip-path="url(#wfClipA)"><rect class="wf-r" x="-3200" y="140" width="3200" height="380" fill="url(#wfGrad)"/></g>
+      <g clip-path="url(#wfClipB)"><rect class="wf-r wf-r2" x="-3200" y="570" width="3200" height="320" fill="url(#wfGrad)"/></g>
+    </g>
+  </svg>
   <div class="pbw" style="top:6%;left:3%"   data-s="0.18"><span class="pb purple" style="width:74px;height:92px"></span></div>
   <div class="pbw" style="top:14%;left:12%" data-s="0.32"><span class="pb blue"   style="width:52px;height:64px"></span></div>
   <div class="pbw" style="top:4%;left:38%"  data-s="0.24"><span class="pb gold"   style="width:60px;height:74px"></span></div>
