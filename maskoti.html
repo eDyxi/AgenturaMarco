@@ -375,6 +375,20 @@
   .page-hero .h1{font-size:clamp(3rem,8vw,5.6rem);font-weight:900;line-height:1.02;letter-spacing:-.025em;color:var(--navy);margin:0 auto 22px;max-width:900px;text-shadow:0 4px 0 rgba(245,179,36,.28),0 -2px 0 rgba(107,79,160,.15);animation:heroPop .7s .08s cubic-bezier(.22,.9,.3,1) both}
   .page-hero .sub{max-width:640px;margin:0 auto;font-size:1.15rem;line-height:1.65;color:var(--navy-soft);font-weight:600;animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
   @keyframes heroPop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+  .price-hero{display:flex;gap:20px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:28px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
+  .pchip{position:relative;font-family:'Baloo 2',sans-serif;font-weight:800;padding:14px 30px 16px;border-radius:44px;text-align:center;line-height:1.15}
+  .pchip small{display:block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+  .pchip b{font-size:1.7rem;font-weight:800;letter-spacing:-.01em}
+  .pchip span{display:block;font-size:.8rem;font-weight:700;opacity:.85}
+  .pchip.pmain{background:var(--navy);color:#FFD23F;box-shadow:0 0 0 3px #FFD23F,0 0 24px rgba(255,210,63,.8),0 0 64px rgba(245,179,36,.4)}
+  .pchip.pmain small{color:#fff}
+  .pchip.pmain::after{content:'';position:absolute;inset:-8px;border-radius:inherit;box-shadow:0 0 46px 10px rgba(255,210,63,.6);opacity:.35;pointer-events:none;animation:pglow 1.9s ease-in-out infinite}
+  .pchip.pwinter{background:#fff;color:var(--navy);box-shadow:0 0 0 3px #38B6FF,0 0 20px rgba(56,182,255,.65),0 0 52px rgba(56,182,255,.3)}
+  .pchip.pwinter small{color:#38B6FF}
+  .pchip.pwinter b{color:#1B3A63}
+  @keyframes pglow{0%,100%{opacity:.2}50%{opacity:.75}}
+  @media(max-width:700px){.price-hero{gap:14px}.pchip{padding:12px 22px 14px}.pchip b{font-size:1.45rem}}
+  @media(prefers-reduced-motion:reduce){.price-hero{animation:none}.pchip.pmain::after{animation:none;opacity:.35}}
   .pxb{position:absolute;inset:-40px 0 0;pointer-events:none;z-index:0}
   .pxb i{position:absolute;border-radius:50% 50% 48% 48%;will-change:transform;animation:sway 4.6s ease-in-out infinite alternate}
   .pxb i::after{content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:2px;height:18px;background:rgba(27,58,99,.22)}
@@ -521,6 +535,10 @@
     <span class="eyebrow">Postavy z TV i filmu</span>
     <h1 class="h1">Maskoti, které děti milují</h1>
     <p class="sub">Nejmodernější maskoti z pohádek, vozíme je ze slunné Itálie v profi kvalitě. Tančí, objímají, fotí se — a děti z nich nespustí oči.</p>
+    <div class="price-hero">
+      <div class="pchip pmain"><small>Cena</small><b>3 000 Kč</b><span>/ maskot / hodina</span></div>
+      <div class="pchip pwinter"><small>Zimní období</small><b>4 000 Kč</b><span>/ maskot / hodina</span></div>
+    </div>
   </div>
 </section>
 
@@ -581,7 +599,6 @@
       <div class="mask-card"><div class="mimg" style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"></div><div class="mtxt"><h3>Grinch</h3><p>Vánoční speciál — Grinch na mikulášské i firemní večírky.</p></div></div>
       <div class="mask-card"><div class="mimg" style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"></div><div class="mtxt"><h3>Labubu</h3><p>Aktuální fenomén — Labubu naživo, jediní v okolí.</p></div></div>
     </div>
-    <div class="center" style="margin:30px 0 46px"><span class="price-band">3 000 Kč / maskot / hodina · zimní období 4 000 Kč</span></div>
   </div>
 </section>
 
