@@ -595,9 +595,7 @@
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
-  document.querySelectorAll('.hrow,.baleni,.gal a,.mask-card,.pkgx').forEach(function(el){io.observe(el)});
-  
-  });
+  document.querySelectorAll('.hrow,.baleni,.gal a,.mask-card,.pkgx').forEach(function(el,i){el.style.transitionDelay=(i%4)*0.07+'s';io.observe(el)});
 
   var pxbs=document.querySelectorAll('.pxb i');
   if(pxbs.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
