@@ -415,6 +415,14 @@
   @keyframes dashspin{to{transform:rotate(360deg)}}
   .baleni-frame::before{inset:-40%;border:none;background:conic-gradient(var(--gold) 0 8deg,transparent 8deg 22deg);opacity:.0}
   .baleni-frame video{display:block;width:100%;border-radius:inherit;position:relative;z-index:2}
+  .yt-facade{display:block;position:relative;z-index:2;cursor:pointer;border-radius:inherit;overflow:hidden;aspect-ratio:16/9;background:#0c1c33}
+  .yt-facade img{display:block;width:100%;height:100%;object-fit:cover}
+  .yt-facade::after{content:"";position:absolute;inset:0;background:rgba(12,28,51,.28);transition:background .25s}
+  .yt-facade:hover::after,.yt-facade:focus-visible::after{background:rgba(12,28,51,.12)}
+  .yt-play{position:absolute;top:50%;left:50%;width:84px;height:84px;transform:translate(-50%,-50%);background:var(--gold);border-radius:50%;box-shadow:0 12px 34px rgba(0,0,0,.45);z-index:2;transition:transform .25s}
+  .yt-play::before{content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);border-style:solid;border-width:15px 0 15px 25px;border-color:transparent transparent transparent var(--navy)}
+  .yt-facade:hover .yt-play,.yt-facade:focus-visible .yt-play{transform:translate(-50%,-50%) scale(1.08)}
+  @media (prefers-reduced-motion:reduce){.yt-play{transition:none}.yt-facade::after{transition:none}}
   .baleni-badge{position:absolute;top:-26px;right:-14px;z-index:4;background:var(--gold);color:var(--navy);font-family:'Baloo 2';font-weight:800;font-size:1rem;padding:12px 22px;border-radius:36px;transform:rotate(7deg);box-shadow:0 10px 26px rgba(0,0,0,.35);animation:badgebob 3s ease-in-out infinite}
   @keyframes badgebob{0%,100%{transform:rotate(7deg) translateY(0)}50%{transform:rotate(5deg) translateY(-7px)}}
   .baleni-steps{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
@@ -557,8 +565,12 @@
     </div>
     <div class="baleni-frame">
       <span class="baleni-badge">SBALENO ZA PÁR MINUT</span>
-      <video src="assets/baleni.mp4" poster="assets/mirror/onderko-1-30.webp" controls muted playsinline preload="metadata"
-        onerror="this.closest('.baleni-frame').style.display='none';document.getElementById('baleni-fallback').style.display='block'"></video>
+      <div class="yt-facade" role="button" tabindex="0" aria-label="Přehrát video balení hradu"
+        onclick="this.outerHTML='<iframe src=\'https://www.youtube-nocookie.com/embed/4oaRlEA4NCQ?autoplay=1&rel=0\' title=\'Jak balíme skákací hrad\' allow=\'autoplay; encrypted-media; fullscreen\' allowfullscreen style=\'display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:inherit;position:relative;z-index:2\'></iframe>'"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
+        <img src="https://www.agenturamarco.cz/userFiles/jak-zabalit-hrad.gif" alt="Ukázka balení skákacího hradu" loading="lazy">
+        <span class="yt-play" aria-hidden="true"></span>
+      </div>
     </div>
     <p id="baleni-fallback" style="display:none;text-align:center;margin-top:30px;font-weight:700;color:rgba(255,255,255,.7)">Video balení právě připravujeme — brzy tady!</p>
     <div class="baleni-steps">
