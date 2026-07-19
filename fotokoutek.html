@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malování na obličej a třpytivá tetování | Agentura Marco Ostrava</title>
+<title>Fotokoutek s tiskem | Agentura Marco Ostrava</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet"><style>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800;900&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet"><style>
   :root{
     --gold:#F5B324;
     --gold-dark:#e0a015;
@@ -371,7 +371,59 @@
   /* ===== subpage: mega hrady ===== */
   .page-hero{padding:150px 0 92px;text-align:center;position:relative;overflow:visible}
   .page-hero .eyebrow{margin-bottom:14px;animation:heroPop .7s cubic-bezier(.22,.9,.3,1) both}
-  .page-hero .h1{font-size:clamp(3rem,8vw,5.6rem);font-weight:900;line-height:1.02;letter-spacing:-.025em;color:var(--navy);margin:0 auto 22px;max-width:900px;text-shadow:0 4px 0 rgba(245,179,36,.28),0 -2px 0 rgba(107,79,160,.15);animation:heroPop .7s .08s cubic-bezier(.22,.9,.3,1) both}
+  .page-hero .h1{font-size:clamp(3.3rem,9.5vw,7rem);font-weight:900;line-height:1.02;letter-spacing:-.02em;margin:0 auto 22px;max-width:920px;position:relative;text-transform:uppercase;transform:skew(-6deg);animation:comicSlam .5s cubic-bezier(.34,1.56,.44,1) both}
+  .comic-txt{position:relative;display:inline-block;color:#E8890C;
+    text-shadow:
+      4px 0 0 #fff,-4px 0 0 #fff,0 4px 0 #fff,0 -4px 0 #fff,
+      3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff,
+      0 9px 0 rgba(27,58,99,.28)}
+  @keyframes comicSlam{0%{opacity:.4;transform:skew(-6deg) scale(1.14) rotate(-2deg)}55%{opacity:1;transform:skew(-6deg) scale(.98) rotate(.6deg)}100%{opacity:1;transform:skew(-6deg)}}
+  .comic-burst{position:absolute;pointer-events:none;z-index:2;opacity:0;animation:burstPop .4s .5s cubic-bezier(.34,1.7,.5,1) both}
+  .comic-burst.b1{width:86px;top:-40px;right:5%;animation:burstPop .4s .52s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 3.4s 1.2s ease-in-out infinite}
+  .comic-burst.b2{width:62px;bottom:40px;right:3%;animation:burstPop .4s .62s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 4.1s 1.5s ease-in-out infinite reverse}
+  .comic-lines{position:absolute;pointer-events:none;z-index:1;width:110px;top:8px;left:-8px;opacity:0;animation:burstPop .4s .58s cubic-bezier(.34,1.7,.5,1) both,linesDash 2.2s 1.2s ease-in-out infinite}
+  .comic-bolt{position:absolute;pointer-events:none;z-index:2;width:52px;top:-18px;left:12%;opacity:0;animation:burstPop .4s .7s cubic-bezier(.34,1.7,.5,1) both,boltFlash 2.8s 1.4s ease-in-out infinite}
+  .comic-spark{position:absolute;pointer-events:none;z-index:2;width:26px;opacity:0;animation:sparkTwinkle 2.6s ease-in-out infinite}
+  .comic-spark.s1{top:14px;right:16%;animation-delay:1s}
+  .comic-spark.s2{bottom:-6px;right:8%;width:20px;animation-delay:1.9s}
+  .comic-spark.s3{top:-26px;left:30%;width:18px;animation-delay:2.5s}
+  .comic-bubble{position:absolute;pointer-events:none;z-index:2;width:64px;bottom:-30px;right:14%;opacity:0;animation:burstPop .4s .8s cubic-bezier(.34,1.7,.5,1) both,bubbleBob 3s 1.4s ease-in-out infinite alternate}
+  .comic-boom{position:absolute;pointer-events:none;z-index:2;width:78px;bottom:-34px;left:4%;opacity:0;animation:burstPop .4s .74s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 3.8s 1.3s ease-in-out infinite}
+  .comic-spark.s4{top:auto;bottom:26px;left:15%;width:24px;animation-delay:1.4s}
+  @keyframes burstPop{0%{opacity:0;transform:scale(.3) rotate(-14deg)}70%{opacity:1;transform:scale(1.12) rotate(-14deg)}100%{opacity:1;transform:scale(1) rotate(-14deg)}}
+  @keyframes stickerWobble{0%,100%{transform:rotate(-14deg) scale(1)}50%{transform:rotate(-6deg) scale(1.06)}}
+  @keyframes linesDash{0%,100%{transform:translateX(0);opacity:1}50%{transform:translateX(-8px);opacity:.55}}
+  @keyframes boltFlash{0%,86%,100%{transform:rotate(8deg) scale(1);opacity:1}90%{transform:rotate(8deg) scale(1.22);opacity:.65}94%{transform:rotate(8deg) scale(1.05);opacity:1}}
+  @keyframes sparkTwinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(24deg)}}
+  @keyframes bubbleBob{from{transform:rotate(6deg) translateY(0)}to{transform:rotate(2deg) translateY(-10px)}}
+    .comic-note{display:block;font-family:'Caveat',cursive;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:700;color:var(--purple);margin-top:10px;transform:rotate(-2deg);animation:heroPop .7s .3s cubic-bezier(.22,.9,.3,1) both}
+  @media(max-width:700px){.comic-burst.b1{width:52px;top:-22px}.comic-burst.b2,.comic-lines,.comic-bolt,.comic-bubble,.comic-boom,.comic-spark.s3{display:none}.comic-spark{width:18px}.comic-txt{text-shadow:3px 0 0 #fff,-3px 0 0 #fff,0 3px 0 #fff,0 -3px 0 #fff,2px 2px 0 #fff,-2px 2px 0 #fff,2px -2px 0 #fff,-2px -2px 0 #fff,0 6px 0 rgba(27,58,99,.28)}}
+  .hero-fig{position:absolute;top:50%;width:clamp(90px,11vw,150px);pointer-events:auto;cursor:pointer;z-index:2;transition:translate .4s cubic-bezier(.3,1.5,.5,1)}
+  .hero-fig:hover{translate:0 -26px}
+  .fig-rays{transform-box:fill-box;transform-origin:center;opacity:0;scale:.5;transition:opacity .3s ease,scale .35s cubic-bezier(.3,1.5,.5,1);animation:raysSpin 8s linear infinite;pointer-events:none}
+  .hero-fig:hover .fig-rays{opacity:1;scale:1}
+  @keyframes raysSpin{to{rotate:360deg}}
+  .hero-fig.fl{left:max(12px,4vw);transform:translateY(-50%) rotate(-6deg);animation:figIn .6s .15s cubic-bezier(.3,1.3,.5,1) both}
+  .hero-fig.fr{right:max(12px,4vw);transform:translateY(-50%) rotate(6deg);animation:figIn .6s .3s cubic-bezier(.3,1.3,.5,1) both}
+  .hero-fig{overflow:visible}
+  .hero-fig .cape{transform-origin:50% 12%;animation:capeWave 2.4s ease-in-out infinite alternate}
+  @keyframes figIn{from{opacity:0;scale:.75}to{opacity:1;scale:1}}
+  @keyframes capeWave{from{transform:skewX(-4deg)}to{transform:skewX(5deg) scaleY(1.03)}}
+  @media(max-width:1100px){.hero-fig{display:none}}
+  .hero-fig .bounce{transform-box:fill-box;transform-origin:50% 100%;animation:figBounce 1.7s cubic-bezier(.36,0,.64,1) infinite}
+  .hero-fig.fr .bounce{animation-delay:.4s}
+  @keyframes figBounce{0%,100%{transform:translateY(0) scale(1)}12%{transform:scale(1.04,.92)}45%{transform:translateY(-12px) scale(.97,1.05)}70%{transform:translateY(0) scale(1)}82%{transform:scale(1.03,.94)}}
+  .comic-burst.b1{top:-58px;right:-1%}
+  .comic-burst.b2{bottom:-14px;right:-4%}
+  .comic-lines{top:-14px;left:-46px}
+  .comic-bolt{top:-46px;left:6%}
+  .comic-spark.s1{top:-26px;right:25%}
+  .comic-spark.s2{bottom:-14px;right:10%}
+  .comic-spark.s3{top:-42px;left:33%}
+  .comic-spark.s4{bottom:-16px;left:14%}
+  .comic-bubble{bottom:-30px;right:-5%}
+  .comic-boom{bottom:-32px;left:-6%}
+  @media(max-width:700px){.comic-burst.b1{top:-34px;right:0}}
   .page-hero .sub{max-width:640px;margin:0 auto;font-size:1.15rem;line-height:1.65;color:var(--navy-soft);font-weight:600;animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
   @keyframes heroPop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
   .price-hero{display:flex;gap:20px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:28px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
@@ -398,7 +450,7 @@
   .pxb i:nth-child(5){width:34px;height:44px;top:120px;left:26%;background:radial-gradient(circle at 32% 28%,#d9ecfa,#a9d3f0);opacity:.5;animation-delay:-3s}
   .pxb i:nth-child(6){width:38px;height:48px;top:150px;right:27%;background:radial-gradient(circle at 32% 28%,#c4f0d4,#4CAF7D);opacity:.5;animation-duration:6s}
   @media(max-width:700px){.page-hero{padding:120px 0 64px}.pxb i:nth-child(5),.pxb i:nth-child(6){display:none}}
-  @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}}
+  @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}.comic-burst,.comic-lines,.comic-note,.comic-bolt,.comic-bubble,.comic-boom{animation:none;opacity:1}.comic-spark{animation:none;opacity:.85}.comic-lines{opacity:.9}.hero-fig{animation:none;opacity:1}.hero-fig .cape{animation:none}.fig-rays{animation:none}.hero-fig .bounce{animation:none}}
   .gal a{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
   .gal a.in{opacity:1;transform:none}
   .gal a:nth-child(2){transition-delay:.07s}.gal a:nth-child(3){transition-delay:.14s}.gal a:nth-child(4){transition-delay:.21s}.gal a:nth-child(5){transition-delay:.07s}.gal a:nth-child(6){transition-delay:.14s}
@@ -530,13 +582,16 @@
   </div>
 </header>
 <section class="page-hero">
+  <svg class="hero-fig fl" viewBox="0 0 100 130" aria-hidden="true" style="overflow:visible"><g class="fig-rays"><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(0 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(45 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(90 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(135 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(180 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(225 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(270 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(315 50 65)"/></g><g class="bounce"><rect x="20" y="12" width="60" height="17" rx="5" fill="#FFD23F" stroke="#1B3A63" stroke-width="3"/><text x="50" y="25" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="12" fill="#1B3A63">FOTO</text><circle cx="14" cy="20" r="3" fill="#fff" stroke="#1B3A63" stroke-width="2"/><circle cx="86" cy="20" r="3" fill="#fff" stroke="#1B3A63" stroke-width="2"/><rect x="22" y="29" width="56" height="89" rx="8" fill="#38B6FF" stroke="#1B3A63" stroke-width="3"/><rect x="28" y="37" width="44" height="52" rx="5" fill="#1E2A44" stroke="#1B3A63" stroke-width="2.5"/><circle cx="38" cy="50" r="6" fill="#7FD0FF" stroke="#1B3A63" stroke-width="2.4"/><circle cx="40" cy="48" r="2" fill="#fff" opacity=".9"/><rect x="31" y="62" width="15" height="11" rx="2" fill="#38B6FF" stroke="#1B3A63" stroke-width="2.2"/><path d="M33 70 Q35 66 38 68 Q41 70 44 66" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/><g class="cape"><path d="M52 37 H72 V86 Q68 90 64 86 Q60 90 56 86 Q53 89 52 86 Z" fill="#DA3B4B" stroke="#1B3A63" stroke-width="2.5" stroke-linejoin="round"/><path d="M57 40 Q56 62 57 84 M62 40 Q63 62 62 84 M67 40 Q66 62 67 84" stroke="#1B3A63" stroke-width="1.6" fill="none" opacity=".45"/></g><rect x="26" y="92" width="48" height="9" rx="3" fill="#7FD0FF" stroke="#1B3A63" stroke-width="2.4"/><circle cx="66" cy="96.5" r="2.6" fill="#DA3B4B" stroke="#1B3A63" stroke-width="1.8"/><path d="M32 96.5 H42" stroke="#1B3A63" stroke-width="2.2" stroke-linecap="round"/><rect x="38" y="104" width="24" height="4" rx="2" fill="#1E2A44"/><g stroke="#1B3A63" stroke-width="2.2"><rect x="41" y="106" width="18" height="21" rx="1.5" fill="#fff"/><rect x="44" y="109" width="12" height="6" rx="1" fill="#8A6BC4" opacity=".85"/><rect x="44" y="118" width="12" height="6" rx="1" fill="#8A6BC4" opacity=".6"/></g><rect x="26" y="118" width="10" height="7" rx="3" fill="#1B3A63"/><rect x="64" y="118" width="10" height="7" rx="3" fill="#1B3A63"/></g></svg>
+  <svg class="hero-fig fr" viewBox="0 0 100 130" aria-hidden="true" style="overflow:visible"><g class="fig-rays"><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".8" transform="rotate(0 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".55" transform="rotate(45 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".8" transform="rotate(90 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".55" transform="rotate(135 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".8" transform="rotate(180 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".55" transform="rotate(225 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".8" transform="rotate(270 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#38B6FF" opacity=".55" transform="rotate(315 50 65)"/></g><g class="bounce"><rect x="20" y="12" width="60" height="17" rx="5" fill="#FFD23F" stroke="#1B3A63" stroke-width="3"/><text x="50" y="25" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="12" fill="#1B3A63">FOTO</text><circle cx="14" cy="20" r="3" fill="#fff" stroke="#1B3A63" stroke-width="2"/><circle cx="86" cy="20" r="3" fill="#fff" stroke="#1B3A63" stroke-width="2"/><rect x="22" y="29" width="56" height="89" rx="8" fill="#6B4FA0" stroke="#1B3A63" stroke-width="3"/><rect x="28" y="37" width="44" height="52" rx="5" fill="#1E2A44" stroke="#1B3A63" stroke-width="2.5"/><circle cx="38" cy="50" r="6" fill="#7FD0FF" stroke="#1B3A63" stroke-width="2.4"/><circle cx="40" cy="48" r="2" fill="#fff" opacity=".9"/><rect x="31" y="62" width="15" height="11" rx="2" fill="#38B6FF" stroke="#1B3A63" stroke-width="2.2"/><path d="M33 70 Q35 66 38 68 Q41 70 44 66" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/><g class="cape"><path d="M52 37 H72 V86 Q68 90 64 86 Q60 90 56 86 Q53 89 52 86 Z" fill="#38B6FF" stroke="#1B3A63" stroke-width="2.5" stroke-linejoin="round"/><path d="M57 40 Q56 62 57 84 M62 40 Q63 62 62 84 M67 40 Q66 62 67 84" stroke="#1B3A63" stroke-width="1.6" fill="none" opacity=".45"/></g><rect x="26" y="92" width="48" height="9" rx="3" fill="#8A6BC4" stroke="#1B3A63" stroke-width="2.4"/><circle cx="66" cy="96.5" r="2.6" fill="#DA3B4B" stroke="#1B3A63" stroke-width="1.8"/><path d="M32 96.5 H42" stroke="#1B3A63" stroke-width="2.2" stroke-linecap="round"/><rect x="38" y="104" width="24" height="4" rx="2" fill="#1E2A44"/><g stroke="#1B3A63" stroke-width="2.2"><rect x="41" y="106" width="18" height="21" rx="1.5" fill="#fff"/><rect x="44" y="109" width="12" height="6" rx="1" fill="#38B6FF" opacity=".85"/><rect x="44" y="118" width="12" height="6" rx="1" fill="#38B6FF" opacity=".6"/></g><rect x="26" y="118" width="10" height="7" rx="3" fill="#1B3A63"/><rect x="64" y="118" width="10" height="7" rx="3" fill="#1B3A63"/></g></svg>
   <div class="pxb" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="wrap">
-    <span class="eyebrow">Proměna za pár minut</span>
-    <h1 class="h1">Malování na obličej</h1>
-    <p class="sub">Tygříci, víly, superhrdinové i třpytivá tetování. Šetrné barvy, zkušené malířky a fronta dětí, která se u stolku netrhne.</p>
+    <span class="eyebrow">Vzpomínky na počkání</span>
+    <h1 class="h1"><svg class="comic-burst b1" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gPow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7A"/><stop offset="1" stop-color="#DA3B4B"/></linearGradient><filter id="stShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1B3A63" flood-opacity=".25"/></filter></defs><g filter="url(#stShadow)"><path d="M50.0 4.0 Q50.0 4.0 54.9 8.6 Q59.8 13.3 66.4 11.7 Q73.0 10.2 74.9 16.6 Q76.9 23.1 83.4 25.1 Q89.8 27.0 88.3 33.6 Q86.7 40.2 91.4 45.1 Q96.0 50.0 91.4 54.9 Q86.7 59.8 88.3 66.4 Q89.8 73.0 83.4 74.9 Q76.9 76.9 74.9 83.4 Q73.0 89.8 66.4 88.3 Q59.8 86.7 54.9 91.4 Q50.0 96.0 45.1 91.4 Q40.2 86.7 33.6 88.3 Q27.0 89.8 25.1 83.4 Q23.1 76.9 16.6 74.9 Q10.2 73.0 11.7 66.4 Q13.3 59.8 8.6 54.9 Q4.0 50.0 8.6 45.1 Q13.3 40.2 11.7 33.6 Q10.2 27.0 16.6 25.1 Q23.1 23.1 25.1 16.6 Q27.0 10.2 33.6 11.7 Q40.2 13.3 45.1 8.6 Z" fill="#fff"/><path d="M50.0 10.0 Q50.0 10.0 54.3 14.1 Q58.5 18.1 64.3 16.7 Q70.0 15.4 71.7 21.0 Q73.3 26.7 79.0 28.3 Q84.6 30.0 83.3 35.7 Q81.9 41.5 85.9 45.7 Q90.0 50.0 85.9 54.3 Q81.9 58.5 83.3 64.3 Q84.6 70.0 79.0 71.7 Q73.3 73.3 71.7 79.0 Q70.0 84.6 64.3 83.3 Q58.5 81.9 54.3 85.9 Q50.0 90.0 45.7 85.9 Q41.5 81.9 35.7 83.3 Q30.0 84.6 28.3 79.0 Q26.7 73.3 21.0 71.7 Q15.4 70.0 16.7 64.3 Q18.1 58.5 14.1 54.3 Q10.0 50.0 14.1 45.7 Q18.1 41.5 16.7 35.7 Q15.4 30.0 21.0 28.3 Q26.7 26.7 28.3 21.0 Q30.0 15.4 35.7 16.7 Q41.5 18.1 45.7 14.1 Z" fill="url(#gPow)"/><text x="50" y="59" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="25" fill="#fff">POW</text></g></svg><svg class="comic-lines" viewBox="0 0 120 60" aria-hidden="true"><g stroke-linecap="round" fill="none"><path d="M6 30 H46" stroke="#fff" stroke-width="12"/><path d="M12 13 L48 21 M12 47 L48 39" stroke="#fff" stroke-width="11"/><path d="M6 30 H46" stroke="#38B6FF" stroke-width="6"/><path d="M12 13 L48 21" stroke="#6B4FA0" stroke-width="5"/><path d="M12 47 L48 39" stroke="#F5B324" stroke-width="5"/></g></svg><span class="comic-txt" data-text="Fotokoutek s tiskem">Fotokoutek s tiskem</span><svg class="comic-burst b2" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gStar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FD0FF"/><stop offset="1" stop-color="#38B6FF"/></linearGradient></defs><g filter="url(#stShadow)"><path d="M50 2 C55 28 60 34 88 42 C60 50 55 56 50 82 C45 56 40 50 12 42 C40 34 45 28 50 2 Z" fill="#fff" transform="translate(0,8)"/><path d="M50 12 C54 32 58 37 79 43 C58 49 54 54 50 74 C46 54 42 49 21 43 C42 37 46 32 50 12 Z" fill="url(#gStar)" transform="translate(0,8)"/></g></svg><svg class="comic-bolt" viewBox="0 0 60 90" aria-hidden="true"><defs><linearGradient id="gBolt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset="1" stop-color="#F5A623"/></linearGradient></defs><g filter="url(#stShadow)"><path d="M36 2 C38 2 40 4 39 7 L31 32 L42 32 C46 32 48 36 45 40 L22 84 C19 88 13 86 15 81 L23 50 L14 50 C10 50 8 46 10 42 L30 5 C31 3 33 2 36 2 Z" fill="#fff" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M36 2 C38 2 40 4 39 7 L31 32 L42 32 C46 32 48 36 45 40 L22 84 C19 88 13 86 15 81 L23 50 L14 50 C10 50 8 46 10 42 L30 5 C31 3 33 2 36 2 Z" fill="url(#gBolt)"/></g></svg><svg class="comic-spark s1" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#6B4FA0" opacity=".9"/></svg><svg class="comic-spark s2" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#F5A623"/></svg><svg class="comic-spark s3" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#38B6FF" opacity=".9"/></svg><svg class="comic-bubble" viewBox="0 0 80 70" aria-hidden="true"><defs><linearGradient id="gBub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A6BC4"/><stop offset="1" stop-color="#6B4FA0"/></linearGradient></defs><g filter="url(#stShadow)"><rect x="5" y="6" width="70" height="46" rx="23" fill="#fff"/><path d="M26 48 C24 58 20 62 15 66 C24 64 30 60 34 52 Z" fill="#fff"/><rect x="9" y="10" width="62" height="38" rx="19" fill="url(#gBub)"/><text x="40" y="37" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="22" fill="#FFD23F">WOW</text></g></svg><svg class="comic-boom" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gBoom" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset="1" stop-color="#F5A623"/></linearGradient></defs><g filter="url(#stShadow)"><path d="M50.0 4.0 Q50.0 4.0 55.7 9.4 Q61.4 14.8 69.2 13.8 Q77.0 12.8 78.5 20.5 Q79.9 28.3 86.8 32.0 Q93.7 35.8 90.4 42.9 Q87.0 50.0 90.4 57.1 Q93.7 64.2 86.8 68.0 Q79.9 71.7 78.5 79.5 Q77.0 87.2 69.2 86.2 Q61.4 85.2 55.7 90.6 Q50.0 96.0 44.3 90.6 Q38.6 85.2 30.8 86.2 Q23.0 87.2 21.5 79.5 Q20.1 71.7 13.2 68.0 Q6.3 64.2 9.6 57.1 Q13.0 50.0 9.6 42.9 Q6.3 35.8 13.2 32.0 Q20.1 28.3 21.5 20.5 Q23.0 12.8 30.8 13.8 Q38.6 14.8 44.3 9.4 Z" fill="#fff"/><path d="M50.0 11.0 Q50.0 11.0 54.8 15.8 Q59.6 20.5 66.3 19.5 Q72.9 18.4 74.0 25.1 Q75.1 31.8 81.1 34.9 Q87.1 37.9 84.0 44.0 Q81.0 50.0 84.0 56.0 Q87.1 62.1 81.1 65.1 Q75.1 68.2 74.0 74.9 Q72.9 81.6 66.3 80.5 Q59.6 79.5 54.8 84.2 Q50.0 89.0 45.2 84.2 Q40.4 79.5 33.7 80.5 Q27.1 81.6 26.0 74.9 Q24.9 68.2 18.9 65.1 Q12.9 62.1 16.0 56.0 Q19.0 50.0 16.0 44.0 Q12.9 37.9 18.9 34.9 Q24.9 31.8 26.0 25.1 Q27.1 18.4 33.7 19.5 Q40.4 20.5 45.2 15.8 Z" fill="url(#gBoom)"/><text x="50" y="59" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="23" fill="#1B3A63">BUM!</text></g></svg><svg class="comic-spark s4" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#DA3B4B" opacity=".9"/></svg><span class="comic-note">úsměv, ptáček letí! ✦</span></h1>
+    <p class="sub">Rekvizity, zábavná pozadí a fotky vytištěné přímo na místě. Hosté se baví celý večer — a každý si odnese vzpomínku v ruce.</p>
     <div class="price-hero">
-      <div class="pchip pmain"><small>Malování · Airbrush · Třpytivá tetování</small><b>1 000 Kč</b><span>/ hodina</span></div>
+      <div class="pchip pmain"><small>Cena</small><b>8 000 Kč</b><span>/ 4 hodiny</span></div>
+      <div class="pchip pwinter"><small>Prodloužená</small><b>10 000 Kč</b><span>/ 5 hodin</span></div>
     </div>
   </div>
 </section>
@@ -545,33 +600,16 @@
   <div class="wrap">
     <div class="hrady-rows">
       <div class="hrow">
-        <div class="himg" style="background-image:url('assets/mirror/20230708-img_9095.webp')"></div>
+        <div class="himg" style="background-image:url('assets/mirror/image00004.webp')"></div>
         <div class="hbody">
-          <span class="tag new">MOTIVY NA PŘÁNÍ</span>
-          <h3>Každé dítě si vybere to své</h3>
-          <p>Od jemných kytiček po celoobličejové masky superhrdinů. Malujeme podle přání — a děti odchází s úsměvem od ucha k uchu.</p>
-          <ul><li>Motivy na přání</li><li>Rychlé i detailní</li><li>Kluci i holky</li></ul>
-        </div>
-      </div>
-      <div class="hrow">
-        <div class="himg" style="background-image:url('assets/mirror/63a7b0b5-bb7c-461f-80aa-1aeb85afb180.webp')"></div>
-        <div class="hbody">
-          <span class="tag">ŠETRNÉ BARVY</span>
-          <h3>Barvy, které pokožce neublíží</h3>
-          <p>Používáme kvalitní barvy určené přímo na dětskou pokožku. Snadno se smývají vodou a nedráždí ani citlivou pleť.</p>
-          <ul><li>Dermatologicky šetrné</li><li>Smytelné vodou</li><li>Profi značky</li></ul>
-        </div>
-      </div>
-      <div class="hrow">
-        <div class="himg" style="background-image:url('assets/mirror/f8a92471-4cae-4e62-9117-91163eef416b.webp')"></div>
-        <div class="hbody">
-          <span class="tag">TŘPYTIVÁ TETOVÁNÍ</span>
-          <h3>Třpytky, které vydrží celou akci</h3>
-          <p>Kromě malování nabízíme i třpytivá tetování — drží několik dní a děti je milují. Ideální doplněk ke každé oslavě nebo dětskému dni.</p>
-          <ul><li>Drží několik dní</li><li>Bezpečné třpytky</li><li>Hit u starších dětí</li></ul>
+          <span class="tag new">VŠE V CENĚ</span>
+          <h3>Neomezené focení s tiskem na místě</h3>
+          <p>Vyfotit, vytisknout, odnést — hosté mají hotovou fotku v ruce během chvilky. Rekvizity, fotostěna i altánek jsou v ceně, o vše se stará naše obsluha.</p>
+          <ul><li>Neomezený počet fotek</li><li>Rekvizity a fotostěna</li><li>Altánek + obsluha v ceně</li></ul>
         </div>
       </div>
     </div>
+    <div class="center" style="margin-top:22px"><a class="btn" href="https://www.facebook.com/agenturamarco" target="_blank" rel="noopener">▶ Podívejte se na video z akce</a></div>
   </div>
 </section>
 
@@ -583,26 +621,21 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Galerie</span>
-      <h2 class="h2">Malování v akci</h2>
+      <h2 class="h2">Fotokoutek v akci</h2>
     </div>
     <div class="gal">
-      <a href="assets/mirror/63a7b0b5-bb7c-461f-80aa-1aeb85afb180.webp"><img loading="lazy" decoding="async" src="assets/mirror/63a7b0b5-bb7c-461f-80aa-1aeb85afb180.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/f8a92471-4cae-4e62-9117-91163eef416b.webp"><img loading="lazy" decoding="async" src="assets/mirror/f8a92471-4cae-4e62-9117-91163eef416b.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/dd65d019-8830-4039-ae1f-9d50a7b8997c.webp"><img loading="lazy" decoding="async" src="assets/mirror/dd65d019-8830-4039-ae1f-9d50a7b8997c.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/f4a1ceff-5e5f-4954-b1ce-dae00fb3c4fd.webp"><img loading="lazy" decoding="async" src="assets/mirror/f4a1ceff-5e5f-4954-b1ce-dae00fb3c4fd.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/IMG_8924.webp"><img loading="lazy" decoding="async" src="assets/mirror/IMG_8924.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/68e4e7be-74ea-4d09-ae8d-62683653c040.webp"><img loading="lazy" decoding="async" src="assets/mirror/68e4e7be-74ea-4d09-ae8d-62683653c040.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/f71abb04-9975-452d-82e3-8fff712766cb.webp"><img loading="lazy" decoding="async" src="assets/mirror/f71abb04-9975-452d-82e3-8fff712766cb.webp" alt="Malování na obličej — Agentura Marco"></a>
-      <a href="assets/mirror/20230708-img_9095.webp"><img loading="lazy" decoding="async" src="assets/mirror/20230708-img_9095.webp" alt="Malování na obličej — Agentura Marco"></a>
+      <a href="assets/mirror/image00004.webp"><img loading="lazy" decoding="async" src="assets/mirror/image00004.webp" alt="Fotokoutek — Agentura Marco"></a>
+      <a href="assets/mirror/image00005.webp"><img loading="lazy" decoding="async" src="assets/mirror/image00005.webp" alt="Fotokoutek — Agentura Marco"></a>
+      <a href="assets/mirror/IMG_8935.webp"><img loading="lazy" decoding="async" src="assets/mirror/IMG_8935.webp" alt="Fotokoutek — Agentura Marco"></a>
+      <a href="assets/mirror/IMG_8939.webp"><img loading="lazy" decoding="async" src="assets/mirror/IMG_8939.webp" alt="Fotokoutek — Agentura Marco"></a>
     </div>
   </div>
 </section>
 
-
 <section class="page-cta">
   <div class="wrap">
-    <h2 class="h2">Chcete malování na vaší akci?</h2>
-    <p class="sub" style="margin:10px auto 26px;max-width:520px">Napište datum a místo — přivezeme barvy, třpytky a dobrou náladu.</p>
+    <h2 class="h2">Chcete fotokoutek na vaší akci?</h2>
+    <p class="sub" style="margin:10px auto 26px;max-width:520px">Napište datum a místo — připravíme fotokoutek na míru a ozveme se s cenou.</p>
     <a class="btn" href="index.html#kontakt">Nezávazná poptávka</a>
   </div>
 </section>
