@@ -426,10 +426,18 @@
   .pxb i:nth-child(6){width:38px;height:48px;top:150px;right:27%;background:radial-gradient(circle at 32% 28%,#c4f0d4,#4CAF7D);opacity:.5;animation-duration:6s}
   @media(max-width:700px){.page-hero{padding:120px 0 64px}.pxb i:nth-child(5),.pxb i:nth-child(6){display:none}}
   @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}.comic-burst,.comic-lines,.comic-note,.comic-bolt,.comic-bubble,.comic-boom{animation:none;opacity:1}.comic-spark{animation:none;opacity:.85}.comic-lines{opacity:.9}.hero-fig{animation:none;opacity:1}.hero-fig .cape{animation:none}.fig-rays{animation:none}.hero-fig .bounce{animation:none}}
+  .facts-block{padding-top:70px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-top:34px}
+  .fitem{display:flex;flex-direction:column;gap:4px;background:var(--navy,#1B3A63);border-radius:22px;padding:22px 24px 20px;box-shadow:var(--shadow);opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
+  .fitem.in{opacity:1;transform:none}
+  .fitem:nth-child(2){transition-delay:.06s}.fitem:nth-child(3){transition-delay:.12s}.fitem:nth-child(5){transition-delay:.06s}.fitem:nth-child(6){transition-delay:.12s}
+  .flab{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--gold,#FFD23F);line-height:1}
+  .fval{font-family:'Baloo 2';font-weight:800;font-size:1.45rem;color:#fff;line-height:1.15}
+  .fnote{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.45}
   .gal a{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
   .gal a.in{opacity:1;transform:none}
   .gal a:nth-child(2){transition-delay:.07s}.gal a:nth-child(3){transition-delay:.14s}.gal a:nth-child(4){transition-delay:.21s}.gal a:nth-child(5){transition-delay:.07s}.gal a:nth-child(6){transition-delay:.14s}
-  @media(prefers-reduced-motion:reduce){.hrow,.gal a,.mask-card,.pkgx{opacity:1!important;transform:none!important;transition:none}}
+  @media(prefers-reduced-motion:reduce){.hrow,.gal a,.mask-card,.pkgx,.fitem{opacity:1!important;transform:none!important;transition:none}}
   .mask-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:40px}
   .mask-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.9,.3,1),box-shadow .3s}
   .mask-card.in{opacity:1;transform:none}
@@ -570,7 +578,7 @@
   <div class="wrap">
     <div class="crumb"><a href="index.html">Domů</a> · <a href="index.html#bestsellery">Bestsellery</a> · Mega hrady</div>
     <h1 class="h1"><svg class="comic-burst b1" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gPow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7A"/><stop offset="1" stop-color="#DA3B4B"/></linearGradient><filter id="stShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1B3A63" flood-opacity=".25"/></filter></defs><g filter="url(#stShadow)"><path d="M50.0 4.0 Q50.0 4.0 54.9 8.6 Q59.8 13.3 66.4 11.7 Q73.0 10.2 74.9 16.6 Q76.9 23.1 83.4 25.1 Q89.8 27.0 88.3 33.6 Q86.7 40.2 91.4 45.1 Q96.0 50.0 91.4 54.9 Q86.7 59.8 88.3 66.4 Q89.8 73.0 83.4 74.9 Q76.9 76.9 74.9 83.4 Q73.0 89.8 66.4 88.3 Q59.8 86.7 54.9 91.4 Q50.0 96.0 45.1 91.4 Q40.2 86.7 33.6 88.3 Q27.0 89.8 25.1 83.4 Q23.1 76.9 16.6 74.9 Q10.2 73.0 11.7 66.4 Q13.3 59.8 8.6 54.9 Q4.0 50.0 8.6 45.1 Q13.3 40.2 11.7 33.6 Q10.2 27.0 16.6 25.1 Q23.1 23.1 25.1 16.6 Q27.0 10.2 33.6 11.7 Q40.2 13.3 45.1 8.6 Z" fill="#fff"/><path d="M50.0 10.0 Q50.0 10.0 54.3 14.1 Q58.5 18.1 64.3 16.7 Q70.0 15.4 71.7 21.0 Q73.3 26.7 79.0 28.3 Q84.6 30.0 83.3 35.7 Q81.9 41.5 85.9 45.7 Q90.0 50.0 85.9 54.3 Q81.9 58.5 83.3 64.3 Q84.6 70.0 79.0 71.7 Q73.3 73.3 71.7 79.0 Q70.0 84.6 64.3 83.3 Q58.5 81.9 54.3 85.9 Q50.0 90.0 45.7 85.9 Q41.5 81.9 35.7 83.3 Q30.0 84.6 28.3 79.0 Q26.7 73.3 21.0 71.7 Q15.4 70.0 16.7 64.3 Q18.1 58.5 14.1 54.3 Q10.0 50.0 14.1 45.7 Q18.1 41.5 16.7 35.7 Q15.4 30.0 21.0 28.3 Q26.7 26.7 28.3 21.0 Q30.0 15.4 35.7 16.7 Q41.5 18.1 45.7 14.1 Z" fill="url(#gPow)"/><text x="50" y="59" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="25" fill="#fff">POW</text></g></svg><svg class="comic-lines" viewBox="0 0 120 60" aria-hidden="true"><g stroke-linecap="round" fill="none"><path d="M6 30 H46" stroke="#fff" stroke-width="12"/><path d="M12 13 L48 21 M12 47 L48 39" stroke="#fff" stroke-width="11"/><path d="M6 30 H46" stroke="#38B6FF" stroke-width="6"/><path d="M12 13 L48 21" stroke="#6B4FA0" stroke-width="5"/><path d="M12 47 L48 39" stroke="#F5B324" stroke-width="5"/></g></svg><span class="comic-txt" data-text="Mega hrady pro mega akce">Mega hrady pro mega akce</span><svg class="comic-burst b2" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gStar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FD0FF"/><stop offset="1" stop-color="#38B6FF"/></linearGradient></defs><g filter="url(#stShadow)"><path d="M50 2 C55 28 60 34 88 42 C60 50 55 56 50 82 C45 56 40 50 12 42 C40 34 45 28 50 2 Z" fill="#fff" transform="translate(0,8)"/><path d="M50 12 C54 32 58 37 79 43 C58 49 54 54 50 74 C46 54 42 49 21 43 C42 37 46 32 50 12 Z" fill="url(#gStar)" transform="translate(0,8)"/></g></svg><svg class="comic-bolt" viewBox="0 0 60 90" aria-hidden="true"><defs><linearGradient id="gBolt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset="1" stop-color="#F5A623"/></linearGradient></defs><g filter="url(#stShadow)"><path d="M36 2 C38 2 40 4 39 7 L31 32 L42 32 C46 32 48 36 45 40 L22 84 C19 88 13 86 15 81 L23 50 L14 50 C10 50 8 46 10 42 L30 5 C31 3 33 2 36 2 Z" fill="#fff" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M36 2 C38 2 40 4 39 7 L31 32 L42 32 C46 32 48 36 45 40 L22 84 C19 88 13 86 15 81 L23 50 L14 50 C10 50 8 46 10 42 L30 5 C31 3 33 2 36 2 Z" fill="url(#gBolt)"/></g></svg><svg class="comic-spark s1" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#6B4FA0" opacity=".9"/></svg><svg class="comic-spark s2" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#F5A623"/></svg><svg class="comic-spark s3" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#38B6FF" opacity=".9"/></svg><svg class="comic-bubble" viewBox="0 0 80 70" aria-hidden="true"><defs><linearGradient id="gBub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A6BC4"/><stop offset="1" stop-color="#6B4FA0"/></linearGradient></defs><g filter="url(#stShadow)"><rect x="5" y="6" width="70" height="46" rx="23" fill="#fff"/><path d="M26 48 C24 58 20 62 15 66 C24 64 30 60 34 52 Z" fill="#fff"/><rect x="9" y="10" width="62" height="38" rx="19" fill="url(#gBub)"/><text x="40" y="37" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="22" fill="#FFD23F">WOW</text></g></svg><svg class="comic-boom" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gBoom" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset="1" stop-color="#F5A623"/></linearGradient></defs><g filter="url(#stShadow)"><path d="M50.0 4.0 Q50.0 4.0 55.7 9.4 Q61.4 14.8 69.2 13.8 Q77.0 12.8 78.5 20.5 Q79.9 28.3 86.8 32.0 Q93.7 35.8 90.4 42.9 Q87.0 50.0 90.4 57.1 Q93.7 64.2 86.8 68.0 Q79.9 71.7 78.5 79.5 Q77.0 87.2 69.2 86.2 Q61.4 85.2 55.7 90.6 Q50.0 96.0 44.3 90.6 Q38.6 85.2 30.8 86.2 Q23.0 87.2 21.5 79.5 Q20.1 71.7 13.2 68.0 Q6.3 64.2 9.6 57.1 Q13.0 50.0 9.6 42.9 Q6.3 35.8 13.2 32.0 Q20.1 28.3 21.5 20.5 Q23.0 12.8 30.8 13.8 Q38.6 14.8 44.3 9.4 Z" fill="#fff"/><path d="M50.0 11.0 Q50.0 11.0 54.8 15.8 Q59.6 20.5 66.3 19.5 Q72.9 18.4 74.0 25.1 Q75.1 31.8 81.1 34.9 Q87.1 37.9 84.0 44.0 Q81.0 50.0 84.0 56.0 Q87.1 62.1 81.1 65.1 Q75.1 68.2 74.0 74.9 Q72.9 81.6 66.3 80.5 Q59.6 79.5 54.8 84.2 Q50.0 89.0 45.2 84.2 Q40.4 79.5 33.7 80.5 Q27.1 81.6 26.0 74.9 Q24.9 68.2 18.9 65.1 Q12.9 62.1 16.0 56.0 Q19.0 50.0 16.0 44.0 Q12.9 37.9 18.9 34.9 Q24.9 31.8 26.0 25.1 Q27.1 18.4 33.7 19.5 Q40.4 20.5 45.2 15.8 Z" fill="url(#gBoom)"/><text x="50" y="59" text-anchor="middle" font-family="Baloo 2" font-weight="900" font-size="23" fill="#1B3A63">BUM!</text></g></svg><svg class="comic-spark s4" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C22 13 24 15 36 20 C24 25 22 27 20 38 C18 27 16 25 4 20 C16 15 18 13 20 2 Z" fill="#DA3B4B" opacity=".9"/></svg><span class="comic-note">vyskákejte se dosyta! ✦</span></h1>
-    <p class="sub" style="max-width:640px;margin:0 auto">Největší nafukovací atrakce v naší flotile — pro obecní dny, firemní akce a všude tam, kde skáče celý dav dětí najednou.</p>
+    <p class="sub" style="max-width:640px;margin:0 auto">Největší nafukovací atrakce v naší flotile — pro obecní dny, firemní akce a oslavy po celé ČR. Všude tam, kde skáče celý dav dětí najednou.</p>
   </div>
 </section>
 
@@ -643,7 +651,7 @@
     <div class="center">
       <span class="eyebrow" style="color:var(--gold)">Jak to probíhá</span>
       <h2 class="h2">Přivezeme, postavíme, sbalíme</h2>
-      <p class="sub">Žádné starosti — celé balení hradu zvládáme na pár minut. Podívejte se sami, jak rychle to jde.</p>
+      <p class="sub">Žádné starosti — dovoz, nafouknutí i sbalení máte v ceně a zvládáme je na pár minut. Podívejte se sami, jak rychle to jde.</p>
     </div>
     <div class="baleni-frame">
       <span class="baleni-badge">SBALENO ZA PÁR MINUT</span>
@@ -659,6 +667,23 @@
       <span class="bstep"><b>1.</b> Přivezeme a postavíme</span>
       <span class="bstep"><b>2.</b> Celou akci dohlížíme</span>
       <span class="bstep"><b>3.</b> Sbalíme a odjedeme</span>
+    </div>
+  </div>
+</section>
+
+<section class="block facts-block">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow" style="color:var(--gold)">Praktické info</span>
+      <h2 class="h2">Rychlá fakta k mega hradům</h2>
+    </div>
+    <div class="facts">
+      <div class="fitem"><span class="flab">Dojezd</span><span class="fval">Celá ČR</span><span class="fnote">Přijedeme kamkoliv — vzdálenost domluvíme předem.</span></div>
+      <div class="fitem"><span class="flab">Kapacita</span><span class="fval">6–10 dětí</span><span class="fnote">Najednou na hradu, podle typu hradu a věku dětí.</span></div>
+      <div class="fitem"><span class="flab">Věk</span><span class="fval">Od 6 let</span><span class="fnote">Doporučený věk pro mega hrady. Pro menší máme menší hrady a skluzavky.</span></div>
+      <div class="fitem"><span class="flab">Dozor</span><span class="fval">Hlídáme každý hrad</span><span class="fnote">Náš člověk je u hradu po celou akci — dohled rodičů ale i tak doporučujeme.</span></div>
+      <div class="fitem"><span class="flab">Stavba</span><span class="fval">V ceně</span><span class="fnote">Nafouknutí i sbalení řešíme my. Vy jen ukážete kam.</span></div>
+      <div class="fitem"><span class="flab">Storno</span><span class="fval">Do 24 h</span><span class="fnote">Zrušit rezervaci můžete až 24 hodin před akcí.</span></div>
     </div>
   </div>
 </section>
@@ -693,7 +718,7 @@
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
-  document.querySelectorAll('.hrow,.baleni,.gal a,.mask-card,.pkgx').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.hrow,.baleni,.gal a,.mask-card,.pkgx,.fitem').forEach(function(el){io.observe(el)});
   var tr = document.getElementById('fleetTrack');
   document.querySelectorAll('.fleet-nav button').forEach(function(b){
     b.addEventListener('click', function(){
