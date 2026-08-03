@@ -530,13 +530,17 @@
   @media (min-width:1024px){.fleet-hint{display:none}}
   @media (prefers-reduced-motion:reduce){.fcard,.fleet-nav button{transition:none}.fcard:hover{transform:none}}
   /* ---- video baleni: emphasized ---- */
-  .baleni{background:linear-gradient(150deg,var(--navy) 0%,#24467a 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
   .baleni .h2{color:#fff}
   .baleni .sub{color:rgba(255,255,255,.75)}
-  .baleni-frame{position:relative;max-width:760px;margin:44px auto 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45)}
-  .baleni-frame::before{content:"";position:absolute;inset:-3px;border-radius:inherit;border:3px dashed var(--gold);animation:dashspin 14s linear infinite;pointer-events:none;z-index:3}
-  @keyframes dashspin{to{transform:rotate(360deg)}}
-  .baleni-frame::before{inset:-40%;border:none;background:conic-gradient(var(--gold) 0 8deg,transparent 8deg 22deg);opacity:.0}
+  .baleni{background:linear-gradient(150deg,#5A3D96 0%,#33215E 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
+  .baleni::before{content:"";position:absolute;inset:-35%;background:radial-gradient(46% 42% at 22% 28%,rgba(154,101,230,.5),transparent 70%),radial-gradient(52% 46% at 80% 72%,rgba(90,61,150,.55),transparent 72%),linear-gradient(120deg,#5A3D96,#7B4FC4 35%,#33215E 65%,#6E45B8 100%);animation:gradShift 16s ease-in-out infinite alternate;will-change:transform;z-index:0}
+  @keyframes gradShift{from{transform:translate3d(-5%,-3%,0) rotate(0deg) scale(1)}to{transform:translate3d(5%,3%,0) rotate(3deg) scale(1.06)}}
+  .baleni .wrap{position:relative;z-index:1}
+  .baleni .sub{color:rgba(255,255,255,.75)}
+  .vid-soon{text-align:center;font-family:'Caveat',cursive;font-size:1.3rem;color:rgba(255,255,255,.8);margin-top:16px}
+  .baleni-frame{position:relative;max-width:760px;margin:44px auto 0;border-radius:var(--radius-lg);overflow:hidden;border:2px solid rgba(255,210,63,.85);box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 22px rgba(255,210,63,.5),0 0 48px rgba(255,210,63,.22)}
+  .baleni-frame::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 20px rgba(255,210,63,.45);opacity:.45;animation:neonBreath 2.8s ease-in-out infinite,neonHue 10s linear infinite;pointer-events:none;z-index:3}
+  @keyframes neonBreath{0%,100%{opacity:.35}50%{opacity:.9}}
   .baleni-frame video{display:block;width:100%;border-radius:inherit;position:relative;z-index:2}
   .baleni-badge{position:absolute;top:-26px;right:-14px;z-index:4;background:var(--gold);color:var(--navy);font-family:'Baloo 2';font-weight:800;font-size:1rem;padding:12px 22px;border-radius:36px;transform:rotate(7deg);box-shadow:0 10px 26px rgba(0,0,0,.35);animation:badgebob 3s ease-in-out infinite}
   @keyframes badgebob{0%,100%{transform:rotate(7deg) translateY(0)}50%{transform:rotate(5deg) translateY(-7px)}}
@@ -662,7 +666,6 @@
         </div>
       </div>
     </div>
-    <div class="center" style="margin-top:22px"><a class="btn" href="https://www.facebook.com/agenturamarco" target="_blank" rel="noopener">▶ Podívejte se na video z akce</a></div>
   </div>
 </section>
 
@@ -670,7 +673,23 @@
 
 
 
-<section class="block" style="padding-bottom:0">
+<section class="block baleni" id="video">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Video</span>
+      <h2 class="h2">Fotokoutek v akci</h2>
+      <p class="sub">Pusť si, jak to u fotokoutku vypadá naživo.</p>
+    </div>
+    <div class="baleni-frame">
+      <video controls preload="metadata" playsinline poster="assets/mirror/IMG_8935.webp">
+        <source src="assets/marco/fotokoutek-vid-1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="vid-soon">Video z akce brzy doplníme ✦</p>
+  </div>
+</section>
+
+<section class="block facts-block">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Praktické info</span>
