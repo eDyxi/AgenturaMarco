@@ -456,7 +456,7 @@
   @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}.comic-burst,.comic-lines,.comic-note,.comic-bolt,.comic-bubble,.comic-boom{animation:none;opacity:1}.comic-spark{animation:none;opacity:.85}.comic-lines{opacity:.9}.hero-fig{animation:none;opacity:1}.hero-fig .cape{animation:none}.fig-rays{animation:none}.hero-fig .bounce{animation:none}}
   .gal-track a{opacity:0;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
   .gal-track a.in{opacity:1}
-  @media(prefers-reduced-motion:reduce){.baleni-frame::before{animation:none}.fitem::after,.hrow::after,.gal-track a::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover{transform:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
+  @media(prefers-reduced-motion:reduce){.baleni::before,.baleni-frame::before{animation:none}.fitem::after,.hrow::after,.gal-track a::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover{transform:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
   .mask-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:40px}
   .mask-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.9,.3,1),box-shadow .3s}
   .mask-card.in{opacity:1;transform:none}
@@ -492,7 +492,8 @@
   @keyframes neonThrob{0%,100%{opacity:.22}50%{opacity:.95}}
   @keyframes neonHue{to{filter:hue-rotate(360deg)}}
   .hrow:hover{transform:translateY(-6px)}
-  .hrow:hover::after{opacity:1;animation:neonHue 9s linear infinite}
+  .hrow:hover::after{opacity:1;animation:neonHue 9s linear infinite,sideStretch 1.5s ease-in-out infinite alternate;will-change:transform}
+  @keyframes sideStretch{from{transform:scaleX(1) scaleY(1)}to{transform:scaleX(1.04) scaleY(1.008)}}
   .hrow:nth-child(even){grid-template-columns:1fr 1.05fr}
   .hrow:nth-child(even) .himg{order:2}
   .himg{position:relative;min-height:300px;background-size:cover;background-position:center}
@@ -557,6 +558,13 @@
   .fval{font-family:'Baloo 2';font-weight:800;font-size:1.45rem;color:#fff;line-height:1.15}
   .fnote{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.45}
   .baleni{background:linear-gradient(150deg,#5A3D96 0%,#33215E 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
+  .baleni::before{content:"";position:absolute;inset:-35%;background:
+    radial-gradient(46% 42% at 22% 28%,rgba(154,101,230,.5),transparent 70%),
+    radial-gradient(52% 46% at 80% 72%,rgba(90,61,150,.55),transparent 72%),
+    linear-gradient(120deg,#5A3D96,#7B4FC4 35%,#33215E 65%,#6E45B8 100%);
+    animation:gradShift 16s ease-in-out infinite alternate;will-change:transform;z-index:0}
+  @keyframes gradShift{from{transform:translate3d(-5%,-3%,0) rotate(0deg) scale(1)}to{transform:translate3d(5%,3%,0) rotate(3deg) scale(1.06)}}
+  .baleni .wrap{position:relative;z-index:1}
   .baleni .h2{color:#fff}
   .baleni .sub{color:rgba(255,255,255,.75)}
   .baleni-frame{position:relative;max-width:760px;margin:44px auto 0;border-radius:var(--radius-lg);overflow:hidden;border:2px solid rgba(255,210,63,.85);box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 22px rgba(255,210,63,.5),0 0 48px rgba(255,210,63,.22)}
