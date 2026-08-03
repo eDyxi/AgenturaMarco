@@ -456,7 +456,7 @@
   @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}.comic-burst,.comic-lines,.comic-note,.comic-bolt,.comic-bubble,.comic-boom{animation:none;opacity:1}.comic-spark{animation:none;opacity:.85}.comic-lines{opacity:.9}.hero-fig{animation:none;opacity:1}.hero-fig .cape{animation:none}.fig-rays{animation:none}.hero-fig .bounce{animation:none}}
   .gal-track a{opacity:0;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
   .gal-track a.in{opacity:1}
-  @media(prefers-reduced-motion:reduce){.baleni::before,.baleni-frame::before{animation:none}.fitem::after,.hrow::after,.gal-track a::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover{transform:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
+  @media(prefers-reduced-motion:reduce){.baleni::before,.baleni-frame::before{animation:none}.fitem::after,.hrow::after,.gal-track a::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover{transform:none;animation:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
   .mask-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:40px}
   .mask-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.9,.3,1),box-shadow .3s}
   .mask-card.in{opacity:1;transform:none}
@@ -491,9 +491,9 @@
   .hrow::after{content:"";position:absolute;inset:-2px;border-radius:inherit;box-shadow:0 0 30px rgba(var(--neon),.65),inset 0 0 20px rgba(var(--neon),.2);opacity:.22;animation:neonThrob 3s ease-in-out infinite,neonHue 9s linear infinite;transition:opacity .3s ease;pointer-events:none;z-index:3}
   @keyframes neonThrob{0%,100%{opacity:.22}50%{opacity:.95}}
   @keyframes neonHue{to{filter:hue-rotate(360deg)}}
-  .hrow:hover{transform:translateY(-6px)}
-  .hrow:hover::after{opacity:1;animation:neonHue 9s linear infinite,sideStretch 1.5s ease-in-out infinite alternate;will-change:transform}
-  @keyframes sideStretch{from{transform:scaleX(1) scaleY(1)}to{transform:scaleX(1.04) scaleY(1.008)}}
+  .hrow:hover{transform:translateY(-6px);animation:sideGlow 1.3s ease-in-out infinite alternate}
+  @keyframes sideGlow{from{box-shadow:var(--shadow),0 0 18px rgba(var(--neon),.35),-14px 0 28px rgba(var(--neon),.5),14px 0 28px rgba(var(--neon),.5)}to{box-shadow:var(--shadow),0 0 24px rgba(var(--neon),.55),-44px 0 64px rgba(var(--neon),.9),44px 0 64px rgba(var(--neon),.9)}}
+  .hrow:hover::after{opacity:1;animation:neonHue 9s linear infinite}
   .hrow:nth-child(even){grid-template-columns:1fr 1.05fr}
   .hrow:nth-child(even) .himg{order:2}
   .himg{position:relative;min-height:300px;background-size:cover;background-position:center}
