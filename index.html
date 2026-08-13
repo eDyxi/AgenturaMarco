@@ -240,6 +240,37 @@
   @keyframes pkgFloat{0%,100%{transform:translateY(-12px)}50%{transform:translateY(-18px)}}
   @media(prefers-reduced-motion:reduce){.pkg:hover{animation:none;transform:translateY(-8px)}}
   .pkg.feat{border-color:var(--gold);box-shadow:0 20px 44px rgba(245,179,36,.28)}
+
+  /* ---- barevna skala balicku: bronz -> stribro/fialova -> zlato ---- */
+  .pkg{--pk:180,110,20;--pk2:90,55,8}
+  .pkg::before{content:"";position:absolute;left:0;right:0;top:0;height:7px;
+    border-radius:var(--radius-lg) var(--radius-lg) 0 0;pointer-events:none;
+    background:linear-gradient(90deg,rgb(var(--pk)) 0%,rgba(255,255,255,.85) 50%,rgb(var(--pk)) 100%)}
+
+  .pkg.tier-start{--pk:226,118,15;--pk2:120,52,6;border-color:rgba(226,118,15,.45)}
+  .pkg.tier-start .pprice{color:#B44708;text-shadow:0 0 10px rgba(226,118,15,.35)}
+  .pkg.tier-start:hover .pname{color:#B44708}
+
+  .pkg.tier-plus{--pk:132,104,184;--pk2:74,53,121;border-color:rgba(107,79,160,.5)}
+  .pkg.tier-plus .pprice{color:#5C3F94;text-shadow:0 0 10px rgba(150,118,215,.4)}
+  .pkg.tier-plus:hover .pname{color:#5C3F94}
+  .pkg.tier-plus .flag{background:linear-gradient(180deg,#C0B8DE,#8468B8);color:#fff;text-shadow:0 1px 2px rgba(74,53,121,.6)}
+
+  .pkg.tier-max{--pk:245,179,36;--pk2:94,61,6;border-color:rgba(245,179,36,.6)}
+  .pkg.tier-max .pprice{color:#9C6807;text-shadow:0 0 12px rgba(255,196,50,.5)}
+  .pkg.tier-max:hover .pname{color:#9C6807}
+  .pkg.tier-max .flag{background:linear-gradient(180deg,#FFD84A,#E9A70C);color:var(--navy)}
+
+  /* hover: zare v barve tieru misto jednotne azurove */
+  .pkg.tier-start:hover,.pkg.tier-plus:hover,.pkg.tier-max:hover{
+    box-shadow:0 0 22px rgba(var(--pk),.6),0 0 48px rgba(var(--pk),.35),0 20px 44px rgba(var(--pk2),.28);
+    border-color:rgba(var(--pk),.85)}
+  .pkg.tier-max:hover{box-shadow:0 0 26px rgba(var(--pk),.75),0 0 60px rgba(var(--pk),.45),0 0 96px rgba(var(--pk),.25),0 22px 48px rgba(var(--pk2),.32)}
+
+  /* odkaz na podstranku pod tlacitkem */
+  .pkg .pmore{display:block;margin-top:12px;font-family:'Baloo 2';font-weight:700;font-size:.86rem;
+    color:rgb(var(--pk2));text-decoration:underline;text-underline-offset:3px;transition:opacity .2s}
+  .pkg .pmore:hover{opacity:.7}
   .pkg .flag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-family:'Baloo 2';font-weight:800;font-size:.72rem;letter-spacing:.08em;padding:7px 18px;border-radius:30px;white-space:nowrap}
   .pkg .pname{font-family:'Baloo 2';font-weight:800;font-size:1.4rem;color:var(--navy);transition:color .2s}
   .pkg:hover .pname{color:var(--gold-dark)}
@@ -491,7 +522,7 @@
       <p class="sub">Kompletní program na jednom místě — vyberte rozsah a o zbytek se postaráme my.</p>
     </div>
     <div class="pkg-grid">
-      <div class="pkg">
+      <div class="pkg tier-start">
         <div class="pname">START</div>
         <div class="pprice">20&nbsp;000&nbsp;<small>Kč</small></div>
         <ul>
@@ -500,9 +531,10 @@
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7ec46a"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Soutěžní stanoviště</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7ec46a"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Ozvučení a moderátor</li>
         </ul>
-        <a class="btn outline" href="https://www.agenturamarco.cz/balicky-pro-obce-a-firmy/balicek-start---20-000-kc">Mám zájem</a>
+        <a class="btn outline" href="balicek-start.html">Prohlédnout balíček</a>
+        <a class="pmore" href="index.html#kontakt">Nezávazná poptávka</a>
       </div>
-      <div class="pkg feat">
+      <div class="pkg feat tier-plus">
         <span class="flag">NEJOBLÍBENĚJŠÍ</span>
         <div class="pname">PLUS</div>
         <div class="pprice">50&nbsp;000&nbsp;<small>Kč</small></div>
@@ -512,9 +544,10 @@
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#F5B324"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Fotokoutek s tiskem</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#F5B324"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>DJ a světelná produkce</li>
         </ul>
-        <a class="btn" href="https://www.agenturamarco.cz/balicky-pro-obce-a-firmy/balicek-plus---50-000-kc">Mám zájem</a>
+        <a class="btn" href="balicek-plus.html">Prohlédnout balíček</a>
+        <a class="pmore" href="index.html#kontakt">Nezávazná poptávka</a>
       </div>
-      <div class="pkg">
+      <div class="pkg tier-max">
         <div class="pname">MAX</div>
         <div class="pprice">100&nbsp;000&nbsp;<small>Kč</small></div>
         <ul>
@@ -523,7 +556,8 @@
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#6B4FA0"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Pěnová párty</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#6B4FA0"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Celodenní program na klíč</li>
         </ul>
-        <a class="btn outline" href="https://www.agenturamarco.cz/balicky-pro-obce-a-firmy/balicek-max---100-000-kc">Mám zájem</a>
+        <a class="btn outline" href="balicek-max.html">Prohlédnout balíček</a>
+        <a class="pmore" href="index.html#kontakt">Nezávazná poptávka</a>
       </div>
     </div>
   </div>
