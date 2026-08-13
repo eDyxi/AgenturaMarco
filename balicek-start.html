@@ -556,18 +556,26 @@
   .pcard p{color:rgba(255,246,228,.94);font-weight:600;font-size:.92rem;line-height:1.58;
     text-shadow:0 1px 2px rgba(120,52,6,.4)}
   .pcard:nth-child(2){transition-delay:.06s}.pcard:nth-child(3){transition-delay:.12s}.pcard:nth-child(4){transition-delay:.18s}
-  /* jemny postupny schod — kazda karta o kousek niz */
+  /* schod — nejvyssi karta vlevo, postupne se snizuji doprava */
   .pcard-grid{align-items:start}
-  .pcard:nth-child(1){margin-top:0}
-  .pcard:nth-child(2){margin-top:10px}
-  .pcard:nth-child(3){margin-top:20px}
-  .pcard:nth-child(4){margin-top:30px}
+  .pcard{margin-top:0}
+  .pcard:nth-child(1) .pphoto{height:174px}
+  .pcard:nth-child(2) .pphoto{height:166px}
+  .pcard:nth-child(3) .pphoto{height:158px}
+  .pcard:nth-child(4) .pphoto{height:150px}
+  .pcard:nth-child(1){padding-bottom:38px}
+  .pcard:nth-child(2){padding-bottom:34px}
+  .pcard:nth-child(3){padding-bottom:30px}
+  .pcard:nth-child(4){padding-bottom:26px}
   @media(max-width:1000px){
-    .pcard:nth-child(1),.pcard:nth-child(3){margin-top:0}
-    .pcard:nth-child(2),.pcard:nth-child(4){margin-top:14px}
+    .pcard:nth-child(1) .pphoto,.pcard:nth-child(2) .pphoto{height:166px}
+    .pcard:nth-child(3) .pphoto,.pcard:nth-child(4) .pphoto{height:152px}
+    .pcard:nth-child(1),.pcard:nth-child(2){padding-bottom:32px}
+    .pcard:nth-child(3),.pcard:nth-child(4){padding-bottom:26px}
   }
   @media(max-width:560px){
-    .pcard:nth-child(1),.pcard:nth-child(2),.pcard:nth-child(3),.pcard:nth-child(4){margin-top:0}
+    .pcard:nth-child(n) .pphoto{height:150px}
+    .pcard:nth-child(n){padding-bottom:26px}
   }
 
   @media(prefers-reduced-motion:reduce){
