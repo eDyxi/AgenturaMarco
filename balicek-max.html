@@ -555,12 +555,35 @@
     background:#FFF3CC;box-shadow:0 0 14px rgba(255,232,150,.98)}
   .pcard p{color:rgba(255,255,255,.95);font-weight:600;font-size:.92rem;line-height:1.58;
     text-shadow:0 1px 2px rgba(74,47,2,.55)}
-  /* shiny hover — zlaty paprsek prejede kartu pri najeti */
-  .pcard .pshine{position:absolute;inset:-40% -70%;z-index:2;pointer-events:none;opacity:0;
-    background:linear-gradient(66deg,transparent 42%,rgba(255,255,255,.35) 47%,rgba(255,252,235,.95) 50%,rgba(255,244,200,.6) 53%,transparent 59%);
-    transform:translateX(-70%)}
-  .pcard:hover .pshine{animation:pshineSweep .95s cubic-bezier(.3,.7,.4,1) forwards}
-  @keyframes pshineSweep{0%{opacity:0;transform:translateX(-70%)}12%{opacity:1}88%{opacity:1}100%{opacity:0;transform:translateX(70%)}}
+  /* hover — kratka neonova cast objede jednou cely border */
+  @property --prun{syntax:'<angle>';inherits:false;initial-value:0deg}
+  .pcard .pshine{position:absolute;inset:-2px;z-index:3;pointer-events:none;opacity:0;border-radius:inherit;
+    padding:3px;
+    background:conic-gradient(from var(--prun),
+      transparent 0deg,
+      rgba(255,240,190,.0) 26deg,
+      rgba(255,232,150,.85) 33deg,
+      rgba(255,255,255,1) 38deg,
+      rgba(255,214,90,.9) 43deg,
+      rgba(255,240,190,.0) 50deg,
+      transparent 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;
+    filter:drop-shadow(0 0 6px rgba(255,214,90,.95)) drop-shadow(0 0 14px rgba(255,190,40,.7))}
+  .pcard:hover .pshine{animation:prunLap 1.15s cubic-bezier(.42,0,.58,1) forwards}
+  @keyframes prunLap{
+    0%{opacity:0;--prun:0deg}
+    8%{opacity:1}
+    88%{opacity:1}
+    100%{opacity:0;--prun:360deg}
+  }
+  /* fallback pro prohlizece bez @property — proste se rozsviti a zhasne */
+  @supports not (background:conic-gradient(from var(--prun),red,blue)){
+    .pcard:hover .pshine{animation:prunFade 1.15s ease forwards;
+      background:conic-gradient(from 0deg,transparent 0deg,rgba(255,255,255,1) 38deg,transparent 60deg,transparent 360deg)}
+    @keyframes prunFade{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0}}
+  }
   .pcard:nth-child(2){transition-delay:.06s}.pcard:nth-child(3){transition-delay:.12s}.pcard:nth-child(4){transition-delay:.18s}
   /* jemny postupny schod — kazda karta o kousek niz */
   .pcard-grid{align-items:start}
