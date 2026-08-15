@@ -53,6 +53,19 @@
     + 'animation:pqLevitate 3.6s ease-in-out infinite;will-change:transform}'
     + '@keyframes pqLevitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}'
     + '.pq-send:hover{animation:none;filter:saturate(1.2) brightness(1.12) drop-shadow(0 14px 26px rgba(255,198,26,.55))}'
+    + '.pq-cart{margin:0 0 20px}'
+    + '.pq-cart h5{margin:0 0 10px;font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:1rem;color:#fff}'
+    + '.pq-ci{display:flex;align-items:center;gap:12px;padding:9px 10px;margin-bottom:8px;border-radius:14px;'
+    + 'background:rgba(255,255,255,.08);border:1.5px solid rgba(178,132,255,.3)}'
+    + '.pq-ci .th{width:46px;height:46px;flex:0 0 auto;border-radius:11px;background:rgba(255,255,255,.12);display:grid;place-items:center;overflow:hidden}'
+    + '.pq-ci .th img{width:100%;height:100%;object-fit:contain}'
+    + '.pq-ci .th span{font-family:"Baloo 2",system-ui,sans-serif;font-weight:900;color:#FFD23F}'
+    + '.pq-ci .nm{flex:1;min-width:0;font-weight:800;font-size:.95rem}'
+    + '.pq-ci button{width:32px;height:32px;flex:0 0 auto;border:0;border-radius:50%;cursor:pointer;'
+    + 'background:rgba(255,255,255,.12);color:#fff;font-size:1.1rem;line-height:1;transition:background .16s,transform .16s}'
+    + '.pq-ci button:hover{background:#DA3B4B;transform:rotate(90deg)}'
+    + '.pq-ci button:focus-visible{outline:3px solid #C9A6FF;outline-offset:2px}'
+    + '.pq-cart .none{color:#D6C8F2;font-weight:600;font-size:.9rem;line-height:1.5}'
     + '.pq-alt{margin:14px 0 0;text-align:center;font-size:.9rem;color:#D6C8F2;font-weight:600}'
     + '.pq-alt a{color:#C9A6FF}'
     + '.pq-x{position:absolute;z-index:5;top:12px;right:14px;width:42px;height:42px;border:0;border-radius:50%;cursor:pointer;'
@@ -92,6 +105,7 @@
     + '<div class="pq-card">'
     + '<h4 id="pqTitle">Nezávazná poptávka</h4>'
     + '<p class="pq-sub">Řekněte nám o akci a my se ozveme s cenou na míru.</p>'
+    + '<div class="pq-cart" id="pqCart"></div>'
     + '<div class="field"><input type="text" id="pqName" placeholder="Vaše jméno" autocomplete="name"></div>'
     + '<div class="field"><input type="tel" id="pqCon" placeholder="Telefon nebo e-mail" autocomplete="tel"></div>'
     + '<div class="field"><textarea id="pqMsg" placeholder="Datum, místo a co si představujete…"></textarea></div>'
@@ -135,6 +149,37 @@
     setTimeout(function () { balls.classList.remove('on'); balls.innerHTML = ''; }, 3200);
   }
 
+  /* ---------- vypis kosiku ---------- */
+  function cartItems() {
+    return (window.AMCart && window.AMCart.items) ? window.AMCart.items() : [];
+  }
+
+  function renderCart() {
+    var box = document.getElementById('pqCart');
+    if (!box) return;
+    var items = cartItems();
+    if (!items.length) {
+      box.innerHTML = '<p class="none">Košík je prázdný — napište nám rovnou do zprávy, o co máte zájem.</p>';
+      return;
+    }
+    box.innerHTML = '<h5>Vybrané služby</h5>' + items.map(function (it) {
+      var th = it.img
+        ? '<span class="th"><img src="' + it.img + '" alt=""></span>'
+        : '<span class="th"><span>' + (it.badge || '?') + '</span></span>';
+      return '<div class="pq-ci">' + th
+        + '<span class="nm">' + it.name + '</span>'
+        + '<button type="button" data-rm="' + it.id + '" aria-label="Odebrat ' + it.name + '">&times;</button>'
+        + '</div>';
+    }).join('');
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.pq-ci button[data-rm]') : null;
+    if (!b) return;
+    if (window.AMCart) window.AMCart.remove(b.getAttribute('data-rm'));
+    renderCart();
+  });
+
   /* ---------- otevreni / zavreni ---------- */
   var lastFocus = null;
 
@@ -147,6 +192,7 @@
   function open(e) {
     if (e) e.preventDefault();
     lastFocus = document.activeElement;
+    renderCart();
     veil.classList.add('on');
     document.body.style.overflow = 'hidden';
     launch();
@@ -175,14 +221,18 @@
   veil.addEventListener('click', function (e) {
     if (!e.target.classList.contains('pq-send')) return;
     var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
-    var body = 'Sluzba: ' + pageName() + '\n'
+    var picked = cartItems().map(function (i) { return i.name; });
+    var body = 'Sluzby z kosiku: ' + (picked.length ? picked.join(', ') : '(nevybrano)') + '\n'
+      + 'Stranka: ' + pageName() + '\n'
       + 'Jmeno: ' + v('pqName') + '\n'
       + 'Kontakt: ' + v('pqCon') + '\n\n'
       + v('pqMsg');
     window.location.href = 'mailto:' + MAIL
-      + '?subject=' + encodeURIComponent('Poptávka — ' + pageName())
+      + '?subject=' + encodeURIComponent('Poptávka — ' + (picked.length ? picked.join(' + ') : pageName()))
       + '&body=' + encodeURIComponent(body);
   });
+
+  window.AMPoptavka = { open: function () { open(); }, close: close };
 
   /* zachyceni CTA odkazu smerujicich na kontakt */
   document.addEventListener('click', function (e) {
