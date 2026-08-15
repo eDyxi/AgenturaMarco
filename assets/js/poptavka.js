@@ -15,18 +15,23 @@
     + '.pq-veil::before{content:"";position:absolute;inset:0;background:rgba(20,14,42,.55);backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);opacity:0;transition:opacity .35s}'
     + '.pq-veil.show::before{opacity:1}'
     /* karta v tmavem tonu kontaktni sekce z indexu */
-    + '.pq-card{position:relative;z-index:2;isolation:isolate;width:min(560px,100%);max-height:88vh;overflow:auto;'
+    + '.pq-shell{position:relative;z-index:2;isolation:isolate;width:min(560px,100%);overflow:visible;'
     + 'background:linear-gradient(170deg,#1B3A63 0%,#163054 55%,#2A2350 100%);'
-    + 'border:3px solid rgba(245,179,36,.55);border-radius:26px;padding:40px 34px 32px;color:#fff;'
+    + 'border:3px solid rgba(245,179,36,.55);border-radius:26px;color:#fff;'
     + 'box-shadow:0 26px 60px rgba(12,10,32,.5);'
     + 'transform:translateY(26px) scale(.94);opacity:0;transition:transform .42s cubic-bezier(.2,1.2,.3,1),opacity .32s}'
-    + '.pq-veil.show .pq-card{transform:none;opacity:1}'
+    + '.pq-veil.show .pq-shell{transform:none;opacity:1}'
+    + '.pq-card{position:relative;max-height:84vh;overflow-y:auto;overflow-x:hidden;padding:40px 34px 32px;border-radius:23px;'
+    + 'scrollbar-width:thin;scrollbar-color:rgba(255,206,58,.6) transparent}'
+    + '.pq-card::-webkit-scrollbar{width:8px}'
+    + '.pq-card::-webkit-scrollbar-thumb{background:rgba(255,206,58,.5);border-radius:8px}'
     /* obihajici trpytiva kontura — stejny princip jako u balicku START/PLUS/MAX */
-    + '.pq-card::after{content:"";position:absolute;inset:-4px;z-index:-1;border-radius:30px;padding:4px;pointer-events:none;'
+    + '.pq-shell::after{content:"";position:absolute;inset:-4px;z-index:-1;border-radius:30px;padding:4px;pointer-events:none;'
     + 'background:conic-gradient(from var(--pqAng),transparent 0 60%,#FFE9A8 72%,#FFFFFF 79%,#FFC61A 86%,transparent 96% 100%);'
     + 'animation:pqSpin 3.4s linear infinite;'
     + '-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;'
     + 'mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}'
+    + '.pq-shell:hover::after{animation-duration:1.6s}'
     + '@keyframes pqSpin{to{--pqAng:360deg}}'
     + '.pq-card h4{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:1.5rem;margin:0 0 8px;color:#fff;text-shadow:0 0 16px rgba(255,255,255,.32),0 2px 6px rgba(0,0,0,.4)}'
     + '.pq-card p.pq-sub{color:#C3D0E8;font-weight:600;font-size:.98rem;margin:0 0 24px}'
@@ -46,7 +51,7 @@
     + '.pq-send:hover{animation:none;filter:saturate(1.2) brightness(1.12) drop-shadow(0 14px 26px rgba(255,198,26,.55))}'
     + '.pq-alt{margin:14px 0 0;text-align:center;font-size:.9rem;color:#C3D0E8;font-weight:600}'
     + '.pq-alt a{color:#FFCE3A}'
-    + '.pq-x{position:absolute;top:12px;right:14px;width:42px;height:42px;border:0;border-radius:50%;cursor:pointer;'
+    + '.pq-x{position:absolute;z-index:5;top:12px;right:14px;width:42px;height:42px;border:0;border-radius:50%;cursor:pointer;'
     + 'background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;line-height:1;font-weight:700}'
     + '.pq-x:hover{background:rgba(255,255,255,.2)}'
     + '.pq-x:focus-visible{outline:3px solid #FFCE3A;outline-offset:2px}'
@@ -63,7 +68,7 @@
     + '@keyframes pqUp{from{transform:translateY(0)}to{transform:translateY(-165vh)}}'
     + '@keyframes pqSway{from{transform:rotate(-6deg) translateX(-6px)}to{transform:rotate(6deg) translateX(6px)}}'
     + '@media (prefers-reduced-motion:reduce){.pq-balls{display:none !important}'
-    + '.pq-card{transition:none;transform:none;opacity:1}.pq-card::after{animation:none}'
+    + '.pq-shell{transition:none;transform:none;opacity:1}.pq-shell::after{animation:none}'
     + '.pq-send{animation:none}.pq-veil::before{transition:none}}';
 
   var st = document.createElement('style');
@@ -77,8 +82,9 @@
   veil.setAttribute('aria-modal', 'true');
   veil.setAttribute('aria-labelledby', 'pqTitle');
   veil.innerHTML =
-    '<div class="pq-card">'
+    '<div class="pq-shell">'
     + '<button class="pq-x" type="button" aria-label="Zavřít">&times;</button>'
+    + '<div class="pq-card">'
     + '<h4 id="pqTitle">Nezávazná poptávka</h4>'
     + '<p class="pq-sub">Řekněte nám o akci a my se ozveme s cenou na míru.</p>'
     + '<div class="field"><input type="text" id="pqName" placeholder="Vaše jméno" autocomplete="name"></div>'
@@ -86,7 +92,7 @@
     + '<div class="field"><textarea id="pqMsg" placeholder="Datum, místo a co si představujete…"></textarea></div>'
     + '<button class="pq-send" type="button">Odeslat poptávku</button>'
     + '<p class="pq-alt">Nebo rovnou <a href="mailto:' + MAIL + '">' + MAIL + '</a></p>'
-    + '</div>';
+    + '</div></div>';
 
   var balls = document.createElement('div');
   balls.className = 'pq-balls';
