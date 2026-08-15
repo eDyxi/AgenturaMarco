@@ -373,7 +373,7 @@
   .intro-play.show{display:block}
   @keyframes playPulse{0%,100%{box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 0 rgba(245,179,36,.55)}50%{box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 18px rgba(245,179,36,0)}}
   /* ===== subpage: mega hrady ===== */
-  .page-hero{padding:128px 0 64px;text-align:center;position:relative;overflow:visible}
+  .page-hero{padding:128px 0 34px;text-align:center;position:relative;overflow:visible}
   .page-hero .eyebrow{margin-bottom:14px;animation:heroPop .7s cubic-bezier(.22,.9,.3,1) both}
   .page-hero .h1{font-size:clamp(3.3rem,9.5vw,7rem);font-weight:900;line-height:1.02;letter-spacing:-.02em;margin:0 auto 22px;max-width:920px;position:relative;text-transform:uppercase;transform:skew(-6deg);animation:comicSlam .5s cubic-bezier(.34,1.56,.44,1) both}
   .comic-txt{position:relative;display:inline-block;color:#E8890C;
@@ -430,24 +430,24 @@
   @media(max-width:700px){.comic-burst.b1{top:-34px;right:0}}
   .page-hero .sub{max-width:640px;margin:0 auto;font-size:1.15rem;line-height:1.65;color:var(--navy-soft);font-weight:600;animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
   @keyframes heroPop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
-  .price-hero{display:flex;gap:20px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:28px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
-  .pchip{position:relative;font-family:'Baloo 2',sans-serif;font-weight:800;padding:36px 78px 38px;text-align:center;line-height:1.15;min-width:300px;
+  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:34px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
+  .pchip{position:relative;font-family:'Baloo 2',sans-serif;font-weight:800;padding:42px 92px 44px;text-align:center;line-height:1.15;min-width:348px;
     clip-path:polygon(50% 0%,57% 12%,68% 4%,70% 17%,84% 12%,81% 26%,96% 26%,88% 38%,100% 46%,89% 53%,97% 65%,84% 66%,88% 80%,74% 76%,73% 91%,62% 83%,50% 94%,42% 82%,29% 90%,29% 76%,15% 79%,20% 66%,5% 63%,14% 52%,0% 45%,12% 37%,4% 25%,19% 26%,15% 12%,29% 16%,32% 3%,42% 11%);
     transform:rotate(-2deg);animation:boomPop 2.1s ease-in-out infinite}
   @keyframes boomPop{0%,100%{transform:rotate(-2deg) scale(1)}50%{transform:rotate(-1deg) scale(1.05)}}
   @media(prefers-reduced-motion:reduce){.pchip{animation:none}}
-  .pchip small{display:block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
-  .pchip b{font-size:1.7rem;font-weight:800;letter-spacing:-.01em}
-  .pchip span{display:block;font-size:.8rem;font-weight:700;opacity:.85}
-  .pchip-wrap{margin-top:30px;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 12px rgba(255,170,0,.6)) drop-shadow(0 10px 16px rgba(27,58,99,.32));display:inline-block}
+  .pchip small{display:block;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+  .pchip b{font-size:2.1rem;font-weight:800;letter-spacing:-.01em}
+  .pchip span{display:block;font-size:.9rem;font-weight:700;opacity:.85}
+  .pchip-wrap{margin-top:0;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 12px rgba(255,170,0,.6)) drop-shadow(0 10px 16px rgba(27,58,99,.32));display:inline-block}
   .pchip.pmain{background:linear-gradient(180deg,#FFC93F 0%,#FF8A00 100%);color:var(--navy)}
-  .pchip.pmain small{color:#fff;font-size:.84rem;letter-spacing:.16em;text-shadow:0 1.5px 0 rgba(27,58,99,.75)}
-  .pchip.pmain b{color:#fff;font-size:1.9rem;text-shadow:0 2px 0 rgba(27,58,99,.5),0 0 14px rgba(255,255,255,.75),0 0 30px rgba(255,210,63,.8)}
+  .pchip.pmain small{color:#fff;font-size:.95rem;letter-spacing:.16em;text-shadow:0 1.5px 0 rgba(27,58,99,.75)}
+  .pchip.pmain b{color:#fff;font-size:2.45rem;text-shadow:0 2px 0 rgba(27,58,99,.5),0 0 14px rgba(255,255,255,.75),0 0 30px rgba(255,210,63,.8)}
   .pchip.pwinter{background:linear-gradient(180deg,#BFE9FF 0%,#4FB8FF 100%);color:var(--navy)}
-  .pchip.pwinter small{color:#1B3A63;font-size:.84rem;letter-spacing:.16em;text-shadow:0 1px 0 rgba(255,255,255,.85)}
-  .pchip.pwinter b{color:#1B3A63;font-size:1.9rem;text-shadow:0 1px 0 #fff,0 0 14px rgba(255,255,255,.9),0 0 28px rgba(56,182,255,.7)}
+  .pchip.pwinter small{color:#1B3A63;font-size:.95rem;letter-spacing:.16em;text-shadow:0 1px 0 rgba(255,255,255,.85)}
+  .pchip.pwinter b{color:#1B3A63;font-size:2.45rem;text-shadow:0 1px 0 #fff,0 0 14px rgba(255,255,255,.9),0 0 28px rgba(56,182,255,.7)}
   @keyframes pglow{0%,100%{opacity:.2}50%{opacity:.75}}
-  @media(max-width:700px){.price-hero{gap:14px}.pchip{padding:12px 22px 14px}.pchip b{font-size:1.45rem}}
+  @media(max-width:700px){.price-hero{gap:14px}.pchip{padding:18px 26px 20px;min-width:0}.pchip b,.pchip.pmain b,.pchip.pwinter b{font-size:1.7rem}.pchip.pmain small,.pchip.pwinter small{font-size:.8rem}}
   @media(prefers-reduced-motion:reduce){.price-hero{animation:none}.pchip.pmain::after{animation:none;opacity:.35}}
   .pxb{position:absolute;inset:-40px 0 0;pointer-events:none;z-index:0}
   .pxb i{position:absolute;border-radius:50% 50% 48% 48%;will-change:transform;animation:sway 4.6s ease-in-out infinite alternate}
@@ -556,6 +556,67 @@
   .hbody p{color:rgba(255,255,255,.84);font-weight:600;line-height:1.75}
   .hbody ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
   .hbody li{font-family:'Baloo 2';font-weight:700;font-size:.82rem;background:rgba(var(--neon),.14);border:1.5px solid rgba(var(--neon),.55);color:#fff;padding:6px 14px;border-radius:30px}
+
+  /* --- maskoti: tri naklonene karty vedle sebe --- */
+  .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:8px;padding:26px 0 34px}
+  .mcard{--neon:255,210,63;position:relative;display:flex;flex-direction:column;
+    background:linear-gradient(155deg,#6E4DB0 0%,#452C7C 100%);
+    border:2px solid rgba(var(--neon),.6);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow),0 0 18px rgba(var(--neon),.26);
+    opacity:0;transform:translateY(30px) rotate(var(--tilt,0deg));
+    transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+  .mcard.n1{--tilt:-1.6deg}
+  .mcard.n2{--neon:96,190,255;--tilt:0deg;margin-top:-22px}
+  .mcard.n3{--neon:170,127,230;--tilt:1.6deg}
+  .mcard.in{opacity:1;transform:translateY(0) rotate(var(--tilt,0deg));animation:mcFloat 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
+  .mcard.n2.in{--fd:.9s}
+  .mcard.n3.in{--fd:1.8s}
+  .mcard::before{content:"";position:absolute;inset:-10%;border-radius:inherit;
+    background:radial-gradient(340px 240px at 82% 10%,rgba(var(--neon),.3),transparent 62%),
+               radial-gradient(300px 220px at 10% 94%,rgba(255,255,255,.13),transparent 60%);
+    animation:blobDrift 9s ease-in-out infinite alternate;pointer-events:none}
+  .mcard::after{content:"";position:absolute;inset:-2px;border-radius:inherit;
+    box-shadow:0 0 28px rgba(var(--neon),.6),inset 0 0 18px rgba(var(--neon),.2);
+    opacity:.24;animation:neonThrob 3s ease-in-out infinite,neonHue 9s linear infinite;
+    transition:opacity .3s ease;pointer-events:none}
+  .mcard:hover{animation-play-state:paused;translate:0 0;transform:translateY(-12px) rotate(0deg) scale(1.015)}
+  .mcard:hover::after{opacity:1}
+  .mcard:focus-within::after{opacity:1}
+  .mcimg{position:relative;aspect-ratio:16/11;background-size:cover;background-position:center;
+    border-radius:calc(var(--radius-lg) - 4px) calc(var(--radius-lg) - 4px) 0 0;overflow:hidden;
+    -webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000)}
+  .mcimg i{position:absolute;inset:0;background:inherit;background-size:cover;background-position:center;
+    transition:transform .6s cubic-bezier(.22,.9,.3,1)}
+  .mcard:hover .mcimg i{transform:scale(1.07)}
+  .mcimg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(190deg,transparent 46%,rgba(69,44,124,.55) 78%,#4E3189 100%);pointer-events:none}
+  .mcard .tag{position:absolute;left:16px;bottom:14px;z-index:3;transform:rotate(-3deg);
+    animation:tagpulse 2.2s ease-in-out infinite;font-family:'Baloo 2';font-weight:800;font-size:.78rem;
+    letter-spacing:.08em;background:#fff;color:var(--navy);padding:8px 16px;border-radius:26px 32px 24px 30px;
+    box-shadow:0 6px 16px rgba(27,58,99,.28)}
+  .mcard .tag.new{background:var(--gold)}
+  .mcard.n2 .tag{animation-delay:.5s}
+  .mcard.n3 .tag{animation-delay:1s}
+  .mcbody{position:relative;z-index:2;padding:30px 24px 26px;display:flex;flex-direction:column;flex:1}
+  .mcbody h3{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.25rem,1.7vw,1.55rem);color:#fff;
+    margin-bottom:10px;text-shadow:0 0 16px rgba(var(--neon),.45)}
+  .mcbody h3::after{content:"";display:block;width:48px;height:4px;border-radius:4px;margin-top:8px;
+    background:rgb(var(--neon));box-shadow:0 0 12px rgba(var(--neon),.8)}
+  .mcbody p{color:rgba(255,255,255,.85);font-weight:600;line-height:1.7;font-size:.94rem}
+  .mcbody ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .mcbody li{font-family:'Baloo 2';font-weight:700;font-size:.8rem;background:rgba(var(--neon),.14);
+    border:1.5px solid rgba(var(--neon),.55);color:#fff;padding:6px 13px;border-radius:30px}
+  @keyframes mcFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
+  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+    .mcard.n2{margin-top:0}.mcard{--tilt:0deg!important}}
+  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:20px;padding:18px 0 26px}
+    .mcbody{padding:28px 20px 22px}}
+  @media(prefers-reduced-motion:reduce){
+    .mcard,.mcard.in{opacity:1;transform:none;animation:none;transition:none}
+    .mcard:hover{transform:none}
+    .mcard::before,.mcard .tag{animation:none}
+    .mcard::after{animation:none;opacity:.3}
+    .mcimg i,.mcard:hover .mcimg i{transition:none;transform:none}}
   /* ---- flotila: horizontální carousel ---- */
   .fleet{padding-top:70px}
   .fleet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -662,36 +723,33 @@
   </div>
 </section>
 
-<section class="block" style="padding-top:10px">
+<section class="block" style="padding-top:0">
   <div class="wrap">
-    <div class="hrady-rows">
-      <div class="hrow">
-        <div class="himg" style="background-image:url('assets/mirror/maskotshow.webp')"></div>
-        <div class="hbody">
-          <span class="tag new">MASKOTÍ SHOW</span>
+    <div class="mcards">
+      <article class="mcard n1">
+        <div class="mcimg" style="background-image:url('assets/mirror/maskotshow.webp')"><i style="background-image:url('assets/mirror/maskotshow.webp')"></i><span class="tag new">MASKOTÍ SHOW</span></div>
+        <div class="mcbody">
           <h3>Show, co roztančí celou akci</h3>
           <p>Maskoti nestojí — tančí, soutěží a strhávají děti do hry. Nacvičená vystoupení s hudbou, po kterých se na parket hrnou i rodiče.</p>
           <ul><li>Tanec a soutěže</li><li>Hudba v ceně</li><li>Pro malé i velké</li></ul>
         </div>
-      </div>
-      <div class="hrow nsky">
-        <div class="himg" style="background-image:url('assets/mirror/karneval.webp')"></div>
-        <div class="hbody">
-          <span class="tag">KARNEVALY</span>
+      </article>
+      <article class="mcard n2">
+        <div class="mcimg" style="background-image:url('assets/mirror/karneval.webp')"><i style="background-image:url('assets/mirror/karneval.webp')"></i><span class="tag">KARNEVALY</span></div>
+        <div class="mcbody">
           <h3>Karneval s postavami z pohádek</h3>
           <p>Dětský karneval, kde masky nejsou jen na dětech. Maskoti vedou průvod, rozdávají ceny a drží program v tempu od první do poslední písničky.</p>
           <ul><li>Vedení programu</li><li>Průvod masek</li><li>Školy i obce</li></ul>
         </div>
-      </div>
-      <div class="hrow npur">
-        <div class="himg" style="background-image:url('assets/mirror/img_1032.webp')"></div>
-        <div class="hbody">
-          <span class="tag">KVALITA Z ITÁLIE</span>
+      </article>
+      <article class="mcard n3">
+        <div class="mcimg" style="background-image:url('assets/mirror/img_1032.webp')"><i style="background-image:url('assets/mirror/img_1032.webp')"></i><span class="tag">KVALITA Z ITÁLIE</span></div>
+        <div class="mcbody">
           <h3>Kostýmy ve špičkové kvalitě</h3>
           <p>Žádné vytahané převleky — maskoty vozíme z Itálie, z materiálů pro profesionální použití. Postavy vypadají přesně tak, jak je děti znají z obrazovky.</p>
           <ul><li>Profi materiály</li><li>Nejnovější pohádky</li><li>Se zkušeným animátorem</li></ul>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -772,7 +830,7 @@
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
-  document.querySelectorAll('.hrow,.baleni,.gal-track a,.mask-card,.pkgx,.fitem').forEach(function(el,i){el.style.transitionDelay=(i%4)*0.07+'s';io.observe(el)});
+  document.querySelectorAll('.mcard,.hrow,.baleni,.gal-track a,.mask-card,.pkgx,.fitem').forEach(function(el,i){el.style.transitionDelay=(i%4)*0.07+'s';io.observe(el)});
 
   var pxbs=document.querySelectorAll('.pxb i');
   if(pxbs.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
