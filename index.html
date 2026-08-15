@@ -171,10 +171,27 @@
   /* ---------- service tiles ---------- */
   .tiles{position:relative;z-index:3;margin-top:-30px}
   .tiles-row{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px}
-  .tile{background:var(--card);border:2.5px solid #C9A227;border-radius:var(--radius);box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 8px 20px rgba(43,30,82,.12);padding:20px 12px 18px;text-align:center;transition:transform .18s,box-shadow .18s,border-color .18s}
+  .tile{background:var(--card);border:2.5px solid #C9A227;border-radius:var(--radius);box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 8px 20px rgba(43,30,82,.12);padding:44px 12px 18px;text-align:center;transition:transform .18s,box-shadow .18s,border-color .18s}
   .tile:hover{transform:translateY(-8px);border-color:#FFCE3A;box-shadow:0 0 16px rgba(255,206,58,.6),0 0 34px rgba(245,179,36,.3),0 16px 34px rgba(43,30,82,.16)}
-  .tile .ico{width:60px;height:60px;margin:0 auto 12px;object-fit:contain;transition:filter .18s}
-  .tile:hover .ico{filter:drop-shadow(0 0 8px rgba(255,206,58,.75)) drop-shadow(0 0 16px rgba(245,179,36,.45))}
+  .tile{overflow:visible}
+  .tile .ico{width:104px;height:104px;margin:-30px auto 10px;object-fit:contain;
+    filter:drop-shadow(0 6px 10px rgba(43,30,82,.22));
+    transition:transform .28s cubic-bezier(.34,1.4,.5,1),filter .28s;will-change:transform}
+  .tile:hover .ico,.tile:focus-visible .ico{transform:translateY(-10px) scale(1.14) rotate(-3deg);
+    filter:drop-shadow(0 10px 14px rgba(43,30,82,.26)) drop-shadow(0 0 12px rgba(255,206,58,.8))}
+  /* jemne pulzovani, aby si toho zakaznik vsiml i bez najeti */
+  @keyframes icoNudge{0%,88%,100%{transform:translateY(0) rotate(0)}92%{transform:translateY(-6px) rotate(-2.5deg)}96%{transform:translateY(-2px) rotate(1.5deg)}}
+  .tile .ico{animation:icoNudge 6s ease-in-out infinite}
+  .tile:nth-child(2) .ico{animation-delay:.7s}
+  .tile:nth-child(3) .ico{animation-delay:1.4s}
+  .tile:nth-child(4) .ico{animation-delay:2.1s}
+  .tile:nth-child(5) .ico{animation-delay:2.8s}
+  .tile:nth-child(6) .ico{animation-delay:3.5s}
+  .tile:hover .ico{animation:none}
+  @media (prefers-reduced-motion:reduce){
+    .tile .ico{animation:none;transition:none}
+    .tile:hover .ico{transform:none}
+  }
   .tile .name{font-family:'Baloo 2';font-weight:800;font-size:.84rem;color:var(--navy);letter-spacing:.02em;text-transform:uppercase;line-height:1.15}
 
   /* ---------- generic section ---------- */
