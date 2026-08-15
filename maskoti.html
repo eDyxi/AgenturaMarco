@@ -492,27 +492,71 @@
   .gal-track a.in{opacity:1}
   .fleet-hint{text-align:center;font-family:'Caveat',cursive;font-size:1.35rem;color:var(--navy-soft);margin-top:6px}
   @media (min-width:1024px){.fleet-hint{display:none}}
-  .mask-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-top:28px}
-  .mask-card{--neon:255,210,63;position:relative;background:#fff;border:2px solid rgba(var(--neon),.75);border-radius:var(--radius);box-shadow:var(--shadow-sm),0 0 12px rgba(var(--neon),.3);overflow:hidden;opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.9,.3,1)}
-  .mask-card:nth-child(4n+2){--neon:170,127,230}
-  .mask-card:nth-child(4n+3){--neon:96,190,255}
-  .mask-card:nth-child(4n){--neon:127,208,255}
-  .mask-card::after{content:"";position:absolute;inset:-2px;border-radius:inherit;box-shadow:0 0 20px rgba(var(--neon),.7),inset 0 0 12px rgba(var(--neon),.22);opacity:.22;animation:neonThrob 2.4s ease-in-out infinite;transition:opacity .3s ease;pointer-events:none}
-  .mask-card:nth-child(3n+2)::after{animation-delay:.8s}
-  .mask-card:nth-child(3n)::after{animation-delay:1.6s}
+  .mask-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:26px;
+    margin-top:34px;align-items:stretch}
+  .mask-card{--acc:#FFD23F;--accd:#4A3705;
+    position:relative;display:flex;flex-direction:column;isolation:isolate;
+    background:linear-gradient(158deg,#6A51A8 0%,#3F2E70 100%);
+    border:3px solid var(--acc);border-radius:24px;
+    box-shadow:0 12px 26px rgba(35,22,72,.28);
+    opacity:0;transform:translateY(22px);
+    transition:opacity .5s ease,transform .4s cubic-bezier(.22,.9,.3,1),box-shadow .28s ease}
+  .mask-card:nth-child(3n+2){--acc:#C9B3F2;--accd:#3E2A6B}
+  .mask-card:nth-child(3n){--acc:#9CCBF2;--accd:#123B5E}
   .mask-card.in{opacity:1;transform:none}
-  .mask-card:hover{transform:translateY(-6px)}
-  .mask-card:hover::after{opacity:1}
-  .mask-card .mimg{aspect-ratio:4/5;background-size:cover;background-position:center top;transition:transform .5s}
-  .mask-card:hover .mimg{transform:scale(1.04)}
-  .mask-card .mtxt{padding:16px 18px 18px}
-  .mask-card h3{font-size:1.15rem;color:var(--navy);margin-bottom:4px}
-  .mask-card p{font-size:.88rem;color:var(--navy-soft);line-height:1.45}
-  .mask-card .mtxt{display:flex;flex-direction:column;height:calc(100% - 0px)}
-  .mask-card [data-kk-slot]{margin-top:auto}
-  .mask-grid{align-items:stretch}
-  .mask-card{display:flex;flex-direction:column}
-  .mask-card .mimg{flex:0 0 auto}
+  .mask-card:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(35,22,72,.4)}
+  /* animovane pozadi */
+  .mbg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;z-index:0;pointer-events:none}
+  .mbg::before{content:"";position:absolute;inset:-75%;
+    background:conic-gradient(from 0deg,#8E6FD6,#4C3A8C,#B48BE8,#3E2E72,#A874C9,#8E6FD6);
+    filter:blur(42px);opacity:.55;animation:mkAurora 28s linear infinite}
+  .mask-card:nth-child(3n+2) .mbg::before{animation-duration:34s;animation-direction:reverse}
+  .mask-card:nth-child(3n) .mbg::before{animation-duration:31s}
+  .mbg::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(110% 70% at 50% 0%,rgba(255,255,255,.13),transparent 62%)}
+  /* svetelny prstenec po ramu pri hoveru */
+  .mask-card::after{content:"";position:absolute;inset:-3px;border-radius:27px;padding:3px;
+    background:conic-gradient(from var(--mcAng),transparent 0deg,transparent 306deg,#fff 342deg,#fff 351deg,transparent 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:4}
+  .mask-card:hover::after,.mask-card:focus-within::after{opacity:.95;animation:mcSpin 3.2s linear infinite}
+  /* fotka jako okno */
+  .mask-card .mimg{position:relative;z-index:1;margin:10px 10px 0;aspect-ratio:4/5;
+    background-size:cover;background-position:center top;
+    border:2px solid var(--acc);border-radius:16px;overflow:hidden}
+  .mask-card .mimg i{position:absolute;inset:0;background-size:cover;background-position:center top;
+    transition:transform .55s cubic-bezier(.22,.9,.3,1)}
+  .mask-card:hover .mimg i{transform:scale(1.06)}
+  .mask-card .mimg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(195deg,transparent 58%,rgba(45,30,88,.72) 100%)}
+  .mask-card .mtxt{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;
+    padding:14px 16px 16px;text-align:center}
+  .mask-card h3{font-family:'Baloo 2';font-weight:800;font-size:1.12rem;color:#fff;margin-bottom:5px}
+  .mask-card h3::after{content:"";display:block;width:34px;height:3px;border-radius:3px;
+    margin:7px auto 0;background:var(--acc)}
+  .mask-card p{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.5;font-weight:600;margin-top:7px}
+  .mask-card [data-kk-slot]{margin-top:auto;display:flex;justify-content:center}
+  /* male tlacitko do kosiku */
+  .mask-card .kk-prod{width:auto;margin-top:14px;padding:8px 15px;gap:6px;
+    font-size:.78rem;font-weight:800;letter-spacing:.01em;
+    background:var(--acc);color:var(--accd);
+    box-shadow:0 5px 14px rgba(20,12,45,.4);border-radius:999px}
+  .mask-card .kk-prod:hover{transform:translateY(-2px) scale(1.03);
+    box-shadow:0 9px 20px rgba(20,12,45,.5);background:var(--acc)}
+  .mask-card .kk-prod.on{background:#FFFDF6;color:#1F6B45;box-shadow:0 5px 14px rgba(20,12,45,.4)}
+  .mask-card .kk-prod:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  @keyframes mkAurora{to{transform:rotate(360deg)}}
+  @media(max-width:700px){.mask-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+    .mask-card h3{font-size:1rem}.mask-card p{font-size:.78rem}
+    .mask-card .kk-prod{font-size:.72rem;padding:7px 12px}}
+  @media(prefers-reduced-motion:reduce){
+    .mask-card,.mask-card.in{opacity:1;transform:none;transition:none}
+    .mask-card:hover{transform:none}
+    .mbg::before{animation:none}
+    .mask-card::after{display:none}
+    .mask-card .mimg i,.mask-card:hover .mimg i{transition:none;transform:none}
+    .mask-card .kk-prod:hover{transform:none}}
   .price-band{display:inline-block;background:var(--gold);color:var(--navy);font-family:'Baloo 2';font-weight:800;padding:10px 22px;border-radius:30px;margin-top:26px;box-shadow:0 8px 22px rgba(245,179,36,.35)}
   .pkgx-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;margin-top:44px}
   .pkgx{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:34px 30px;text-align:center;position:relative;opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1),box-shadow .3s}
@@ -817,21 +861,21 @@
       <p class="sub" style="margin-top:8px">Všechny kostýmy v profi kvalitě z Itálie, vždy se zkušeným animátorem.</p>
     </div>
     <div class="mask-grid">
-      <div class="mask-card" data-kk-item="maskot-bluey" data-kk-name="Bluey" data-kk-img="assets/mirror/546855256_656660140389762_2021013194689647257_n.webp"><div class="mimg" style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"></div><div class="mtxt"><h3>Bluey</h3><p>Nejoblíbenější modrá fenka současnosti — děti ji poznají na první pohled.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-bingo" data-kk-name="Bingo" data-kk-img="assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp"><div class="mimg" style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"></div><div class="mtxt"><h3>Bingo</h3><p>Mladší sestřička Bluey. Nejlépe fungují jako dvojka.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-masa-medved" data-kk-name="Máša a Medvěd" data-kk-img="assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp"><div class="mimg" style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"></div><div class="mtxt"><h3>Máša a Medvěd</h3><p>Legendární dvojka z pohádky — Máša zlobí, Medvěd hlídá.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-mimoni" data-kk-name="Mimoni" data-kk-img="assets/mirror/20230923-img_0112.webp"><div class="mimg" style="background-image:url('assets/mirror/20230923-img_0112.webp')"></div><div class="mtxt"><h3>Mimoni</h3><p>Žlutá parta, co nevydrží chvíli v klidu — děti je milují.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-sonic" data-kk-name="Sonic" data-kk-img="assets/mirror/img_9168.webp"><div class="mimg" style="background-image:url('assets/mirror/img_9168.webp')"></div><div class="mtxt"><h3>Sonic</h3><p>Nejrychlejší ježek na světě — modrá raketa pro každou akci.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-buzz-woody" data-kk-name="Buzz a Woody" data-kk-img="assets/mirror/img_6881.webp"><div class="mimg" style="background-image:url('assets/mirror/img_6881.webp')"></div><div class="mtxt"><h3>Buzz a Woody</h3><p>Kamarádi z Toy Story, kteří ožijí přímo na vaší akci.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-beruska" data-kk-name="Beruška" data-kk-img="assets/mirror/img_7154.webp"><div class="mimg" style="background-image:url('assets/mirror/img_7154.webp')"></div><div class="mtxt"><h3>Beruška</h3><p>Ladybug — hrdinka, kterou holky milují.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-mike-wazowski" data-kk-name="Mike Wazowski" data-kk-img="assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp"><div class="mimg" style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"></div><div class="mtxt"><h3>Mike Wazowski</h3><p>Jednooká zelená příšerka z Příšerek s.r.o.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-sulley" data-kk-name="Sulley" data-kk-img="assets/mirror/250723-32.webp"><div class="mimg" style="background-image:url('assets/mirror/250723-32.webp')"></div><div class="mtxt"><h3>Sulley</h3><p>Velký modrý chlupáč — obejmutí, na které se nezapomíná.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-zelvy-ninja" data-kk-name="Želvy Ninja" data-kk-img="assets/mirror/250723-13.webp"><div class="mimg" style="background-image:url('assets/mirror/250723-13.webp')"></div><div class="mtxt"><h3>Želvy Ninja</h3><p>Kowabunga! Želvy v profi kvalitě z Itálie.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-gorila" data-kk-name="Gorila" data-kk-img="assets/mirror/250723-31.webp"><div class="mimg" style="background-image:url('assets/mirror/250723-31.webp')"></div><div class="mtxt"><h3>Gorila</h3><p>Obří gorila, ze které mají respekt i tátové.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-medvidek-pu" data-kk-name="Medvídek Pú" data-kk-img="assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp"><div class="mimg" style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"></div><div class="mtxt"><h3>Medvídek Pú</h3><p>Klasika, která nikdy nezklame — pro nejmenší děti.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-goofy" data-kk-name="Goofy" data-kk-img="assets/mirror/414088876_360003363340785_3104161199577540913_n.webp"><div class="mimg" style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"></div><div class="mtxt"><h3>Goofy</h3><p>Ušatý smíšek, co rozesměje celé publikum.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-grinch" data-kk-name="Grinch" data-kk-img="assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp"><div class="mimg" style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"></div><div class="mtxt"><h3>Grinch</h3><p>Vánoční speciál — Grinch na mikulášské i firemní večírky.</p><div data-kk-slot></div></div></div>
-      <div class="mask-card" data-kk-item="maskot-labubu" data-kk-name="Labubu" data-kk-img="assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp"><div class="mimg" style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"></div><div class="mtxt"><h3>Labubu</h3><p>Aktuální fenomén — Labubu naživo, jediní v okolí.</p><div data-kk-slot></div></div></div>
+      <article class="mask-card" data-kk-item="maskot-bluey" data-kk-name="Bluey" data-kk-img="assets/mirror/546855256_656660140389762_2021013194689647257_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"><i style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"></i></div><div class="mtxt"><h3>Bluey</h3><p>Nejoblíbenější modrá fenka současnosti — děti ji poznají na první pohled.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-bingo" data-kk-name="Bingo" data-kk-img="assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"><i style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"></i></div><div class="mtxt"><h3>Bingo</h3><p>Mladší sestřička Bluey. Nejlépe fungují jako dvojka.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-masa-medved" data-kk-name="Máša a Medvěd" data-kk-img="assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"><i style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"></i></div><div class="mtxt"><h3>Máša a Medvěd</h3><p>Legendární dvojka z pohádky — Máša zlobí, Medvěd hlídá.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-mimoni" data-kk-name="Mimoni" data-kk-img="assets/mirror/20230923-img_0112.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/20230923-img_0112.webp')"><i style="background-image:url('assets/mirror/20230923-img_0112.webp')"></i></div><div class="mtxt"><h3>Mimoni</h3><p>Žlutá parta, co nevydrží chvíli v klidu — děti je milují.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-sonic" data-kk-name="Sonic" data-kk-img="assets/mirror/img_9168.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_9168.webp')"><i style="background-image:url('assets/mirror/img_9168.webp')"></i></div><div class="mtxt"><h3>Sonic</h3><p>Nejrychlejší ježek na světě — modrá raketa pro každou akci.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-buzz-woody" data-kk-name="Buzz a Woody" data-kk-img="assets/mirror/img_6881.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_6881.webp')"><i style="background-image:url('assets/mirror/img_6881.webp')"></i></div><div class="mtxt"><h3>Buzz a Woody</h3><p>Kamarádi z Toy Story, kteří ožijí přímo na vaší akci.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-beruska" data-kk-name="Beruška" data-kk-img="assets/mirror/img_7154.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_7154.webp')"><i style="background-image:url('assets/mirror/img_7154.webp')"></i></div><div class="mtxt"><h3>Beruška</h3><p>Ladybug — hrdinka, kterou holky milují.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-mike-wazowski" data-kk-name="Mike Wazowski" data-kk-img="assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"><i style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"></i></div><div class="mtxt"><h3>Mike Wazowski</h3><p>Jednooká zelená příšerka z Příšerek s.r.o.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-sulley" data-kk-name="Sulley" data-kk-img="assets/mirror/250723-32.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-32.webp')"><i style="background-image:url('assets/mirror/250723-32.webp')"></i></div><div class="mtxt"><h3>Sulley</h3><p>Velký modrý chlupáč — obejmutí, na které se nezapomíná.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-zelvy-ninja" data-kk-name="Želvy Ninja" data-kk-img="assets/mirror/250723-13.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-13.webp')"><i style="background-image:url('assets/mirror/250723-13.webp')"></i></div><div class="mtxt"><h3>Želvy Ninja</h3><p>Kowabunga! Želvy v profi kvalitě z Itálie.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-gorila" data-kk-name="Gorila" data-kk-img="assets/mirror/250723-31.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-31.webp')"><i style="background-image:url('assets/mirror/250723-31.webp')"></i></div><div class="mtxt"><h3>Gorila</h3><p>Obří gorila, ze které mají respekt i tátové.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-medvidek-pu" data-kk-name="Medvídek Pú" data-kk-img="assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"><i style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"></i></div><div class="mtxt"><h3>Medvídek Pú</h3><p>Klasika, která nikdy nezklame — pro nejmenší děti.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-goofy" data-kk-name="Goofy" data-kk-img="assets/mirror/414088876_360003363340785_3104161199577540913_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"><i style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"></i></div><div class="mtxt"><h3>Goofy</h3><p>Ušatý smíšek, co rozesměje celé publikum.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-grinch" data-kk-name="Grinch" data-kk-img="assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"><i style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"></i></div><div class="mtxt"><h3>Grinch</h3><p>Vánoční speciál — Grinch na mikulášské i firemní večírky.</p><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-labubu" data-kk-name="Labubu" data-kk-img="assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"><i style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"></i></div><div class="mtxt"><h3>Labubu</h3><p>Aktuální fenomén — Labubu naživo, jediní v okolí.</p><div data-kk-slot></div></div></article>
     </div>
   </div>
 </section>
