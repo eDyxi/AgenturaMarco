@@ -134,6 +134,12 @@
     + '.tile:hover .kk-mini,.best:hover .kk-mini,.kk-mini:focus-visible{opacity:1}'
     + '.kk-mini:hover{transform:scale(1.14);background:#4A2E86}'
     + '.kk-mini.in{background:#3E8E63;opacity:1}'
+    + '.kk-inline{margin:0 0 20px}'
+    + '.kk-inline h5{margin:0 0 10px;font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:1rem;color:#fff}'
+    + '.kk-inline .none{color:#C3D0E8;font-weight:600;font-size:.9rem;line-height:1.5;margin:0}'
+    + '.kk-inline .kk-it{margin-bottom:8px;padding:9px 10px;border-radius:14px}'
+    + '.kk-inline .kk-th{width:46px;height:46px;border-radius:11px}'
+    + '.kk-inline .kk-nm{font-size:.95rem}'
     + '@media (max-width:760px){.kk-mini{opacity:1}.kk-fab{right:14px;bottom:14px}}'
     + '@media (prefers-reduced-motion:reduce){.kk-fab,.kk-panel,.kk-it,.kk-add,.kk-mini,.kk-go{transition:none;animation:none}}';
 
@@ -239,6 +245,7 @@
       goBtn.disabled = false;
     }
     syncButtons();
+    paintInline();
   }
 
   function syncButtons() {
@@ -313,10 +320,62 @@
     subscribe: function (fn) { subs.push(fn); }
   };
 
+  /* ---------- kontaktni sekce v indexu ---------- */
+  var MAIL = 'agenturamarco@seznam.cz';
+  var inlineBox = null;
+
+  function enhanceInline() {
+    var wrap = document.querySelector('.contact-right');
+    if (!wrap) return;
+    var afterEl = wrap.querySelector('p');
+    inlineBox = document.createElement('div');
+    inlineBox.className = 'kk-inline';
+    if (afterEl && afterEl.parentNode) afterEl.parentNode.insertBefore(inlineBox, afterEl.nextSibling);
+    else wrap.insertBefore(inlineBox, wrap.firstChild);
+
+    var btn = wrap.querySelector('.btn');
+    if (btn) {
+      btn.removeAttribute('onclick');
+      btn.addEventListener('click', function () {
+        var ins = wrap.querySelectorAll('.field input, .field textarea');
+        var val = function (i) { return ins[i] ? ins[i].value.trim() : ''; };
+        var picked = getItems().map(function (x) { return x.name; });
+        var body = 'Sluzby z kosiku: ' + (picked.length ? picked.join(', ') : '(nevybrano)') + '\n'
+          + 'Jmeno: ' + val(0) + '\n'
+          + 'Kontakt: ' + val(1) + '\n\n'
+          + val(2);
+        window.location.href = 'mailto:' + MAIL
+          + '?subject=' + encodeURIComponent('Poptávka — ' + (picked.length ? picked.join(' + ') : 'web'))
+          + '&body=' + encodeURIComponent(body);
+      });
+    }
+
+    inlineBox.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.kk-rm') : null;
+      if (b) remove(b.getAttribute('data-id'));
+    });
+  }
+
+  function paintInline() {
+    if (!inlineBox) return;
+    var items = getItems();
+    if (!items.length) {
+      inlineBox.innerHTML = '<p class="none">Zatím jste nic nevybrali — napište nám rovnou do zprávy, o co máte zájem.</p>';
+      return;
+    }
+    inlineBox.innerHTML = '<h5>Vybrané služby</h5>' + items.map(function (it) {
+      return '<div class="kk-it">' + thumb(it)
+        + '<span class="kk-nm">' + it.name + '</span>'
+        + '<button class="kk-rm" type="button" data-id="' + it.id + '" aria-label="Odebrat ' + it.name + '">&times;</button>'
+        + '</div>';
+    }).join('');
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     build();
     injectMain();
     injectMini();
+    enhanceInline();
     paint();
   });
 
