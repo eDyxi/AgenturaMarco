@@ -460,20 +460,49 @@
   .pxb i:nth-child(6){width:38px;height:48px;top:150px;right:27%;background:radial-gradient(circle at 32% 28%,#c4f0d4,#4CAF7D);opacity:.5;animation-duration:6s}
   @media(max-width:700px){.page-hero{padding:120px 0 0}.pxb i:nth-child(5),.pxb i:nth-child(6){display:none}}
   @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}.comic-burst,.comic-lines,.comic-note,.comic-bolt,.comic-bubble,.comic-boom{animation:none;opacity:1}.comic-spark{animation:none;opacity:.85}.comic-lines{opacity:.9}.hero-fig{animation:none;opacity:1}.hero-fig .cape{animation:none}.fig-rays{animation:none}.hero-fig .bounce{animation:none}}
-  @media(prefers-reduced-motion:reduce){.fitem::after,.hrow::after,.gal-track a::after,.mask-card::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover,.mask-card:hover{transform:none;animation:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
+  @media(prefers-reduced-motion:reduce){.hrow::after,.gal-track a::after,.mask-card::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover,.mask-card:hover{transform:none;animation:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
 .fleet .h2,.facts-block .h2,.baleni .h2,.gal-block .h2{font-weight:900;font-size:clamp(2rem,4.6vw,2.9rem);color:#fff;text-shadow:0 2px 5px rgba(27,58,99,.6),0 0 12px rgba(255,210,63,.7),0 0 30px rgba(255,210,63,.38)}
   .fleet .h2::after,.facts-block .h2::after,.baleni .h2::after,.gal-block .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
-  .facts-block{padding-top:0}
-  .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:34px}
+  .facts-block{padding-top:0;margin-top:-26px}
+  .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:38px}
   @media(max-width:900px){.facts{grid-template-columns:1fr}}
-  .fitem{position:relative;display:flex;flex-direction:column;gap:4px;background:linear-gradient(150deg,#7B5BC0,#4E3486);border-radius:22px;padding:22px 24px 20px;border:1.5px solid rgba(255,210,63,.6);box-shadow:var(--shadow),0 0 14px rgba(255,210,63,.28);opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
-  .fitem.in{opacity:1;transform:none;transition:transform .28s ease,opacity .3s ease}
-  .fitem::after{content:"";position:absolute;inset:-2px;border-radius:inherit;box-shadow:0 0 24px rgba(255,210,63,.7),inset 0 0 16px rgba(255,210,63,.3);opacity:.3;animation:neonThrob 2.6s ease-in-out infinite,neonHue 8s linear infinite;transition:opacity .3s ease;pointer-events:none}
-  .fitem:hover{transform:translateY(-5px)}
-  .fitem:hover::after{opacity:1;animation:neonHue 8s linear infinite}
-  .flab{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--sky,#7FD0FF);line-height:1}
-  .fval{font-family:'Baloo 2';font-weight:800;font-size:1.45rem;color:#fff;line-height:1.15}
-  .fnote{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.45}
+  .fitem{--acc:#F0C86B;--accs:240,200,107;
+    position:relative;display:flex;flex-direction:column;gap:5px;isolation:isolate;
+    background:linear-gradient(160deg,#6E56AE 0%,#43317A 100%);
+    border:3px solid var(--acc);border-radius:34px 34px 34px 10px;
+    padding:26px 26px 24px;
+    box-shadow:0 14px 30px rgba(38,24,78,.3),0 1px 0 rgba(255,255,255,.16) inset;
+    opacity:0;transform:translateY(22px);
+    transition:opacity .55s ease,transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
+  .facts .fitem:nth-child(2){--acc:#C3ABE8;--accs:195,171,232;border-radius:34px 34px 10px 34px}
+  .facts .fitem:nth-child(3){--acc:#A9CFF0;--accs:169,207,240;border-radius:34px 10px 34px 34px}
+  .fitem.in{opacity:1;transform:none}
+  .fitem:hover{transform:translateY(-7px);
+    box-shadow:0 24px 46px rgba(38,24,78,.42),0 0 26px rgba(var(--accs),.28),
+               0 1px 0 rgba(255,255,255,.2) inset}
+  /* stejny gradient jako u karet maskotu */
+  .fitem::before{content:"";position:absolute;inset:0;border-radius:inherit;overflow:hidden;
+    z-index:-1;pointer-events:none;
+    background:radial-gradient(120% 62% at 50% 0%,rgba(255,255,255,.15),transparent 64%),
+               radial-gradient(80% 55% at 50% 100%,rgba(var(--accs),.18),transparent 72%)}
+  /* animovana kontura */
+  .fitem::after{content:"";position:absolute;inset:-3px;border-radius:37px 37px 37px 13px;padding:3px;
+    background:conic-gradient(from var(--mcAng),rgba(255,255,255,0) 0deg,rgba(var(--accs),.55) 90deg,
+      rgba(255,255,255,.95) 168deg,rgba(var(--accs),.55) 246deg,rgba(255,255,255,0) 336deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;opacity:.72;transition:opacity .3s ease;pointer-events:none;
+    animation:mcSpin 9s linear infinite}
+  .facts .fitem:nth-child(2)::after{border-radius:37px 37px 13px 37px;animation-duration:11s;animation-direction:reverse}
+  .facts .fitem:nth-child(3)::after{border-radius:37px 13px 37px 37px;animation-duration:10s;animation-delay:-4s}
+  .fitem:hover::after{opacity:1;animation-duration:3s}
+  .flab{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--acc);line-height:1}
+  .fval{font-family:'Baloo 2';font-weight:800;font-size:1.5rem;color:#fff;line-height:1.15;
+    text-shadow:0 2px 10px rgba(25,15,60,.4)}
+  .fval::after{content:"";display:block;width:34px;height:3px;border-radius:3px;margin-top:9px;
+    background:var(--acc);box-shadow:0 0 10px rgba(var(--accs),.6)}
+  .fnote{font-size:.9rem;color:rgba(255,255,255,.84);line-height:1.5;font-weight:600;margin-top:6px}
+  @media(prefers-reduced-motion:reduce){.fitem::after{display:none}.fitem:hover{transform:none}}
   .gal-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(80vw,336px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:38px 4px 22px;scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,transparent 0,#000 3.5%,#000 96.5%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3.5%,#000 96.5%,transparent 100%)}
   .gal-track::-webkit-scrollbar{display:none}
   .gal-track a{--neon:255,210,63;position:relative;scroll-snap-align:center;display:block;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:#dfe9f4;border:2px solid rgba(var(--neon),.8);box-shadow:var(--shadow),0 0 14px rgba(var(--neon),.32)}
