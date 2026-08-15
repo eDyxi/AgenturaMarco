@@ -299,6 +299,30 @@
   .pkg .pname{font-family:'Baloo 2';font-weight:800;font-size:1.4rem;color:var(--navy);transition:color .2s}
   
   .pkg .pprice{font-family:'Baloo 2';font-weight:900;font-size:2.2rem;margin:10px 0 4px;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+  /* --- trpytive bordery balicku: rotujici kontura pod ramem --- */
+  @property --pkgAng{syntax:"<angle>";initial-value:0deg;inherits:false}
+  .pkg{isolation:isolate}
+  .pkg::after{content:"";position:absolute;inset:-4px;z-index:-1;border-radius:calc(var(--radius-lg) + 4px);
+    padding:4px;opacity:0;transition:opacity .3s;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;pointer-events:none}
+  .pkg.t-start::after{background:conic-gradient(from var(--pkgAng),transparent 0 62%,#FFD9A0 74%,#FFF4E0 80%,#E0841E 86%,transparent 96% 100%);
+    animation:pkgSpin 4.2s linear infinite;opacity:1}
+  .pkg.t-plus::after{background:conic-gradient(from var(--pkgAng),transparent 0 62%,#DCD5EC 74%,#FFFFFF 80%,#7E6FA4 86%,transparent 96% 100%);
+    animation:pkgSpin 4.2s linear infinite .9s;opacity:1}
+  .pkg.t-max::after{background:conic-gradient(from var(--pkgAng),transparent 0 60%,#FFE9A8 72%,#FFFFFF 79%,#FFC61A 86%,transparent 96% 100%);
+    animation:pkgSpin 3.4s linear infinite 1.8s;opacity:1}
+  @keyframes pkgSpin{to{--pkgAng:360deg}}
+  .pkg:hover::after{animation-duration:1.6s}
+  /* fallback tam, kde @property nefunguje: jemne probliknuti ramu */
+  @supports not (background:conic-gradient(from var(--pkgAng),red,blue)){
+    .pkg::after{display:none}
+    .pkg.t-start,.pkg.t-plus,.pkg.t-max{animation:pkgGlow 3.6s ease-in-out infinite}
+    @keyframes pkgGlow{0%,100%{filter:none}50%{filter:brightness(1.12)}}
+  }
+  @media (prefers-reduced-motion:reduce){.pkg::after{animation:none}}
+
   .pkg.t-start{border-color:#E0841E;box-shadow:0 0 0 2px rgba(224,132,30,.22),0 14px 32px rgba(27,58,99,.14)}
   .pkg.t-plus{border-color:#9B93AE;box-shadow:0 0 0 2px rgba(122,79,181,.28),0 14px 32px rgba(27,58,99,.14)}
   .pkg.t-max{border-color:#FFC61A;box-shadow:0 0 0 2px rgba(255,198,26,.4),0 0 18px rgba(255,198,26,.28),0 14px 32px rgba(27,58,99,.14)}
