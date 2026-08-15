@@ -245,9 +245,8 @@
     transition:transform .28s cubic-bezier(.34,1.4,.5,1),filter .28s;will-change:transform;
     animation:icoNudge 6s ease-in-out infinite}
   .best:nth-child(2) .bico{animation-delay:1s}
-  /* postava na vysku potrebuje vic vysky, aby vedle sirokych ikon nezmizela */
-  .best .bico[src$="hulk.webp"]{width:auto;height:280px;margin-bottom:-34px}
-  .tile .ico[src$="hulk.webp"]{width:auto;height:124px}
+  /* postavy na vysku sedi na spodni hrane ctverce primo v souboru -> jeden box pro vsechny */
+  .best .bico[src$="hulk.webp"]{width:230px;height:230px}
   .best:nth-child(3) .bico{animation-delay:2s}
   .best:hover .bico{animation:none;transform:translateY(-16px) scale(1.13) rotate(-3deg);
     filter:drop-shadow(0 12px 18px rgba(43,30,82,.28)) drop-shadow(0 0 14px rgba(139,92,214,.55))}
@@ -530,7 +529,7 @@
         <div class="name">Skákací hrady</div>
       </a>
       <a class="tile" href="maskoti.html">
-        <img class="ico" src="assets/icons/hulk.webp" width="360" height="360" loading="lazy" decoding="async" alt="Superhrdinská show na dětskou oslavu">
+        <img class="ico" src="assets/icons/pooh.webp" width="360" height="360" loading="lazy" decoding="async" alt="Maskot na dětskou oslavu">
         <div class="name">Maskoti</div>
       </a>
       <a class="tile" href="ozvuceni.html">
