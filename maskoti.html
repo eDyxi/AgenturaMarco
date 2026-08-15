@@ -559,29 +559,35 @@
 
   /* --- maskoti: tri naklonene karty vedle sebe --- */
   .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:8px;padding:26px 0 34px}
-  .mcard{--neon:255,210,63;position:relative;display:flex;flex-direction:column;
-    background:linear-gradient(155deg,#6E4DB0 0%,#452C7C 100%);
-    border:2px solid rgba(var(--neon),.6);border-radius:var(--radius-lg);
-    box-shadow:var(--shadow),0 0 18px rgba(var(--neon),.26);
+  @property --mcAng{syntax:'<angle>';initial-value:0deg;inherits:false}
+  .mcard{--neon:236,196,124;--c1:#ECC47C;--c2:#F6E3B8;--c3:#A98FD8;
+    position:relative;display:flex;flex-direction:column;
+    background:linear-gradient(155deg,#6F5AAB 0%,#4B3B7E 100%);
+    border:0;border-radius:var(--radius-lg);
+    box-shadow:0 18px 40px rgba(40,28,74,.22),0 0 22px rgba(var(--neon),.16);
     opacity:0;transform:translateY(30px) rotate(var(--tilt,0deg));
-    transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+    transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
   .mcard.n1{--tilt:-1.6deg}
-  .mcard.n2{--neon:96,190,255;--tilt:0deg;margin-top:-22px}
-  .mcard.n3{--neon:170,127,230;--tilt:1.6deg}
+  .mcard.n2{--neon:150,198,235;--c1:#96C6EB;--c2:#D6ECF9;--c3:#8FA7DE;--tilt:0deg;margin-top:-22px}
+  .mcard.n3{--neon:186,164,224;--c1:#BAA4E0;--c2:#E6DBF7;--c3:#8FC3E0;--tilt:1.6deg}
   .mcard.in{opacity:1;transform:translateY(0) rotate(var(--tilt,0deg));animation:mcFloat 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
   .mcard.n2.in{--fd:.9s}
   .mcard.n3.in{--fd:1.8s}
   .mcard::before{content:"";position:absolute;inset:-10%;border-radius:inherit;
-    background:radial-gradient(340px 240px at 82% 10%,rgba(var(--neon),.3),transparent 62%),
-               radial-gradient(300px 220px at 10% 94%,rgba(255,255,255,.13),transparent 60%);
+    background:radial-gradient(340px 240px at 82% 10%,rgba(var(--neon),.2),transparent 64%),
+               radial-gradient(300px 220px at 10% 94%,rgba(255,255,255,.1),transparent 62%);
     animation:blobDrift 9s ease-in-out infinite alternate;pointer-events:none}
-  .mcard::after{content:"";position:absolute;inset:-2px;border-radius:inherit;
-    box-shadow:0 0 28px rgba(var(--neon),.6),inset 0 0 18px rgba(var(--neon),.2);
-    opacity:.24;animation:neonThrob 3s ease-in-out infinite,neonHue 9s linear infinite;
-    transition:opacity .3s ease;pointer-events:none}
+  .mcard::after{content:"";position:absolute;inset:-6px;border-radius:calc(var(--radius-lg) + 6px);
+    padding:6px;
+    background:conic-gradient(from var(--mcAng),var(--c1),var(--c2) 22%,var(--c3) 48%,var(--c2) 72%,var(--c1));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;
+    opacity:.72;animation:mcSpin 8s linear infinite;
+    transition:opacity .3s ease;pointer-events:none;z-index:4}
   .mcard:hover{animation-play-state:paused;translate:0 0;transform:translateY(-12px) rotate(0deg) scale(1.015)}
-  .mcard:hover::after{opacity:1}
-  .mcard:focus-within::after{opacity:1}
+  .mcard:hover::after,.mcard:focus-within::after{opacity:1;animation-duration:4s}
+  .mcard:hover{box-shadow:0 26px 54px rgba(40,28,74,.28),0 0 34px rgba(var(--neon),.28)}
   .mcimg{position:relative;aspect-ratio:16/11;background-size:cover;background-position:center;
     border-radius:calc(var(--radius-lg) - 4px) calc(var(--radius-lg) - 4px) 0 0;overflow:hidden;
     -webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000)}
@@ -589,7 +595,7 @@
     transition:transform .6s cubic-bezier(.22,.9,.3,1)}
   .mcard:hover .mcimg i{transform:scale(1.07)}
   .mcimg::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(190deg,transparent 46%,rgba(69,44,124,.55) 78%,#4E3189 100%);pointer-events:none}
+    background:linear-gradient(190deg,transparent 46%,rgba(79,62,131,.5) 78%,#57468C 100%);pointer-events:none}
   .mcard .tag{position:absolute;left:16px;bottom:14px;z-index:3;transform:rotate(-3deg);
     animation:tagpulse 2.2s ease-in-out infinite;font-family:'Baloo 2';font-weight:800;font-size:.78rem;
     letter-spacing:.08em;background:#fff;color:var(--navy);padding:8px 16px;border-radius:26px 32px 24px 30px;
@@ -597,25 +603,39 @@
   .mcard .tag.new{background:var(--gold)}
   .mcard.n2 .tag{animation-delay:.5s}
   .mcard.n3 .tag{animation-delay:1s}
+  .mcinfo{position:absolute;top:-13px;right:-9px;z-index:6;display:inline-flex;align-items:center;gap:7px;
+    font-family:'Baloo 2';font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--navy);background:#FDF6E6;padding:8px 14px 8px 9px;border-radius:999px;
+    box-shadow:0 8px 20px rgba(40,28,74,.24),0 0 0 2px rgba(255,255,255,.85);
+    transform:rotate(3deg);animation:mcInfoNudge 3.6s ease-in-out infinite}
+  .mcinfo em{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;font-style:normal;
+    font-size:.8rem;line-height:1;letter-spacing:0;color:#fff;background:rgb(var(--neon));
+    box-shadow:0 0 0 2px rgba(255,255,255,.7)}
+  .mcard.n2 .mcinfo{animation-delay:.7s}
+  .mcard.n3 .mcinfo{animation-delay:1.4s}
+  @keyframes mcInfoNudge{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-4px)}}
   .mcbody{position:relative;z-index:2;padding:30px 24px 26px;display:flex;flex-direction:column;flex:1}
   .mcbody h3{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.25rem,1.7vw,1.55rem);color:#fff;
-    margin-bottom:10px;text-shadow:0 0 16px rgba(var(--neon),.45)}
+    margin-bottom:10px;text-shadow:0 2px 14px rgba(30,20,60,.35)}
   .mcbody h3::after{content:"";display:block;width:48px;height:4px;border-radius:4px;margin-top:8px;
-    background:rgb(var(--neon));box-shadow:0 0 12px rgba(var(--neon),.8)}
+    background:rgb(var(--neon));box-shadow:0 0 10px rgba(var(--neon),.45)}
   .mcbody p{color:rgba(255,255,255,.85);font-weight:600;line-height:1.7;font-size:.94rem}
   .mcbody ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-  .mcbody li{font-family:'Baloo 2';font-weight:700;font-size:.8rem;background:rgba(var(--neon),.14);
-    border:1.5px solid rgba(var(--neon),.55);color:#fff;padding:6px 13px;border-radius:30px}
+  .mcbody li{font-family:'Baloo 2';font-weight:700;font-size:.8rem;background:rgba(var(--neon),.16);
+    border:1.5px solid rgba(var(--neon),.45);color:rgba(255,255,255,.94);padding:6px 13px;border-radius:30px}
   @keyframes mcFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
+  @keyframes mcSpin{to{--mcAng:360deg}}
   @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
     .mcard.n2{margin-top:0}.mcard{--tilt:0deg!important}}
-  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:20px;padding:18px 0 26px}
+  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:22px;padding:18px 0 26px}
+    .mcinfo{right:6px;font-size:.68rem}
     .mcbody{padding:28px 20px 22px}}
   @media(prefers-reduced-motion:reduce){
     .mcard,.mcard.in{opacity:1;transform:none;animation:none;transition:none}
     .mcard:hover{transform:none}
-    .mcard::before,.mcard .tag{animation:none}
-    .mcard::after{animation:none;opacity:.3}
+    .mcard::before,.mcard .tag,.mcinfo{animation:none}
+    .mcinfo{transform:rotate(3deg)}
+    .mcard::after{animation:none;opacity:.6}
     .mcimg i,.mcard:hover .mcimg i{transition:none;transform:none}}
   /* ---- flotila: horizontální carousel ---- */
   .fleet{padding-top:70px}
@@ -727,6 +747,7 @@
   <div class="wrap">
     <div class="mcards">
       <article class="mcard n1">
+        <span class="mcinfo"><em>i</em>Co maskoti umí</span>
         <div class="mcimg" style="background-image:url('assets/mirror/maskotshow.webp')"><i style="background-image:url('assets/mirror/maskotshow.webp')"></i><span class="tag new">MASKOTÍ SHOW</span></div>
         <div class="mcbody">
           <h3>Show, co roztančí celou akci</h3>
@@ -735,6 +756,7 @@
         </div>
       </article>
       <article class="mcard n2">
+        <span class="mcinfo"><em>i</em>Jak to probíhá</span>
         <div class="mcimg" style="background-image:url('assets/mirror/karneval.webp')"><i style="background-image:url('assets/mirror/karneval.webp')"></i><span class="tag">KARNEVALY</span></div>
         <div class="mcbody">
           <h3>Karneval s postavami z pohádek</h3>
@@ -743,6 +765,7 @@
         </div>
       </article>
       <article class="mcard n3">
+        <span class="mcinfo"><em>i</em>Proč právě my</span>
         <div class="mcimg" style="background-image:url('assets/mirror/img_1032.webp')"><i style="background-image:url('assets/mirror/img_1032.webp')"></i><span class="tag">KVALITA Z ITÁLIE</span></div>
         <div class="mcbody">
           <h3>Kostýmy ve špičkové kvalitě</h3>
