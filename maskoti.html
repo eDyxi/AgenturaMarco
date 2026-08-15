@@ -430,7 +430,7 @@
   @media(max-width:700px){.comic-burst.b1{top:-34px;right:0}}
   .page-hero .sub{max-width:640px;margin:0 auto;font-size:1.15rem;line-height:1.65;color:var(--navy-soft);font-weight:600;animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
   @keyframes heroPop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
-  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:96px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
+  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:76px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
   .pchip{position:relative;font-family:'Baloo 2',sans-serif;font-weight:800;padding:42px 92px 44px;text-align:center;line-height:1.15;min-width:348px;
     clip-path:polygon(50% 0%,57% 12%,68% 4%,70% 17%,84% 12%,81% 26%,96% 26%,88% 38%,100% 46%,89% 53%,97% 65%,84% 66%,88% 80%,74% 76%,73% 91%,62% 83%,50% 94%,42% 82%,29% 90%,29% 76%,15% 79%,20% 66%,5% 63%,14% 52%,0% 45%,12% 37%,4% 25%,19% 26%,15% 12%,29% 16%,32% 3%,42% 11%);
     transform:rotate(-2deg);animation:boomPop 2.1s ease-in-out infinite}
@@ -447,7 +447,7 @@
   .pchip.pwinter small{color:#1B3A63;font-size:.95rem;letter-spacing:.16em;text-shadow:0 1px 0 rgba(255,255,255,.85)}
   .pchip.pwinter b{color:#1B3A63;font-size:2.45rem;text-shadow:0 1px 0 #fff,0 0 14px rgba(255,255,255,.9),0 0 28px rgba(56,182,255,.7)}
   @keyframes pglow{0%,100%{opacity:.2}50%{opacity:.75}}
-  @media(max-width:700px){.price-hero{gap:14px;margin-top:64px}.pchip{padding:18px 26px 20px;min-width:0}.pchip b,.pchip.pmain b,.pchip.pwinter b{font-size:1.7rem}.pchip.pmain small,.pchip.pwinter small{font-size:.8rem}}
+  @media(max-width:700px){.price-hero{gap:14px;margin-top:52px}.pchip{padding:18px 26px 20px;min-width:0}.pchip b,.pchip.pmain b,.pchip.pwinter b{font-size:1.7rem}.pchip.pmain small,.pchip.pwinter small{font-size:.8rem}}
   @media(prefers-reduced-motion:reduce){.price-hero{animation:none}.pchip.pmain::after{animation:none;opacity:.35}}
   .pxb{position:absolute;inset:-40px 0 0;pointer-events:none;z-index:0}
   .pxb i{position:absolute;border-radius:50% 50% 48% 48%;will-change:transform;animation:sway 4.6s ease-in-out infinite alternate}
@@ -560,7 +560,7 @@
   /* --- maskoti: tri karty jako vstupenky --- */
   @property --mcAng{syntax:'<angle>';initial-value:0deg;inherits:false}
   .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:0;
-    padding:114px 0 46px;align-items:start}
+    padding:94px 0 46px;align-items:start}
   .mcard{--acc:#FFD23F;--accd:#4A3705;
     position:relative;display:flex;flex-direction:column;isolation:isolate;margin-top:26px;
     background:linear-gradient(162deg,#6A51A8 0%,#3F2E70 100%);
@@ -570,7 +570,7 @@
     transition:opacity .55s ease,transform .45s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
   .mcard.n1{--tilt:-1.6deg}
   .mcard.n2{--acc:#C9B3F2;--accd:#3E2A6B;--tilt:0deg;margin-top:0}
-  .mcard.n3{--acc:#86E3B4;--accd:#0F4A2E;--tilt:1.6deg}
+  .mcard.n3{--acc:#9CCBF2;--accd:#123B5E;--tilt:1.6deg}
   .mcard.in{opacity:1;transform:translateY(0) rotate(var(--tilt,0deg));
     animation:mcFloat 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
   .mcard.n2.in{--fd:.9s}
@@ -615,7 +615,7 @@
   .mcbody::before{content:"";display:block;height:0;border-top:3px dashed var(--acc);opacity:.5;
     margin:-6px -6px 18px}
   .mcbody p{color:rgba(255,255,255,.88);font-weight:600;line-height:1.68;font-size:.93rem}
-  .mcbody ul{margin:auto 0 0;padding:16px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .mcbody ul{margin:auto 0 0;padding:18px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
   .mcbody li{font-family:'Baloo 2';font-weight:700;font-size:.79rem;background:rgba(255,255,255,.1);
     border:2px solid var(--acc);color:#fff;padding:5px 13px;border-radius:30px}
   .mcnum{position:absolute;right:16px;bottom:12px;z-index:1;font-family:'Baloo 2';font-weight:900;
@@ -634,9 +634,9 @@
   @keyframes mcAurora{to{transform:rotate(360deg)}}
   @keyframes mcSheen{0%,64%{transform:translateX(0)}100%{transform:translateX(340%)}}
   @keyframes mcInfoNudge{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-4px)}}
-  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:96px 0 38px}
+  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:94px 0 38px}
     .mcard,.mcard.n2{margin-top:0;--tilt:0deg!important}}
-  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:30px;padding:78px 0 30px}
+  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:30px;padding:70px 0 30px}
     .mcinfo{right:8px}.mcbody{padding:20px 20px 22px}.mcnum{font-size:3.8rem}}
   @media(prefers-reduced-motion:reduce){
     .mcard,.mcard.in{opacity:1;transform:none;translate:0 0;animation:none;transition:none}
