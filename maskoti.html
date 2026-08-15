@@ -186,12 +186,14 @@
     background:url("assets/css3.webp") center/100% 100% no-repeat;
     padding:11px 32px;border-radius:28px;margin:-10px 0 16px;font-size:1rem;
     filter:drop-shadow(0 8px 13px rgba(27,58,99,.22));
-    text-shadow:0 1px 2px rgba(70,32,110,.55);
+    font-weight:900;text-shadow:0 2px 3px rgba(58,26,94,.7),0 0 10px rgba(58,26,94,.35);
     animation:eyeFloat 4.2s ease-in-out infinite alternate;will-change:transform}
   @keyframes eyeFloat{0%{transform:rotate(-1.6deg) translateY(0)}50%{transform:rotate(.6deg) translateY(-7px)}100%{transform:rotate(-1.2deg) translateY(-3px)}}
   @media(prefers-reduced-motion:reduce){.eyebrow{animation:none;transform:rotate(-1.2deg)}}
   .h2{font-size:clamp(1.7rem,3.2vw,2.35rem);font-weight:800;color:var(--navy);margin:0 0 8px}
-  .sub{font-size:1.05rem;color:var(--navy-soft);font-weight:600;max-width:560px}
+  .sub{font-size:1.12rem;line-height:1.6;color:var(--navy-soft);font-weight:700;max-width:580px}
+  .facts-block .sub,.gal-block .sub,.page-cta .sub,.baleni .sub{color:#fff;font-weight:700;
+    text-shadow:0 2px 8px rgba(25,15,60,.55),0 1px 2px rgba(25,15,60,.5)}
   .center{text-align:center}
   .center .sub{margin:0 auto}
 
@@ -509,7 +511,7 @@
   .gal-track a{--acc:#F0C86B;--accs:240,200,107;position:relative;scroll-snap-align:center;display:block;
     border-radius:20px;overflow:visible;aspect-ratio:4/3;background:#4B3A82;
     border:3px solid var(--acc);
-    box-shadow:0 12px 26px rgba(38,24,78,.3),0 0 16px rgba(var(--accs),.3);
+    box-shadow:0 0 18px rgba(var(--accs),.38);
     transition:transform .35s cubic-bezier(.3,.9,.4,1),box-shadow .32s ease,opacity .55s ease}
   .gal-track a:nth-child(3n+2){--acc:#C3ABE8;--accs:195,171,232}
   .gal-track a:nth-child(3n){--acc:#A9CFF0;--accs:169,207,240}
@@ -523,8 +525,8 @@
     animation:mcSpin 6s linear infinite}
   .gal-track a:nth-child(3n+2)::after{animation-duration:7.5s;animation-direction:reverse}
   .gal-track a:nth-child(3n)::after{animation-duration:6.8s;animation-delay:-3s}
-  .gal-track a:hover{box-shadow:0 16px 32px rgba(38,24,78,.34),
-    0 0 22px rgba(var(--accs),.55),0 0 46px rgba(var(--accs),.3),0 0 0 1px rgba(var(--accs),.5)}
+  .gal-track a:hover{box-shadow:0 0 24px rgba(var(--accs),.65),0 0 52px rgba(var(--accs),.34),
+    0 0 0 1px rgba(var(--accs),.55)}
   .gal-track a:hover::after{opacity:1;animation-duration:2.8s}
   .gal-track img{width:100%;height:100%;object-fit:cover;border-radius:17px;display:block;
     transition:transform .4s cubic-bezier(.22,.9,.3,1)}
