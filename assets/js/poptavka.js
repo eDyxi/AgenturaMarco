@@ -9,34 +9,47 @@
 
   /* ---------- styly ---------- */
   var css = ''
+    + '@property --pqAng{syntax:"<angle>";initial-value:0deg;inherits:false}'
     + '.pq-veil{position:fixed;inset:0;z-index:11000;display:none;align-items:center;justify-content:center;padding:20px}'
     + '.pq-veil.on{display:flex}'
     + '.pq-veil::before{content:"";position:absolute;inset:0;background:rgba(20,14,42,.55);backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);opacity:0;transition:opacity .35s}'
     + '.pq-veil.show::before{opacity:1}'
-    + '.pq-card{position:relative;z-index:2;width:min(560px,100%);max-height:88vh;overflow:auto;'
-    + 'background:linear-gradient(180deg,#fff 0%,#FDFCFF 55%,#EFEBF7 100%);'
-    + 'border:3px solid #8B5CD6;border-radius:26px;padding:30px 26px 26px;'
-    + 'box-shadow:0 26px 60px rgba(27,26,64,.34);'
+    /* karta v tmavem tonu kontaktni sekce z indexu */
+    + '.pq-card{position:relative;z-index:2;isolation:isolate;width:min(560px,100%);max-height:88vh;overflow:auto;'
+    + 'background:linear-gradient(170deg,#1B3A63 0%,#163054 55%,#2A2350 100%);'
+    + 'border:3px solid rgba(245,179,36,.55);border-radius:26px;padding:40px 34px 32px;color:#fff;'
+    + 'box-shadow:0 26px 60px rgba(12,10,32,.5);'
     + 'transform:translateY(26px) scale(.94);opacity:0;transition:transform .42s cubic-bezier(.2,1.2,.3,1),opacity .32s}'
     + '.pq-veil.show .pq-card{transform:none;opacity:1}'
-    + '.pq-card h3{font-family:"Baloo 2",system-ui,sans-serif;font-weight:900;font-size:1.6rem;color:#1E2A44;margin:0 0 6px;line-height:1.15}'
-    + '.pq-card p.pq-sub{margin:0 0 18px;color:#31507C;font-weight:700;font-size:.98rem;line-height:1.5}'
-    + '.pq-what{display:inline-block;margin:0 0 16px;padding:6px 14px;border-radius:999px;background:#F3ECFF;color:#5B3E9E;font-weight:800;font-size:.82rem}'
-    + '.pq-f{margin-bottom:12px}'
-    + '.pq-f input,.pq-f textarea{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:2px solid #DCD3F0;border-radius:14px;background:#fff;color:#1E2A44;min-height:48px}'
-    + '.pq-f textarea{min-height:104px;resize:vertical}'
-    + '.pq-f input:focus,.pq-f textarea:focus{outline:3px solid #FFD23F;outline-offset:1px;border-color:#8B5CD6}'
-    + '.pq-send{width:100%;min-height:52px;font:inherit;font-family:"Baloo 2",system-ui,sans-serif;font-weight:900;font-size:1.05rem;cursor:pointer;'
-    + 'border:0;border-radius:16px;color:#231A05;background:linear-gradient(180deg,#FFD23F,#F5B324);box-shadow:0 6px 0 #C8890F;'
-    + 'transition:transform .16s,box-shadow .16s}'
-    + '.pq-send:hover{transform:translateY(-2px);box-shadow:0 8px 0 #C8890F}'
-    + '.pq-send:active{transform:translateY(3px);box-shadow:0 3px 0 #C8890F}'
-    + '.pq-alt{margin:14px 0 0;text-align:center;font-size:.9rem;color:#31507C;font-weight:700}'
-    + '.pq-alt a{color:#6B4FA0}'
-    + '.pq-x{position:absolute;top:10px;right:12px;width:42px;height:42px;border:0;border-radius:50%;cursor:pointer;'
-    + 'background:#F3ECFF;color:#5B3E9E;font-size:1.5rem;line-height:1;font-weight:700}'
-    + '.pq-x:hover{background:#E4D8FB}'
-    + '.pq-x:focus-visible{outline:3px solid #FFD23F;outline-offset:2px}'
+    /* obihajici trpytiva kontura — stejny princip jako u balicku START/PLUS/MAX */
+    + '.pq-card::after{content:"";position:absolute;inset:-4px;z-index:-1;border-radius:30px;padding:4px;pointer-events:none;'
+    + 'background:conic-gradient(from var(--pqAng),transparent 0 60%,#FFE9A8 72%,#FFFFFF 79%,#FFC61A 86%,transparent 96% 100%);'
+    + 'animation:pqSpin 3.4s linear infinite;'
+    + '-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;'
+    + 'mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}'
+    + '@keyframes pqSpin{to{--pqAng:360deg}}'
+    + '.pq-card h4{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:1.5rem;margin:0 0 8px;color:#fff;text-shadow:0 0 16px rgba(255,255,255,.32),0 2px 6px rgba(0,0,0,.4)}'
+    + '.pq-card p.pq-sub{color:#C3D0E8;font-weight:600;font-size:.98rem;margin:0 0 24px}'
+    /* pole prevzata 1:1 z .field v indexu */
+    + '.pq-card .field{margin-bottom:14px}'
+    + '.pq-card .field input,.pq-card .field textarea{width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.28);border-radius:14px;padding:14px 16px;font-family:"Nunito",system-ui,sans-serif;font-size:16px;font-weight:600;color:#fff;min-height:44px;transition:box-shadow .15s,border-color .15s,background .15s}'
+    + '.pq-card .field input::placeholder,.pq-card .field textarea::placeholder{color:rgba(224,232,248,.72)}'
+    + '.pq-card .field input:hover,.pq-card .field textarea:hover{background:rgba(255,255,255,.14);border-color:rgba(245,179,36,.5)}'
+    + '.pq-card .field input:focus,.pq-card .field textarea:focus{outline:2px solid #FFCE3A;outline-offset:1px;border-color:rgba(255,206,58,.8);background:rgba(255,255,255,.16);box-shadow:0 0 18px rgba(255,206,58,.3)}'
+    + '.pq-card .field textarea{resize:vertical;min-height:120px}'
+    + '.pq-send{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;margin-top:6px;cursor:pointer;border:0;border-radius:16px;'
+    + 'font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;font-size:1.05rem;color:#231A05;'
+    + 'background-color:#EFAE1C;background-image:linear-gradient(180deg,#FFD24A 0%,#F0AE1A 55%,#D9930A 100%);'
+    + 'filter:saturate(1.2) brightness(1.08) drop-shadow(0 10px 18px rgba(232,163,16,.36));'
+    + 'animation:pqLevitate 3.6s ease-in-out infinite;will-change:transform}'
+    + '@keyframes pqLevitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}'
+    + '.pq-send:hover{animation:none;filter:saturate(1.2) brightness(1.12) drop-shadow(0 14px 26px rgba(255,198,26,.55))}'
+    + '.pq-alt{margin:14px 0 0;text-align:center;font-size:.9rem;color:#C3D0E8;font-weight:600}'
+    + '.pq-alt a{color:#FFCE3A}'
+    + '.pq-x{position:absolute;top:12px;right:14px;width:42px;height:42px;border:0;border-radius:50%;cursor:pointer;'
+    + 'background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;line-height:1;font-weight:700}'
+    + '.pq-x:hover{background:rgba(255,255,255,.2)}'
+    + '.pq-x:focus-visible{outline:3px solid #FFCE3A;outline-offset:2px}'
     /* balonky */
     + '.pq-balls{position:fixed;inset:0;z-index:11500;pointer-events:none;overflow:hidden;display:none}'
     + '.pq-balls.on{display:block}'
@@ -50,7 +63,8 @@
     + '@keyframes pqUp{from{transform:translateY(0)}to{transform:translateY(-165vh)}}'
     + '@keyframes pqSway{from{transform:rotate(-6deg) translateX(-6px)}to{transform:rotate(6deg) translateX(6px)}}'
     + '@media (prefers-reduced-motion:reduce){.pq-balls{display:none !important}'
-    + '.pq-card{transition:none;transform:none;opacity:1}.pq-veil::before{transition:none}}';
+    + '.pq-card{transition:none;transform:none;opacity:1}.pq-card::after{animation:none}'
+    + '.pq-send{animation:none}.pq-veil::before{transition:none}}';
 
   var st = document.createElement('style');
   st.textContent = css;
@@ -65,12 +79,11 @@
   veil.innerHTML =
     '<div class="pq-card">'
     + '<button class="pq-x" type="button" aria-label="Zavřít">&times;</button>'
-    + '<h3 id="pqTitle">Nezávazná poptávka</h3>'
+    + '<h4 id="pqTitle">Nezávazná poptávka</h4>'
     + '<p class="pq-sub">Řekněte nám o akci a my se ozveme s cenou na míru.</p>'
-    + '<span class="pq-what" id="pqWhat"></span>'
-    + '<div class="pq-f"><input type="text" id="pqName" placeholder="Vaše jméno" autocomplete="name"></div>'
-    + '<div class="pq-f"><input type="text" id="pqCon" placeholder="Telefon nebo e-mail" autocomplete="tel"></div>'
-    + '<div class="pq-f"><textarea id="pqMsg" placeholder="Datum, místo a co si představujete…"></textarea></div>'
+    + '<div class="field"><input type="text" id="pqName" placeholder="Vaše jméno" autocomplete="name"></div>'
+    + '<div class="field"><input type="tel" id="pqCon" placeholder="Telefon nebo e-mail" autocomplete="tel"></div>'
+    + '<div class="field"><textarea id="pqMsg" placeholder="Datum, místo a co si představujete…"></textarea></div>'
     + '<button class="pq-send" type="button">Odeslat poptávku</button>'
     + '<p class="pq-alt">Nebo rovnou <a href="mailto:' + MAIL + '">' + MAIL + '</a></p>'
     + '</div>';
@@ -123,8 +136,6 @@
   function open(e) {
     if (e) e.preventDefault();
     lastFocus = document.activeElement;
-    var what = document.getElementById('pqWhat');
-    if (what) what.textContent = pageName();
     veil.classList.add('on');
     document.body.style.overflow = 'hidden';
     launch();
