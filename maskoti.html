@@ -463,7 +463,7 @@
   @media(prefers-reduced-motion:reduce){.fitem::after,.hrow::after,.gal-track a::after,.mask-card::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover,.mask-card:hover{transform:none;animation:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
 .fleet .h2,.facts-block .h2,.baleni .h2,.gal-block .h2{font-weight:900;font-size:clamp(2rem,4.6vw,2.9rem);color:#fff;text-shadow:0 2px 5px rgba(27,58,99,.6),0 0 12px rgba(255,210,63,.7),0 0 30px rgba(255,210,63,.38)}
   .fleet .h2::after,.facts-block .h2::after,.baleni .h2::after,.gal-block .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
-  .facts-block{padding-top:70px}
+  .facts-block{padding-top:0}
   .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:34px}
   @media(max-width:900px){.facts{grid-template-columns:1fr}}
   .fitem{position:relative;display:flex;flex-direction:column;gap:4px;background:linear-gradient(150deg,#7B5BC0,#4E3486);border-radius:22px;padding:22px 24px 20px;border:1.5px solid rgba(255,210,63,.6);box-shadow:var(--shadow),0 0 14px rgba(255,210,63,.28);opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1)}
@@ -636,7 +636,7 @@
   /* --- maskoti: tri karty jako vstupenky --- */
   @property --mcAng{syntax:'<angle>';initial-value:0deg;inherits:false}
   .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:0;
-    padding:94px 0 46px;align-items:start}
+    padding:94px 0 34px;align-items:start}
   .mcard{--acc:#FFD23F;--accd:#4A3705;
     position:relative;display:flex;flex-direction:column;isolation:isolate;margin-top:26px;
     background:linear-gradient(162deg,#6A51A8 0%,#3F2E70 100%);
