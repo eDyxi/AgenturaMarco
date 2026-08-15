@@ -238,6 +238,8 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('a[href*="#kontakt"]') : null;
     if (!a) return;
+    /* na strance, ktera kontaktni sekci sama obsahuje (index), necháme normalni scroll */
+    if (document.getElementById('kontakt')) return;
     open(e);
   });
 })();
