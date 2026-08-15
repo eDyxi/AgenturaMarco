@@ -445,9 +445,27 @@
   .h2{font-weight:900}
   .eyebrow{font-weight:900}
   .btn,.cta,.pill a,.mobmenu a{font-weight:800}
+
+  /* ================= BALONKY PRI OTEVRENI ================= */
+  .iballs{position:fixed;inset:0;z-index:10000;pointer-events:none;overflow:hidden;display:none}
+  .iballs.on{display:block}
+  .iball{position:absolute;left:var(--x);bottom:-30vh;width:var(--s);height:calc(var(--s) * 1.18);
+    animation:iballUp var(--d) cubic-bezier(.42,.05,.28,1) var(--dl) forwards;will-change:transform}
+  .iball .bd{width:100%;height:100%;border-radius:50% 50% 48% 52% / 56% 56% 44% 44%;position:relative;
+    background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.9) 0%,rgba(255,255,255,.28) 18%,var(--c) 46%,var(--cd) 100%);
+    box-shadow:inset -8px -14px 22px rgba(0,0,0,.14);
+    animation:iballSway var(--sw) ease-in-out infinite alternate}
+  .iball .bd::before{content:"";position:absolute;left:50%;bottom:-9px;transform:translateX(-50%) rotate(45deg);
+    width:14px;height:14px;background:var(--cd);border-radius:3px}
+  .iball .bd::after{content:"";position:absolute;left:50%;top:calc(100% + 6px);transform:translateX(-50%);
+    width:2px;height:9vh;background:linear-gradient(rgba(255,255,255,.75),rgba(255,255,255,0));border-radius:2px}
+  @keyframes iballUp{from{transform:translateY(0)}to{transform:translateY(-165vh)}}
+  @keyframes iballSway{from{transform:rotate(-6deg) translateX(-6px)}to{transform:rotate(6deg) translateX(6px)}}
+  @media (prefers-reduced-motion:reduce){.iballs{display:none !important}}
 </style>
 </head>
 <body>
+<div class="iballs" id="iballs" aria-hidden="true"></div>
 <div id="pbg" aria-hidden="true">
   <div class="pbw" style="top:6%;left:3%"   data-s="0.18"><span class="pb purple" style="width:74px;height:92px"></span></div>
   <div class="pbw" style="top:14%;left:12%" data-s="0.32"><span class="pb blue"   style="width:52px;height:64px"></span></div>
@@ -878,6 +896,40 @@
     var feat = track.querySelector('.feat');
     if(feat) setTimeout(function(){track.scrollLeft = feat.offsetLeft - (track.clientWidth - feat.clientWidth)/2},60);
   });
+})();
+</script>
+
+<script>
+(function(){
+  var layer = document.getElementById('iballs');
+  if (!layer) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var COLORS = [
+    ['#F5B324','#c8890f'], ['#1B3A63','#0f2440'], ['#6B4FA0','#4a3277'],
+    ['#DA3B4B','#a92434'], ['#4CAF7D','#2f7d56'], ['#38B6FF','#1d7fc0']
+  ];
+  function launchBalloons(){
+    layer.classList.add('on');
+    var n = Math.min(18, Math.max(12, Math.round(window.innerWidth / 90)));
+    for (var i = 0; i < n; i++){
+      var b = document.createElement('div');
+      b.className = 'iball';
+      var c = COLORS[i % COLORS.length];
+      var size = 64 + Math.random() * 96;
+      b.style.setProperty('--x', ((i + Math.random() * .8) / n * 100) + '%');
+      b.style.setProperty('--s', size.toFixed(0) + 'px');
+      b.style.setProperty('--d', (1.5 + Math.random() * .9).toFixed(2) + 's');
+      b.style.setProperty('--dl', (Math.random() * .45).toFixed(2) + 's');
+      b.style.setProperty('--sw', (1.1 + Math.random() * .9).toFixed(2) + 's');
+      b.style.setProperty('--c', c[0]);
+      b.style.setProperty('--cd', c[1]);
+      b.innerHTML = '<div class="bd"></div>';
+      layer.appendChild(b);
+    }
+    setTimeout(function(){ layer.classList.remove('on'); layer.innerHTML = ''; }, 3200);
+  }
+  if (document.readyState === 'complete') launchBalloons();
+  else window.addEventListener('load', launchBalloons);
 })();
 </script>
 </body>
