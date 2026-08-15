@@ -550,19 +550,21 @@
   /* male tlacitko do kosiku - jedna barva u vsech */
   .mask-card .kk-prod{width:38px;height:38px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
     display:grid;place-items:center;border-radius:999px;
-    background:rgba(255,255,255,.2);
-    -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
-    box-shadow:0 8px 20px rgba(18,10,46,.45),0 0 0 1px rgba(255,255,255,.42) inset,
-               0 1px 0 rgba(255,255,255,.6) inset;
+    background:linear-gradient(158deg,rgba(255,255,255,.17),rgba(255,255,255,.03));
+    -webkit-backdrop-filter:blur(14px) saturate(190%);backdrop-filter:blur(14px) saturate(190%);
+    box-shadow:0 8px 20px rgba(18,10,46,.4),0 0 0 1px rgba(255,255,255,.34) inset,
+               0 1px 0 rgba(255,255,255,.5) inset;
     color:#fff;transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s,box-shadow .22s}
-  .mask-card .kk-prod::before{content:"+";font-family:'Baloo 2',system-ui,sans-serif;
-    font-size:1.55rem;font-weight:800;line-height:0;margin-top:-1px;
-    text-shadow:0 1px 3px rgba(18,10,46,.5)}
-  .mask-card .kk-prod:hover{transform:scale(1.1);background:rgba(255,255,255,.34)}
+  .mask-card .kk-prod::before{content:"+";font-family:system-ui,-apple-system,'Baloo 2',sans-serif;
+    font-size:2.5rem;font-weight:300;line-height:0;margin-top:-2px;
+    text-shadow:0 1px 4px rgba(18,10,46,.45)}
+  .mask-card .kk-prod:hover{transform:scale(1.1);
+    background:linear-gradient(158deg,rgba(255,255,255,.3),rgba(255,255,255,.1))}
   .mask-card .kk-prod:active{transform:scale(.94)}
-  .mask-card .kk-prod.on{background:rgba(46,158,99,.92);
-    box-shadow:0 8px 20px rgba(12,70,44,.5),0 0 0 1px rgba(255,255,255,.5) inset}
-  .mask-card .kk-prod.on::before{content:"\2713";font-size:1.05rem;line-height:0}
+  .mask-card .kk-prod.on{background:linear-gradient(158deg,rgba(64,190,124,.5),rgba(30,140,86,.32));
+    box-shadow:0 8px 20px rgba(12,70,44,.45),0 0 0 1px rgba(210,255,232,.5) inset,
+               0 1px 0 rgba(255,255,255,.5) inset}
+  .mask-card .kk-prod.on::before{content:"\2713";font-size:1.4rem;font-weight:600;line-height:0}
   .mask-card .kk-prod:focus-visible{outline:3px solid #fff;outline-offset:3px}
   @keyframes mkAurora{to{transform:rotate(360deg)}}
   @keyframes mkHue{0%{filter:blur(46px) hue-rotate(0deg) saturate(1)}
@@ -572,6 +574,7 @@
     .mask-card .mimg{border-radius:21px;margin:7px 7px 0}
     .mask-card h3{font-size:1rem}.mask-card p{font-size:.78rem}
     .mask-card .kk-prod{width:34px;height:34px}
+    .mask-card .kk-prod::before{font-size:2.2rem}
     .mask-card [data-kk-slot]{top:-22px;right:10px}}
   @media(prefers-reduced-motion:reduce){
     .mask-card,.mask-card.in{opacity:1;transform:none;transition:none}
