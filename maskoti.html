@@ -378,26 +378,26 @@
   .intro-play.show{display:block}
   @keyframes playPulse{0%,100%{box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 0 rgba(245,179,36,.55)}50%{box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 18px rgba(245,179,36,0)}}
   /* ===== subpage: mega hrady ===== */
-  .page-hero{padding:128px 0 0;text-align:center;position:relative;overflow:visible}
+  .page-hero{padding:150px 0 0;text-align:center;position:relative;overflow:visible}
   .page-hero .eyebrow{margin:0 0 12px;animation:heroPop .7s cubic-bezier(.22,.9,.3,1) both}
   .page-hero .h1{font-size:clamp(3.3rem,9.5vw,7rem);font-weight:900;line-height:1.02;letter-spacing:-.02em;margin:0 auto 22px;max-width:920px;position:relative;text-transform:uppercase;transform:skew(-6deg);animation:comicSlam .5s cubic-bezier(.34,1.56,.44,1) both}
-  .comic-txt{position:relative;display:inline-block;color:#E8890C;
+  .comic-txt{position:relative;z-index:3;display:inline-block;color:#E8890C;
     text-shadow:
       4px 0 0 #fff,-4px 0 0 #fff,0 4px 0 #fff,0 -4px 0 #fff,
       3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff,
       0 9px 0 rgba(27,58,99,.28)}
   @keyframes comicSlam{0%{opacity:.4;transform:skew(-6deg) scale(1.14) rotate(-2deg)}55%{opacity:1;transform:skew(-6deg) scale(.98) rotate(.6deg)}100%{opacity:1;transform:skew(-6deg)}}
-  .comic-burst{position:absolute;pointer-events:none;z-index:2;opacity:0;animation:burstPop .4s .5s cubic-bezier(.34,1.7,.5,1) both}
+  .comic-burst{position:absolute;pointer-events:none;z-index:0;opacity:0;animation:burstPop .4s .5s cubic-bezier(.34,1.7,.5,1) both}
   .comic-burst.b1{width:86px;top:-40px;right:5%;animation:burstPop .4s .52s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 3.4s 1.2s ease-in-out infinite}
   .comic-burst.b2{width:62px;bottom:40px;right:3%;animation:burstPop .4s .62s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 4.1s 1.5s ease-in-out infinite reverse}
-  .comic-lines{position:absolute;pointer-events:none;z-index:1;width:110px;top:8px;left:-8px;opacity:0;animation:burstPop .4s .58s cubic-bezier(.34,1.7,.5,1) both,linesDash 2.2s 1.2s ease-in-out infinite}
-  .comic-bolt{position:absolute;pointer-events:none;z-index:2;width:52px;top:-18px;left:12%;opacity:0;animation:burstPop .4s .7s cubic-bezier(.34,1.7,.5,1) both,boltFlash 2.8s 1.4s ease-in-out infinite}
-  .comic-spark{position:absolute;pointer-events:none;z-index:2;width:26px;opacity:0;animation:sparkTwinkle 2.6s ease-in-out infinite}
+  .comic-lines{position:absolute;pointer-events:none;z-index:0;width:110px;top:8px;left:-8px;opacity:0;animation:burstPop .4s .58s cubic-bezier(.34,1.7,.5,1) both,linesDash 2.2s 1.2s ease-in-out infinite}
+  .comic-bolt{position:absolute;pointer-events:none;z-index:0;width:52px;top:-18px;left:12%;opacity:0;animation:burstPop .4s .7s cubic-bezier(.34,1.7,.5,1) both,boltFlash 2.8s 1.4s ease-in-out infinite}
+  .comic-spark{position:absolute;pointer-events:none;z-index:0;width:26px;opacity:0;animation:sparkTwinkle 2.6s ease-in-out infinite}
   .comic-spark.s1{top:14px;right:16%;animation-delay:1s}
   .comic-spark.s2{bottom:-6px;right:8%;width:20px;animation-delay:1.9s}
   .comic-spark.s3{top:-26px;left:30%;width:18px;animation-delay:2.5s}
-  .comic-bubble{position:absolute;pointer-events:none;z-index:2;width:64px;bottom:-30px;right:14%;opacity:0;animation:burstPop .4s .8s cubic-bezier(.34,1.7,.5,1) both,bubbleBob 3s 1.4s ease-in-out infinite alternate}
-  .comic-boom{position:absolute;pointer-events:none;z-index:2;width:78px;bottom:-34px;left:4%;opacity:0;animation:burstPop .4s .74s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 3.8s 1.3s ease-in-out infinite}
+  .comic-bubble{position:absolute;pointer-events:none;z-index:0;width:64px;bottom:-30px;right:14%;opacity:0;animation:burstPop .4s .8s cubic-bezier(.34,1.7,.5,1) both,bubbleBob 3s 1.4s ease-in-out infinite alternate}
+  .comic-boom{position:absolute;pointer-events:none;z-index:0;width:78px;bottom:-34px;left:4%;opacity:0;animation:burstPop .4s .74s cubic-bezier(.34,1.7,.5,1) both,stickerWobble 3.8s 1.3s ease-in-out infinite}
   .comic-spark.s4{top:auto;bottom:26px;left:15%;width:24px;animation-delay:1.4s}
   @keyframes burstPop{0%{opacity:0;transform:scale(.3) rotate(-14deg)}70%{opacity:1;transform:scale(1.12) rotate(-14deg)}100%{opacity:1;transform:scale(1) rotate(-14deg)}}
   @keyframes stickerWobble{0%,100%{transform:rotate(-14deg) scale(1)}50%{transform:rotate(-6deg) scale(1.06)}}
@@ -422,17 +422,17 @@
   .hero-fig .bounce{transform-box:fill-box;transform-origin:50% 100%;animation:figBounce 1.7s cubic-bezier(.36,0,.64,1) infinite}
   .hero-fig.fr .bounce{animation-delay:.4s}
   @keyframes figBounce{0%,100%{transform:translateY(0) scale(1)}12%{transform:scale(1.04,.92)}45%{transform:translateY(-12px) scale(.97,1.05)}70%{transform:translateY(0) scale(1)}82%{transform:scale(1.03,.94)}}
-  .comic-burst.b1{top:-58px;right:-1%}
-  .comic-burst.b2{bottom:-14px;right:-4%}
-  .comic-lines{top:-14px;left:-46px}
-  .comic-bolt{top:-46px;left:6%}
-  .comic-spark.s1{top:-26px;right:25%}
-  .comic-spark.s2{bottom:-14px;right:10%}
-  .comic-spark.s3{top:-42px;left:33%}
-  .comic-spark.s4{bottom:-16px;left:14%}
-  .comic-bubble{bottom:-30px;right:-5%}
-  .comic-boom{bottom:-32px;left:-6%}
-  @media(max-width:700px){.comic-burst.b1{top:-34px;right:0}}
+  .comic-burst.b1{top:-96px;right:-9%}
+  .comic-burst.b2{bottom:-56px;right:-12%}
+  .comic-lines{top:-30px;left:-104px}
+  .comic-bolt{top:-84px;left:-2%}
+  .comic-spark.s1{top:-62px;right:20%}
+  .comic-spark.s2{bottom:-52px;right:6%}
+  .comic-spark.s3{top:-74px;left:30%}
+  .comic-spark.s4{bottom:-54px;left:10%}
+  .comic-bubble{bottom:-66px;right:-13%}
+  .comic-boom{bottom:-70px;left:-14%}
+  @media(max-width:700px){.comic-burst.b1{top:-52px;right:-4%}}
   .page-hero .sub{max-width:660px;margin:0 auto;font-size:1.28rem;line-height:1.7;
     color:#fff;font-weight:800;-webkit-text-stroke:1.5px #000;paint-order:stroke fill;text-shadow:none;
     animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
