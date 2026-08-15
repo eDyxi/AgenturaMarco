@@ -430,7 +430,7 @@
   @media(max-width:700px){.comic-burst.b1{top:-34px;right:0}}
   .page-hero .sub{max-width:640px;margin:0 auto;font-size:1.15rem;line-height:1.65;color:var(--navy-soft);font-weight:600;animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
   @keyframes heroPop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
-  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:84px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
+  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:96px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
   .pchip{position:relative;font-family:'Baloo 2',sans-serif;font-weight:800;padding:42px 92px 44px;text-align:center;line-height:1.15;min-width:348px;
     clip-path:polygon(50% 0%,57% 12%,68% 4%,70% 17%,84% 12%,81% 26%,96% 26%,88% 38%,100% 46%,89% 53%,97% 65%,84% 66%,88% 80%,74% 76%,73% 91%,62% 83%,50% 94%,42% 82%,29% 90%,29% 76%,15% 79%,20% 66%,5% 63%,14% 52%,0% 45%,12% 37%,4% 25%,19% 26%,15% 12%,29% 16%,32% 3%,42% 11%);
     transform:rotate(-2deg);animation:boomPop 2.1s ease-in-out infinite}
@@ -447,7 +447,7 @@
   .pchip.pwinter small{color:#1B3A63;font-size:.95rem;letter-spacing:.16em;text-shadow:0 1px 0 rgba(255,255,255,.85)}
   .pchip.pwinter b{color:#1B3A63;font-size:2.45rem;text-shadow:0 1px 0 #fff,0 0 14px rgba(255,255,255,.9),0 0 28px rgba(56,182,255,.7)}
   @keyframes pglow{0%,100%{opacity:.2}50%{opacity:.75}}
-  @media(max-width:700px){.price-hero{gap:14px;margin-top:56px}.pchip{padding:18px 26px 20px;min-width:0}.pchip b,.pchip.pmain b,.pchip.pwinter b{font-size:1.7rem}.pchip.pmain small,.pchip.pwinter small{font-size:.8rem}}
+  @media(max-width:700px){.price-hero{gap:14px;margin-top:64px}.pchip{padding:18px 26px 20px;min-width:0}.pchip b,.pchip.pmain b,.pchip.pwinter b{font-size:1.7rem}.pchip.pmain small,.pchip.pwinter small{font-size:.8rem}}
   @media(prefers-reduced-motion:reduce){.price-hero{animation:none}.pchip.pmain::after{animation:none;opacity:.35}}
   .pxb{position:absolute;inset:-40px 0 0;pointer-events:none;z-index:0}
   .pxb i{position:absolute;border-radius:50% 50% 48% 48%;will-change:transform;animation:sway 4.6s ease-in-out infinite alternate}
@@ -557,56 +557,69 @@
   .hbody ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
   .hbody li{font-family:'Baloo 2';font-weight:700;font-size:.82rem;background:rgba(var(--neon),.14);border:1.5px solid rgba(var(--neon),.55);color:#fff;padding:6px 14px;border-radius:30px}
 
-  /* --- maskoti: tri naklonene karty vedle sebe --- */
+  /* --- maskoti: tri karty jako vstupenky --- */
   @property --mcAng{syntax:'<angle>';initial-value:0deg;inherits:false}
-  .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:0;padding:84px 0 46px}
-  .mcard{--acc:#FFD23F;--accd:#8A6A05;
-    position:relative;display:flex;flex-direction:column;isolation:isolate;
-    background:linear-gradient(160deg,#6A51A8 0%,#3F2E70 100%);
+  .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:0;
+    padding:114px 0 46px;align-items:start}
+  .mcard{--acc:#FFD23F;--accd:#4A3705;
+    position:relative;display:flex;flex-direction:column;isolation:isolate;margin-top:26px;
+    background:linear-gradient(162deg,#6A51A8 0%,#3F2E70 100%);
     border:4px solid var(--acc);border-radius:var(--radius-lg);
     box-shadow:0 16px 34px rgba(35,22,72,.32);
     opacity:0;transform:translateY(30px) rotate(var(--tilt,0deg));
     transition:opacity .55s ease,transform .45s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
   .mcard.n1{--tilt:-1.6deg}
-  .mcard.n2{--acc:#7FD0FF;--accd:#0B4E77;--tilt:0deg;margin-top:-24px}
-  .mcard.n3{--acc:#C9B3F2;--accd:#3E2A6B;--tilt:1.6deg}
+  .mcard.n2{--acc:#C9B3F2;--accd:#3E2A6B;--tilt:0deg;margin-top:0}
+  .mcard.n3{--acc:#86E3B4;--accd:#0F4A2E;--tilt:1.6deg}
   .mcard.in{opacity:1;transform:translateY(0) rotate(var(--tilt,0deg));
     animation:mcFloat 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
   .mcard.n2.in{--fd:.9s}
   .mcard.n3.in{--fd:1.8s}
   .mcard:hover{transform:translateY(-10px) rotate(0deg);translate:0 0;
     animation-play-state:paused;box-shadow:0 28px 54px rgba(35,22,72,.42)}
-  /* animovane pozadi uvnitr karty */
+  /* animovane pozadi karty */
   .mcbg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;z-index:0;pointer-events:none}
   .mcbg::before{content:"";position:absolute;inset:-70%;
-    background:conic-gradient(from 0deg,#8E6FD6,#4C3A8C,#B48BE8,#3E2E72,#6FA8E0,#8E6FD6);
-    filter:blur(46px);opacity:.55;animation:mcAurora 26s linear infinite}
-  .mcbg::after{content:"";position:absolute;inset:0;
-    background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.14),transparent 60%)}
-  /* obihajici zablesk po ramu */
+    background:conic-gradient(from 0deg,#8E6FD6,#4C3A8C,#B48BE8,#3E2E72,#A874C9,#8E6FD6);
+    filter:blur(48px);opacity:.6;animation:mcAurora 24s linear infinite}
+  .mcbg::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;
+    background:linear-gradient(105deg,transparent,rgba(255,255,255,.16),transparent);
+    animation:mcSheen 7s ease-in-out infinite}
+  /* zablesk po ramu */
   .mcard::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-lg) + 4px);
-    padding:4px;pointer-events:none;z-index:4;
-    background:conic-gradient(from var(--mcAng),transparent 0deg,transparent 302deg,#fff 340deg,#fff 350deg,transparent 360deg);
+    padding:4px;pointer-events:none;z-index:5;
+    background:conic-gradient(from var(--mcAng),transparent 0deg,transparent 304deg,#fff 340deg,#fff 350deg,transparent 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;opacity:.9;animation:mcSpin 5s linear infinite}
   .mcard:hover::after{animation-duration:2.4s}
-  /* fotka jako okno v karte */
-  .mcimg{position:relative;z-index:1;margin:14px 14px 0;aspect-ratio:16/11;
-    background-size:cover;background-position:center;
-    border:3px solid var(--acc);border-radius:20px;overflow:hidden}
+  /* hlavicka vstupenky */
+  .mchead{position:relative;z-index:2;background:var(--acc);padding:15px 18px 16px;
+    border-radius:calc(var(--radius-lg) - 8px) calc(var(--radius-lg) - 8px) 0 0}
+  .mctag{display:inline-block;font-family:'Baloo 2';font-weight:800;font-size:.68rem;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--accd);opacity:.75;margin-bottom:4px}
+  .mchead h3{font-family:'Baloo 2';font-weight:900;font-size:clamp(1.15rem,1.55vw,1.4rem);
+    line-height:1.2;color:var(--accd)}
+  .mcimg{position:relative;z-index:1;aspect-ratio:16/10;background-size:cover;background-position:center;
+    overflow:hidden;border-bottom:3px solid var(--acc)}
   .mcimg i{position:absolute;inset:0;background-size:cover;background-position:center;
     transition:transform .6s cubic-bezier(.22,.9,.3,1)}
   .mcard:hover .mcimg i{transform:scale(1.06)}
-  .mcard .tag{position:absolute;left:-6px;bottom:12px;z-index:3;transform:rotate(-2.5deg);
-    font-family:'Baloo 2';font-weight:800;font-size:.75rem;letter-spacing:.07em;
-    background:var(--acc);color:var(--accd);padding:7px 15px;border-radius:24px 30px 22px 28px;
-    box-shadow:0 5px 14px rgba(20,12,45,.45);animation:tagpulse 2.4s ease-in-out infinite}
-  .mcard.n2 .tag{animation-delay:.6s}
-  .mcard.n3 .tag{animation-delay:1.2s}
-  /* velka duchova cislice */
-  .mcnum{position:absolute;top:8px;right:16px;z-index:1;font-family:'Baloo 2';font-weight:900;
-    font-size:5.2rem;line-height:1;color:rgba(255,255,255,.09);pointer-events:none;user-select:none}
+  /* perforace */
+  .mcperf{position:relative;z-index:2;height:0}
+  .mcperf::before,.mcperf::after{content:"";position:absolute;top:-9px;width:18px;height:18px;
+    border-radius:50%;background:var(--acc);box-shadow:inset 0 2px 5px rgba(0,0,0,.35)}
+  .mcperf::before{left:-13px}
+  .mcperf::after{right:-13px}
+  .mcbody{position:relative;z-index:2;padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .mcbody::before{content:"";display:block;height:0;border-top:3px dashed var(--acc);opacity:.5;
+    margin:-6px -6px 18px}
+  .mcbody p{color:rgba(255,255,255,.88);font-weight:600;line-height:1.68;font-size:.93rem}
+  .mcbody ul{margin:auto 0 0;padding:16px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .mcbody li{font-family:'Baloo 2';font-weight:700;font-size:.79rem;background:rgba(255,255,255,.1);
+    border:2px solid var(--acc);color:#fff;padding:5px 13px;border-radius:30px}
+  .mcnum{position:absolute;right:16px;bottom:12px;z-index:1;font-family:'Baloo 2';font-weight:900;
+    font-size:4.4rem;line-height:1;color:rgba(255,255,255,.08);pointer-events:none;user-select:none}
   .mcinfo{position:absolute;top:-17px;right:-10px;z-index:6;display:inline-flex;align-items:center;gap:7px;
     font-family:'Baloo 2';font-weight:800;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;
     color:var(--accd);background:var(--acc);padding:8px 15px 8px 8px;border-radius:999px;
@@ -616,27 +629,20 @@
     font-size:.82rem;line-height:1;letter-spacing:0;color:var(--acc);background:var(--accd)}
   .mcard.n2 .mcinfo{animation-delay:.7s}
   .mcard.n3 .mcinfo{animation-delay:1.4s}
-  .mcbody{position:relative;z-index:2;padding:24px 22px 24px;display:flex;flex-direction:column;flex:1}
-  .mcbody h3{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.22rem,1.7vw,1.5rem);
-    color:#fff;margin-bottom:10px}
-  .mcbody h3::after{content:"";display:block;width:52px;height:5px;border-radius:5px;margin-top:9px;
-    background:var(--acc)}
-  .mcbody p{color:rgba(255,255,255,.86);font-weight:600;line-height:1.68;font-size:.93rem}
-  .mcbody ul{margin:auto 0 0;padding:16px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-  .mcbody li{font-family:'Baloo 2';font-weight:700;font-size:.79rem;background:rgba(255,255,255,.1);
-    border:2px solid var(--acc);color:#fff;padding:5px 13px;border-radius:30px}
   @keyframes mcFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
   @keyframes mcSpin{to{--mcAng:360deg}}
   @keyframes mcAurora{to{transform:rotate(360deg)}}
+  @keyframes mcSheen{0%,64%{transform:translateX(0)}100%{transform:translateX(340%)}}
   @keyframes mcInfoNudge{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-4px)}}
-  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:66px 0 38px}
-    .mcard.n2{margin-top:0}.mcard{--tilt:0deg!important}}
-  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:28px;padding:56px 0 30px}
-    .mcinfo{right:8px}.mcbody{padding:22px 20px}.mcnum{font-size:4.4rem}}
+  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:96px 0 38px}
+    .mcard,.mcard.n2{margin-top:0;--tilt:0deg!important}}
+  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:30px;padding:78px 0 30px}
+    .mcinfo{right:8px}.mcbody{padding:20px 20px 22px}.mcnum{font-size:3.8rem}}
   @media(prefers-reduced-motion:reduce){
     .mcard,.mcard.in{opacity:1;transform:none;translate:0 0;animation:none;transition:none}
     .mcard:hover{transform:none}
-    .mcard .tag,.mcinfo,.mcbg::before{animation:none}
+    .mcinfo,.mcbg::before,.mcbg::after{animation:none}
+    .mcbg::after{display:none}
     .mcinfo{transform:rotate(3deg)}
     .mcard::after{animation:none;opacity:0}
     .mcimg i,.mcard:hover .mcimg i{transition:none;transform:none}}
@@ -751,35 +757,38 @@
     <div class="mcards">
       <article class="mcard n1">
         <div class="mcbg" aria-hidden="true"></div>
-        <span class="mcnum" aria-hidden="true">01</span>
         <span class="mcinfo"><em>i</em>Co maskoti umí</span>
-        <div class="mcimg" style="background-image:url('assets/mirror/maskotshow.webp')"><i style="background-image:url('assets/mirror/maskotshow.webp')"></i><span class="tag new">MASKOTÍ SHOW</span></div>
+        <div class="mchead"><span class="mctag">MASKOTÍ SHOW</span><h3>Show, co roztančí celou akci</h3></div>
+        <div class="mcimg" style="background-image:url('assets/mirror/maskotshow.webp')"><i style="background-image:url('assets/mirror/maskotshow.webp')"></i></div>
+        <div class="mcperf" aria-hidden="true"></div>
         <div class="mcbody">
-          <h3>Show, co roztančí celou akci</h3>
           <p>Maskoti nestojí — tančí, soutěží a strhávají děti do hry. Nacvičená vystoupení s hudbou, po kterých se na parket hrnou i rodiče.</p>
           <ul><li>Tanec a soutěže</li><li>Hudba v ceně</li><li>Pro malé i velké</li></ul>
+          <span class="mcnum" aria-hidden="true">01</span>
         </div>
       </article>
       <article class="mcard n2">
         <div class="mcbg" aria-hidden="true"></div>
-        <span class="mcnum" aria-hidden="true">02</span>
         <span class="mcinfo"><em>i</em>Jak to probíhá</span>
-        <div class="mcimg" style="background-image:url('assets/mirror/karneval.webp')"><i style="background-image:url('assets/mirror/karneval.webp')"></i><span class="tag">KARNEVALY</span></div>
+        <div class="mchead"><span class="mctag">KARNEVALY</span><h3>Karneval s postavami z pohádek</h3></div>
+        <div class="mcimg" style="background-image:url('assets/mirror/karneval.webp')"><i style="background-image:url('assets/mirror/karneval.webp')"></i></div>
+        <div class="mcperf" aria-hidden="true"></div>
         <div class="mcbody">
-          <h3>Karneval s postavami z pohádek</h3>
           <p>Dětský karneval, kde masky nejsou jen na dětech. Maskoti vedou průvod, rozdávají ceny a drží program v tempu od první do poslední písničky.</p>
           <ul><li>Vedení programu</li><li>Průvod masek</li><li>Školy i obce</li></ul>
+          <span class="mcnum" aria-hidden="true">02</span>
         </div>
       </article>
       <article class="mcard n3">
         <div class="mcbg" aria-hidden="true"></div>
-        <span class="mcnum" aria-hidden="true">03</span>
         <span class="mcinfo"><em>i</em>Proč právě my</span>
-        <div class="mcimg" style="background-image:url('assets/mirror/img_1032.webp')"><i style="background-image:url('assets/mirror/img_1032.webp')"></i><span class="tag">KVALITA Z ITÁLIE</span></div>
+        <div class="mchead"><span class="mctag">KVALITA Z ITÁLIE</span><h3>Kostýmy ve špičkové kvalitě</h3></div>
+        <div class="mcimg" style="background-image:url('assets/mirror/img_1032.webp')"><i style="background-image:url('assets/mirror/img_1032.webp')"></i></div>
+        <div class="mcperf" aria-hidden="true"></div>
         <div class="mcbody">
-          <h3>Kostýmy ve špičkové kvalitě</h3>
           <p>Žádné vytahané převleky — maskoty vozíme z Itálie, z materiálů pro profesionální použití. Postavy vypadají přesně tak, jak je děti znají z obrazovky.</p>
           <ul><li>Profi materiály</li><li>Nejnovější pohádky</li><li>Se zkušeným animátorem</li></ul>
+          <span class="mcnum" aria-hidden="true">03</span>
         </div>
       </article>
     </div>
