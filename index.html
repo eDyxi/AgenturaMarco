@@ -220,13 +220,23 @@
   /* ---------- bestsellers ---------- */
   .bestsellers{}
   .best-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-  .best{position:relative;background:#fff;border:3px solid #8B5CD6;border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 14px 32px rgba(43,30,82,.16);overflow:visible;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
+  .best{position:relative;background:linear-gradient(180deg,#FFFFFF 0%,#FDFCFF 46%,#EFEBF7 78%,#E2DCF0 100%);border:3px solid #8B5CD6;border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 14px 32px rgba(43,30,82,.16);overflow:visible;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
   .best:hover{transform:translateY(-8px) rotate(-.6deg);border-color:#A86EFF;box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 0 26px rgba(139,92,214,.4),0 24px 46px rgba(43,30,82,.26)}
   .best:hover .top svg{transform:rotate(-2deg) scale(1.04)}
   .best .top svg{transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-  .best .top{height:170px;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:visible;border-bottom:3px solid #8B5CD6;
+  .best .top{height:170px;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:visible;border-bottom:3px solid #8B5CD6;background:transparent;
     border-radius:calc(var(--radius-lg) - 3px) calc(var(--radius-lg) - 3px) 0 0}
   /* barevny pruh si drzi svuj tvar, ale obrazek z nej vylezá */
+  .sheen{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+    border-radius:calc(var(--radius-lg) - 3px)}
+  .sheen::before{content:"";position:absolute;top:-60%;left:-70%;width:60%;height:220%;
+    background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.95) 45%,rgba(255,255,255,.95) 55%,rgba(255,255,255,0) 100%);
+    transform:translate3d(0,0,0) rotate(14deg);animation:sheenSweep 7s ease-in-out infinite}
+  .best:nth-child(2) .sheen::before{animation-delay:2.3s}
+  .best:nth-child(3) .sheen::before{animation-delay:4.6s}
+  @keyframes sheenSweep{0%{transform:translate3d(0,0,0) rotate(14deg)}
+    60%,100%{transform:translate3d(320%,0,0) rotate(14deg)}}
+  @media (prefers-reduced-motion:reduce){.sheen::before{animation:none;opacity:0}}
   .best .top::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px rgba(255,255,255,.5) inset;pointer-events:none;z-index:1}
   .best .top svg{width:130px;height:130px;position:relative;z-index:2}
   .best .top{overflow:visible}
@@ -240,7 +250,7 @@
     filter:drop-shadow(0 12px 18px rgba(43,30,82,.28)) drop-shadow(0 0 14px rgba(139,92,214,.55))}
   @media (prefers-reduced-motion:reduce){.best .bico{animation:none;transition:none}.best:hover .bico{transform:none}}
   .best .badge{position:absolute;top:12px;right:12px;z-index:3;background:var(--gold);color:var(--navy);font-family:'Baloo 2';font-weight:900;font-size:1.02rem;letter-spacing:.07em;padding:9px 20px;border-radius:30px;border:2px solid rgba(255,255,255,.85);transform:rotate(6deg);text-shadow:0 1px 0 rgba(255,255,255,.5);box-shadow:0 0 16px rgba(245,179,36,.45),0 6px 16px rgba(43,30,82,.3)}
-  .best .body{padding:40px 22px 26px;display:flex;flex-direction:column;flex:1}
+  .best .body{position:relative;z-index:2;padding:40px 22px 26px;background:transparent;display:flex;flex-direction:column;flex:1}
   .best h3{font-size:clamp(1.38rem,2.35vw,1.68rem);font-weight:900;letter-spacing:-.012em;line-height:1.2;color:var(--navy);text-shadow:0 1px 0 rgba(255,255,255,.95),0 0 10px rgba(139,92,214,.18),0 1px 3px rgba(43,30,82,.22);margin-bottom:8px}
   .best p{font-size:1rem;color:#31507C;font-weight:700;flex:1;line-height:1.65}
   .best .foot{display:flex;align-items:center;justify-content:flex-end;margin-top:18px}
@@ -573,7 +583,8 @@
     </div>
     <div class="best-grid">
       <a class="best" href="megahrady.html">
-        <div class="top" style="background:linear-gradient(160deg,#eaf5fd,#cfe8fb)">
+        <span class="sheen" aria-hidden="true"></span>
+        <div class="top">
           <span class="badge">TOP</span>
           <img class="bico" src="assets/icons/hrad.webp" width="360" height="360" loading="lazy" decoding="async" alt="Nafukovací skákací hrad s překážkovou dráhou">
         </div>
@@ -584,7 +595,8 @@
         </div>
       </a>
       <a class="best" href="avengers.html">
-        <div class="top" style="background:linear-gradient(160deg,#fde8ea,#f7cdd2)">
+        <span class="sheen" aria-hidden="true"></span>
+        <div class="top">
           <span class="badge" style="background:#6B4FA0;color:#fff">JEDINÍ V ČR</span>
           <img class="bico" src="assets/icons/maskoti.webp" width="360" height="360" loading="lazy" decoding="async" alt="Dva superhrdinové v kostýmech Agentury Marco">
         </div>
@@ -595,7 +607,8 @@
         </div>
       </a>
       <a class="best" href="ozvuceni.html">
-        <div class="top" style="background:linear-gradient(160deg,#eaf5fd,#d6e9fb)">
+        <span class="sheen" aria-hidden="true"></span>
+        <div class="top">
           <span class="badge" style="background:#3f66c4;color:#fff">NA AKCE</span>
           <img class="bico" src="assets/icons/dj.webp" width="360" height="360" loading="lazy" decoding="async" alt="DJ s aparaturou a notami">
         </div>
