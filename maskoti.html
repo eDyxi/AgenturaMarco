@@ -481,6 +481,8 @@
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 12px rgba(255,210,63,.5),0 0 26px rgba(255,210,63,.25)}
   .fleet .h2::after,.facts-block .h2::after,.baleni .h2::after,.gal-block .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
   .facts-block{padding-top:0;margin-top:-26px}
+  section.block.gal-block.picks-block{padding-top:86px}
+  @media(max-width:700px){section.block.gal-block.picks-block{padding-top:62px}}
   .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
   @media(max-width:900px){.facts{grid-template-columns:1fr}}
   .fitem{--acc:#F5D68C;--accs:245,214,140;
@@ -912,7 +914,7 @@
   </div>
 </section>
 
-<section class="block gal-block" style="padding-top:0;padding-bottom:52px">
+<section class="block gal-block picks-block" style="padding-bottom:52px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Naše postavy</span>
