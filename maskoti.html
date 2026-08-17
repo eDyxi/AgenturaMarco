@@ -607,6 +607,12 @@
     margin:8px auto 0;background:var(--acc);box-shadow:0 0 10px rgba(var(--accs),.6)}
   .mask-card p{font-size:.85rem;color:rgba(255,255,255,.84);line-height:1.5;font-weight:600;margin-top:8px}
   .mask-card [data-kk-slot]{position:absolute;top:-25px;right:12px;z-index:5;display:flex}
+  .mask-card .mprice{margin-top:auto;padding-top:12px;display:flex;align-items:baseline;
+    justify-content:center;gap:5px;flex-wrap:wrap}
+  .mask-card .mprice b{font-family:'Baloo 2';font-weight:900;font-size:1.06rem;color:#fff;
+    text-shadow:0 2px 8px rgba(25,15,60,.45)}
+  .mask-card .mprice span{font-family:'Baloo 2';font-weight:700;font-size:.75rem;
+    color:rgba(255,255,255,.72)}
   /* male tlacitko do kosiku - jedna barva u vsech */
   .mask-card .kk-prod{width:38px;height:38px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
     display:grid;place-items:center;border-radius:999px;
@@ -639,6 +645,7 @@
     .mask-card{border-radius:28px}.mask-card::after{border-radius:31px}
     .mask-card .mimg{border-radius:21px;margin:7px 7px 0}
     .mask-card h3{font-size:1rem}.mask-card p{font-size:.78rem}
+    .mask-card .mprice b{font-size:.95rem}.mask-card .mprice span{font-size:.7rem}
     .mask-card .kk-prod{width:34px;height:34px}
     .mask-card .kk-prod{background-size:64% 3px,3px 64%,100% 100%}
     .mask-card [data-kk-slot]{top:-22px;right:10px}}
@@ -905,7 +912,54 @@
   </div>
 </section>
 
-<section class="block" style="padding-top:0">
+<section class="block gal-block" style="padding-top:0;padding-bottom:52px">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Naše postavy</span>
+      <h2 class="h2">Vyberte si maskota</h2>
+      <p class="sub" style="margin-top:8px">Všechny kostýmy v profi kvalitě z Itálie, vždy se zkušeným animátorem.</p>
+    </div>
+    <div class="mask-grid">
+      <article class="mask-card" data-kk-item="maskot-bluey" data-kk-name="Bluey" data-kk-img="assets/mirror/546855256_656660140389762_2021013194689647257_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"><i style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"></i></div><div class="mtxt"><h3>Bluey</h3><p>Nejoblíbenější modrá fenka současnosti — děti ji poznají na první pohled.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-bingo" data-kk-name="Bingo" data-kk-img="assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"><i style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"></i></div><div class="mtxt"><h3>Bingo</h3><p>Mladší sestřička Bluey. Nejlépe fungují jako dvojka.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-masa-medved" data-kk-name="Máša a Medvěd" data-kk-img="assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"><i style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"></i></div><div class="mtxt"><h3>Máša a Medvěd</h3><p>Legendární dvojka z pohádky — Máša zlobí, Medvěd hlídá.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-mimoni" data-kk-name="Mimoni" data-kk-img="assets/mirror/20230923-img_0112.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/20230923-img_0112.webp')"><i style="background-image:url('assets/mirror/20230923-img_0112.webp')"></i></div><div class="mtxt"><h3>Mimoni</h3><p>Žlutá parta, co nevydrží chvíli v klidu — děti je milují.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-sonic" data-kk-name="Sonic" data-kk-img="assets/mirror/img_9168.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_9168.webp')"><i style="background-image:url('assets/mirror/img_9168.webp')"></i></div><div class="mtxt"><h3>Sonic</h3><p>Nejrychlejší ježek na světě — modrá raketa pro každou akci.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-buzz-woody" data-kk-name="Buzz a Woody" data-kk-img="assets/mirror/img_6881.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_6881.webp')"><i style="background-image:url('assets/mirror/img_6881.webp')"></i></div><div class="mtxt"><h3>Buzz a Woody</h3><p>Kamarádi z Toy Story, kteří ožijí přímo na vaší akci.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-beruska" data-kk-name="Beruška" data-kk-img="assets/mirror/img_7154.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_7154.webp')"><i style="background-image:url('assets/mirror/img_7154.webp')"></i></div><div class="mtxt"><h3>Beruška</h3><p>Ladybug — hrdinka, kterou holky milují.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-mike-wazowski" data-kk-name="Mike Wazowski" data-kk-img="assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"><i style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"></i></div><div class="mtxt"><h3>Mike Wazowski</h3><p>Jednooká zelená příšerka z Příšerek s.r.o.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-sulley" data-kk-name="Sulley" data-kk-img="assets/mirror/250723-32.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-32.webp')"><i style="background-image:url('assets/mirror/250723-32.webp')"></i></div><div class="mtxt"><h3>Sulley</h3><p>Velký modrý chlupáč — obejmutí, na které se nezapomíná.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-zelvy-ninja" data-kk-name="Želvy Ninja" data-kk-img="assets/mirror/250723-13.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-13.webp')"><i style="background-image:url('assets/mirror/250723-13.webp')"></i></div><div class="mtxt"><h3>Želvy Ninja</h3><p>Kowabunga! Želvy v profi kvalitě z Itálie.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-gorila" data-kk-name="Gorila" data-kk-img="assets/mirror/250723-31.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-31.webp')"><i style="background-image:url('assets/mirror/250723-31.webp')"></i></div><div class="mtxt"><h3>Gorila</h3><p>Obří gorila, ze které mají respekt i tátové.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-medvidek-pu" data-kk-name="Medvídek Pú" data-kk-img="assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"><i style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"></i></div><div class="mtxt"><h3>Medvídek Pú</h3><p>Klasika, která nikdy nezklame — pro nejmenší děti.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-goofy" data-kk-name="Goofy" data-kk-img="assets/mirror/414088876_360003363340785_3104161199577540913_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"><i style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"></i></div><div class="mtxt"><h3>Goofy</h3><p>Ušatý smíšek, co rozesměje celé publikum.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-grinch" data-kk-name="Grinch" data-kk-img="assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"><i style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"></i></div><div class="mtxt"><h3>Grinch</h3><p>Vánoční speciál — Grinch na mikulášské i firemní večírky.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskot-labubu" data-kk-name="Labubu" data-kk-img="assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"><i style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"></i></div><div class="mtxt"><h3>Labubu</h3><p>Aktuální fenomén — Labubu naživo, jediní v okolí.</p><div class="mprice"><b>3 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="block gal-block" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Galerie</span>
+      <h2 class="h2">Maskoti v akci</h2>
+    </div>
+    <div class="gal-track" id="galTrack" tabindex="0" aria-label="Galerie — posouvejte do stran">
+      <a href="assets/marco/maskoti-1.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-1.webp" alt="Maskot s dětmi na akci"></a>
+      <a href="assets/marco/maskoti-2.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-2.webp" alt="Maskot na náměstí"></a>
+      <a href="assets/marco/maskoti-3.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-3.webp" alt="Maskoti baví děti"></a>
+      <a href="assets/marco/maskoti-4.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-4.webp" alt="Setkání s maskotem"></a>
+      <a href="assets/marco/maskoti-5.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-5.webp" alt="Maskot na dětském dni"></a>
+      <a href="assets/marco/maskoti-6.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-6.webp" alt="Maskoti na obecní akci"></a>
+      <a href="assets/marco/maskoti-7.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-7.webp" alt="Foto s maskotem"></a>
+      <a href="assets/marco/maskoti-8.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-8.webp" alt="Maskoti v akci"></a>
+    </div>
+    <p class="fleet-hint">← posouvej prstem →</p>
+  </div>
+</section>
+
+<section class="block">
   <div class="wrap">
     <div class="mcards">
       <article class="mcard n1">
@@ -959,53 +1013,6 @@
       <div class="fitem"><span class="flab">Postavy</span><span class="fval">15+ maskotů</span><span class="fnote">Od Mickeyho po Labubu — vyberete si na míru akci.</span></div>
       <div class="fitem"><span class="flab">Storno</span><span class="fval">Do 24 h</span><span class="fnote">Zrušit rezervaci můžete až 24 hodin před akcí.</span></div>
     </div>
-  </div>
-</section>
-
-<section class="block gal-block" style="padding-bottom:52px">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Naše postavy</span>
-      <h2 class="h2">Vyberte si maskota</h2>
-      <p class="sub" style="margin-top:8px">Všechny kostýmy v profi kvalitě z Itálie, vždy se zkušeným animátorem.</p>
-    </div>
-    <div class="mask-grid">
-      <article class="mask-card" data-kk-item="maskot-bluey" data-kk-name="Bluey" data-kk-img="assets/mirror/546855256_656660140389762_2021013194689647257_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"><i style="background-image:url('assets/mirror/546855256_656660140389762_2021013194689647257_n.webp')"></i></div><div class="mtxt"><h3>Bluey</h3><p>Nejoblíbenější modrá fenka současnosti — děti ji poznají na první pohled.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-bingo" data-kk-name="Bingo" data-kk-img="assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"><i style="background-image:url('assets/mirror/548377105_1501144441333470_6046209696701571296_n.webp')"></i></div><div class="mtxt"><h3>Bingo</h3><p>Mladší sestřička Bluey. Nejlépe fungují jako dvojka.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-masa-medved" data-kk-name="Máša a Medvěd" data-kk-img="assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"><i style="background-image:url('assets/mirror/371541354_3600971873509152_2134194904327506466_n.webp')"></i></div><div class="mtxt"><h3>Máša a Medvěd</h3><p>Legendární dvojka z pohádky — Máša zlobí, Medvěd hlídá.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-mimoni" data-kk-name="Mimoni" data-kk-img="assets/mirror/20230923-img_0112.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/20230923-img_0112.webp')"><i style="background-image:url('assets/mirror/20230923-img_0112.webp')"></i></div><div class="mtxt"><h3>Mimoni</h3><p>Žlutá parta, co nevydrží chvíli v klidu — děti je milují.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-sonic" data-kk-name="Sonic" data-kk-img="assets/mirror/img_9168.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_9168.webp')"><i style="background-image:url('assets/mirror/img_9168.webp')"></i></div><div class="mtxt"><h3>Sonic</h3><p>Nejrychlejší ježek na světě — modrá raketa pro každou akci.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-buzz-woody" data-kk-name="Buzz a Woody" data-kk-img="assets/mirror/img_6881.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_6881.webp')"><i style="background-image:url('assets/mirror/img_6881.webp')"></i></div><div class="mtxt"><h3>Buzz a Woody</h3><p>Kamarádi z Toy Story, kteří ožijí přímo na vaší akci.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-beruska" data-kk-name="Beruška" data-kk-img="assets/mirror/img_7154.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/img_7154.webp')"><i style="background-image:url('assets/mirror/img_7154.webp')"></i></div><div class="mtxt"><h3>Beruška</h3><p>Ladybug — hrdinka, kterou holky milují.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-mike-wazowski" data-kk-name="Mike Wazowski" data-kk-img="assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"><i style="background-image:url('assets/mirror/516039807_1263573132090615_7755512676760210617_n.webp')"></i></div><div class="mtxt"><h3>Mike Wazowski</h3><p>Jednooká zelená příšerka z Příšerek s.r.o.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-sulley" data-kk-name="Sulley" data-kk-img="assets/mirror/250723-32.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-32.webp')"><i style="background-image:url('assets/mirror/250723-32.webp')"></i></div><div class="mtxt"><h3>Sulley</h3><p>Velký modrý chlupáč — obejmutí, na které se nezapomíná.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-zelvy-ninja" data-kk-name="Želvy Ninja" data-kk-img="assets/mirror/250723-13.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-13.webp')"><i style="background-image:url('assets/mirror/250723-13.webp')"></i></div><div class="mtxt"><h3>Želvy Ninja</h3><p>Kowabunga! Želvy v profi kvalitě z Itálie.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-gorila" data-kk-name="Gorila" data-kk-img="assets/mirror/250723-31.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/250723-31.webp')"><i style="background-image:url('assets/mirror/250723-31.webp')"></i></div><div class="mtxt"><h3>Gorila</h3><p>Obří gorila, ze které mají respekt i tátové.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-medvidek-pu" data-kk-name="Medvídek Pú" data-kk-img="assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"><i style="background-image:url('assets/mirror/6bd4bda7-c1af-4add-8524-32936af7cab5.webp')"></i></div><div class="mtxt"><h3>Medvídek Pú</h3><p>Klasika, která nikdy nezklame — pro nejmenší děti.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-goofy" data-kk-name="Goofy" data-kk-img="assets/mirror/414088876_360003363340785_3104161199577540913_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"><i style="background-image:url('assets/mirror/414088876_360003363340785_3104161199577540913_n.webp')"></i></div><div class="mtxt"><h3>Goofy</h3><p>Ušatý smíšek, co rozesměje celé publikum.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-grinch" data-kk-name="Grinch" data-kk-img="assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"><i style="background-image:url('assets/mirror/970ad27b-4af6-4d5e-a275-b9e2b6808937.webp')"></i></div><div class="mtxt"><h3>Grinch</h3><p>Vánoční speciál — Grinch na mikulášské i firemní večírky.</p><div data-kk-slot></div></div></article>
-      <article class="mask-card" data-kk-item="maskot-labubu" data-kk-name="Labubu" data-kk-img="assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"><i style="background-image:url('assets/mirror/546220524_1220356303470419_3820742547912086554_n.webp')"></i></div><div class="mtxt"><h3>Labubu</h3><p>Aktuální fenomén — Labubu naživo, jediní v okolí.</p><div data-kk-slot></div></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="block gal-block" style="padding-bottom:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Galerie</span>
-      <h2 class="h2">Maskoti v akci</h2>
-    </div>
-    <div class="gal-track" id="galTrack" tabindex="0" aria-label="Galerie — posouvejte do stran">
-      <a href="assets/marco/maskoti-1.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-1.webp" alt="Maskot s dětmi na akci"></a>
-      <a href="assets/marco/maskoti-2.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-2.webp" alt="Maskot na náměstí"></a>
-      <a href="assets/marco/maskoti-3.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-3.webp" alt="Maskoti baví děti"></a>
-      <a href="assets/marco/maskoti-4.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-4.webp" alt="Setkání s maskotem"></a>
-      <a href="assets/marco/maskoti-5.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-5.webp" alt="Maskot na dětském dni"></a>
-      <a href="assets/marco/maskoti-6.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-6.webp" alt="Maskoti na obecní akci"></a>
-      <a href="assets/marco/maskoti-7.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-7.webp" alt="Foto s maskotem"></a>
-      <a href="assets/marco/maskoti-8.webp"><img loading="lazy" decoding="async" src="assets/marco/maskoti-8.webp" alt="Maskoti v akci"></a>
-    </div>
-    <p class="fleet-hint">← posouvej prstem →</p>
   </div>
 </section>
 
