@@ -523,18 +523,18 @@
     background:var(--acc);box-shadow:0 0 8px rgba(var(--accs),.55)}
   .fnote{font-size:.82rem;color:rgba(255,255,255,.86);line-height:1.45;font-weight:600;margin-top:5px}
   @media(prefers-reduced-motion:reduce){.fitem::after{display:none}.fitem:hover{transform:none}}
-  .gal-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(80vw,336px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:38px 4px 22px;scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,transparent 0,#000 3.5%,#000 96.5%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3.5%,#000 96.5%,transparent 100%)}
+  .gal-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(80vw,336px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:38px 8px 26px;scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,#000 0,#000 94%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,#000 0,#000 94%,transparent 100%)}
   .gal-track::-webkit-scrollbar{display:none}
   .gal-track a{--acc:#F0C86B;--accs:240,200,107;position:relative;scroll-snap-align:center;display:block;
-    border-radius:20px;overflow:visible;aspect-ratio:4/3;background:#4B3A82;
-    border:3px solid var(--acc);
-    box-shadow:0 0 18px rgba(var(--accs),.38);
+    border-radius:24px;overflow:visible;aspect-ratio:4/3;background:#4B3A82;
+    border:7px solid var(--acc);outline:2px solid rgba(255,255,255,.5);outline-offset:-9px;
+    box-shadow:0 0 0 2px rgba(20,12,50,.35),0 0 22px rgba(var(--accs),.42);
     transition:transform .35s cubic-bezier(.3,.9,.4,1),box-shadow .32s ease,opacity .55s ease}
   .gal-track a:nth-child(3n+2){--acc:#C3ABE8;--accs:195,171,232}
   .gal-track a:nth-child(3n){--acc:#A9CFF0;--accs:169,207,240}
   .gal-track a:nth-child(odd){transform:rotate(-1.1deg)}
   .gal-track a:nth-child(even){transform:rotate(1.2deg)}
-  .gal-track a::after{content:"";position:absolute;inset:-3px;border-radius:23px;padding:3px;
+  .gal-track a::after{content:"";position:absolute;inset:-7px;border-radius:31px;padding:7px;
     background:conic-gradient(from var(--mcAng),transparent 0deg,transparent 304deg,#fff 340deg,#fff 350deg,transparent 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
@@ -542,10 +542,10 @@
     animation:mcSpin 6s linear infinite}
   .gal-track a:nth-child(3n+2)::after{animation-duration:7.5s;animation-direction:reverse}
   .gal-track a:nth-child(3n)::after{animation-duration:6.8s;animation-delay:-3s}
-  .gal-track a:hover{box-shadow:0 0 24px rgba(var(--accs),.65),0 0 52px rgba(var(--accs),.34),
-    0 0 0 1px rgba(var(--accs),.55)}
+  .gal-track a:hover{box-shadow:0 0 0 2px rgba(20,12,50,.4),0 0 28px rgba(var(--accs),.7),
+    0 0 58px rgba(var(--accs),.36)}
   .gal-track a:hover::after{opacity:1;animation-duration:2.8s}
-  .gal-track img{width:100%;height:100%;object-fit:cover;border-radius:17px;display:block;
+  .gal-track img{width:100%;height:100%;object-fit:cover;border-radius:15px;display:block;
     transition:transform .4s cubic-bezier(.22,.9,.3,1)}
   .gal-track a{isolation:isolate}
   .gal-track a>img{position:relative;z-index:1}
@@ -827,6 +827,27 @@
   .baleni.in .bstep:nth-child(3){transition-delay:.3s}
   /* ---- gallery ---- */
   .page-cta{text-align:center;padding:64px 0 90px}
+  .cta-card{position:relative;isolation:isolate;max-width:760px;margin:0 auto;
+    padding:46px 40px 44px;border-radius:40px 40px 40px 12px;
+    background:linear-gradient(160deg,#7A61BC 0%,#43317A 100%);
+    border:4px solid #F0C86B;
+    box-shadow:0 26px 54px rgba(28,16,64,.42),0 1px 0 rgba(255,255,255,.2) inset}
+  .cta-card>*{position:relative;z-index:2}
+  .cta-card .ctabg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;z-index:0;pointer-events:none}
+  .cta-card .ctabg::before{content:"";position:absolute;inset:-70%;
+    background:conic-gradient(from 0deg,#8E6FD6,#4C3A8C,#B48BE8,#3E2E72,#A874C9,#8E6FD6);
+    filter:blur(50px);opacity:.5;animation:mkAurora 26s linear infinite}
+  .cta-card .ctabg::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 66% at 50% 0%,rgba(255,255,255,.16),transparent 62%),
+               radial-gradient(80% 46% at 50% 100%,rgba(240,200,107,.2),transparent 72%)}
+  .cta-card::after{content:"";position:absolute;inset:-4px;border-radius:44px 44px 44px 16px;padding:4px;
+    background:conic-gradient(from var(--mcAng),transparent 0deg,transparent 300deg,#fff 340deg,#fff 351deg,transparent 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;opacity:.9;pointer-events:none;z-index:3;animation:mcSpin 6s linear infinite}
+  @media(max-width:700px){.cta-card{padding:34px 22px 32px;border-radius:30px 30px 30px 10px}
+    .cta-card::after{border-radius:34px 34px 34px 14px}}
+  @media(prefers-reduced-motion:reduce){.cta-card::after,.cta-card .ctabg::before{animation:none}}
   .page-cta .h2{font-weight:900;font-size:clamp(2.1rem,5vw,3.1rem);color:#fff;transform:skew(-4deg);
     -webkit-text-stroke:2.2px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 14px rgba(255,210,63,.6),0 0 30px rgba(255,107,122,.32)}
@@ -1034,11 +1055,14 @@
 
 <section class="page-cta">
   <div class="wrap">
+    <div class="cta-card">
+    <div class="ctabg" aria-hidden="true"></div>
     <span class="eyebrow">Rezervace</span>
     <h2 class="h2">Chcete maskoty na vaší akci?</h2>
     <p class="sub" style="margin:10px auto 26px;max-width:520px">Napište datum, místo a oblíbené pohádky — vybereme maskoty na míru a ozveme se s cenou.</p>
     <a class="btn" href="index.html#kontakt">🎉 Nezávazná poptávka</a>
     <span class="cta-hint">Odpovídáme zpravidla do pár hodin ✍</span>
+    </div>
   </div>
 </section>
 
