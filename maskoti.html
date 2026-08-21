@@ -597,7 +597,8 @@
   /* fotka */
   .mask-card .mimg{position:relative;z-index:1;margin:9px 9px 0;aspect-ratio:4/5;
     background-size:cover;background-position:center top;
-    border-radius:30px;overflow:hidden;
+    border-radius:30px;overflow:hidden;clip-path:inset(0 round 30px);
+    -webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0);
     box-shadow:0 0 0 2px rgba(var(--accs),.55),0 8px 18px rgba(30,18,64,.35)}
   .mask-card .mimg i{position:absolute;inset:0;background-size:cover;background-position:center top;
     transition:transform .6s cubic-bezier(.22,.9,.3,1)}
@@ -648,7 +649,7 @@
     100%{filter:blur(52px) hue-rotate(-30deg) saturate(1.25)}}
   @media(max-width:700px){.mask-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px 14px}
     .mask-card{border-radius:28px;border-width:4px}.mask-card::after{border-radius:32px;inset:-4px;padding:4px}
-    .mask-card .mimg{border-radius:21px;margin:7px 7px 0}
+    .mask-card .mimg{border-radius:21px;clip-path:inset(0 round 21px);margin:7px 7px 0}
     .mask-card h3{font-size:1rem}.mask-card p{font-size:.78rem}
     .mask-card .mprice b{font-size:.95rem}.mask-card .mprice span{font-size:.7rem}
     .mask-card .kk-prod{width:34px;height:34px}
@@ -729,7 +730,8 @@
     animation-play-state:paused;box-shadow:0 30px 58px rgba(35,22,72,.46),0 0 34px rgba(var(--accs),.4)}
   /* fotka pres celou kartu */
   .mcimg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;
-    border-radius:25px;overflow:hidden}
+    border-radius:25px;overflow:hidden;clip-path:inset(0 round 25px);
+    -webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0)}
   .mcimg i{position:absolute;inset:0;background-size:cover;background-position:center;
     transition:transform .6s cubic-bezier(.22,.9,.3,1)}
   .mcard:hover .mcimg i{transform:scale(1.07)}
