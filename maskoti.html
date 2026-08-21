@@ -490,7 +490,9 @@
     background:linear-gradient(160deg,#8168C4 0%,#584195 100%);
     border:3px solid var(--acc);border-radius:24px 24px 24px 8px;
     padding:18px 20px 17px;
-    box-shadow:0 10px 22px rgba(48,32,96,.24),0 1px 0 rgba(255,255,255,.18) inset;
+    outline:2px solid rgba(255,255,255,.42);outline-offset:-5px;
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.4),0 14px 26px rgba(24,14,56,.26),
+               0 1px 0 rgba(255,255,255,.2) inset;
     opacity:0;transform:translateY(22px);
     transition:opacity .55s ease,transform .32s cubic-bezier(.3,.9,.4,1),box-shadow .32s ease}
   .facts .fitem:nth-child(2){--acc:#D5C4F2;--accs:213,196,242;border-radius:24px 24px 8px 24px}
@@ -513,8 +515,8 @@
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;opacity:.9;transition:opacity .35s ease;pointer-events:none;
     animation:mcSpin 5s linear infinite}
-  .facts .fitem:nth-child(2)::after{border-radius:26px 26px 10px 26px;animation-duration:11s;animation-direction:reverse}
-  .facts .fitem:nth-child(3)::after{border-radius:26px 10px 26px 26px;animation-duration:10s;animation-delay:-4s}
+  .facts .fitem:nth-child(2)::after{border-radius:26px 26px 10px 26px;animation-delay:-1.8s}
+  .facts .fitem:nth-child(3)::after{border-radius:26px 10px 26px 26px;animation-delay:-3.6s}
   .fitem:hover::after{opacity:1;animation-duration:2.6s}
   .flab{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--acc);line-height:1}
   .fval{font-family:'Baloo 2';font-weight:800;font-size:1.22rem;color:#fff;line-height:1.15;
@@ -540,8 +542,8 @@
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;opacity:.9;transition:opacity .35s ease;pointer-events:none;z-index:3;
     animation:mcSpin 6s linear infinite}
-  .gal-track a:nth-child(3n+2)::after{animation-duration:7.5s;animation-direction:reverse}
-  .gal-track a:nth-child(3n)::after{animation-duration:6.8s;animation-delay:-3s}
+  .gal-track a:nth-child(3n+2)::after{animation-delay:-2s}
+  .gal-track a:nth-child(3n)::after{animation-delay:-4s}
   .gal-track a:hover{transform:translateY(-8px) scale(1.04) rotate(0deg);
     box-shadow:0 0 0 2px rgba(20,12,50,.4),0 0 30px rgba(var(--accs),.75),0 0 62px rgba(var(--accs),.38)}
   .gal-track a:hover::after{opacity:1;animation-duration:2.4s}
@@ -560,16 +562,17 @@
     position:relative;display:flex;flex-direction:column;isolation:isolate;
     background:linear-gradient(160deg,#6E56AE 0%,#43317A 100%);
     border:5px solid var(--acc);border-radius:38px;
-    box-shadow:0 14px 30px rgba(38,24,78,.3),0 0 0 1px rgba(255,255,255,.06) inset,
-               0 1px 0 rgba(255,255,255,.16) inset;
+    outline:2px solid rgba(255,255,255,.5);outline-offset:-7px;
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.45),0 20px 38px rgba(24,14,56,.3),
+               0 1px 0 rgba(255,255,255,.18) inset;
     opacity:0;transform:translateY(22px);
     transition:opacity .5s ease,transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
   .mask-card:nth-child(3n+2){--acc:#C3ABE8;--accs:195,171,232}
   .mask-card:nth-child(3n){--acc:#A9CFF0;--accs:169,207,240}
   .mask-card.in{opacity:1;transform:none}
   .mask-card:hover{transform:translateY(-9px);
-    box-shadow:0 26px 50px rgba(38,24,78,.42),0 0 26px rgba(var(--accs),.28),
-               0 1px 0 rgba(255,255,255,.2) inset}
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 30px 54px rgba(24,14,56,.4),
+               0 0 26px rgba(var(--accs),.3),0 1px 0 rgba(255,255,255,.2) inset}
   /* mekce plujici pozadi uvnitr karty */
   .mbg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;z-index:0;pointer-events:none}
   .mbg::before{content:"";position:absolute;inset:-70%;
@@ -588,8 +591,8 @@
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;opacity:.85;transition:opacity .3s ease;pointer-events:none;z-index:4;
     animation:mcSpin 7s linear infinite}
-  .mask-card:nth-child(3n+2)::after{animation-duration:8.6s;animation-direction:reverse}
-  .mask-card:nth-child(3n)::after{animation-duration:7.8s;animation-delay:-3s}
+  .mask-card:nth-child(3n+2)::after{animation-delay:-2.6s}
+  .mask-card:nth-child(3n)::after{animation-delay:-5.2s}
   .mask-card:hover::after,.mask-card:focus-within::after{opacity:1;animation-duration:2.6s}
   /* fotka */
   .mask-card .mimg{position:relative;z-index:1;margin:9px 9px 0;aspect-ratio:4/5;
@@ -711,7 +714,8 @@
     min-height:520px;margin-top:26px;overflow:hidden;
     background:linear-gradient(162deg,#6A51A8 0%,#3F2E70 100%);
     border:6px solid var(--acc);border-radius:30px;
-    box-shadow:0 18px 38px rgba(35,22,72,.36);
+    outline:2px solid rgba(255,255,255,.5);outline-offset:-8px;
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.45),0 24px 44px rgba(24,14,56,.36);
     opacity:0;transform:translateY(30px) rotate(var(--tilt,0deg));
     transition:opacity .55s ease,transform .45s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
   .mcard.n1{--tilt:-1.6deg}
@@ -764,8 +768,8 @@
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;opacity:.9;pointer-events:none;z-index:4;animation:mcSpin 5s linear infinite}
-  .mcard.n2::after{animation-duration:6.4s;animation-direction:reverse}
-  .mcard.n3::after{animation-duration:5.7s;animation-delay:-2s}
+  .mcard.n2::after{animation-delay:-1.7s}
+  .mcard.n3::after{animation-delay:-3.4s}
   .mcard:hover::after{animation-duration:2.4s}
   @keyframes mcFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
   @keyframes mcSpin{to{--mcAng:360deg}}
