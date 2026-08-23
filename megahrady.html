@@ -849,45 +849,52 @@
   }
 
 
-  /* ---- bestsellery ---- */
-  .bsell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:44px;align-items:start}
+  /* ---- bestsellery: fotka na plno + rohova stuha ---- */
+  .bsell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:38px;align-items:stretch}
   .bcard{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
-    display:flex;flex-direction:column;padding:0 0 0 76px;min-height:300px;
+    display:flex;flex-direction:column;min-height:480px;
     background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
-    border:4px solid var(--acc);border-radius:0 34px 34px 0;
+    border:5px solid var(--acc);border-radius:34px;
+    outline:2px solid rgba(255,255,255,.5);outline-offset:-7px;
     box-shadow:0 0 0 1.5px rgba(24,14,56,.45),0 20px 38px rgba(24,14,56,.3);
     opacity:0;transform:translateY(24px);
     transition:opacity .5s ease,transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
-  .bcard.b2{--acc:#C3ABE8;--accs:195,171,232;margin-top:26px}
-  .bcard.b3{--acc:#A9CFF0;--accs:169,207,240;margin-top:52px}
+  .bcard.b2{--acc:#C3ABE8;--accs:195,171,232}
+  .bcard.b3{--acc:#A9CFF0;--accs:169,207,240}
   .bcard.in{opacity:1;transform:none}
-  .bcard:hover{transform:translateY(-9px);
-    box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 30px 54px rgba(24,14,56,.4),0 0 28px rgba(var(--accs),.32)}
-  /* svisly pruh s poradim */
-  .bnum{position:absolute;left:0;top:0;bottom:0;width:76px;z-index:2;display:grid;place-items:center;
-    background:var(--acc);color:#2A1E52;font-family:'Baloo 2';font-weight:900;font-size:2.5rem;line-height:1;
-    writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.06em;
-    box-shadow:inset -2px 0 0 rgba(255,255,255,.5)}
-  /* fotka nahore */
-  .bshot{position:relative;z-index:1;margin:10px 10px 0;border-radius:26px;overflow:hidden;
-    clip-path:inset(0 round 26px);-webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0);
-    box-shadow:0 0 0 2px rgba(var(--accs),.55),0 8px 18px rgba(30,18,64,.35)}
-  .bshot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;
-    transition:transform .55s cubic-bezier(.22,.9,.3,1)}
-  .bcard:hover .bshot img{transform:scale(1.05)}
-  .bbody{position:relative;z-index:2;padding:14px 18px 20px;display:flex;flex-direction:column;flex:1}
-  .btag{font-family:'Baloo 2';font-weight:800;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--acc)}
-  .bcard h3{font-family:'Baloo 2';font-weight:900;font-size:1.2rem;color:#fff;margin-top:4px;
-    text-shadow:0 2px 10px rgba(25,15,60,.45)}
-  .bcard h3::after{content:"";display:block;width:44px;height:4px;border-radius:4px;margin-top:8px;
-    background:var(--acc);box-shadow:0 0 10px rgba(var(--accs),.6)}
-  .bcard p{font-size:.88rem;color:rgba(255,255,255,.86);line-height:1.55;font-weight:600;margin-top:10px}
+  .bcard:hover{transform:translateY(-10px);
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 32px 58px rgba(24,14,56,.42),0 0 30px rgba(var(--accs),.34)}
+  .bshot{position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:29px;
+    clip-path:inset(0 round 29px);-webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0)}
+  .bshot img{display:block;width:100%;height:100%;object-fit:cover;
+    transition:transform .6s cubic-bezier(.22,.9,.3,1)}
+  .bcard:hover .bshot img{transform:scale(1.07)}
+  .bshot::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(46,30,92,.1) 0%,rgba(46,30,92,0) 26%,
+      rgba(70,50,128,.55) 46%,rgba(60,44,108,.95) 62%,#3B2C6E 74%,#372866 100%)}
+  .bnum{position:absolute;top:0;left:0;z-index:3;width:84px;height:84px;pointer-events:none;
+    display:grid;place-items:center;font-family:'Baloo 2';font-weight:900;font-size:1.7rem;
+    color:#2A1E52;background:var(--acc);clip-path:polygon(0 0,100% 0,0 100%);
+    text-indent:-26px;line-height:1;padding-bottom:24px}
+  .bbody{position:relative;z-index:2;margin-top:auto;padding:0 20px 22px;display:flex;flex-direction:column}
+  .btag{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.68rem;letter-spacing:.13em;
+    text-transform:uppercase;color:#2A1E52;background:var(--acc);padding:7px 15px;border-radius:999px;
+    box-shadow:0 5px 14px rgba(20,12,45,.4),0 0 0 3px rgba(255,255,255,.32);
+    animation:tagpulse 2.4s ease-in-out infinite}
+  .bcard.b2 .btag{animation-delay:.6s}
+  .bcard.b3 .btag{animation-delay:1.2s}
+  .bcard h3{font-family:'Baloo 2';font-weight:900;font-size:1.22rem;color:#fff;margin-top:10px;
+    -webkit-text-stroke:1.2px #0B0F1C;paint-order:stroke fill}
+  .bcard h3::after{content:"";display:block;width:48px;height:4px;border-radius:4px;margin-top:9px;
+    background:var(--acc);box-shadow:0 0 12px rgba(var(--accs),.7)}
+  .bcard p{font-size:.88rem;color:rgba(255,255,255,.9);line-height:1.55;font-weight:700;margin-top:10px;
+    text-shadow:0 1px 4px rgba(10,6,30,.55)}
   .bcard ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-  .bcard li{font-family:'Baloo 2';font-weight:700;font-size:.76rem;background:rgba(255,255,255,.1);
+  .bcard li{font-family:'Baloo 2';font-weight:700;font-size:.76rem;
+    background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
     border:2px solid var(--acc);color:#fff;padding:5px 12px;border-radius:30px}
-  .bcard [data-kk-slot]{position:absolute;top:-20px;right:14px;z-index:5;display:flex}
-  .bcard::after{content:"";position:absolute;inset:-4px;border-radius:0 38px 38px 0;padding:4px;
+  .bcard [data-kk-slot]{position:absolute;top:16px;right:16px;z-index:5;display:flex}
+  .bcard::after{content:"";position:absolute;inset:-5px;border-radius:39px;padding:5px;
     background:conic-gradient(from var(--mcAng),rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,rgba(255,255,255,.2) 358deg,rgba(255,255,255,0) 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
@@ -897,18 +904,24 @@
   .bcard.b2::after{animation-delay:-2.6s}
   .bcard.b3::after{animation-delay:-5.2s}
   .bcard:hover::after{opacity:1;animation-duration:2.6s}
-  @media(max-width:1024px){.bsell{grid-template-columns:minmax(0,1fr);gap:24px}
-    .bcard.b2,.bcard.b3{margin-top:0}}
-  @media(max-width:700px){.bcard{padding-left:56px;border-radius:0 26px 26px 0}
-    .bcard::after{border-radius:0 30px 30px 0}
-    .bnum{width:56px;font-size:2rem}}
+  @media(min-width:1025px){.bcard.b1,.bcard.b3{margin-top:24px}}
+  @media(max-width:1024px){.bsell{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .bcard{min-height:440px}.bcard.b1,.bcard.b3{margin-top:0}}
+  @media(max-width:700px){.bsell{grid-template-columns:minmax(0,1fr);gap:24px}
+    .bcard{min-height:420px;border-radius:26px;border-width:4px}
+    .bcard::after{border-radius:30px;inset:-4px;padding:4px}
+    .bshot{border-radius:22px;clip-path:inset(0 round 22px)}
+    .bnum{width:66px;height:66px;font-size:1.4rem}
+    .bbody{padding:0 16px 18px}}
   @media(prefers-reduced-motion:reduce){.bcard,.bcard.in{opacity:1;transform:none;transition:none}
-    .bcard:hover{transform:none}.bcard::after{animation:none;opacity:.5}
+    .bcard:hover{transform:none}.bcard::after{animation:none;opacity:.5}.btag{animation:none}
     .bshot img,.bcard:hover .bshot img{transition:none;transform:none}}
-/* ---- flotila hradu ---- */
+  /* ---- flotila hradu ---- */
   .fleet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:30px 26px;
-    margin-top:42px}
+    margin-top:38px;align-items:stretch}
+  .fleet-grid .fcard{height:100%}
+  .fcard .fmeta{min-height:170px}
   .fcard{--acc:#F0C86B;--accs:240,200,107;position:relative;
     display:flex;flex-direction:column;isolation:isolate;text-decoration:none;
     background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
@@ -1020,31 +1033,12 @@
   </div>
 </section>
 
-<section class="block" style="padding-top:10px">
+<section class="block" style="padding-top:0">
   <div class="wrap">
     <div class="bsell">
       <article class="bcard b1" data-kk-item="hrad-velka-skluzavka" data-kk-name="Velká skluzavka" data-kk-img="assets/hrady/hrad-velka-skluzavka.webp"><span class="bnum" aria-hidden="true">01</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-velka-skluzavka.webp" alt="Velká skluzavka — nafukovací atrakce"></div><div class="bbody"><span class="btag">NEJPRODÁVANĚJŠÍ</span><h3>Velká skluzavka</h3><p>Sedmimetrová dominanta, kterou si všimne celé náměstí. Fronta u ní nekončí od rána do večera.</p><ul><li>7×4×6 m</li><li>Až 15 dětí</li><li>Dozor v ceně</li></ul><div data-kk-slot></div></div></article>
       <article class="bcard b2" data-kk-item="hrad-wipeout" data-kk-name="WipeOut aréna" data-kk-img="assets/hrady/hrad-wipeout.webp"><span class="bnum" aria-hidden="true">02</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-wipeout.webp" alt="WipeOut aréna — nafukovací atrakce"></div><div class="bbody"><span class="btag">ADRENALIN</span><h3>WipeOut aréna</h3><p>Rotující rameno, skoky a pády do měkkého. Jediná atrakce, u které soutěží i tátové.</p><ul><li>Soutěžní režim</li><li>I pro dospělé</li><li>Aréna 8×8 m</li></ul><div data-kk-slot></div></div></article>
       <article class="bcard b3" data-kk-item="hrad-hraci-centrum-safari" data-kk-name="Hrací centrum Safari" data-kk-img="assets/hrady/hrad-hraci-centrum-safari.webp"><span class="bnum" aria-hidden="true">03</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hraci-centrum-safari.webp" alt="Hrací centrum Safari — nafukovací atrakce"></div><div class="bbody"><span class="btag">PRO NEJMENŠÍ</span><h3>Hrací centrum Safari</h3><p>Prolézačky, průlezy a skluzavka na jedné ploše. Nejbezpečnější volba pro děti do šesti let.</p><ul><li>Do 6 let</li><li>Velká plocha</li><li>Novinka</li></ul><div data-kk-slot></div></div></article>
-    </div>
-      <div class="hrow npur">
-        <div class="himg" style="background-image:url('assets/hrady/hrad-velka-skluzavka.webp')"></div>
-        <div class="hbody">
-          <span class="tag">KAPACITA AŽ 15 DĚTÍ</span>
-          <h3>Velká skluzavka</h3>
-          <p>Obří skákací plocha a velká skluzavka v jednom. Na plochu se vejde až 15 dětí najednou — ideál, když je fronta dlouhá a trpělivost krátká.</p>
-          <ul><li>Skákací plocha + skluzavka</li><li>Až 15 dětí</li><li>Profi PVC Tarpaulin</li></ul>
-        </div>
-      </div>
-      <div class="hrow ngold">
-        <div class="himg" style="background-image:url('assets/hrady/hrad-hraci-centrum-gorila.webp')"></div>
-        <div class="hbody">
-          <span class="tag new">NOVINKA</span>
-          <h3>Hrací centrum Gorila</h3>
-          <p>Kompletní dětský svět v jednom hradu — lezecká stěna, skluzavka, prolézací tunely a spousta dalších překážek, ve kterých se děti ztratí na celé odpoledne.</p>
-          <ul><li>Lezecká stěna</li><li>Tunely a překážky</li><li>Skluzavka</li></ul>
-        </div>
-      </div>
     </div>
   </div>
 </section>
