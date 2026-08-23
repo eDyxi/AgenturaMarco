@@ -480,7 +480,7 @@
     color:#fff;-webkit-text-stroke:2px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 12px rgba(255,210,63,.5),0 0 26px rgba(255,210,63,.25)}
   .fleet .h2::after,.facts-block .h2::after,.baleni .h2::after,.gal-block .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
-  .facts-block{padding-top:0;margin-top:-26px}
+  .facts-block{padding-top:0;margin-top:0}
   section.block.gal-block.picks-block{padding-top:86px}
   @media(max-width:700px){section.block.gal-block.picks-block{padding-top:62px}}
   .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
@@ -789,10 +789,17 @@
     .mcard::after{animation:none;opacity:.5}
     .mcimg i,.mcard:hover .mcimg i{transition:none;transform:none}}
   /* ---- video baleni: emphasized ---- */
-  .baleni{background:linear-gradient(150deg,var(--navy) 0%,#24467a 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
+  .baleni{color:#fff;position:relative;overflow:hidden;padding:52px 0;
+    background:linear-gradient(150deg,#6E56AE 0%,#43317A 100%)}
+  .baleni::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.16) 42%,
+      rgba(255,255,255,.28) 50%,rgba(255,255,255,.16) 58%,transparent 100%);
+    background-size:260% 100%;animation:baleniSweep 9s ease-in-out infinite}
+  @keyframes baleniSweep{0%{background-position:130% 0}100%{background-position:-130% 0}}
+  .baleni>*{position:relative;z-index:1}
   .baleni .h2{color:#fff}
   .baleni .sub{color:rgba(255,255,255,.75)}
-  .baleni-frame{position:relative;max-width:760px;margin:44px auto 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+  .baleni-frame{position:relative;max-width:760px;margin:34px auto 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45)}
   .baleni-frame::before{content:"";position:absolute;inset:-3px;border-radius:inherit;border:3px dashed var(--gold);animation:dashspin 14s linear infinite;pointer-events:none;z-index:3}
   @keyframes dashspin{to{transform:rotate(360deg)}}
   .baleni-frame::before{inset:-40%;border:none;background:conic-gradient(var(--gold) 0 8deg,transparent 8deg 22deg);opacity:.0}
@@ -806,7 +813,7 @@
   .baleni.in .bstep:nth-child(2){transition-delay:.15s}
   .baleni.in .bstep:nth-child(3){transition-delay:.3s}
   /* ---- gallery ---- */
-  .page-cta{text-align:center;padding:64px 0 90px}
+  .page-cta{text-align:center;padding:52px 0 90px}
   .page-cta .h2{font-weight:900;font-size:clamp(2.1rem,5vw,3.1rem);color:#fff;transform:skew(-4deg);
     -webkit-text-stroke:2.2px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 14px rgba(255,210,63,.6),0 0 30px rgba(255,107,122,.32)}
@@ -840,7 +847,7 @@
     .hbody{padding:26px 22px}
     
     .page-hero{padding:104px 0 0}
-    .baleni{padding:60px 0}
+    .baleni{padding:40px 0}
     .baleni-badge{top:-20px;right:2px;font-size:.85rem;padding:10px 16px}
   }
   @media(prefers-reduced-motion:reduce){
@@ -850,8 +857,8 @@
 
 
   /* ---- bestsellery: balicek karet, prostredni v popredi ---- */
-  .bsell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:38px auto 0;
-    align-items:center;max-width:940px;padding:26px 0 34px}
+  .bsell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 auto;
+    align-items:center;max-width:1080px;padding:22px 0 26px}
   .bcard{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
     display:flex;flex-direction:column;
     border:0;border-radius:30px;
@@ -865,18 +872,18 @@
   .bcard.b3{--acc:#A9CFF0;--accs:169,207,240}
   /* vychozi stav balicku: prvni v popredi, ostatni zatajene */
   .bcard.in{opacity:1}
-  .bsell .bcard.b1{z-index:2;transform:scale(.88) translate(9%,14px) rotate(-3deg)}
+  .bsell .bcard.b1{z-index:2;transform:scale(.9) translate(8%,10px) rotate(-2.6deg)}
   .bsell .bcard.b2{z-index:3;transform:scale(1)}
-  .bsell .bcard.b3{z-index:2;transform:scale(.88) translate(-9%,14px) rotate(3deg)}
+  .bsell .bcard.b3{z-index:2;transform:scale(.9) translate(-8%,10px) rotate(2.6deg)}
   .bsell .bcard{filter:blur(3px) saturate(.7) brightness(.6)}
   .bsell .bcard.revealed{filter:none}
   .bsell .bcard:hover,.bsell .bcard:focus-within{z-index:6;filter:none;
     background:linear-gradient(158deg,rgba(142,115,208,.78),rgba(52,36,100,.9));
     box-shadow:0 0 46px rgba(var(--accs),.55),0 0 96px rgba(var(--accs),.3),
                0 1px 0 rgba(255,255,255,.55) inset}
-  .bsell .bcard.b1:hover,.bsell .bcard.b1:focus-within{transform:scale(1.04) translate(9%,-6px) rotate(0deg)}
+  .bsell .bcard.b1:hover,.bsell .bcard.b1:focus-within{transform:scale(1.05) translate(8%,-6px) rotate(0deg)}
   .bsell .bcard.b2:hover,.bsell .bcard.b2:focus-within{transform:scale(1.06) translateY(-8px)}
-  .bsell .bcard.b3:hover,.bsell .bcard.b3:focus-within{transform:scale(1.04) translate(-9%,-6px) rotate(0deg)}
+  .bsell .bcard.b3:hover,.bsell .bcard.b3:focus-within{transform:scale(1.05) translate(-8%,-6px) rotate(0deg)}
   /* velke poradove cislo na zatajenych kartach */
   .bveil{position:absolute;inset:-5px;z-index:7;display:grid;place-items:center;pointer-events:none;
     border-radius:32px;overflow:hidden;
@@ -919,7 +926,7 @@
     clip-path:inset(0 round 15px);-webkit-mask-image:-webkit-radial-gradient(#fff,#000);
     transform:translateZ(0);background:rgba(20,12,50,.45);
     box-shadow:0 10px 24px rgba(16,9,42,.45),0 0 0 1.5px rgba(var(--accs),.55)}
-  .bshot img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;object-position:center;
+  .bshot img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain;object-position:center;
     padding:2px;transition:transform .6s cubic-bezier(.22,.9,.3,1)}
   .bsell .bcard:hover .bshot img{transform:scale(1.04)}
   .bnum{position:absolute;top:16px;left:16px;z-index:4;width:34px;height:34px;
@@ -930,7 +937,7 @@
     box-shadow:0 6px 16px rgba(16,9,42,.45),0 0 0 1.5px rgba(var(--accs),.7) inset,
                0 1px 0 rgba(255,255,255,.45) inset;
     text-shadow:0 0 10px rgba(var(--accs),.9)}
-  .bbody{position:relative;z-index:2;padding:11px 14px 14px;display:flex;flex-direction:column;flex:1}
+  .bbody{position:relative;z-index:2;padding:9px 13px 12px;display:flex;flex-direction:column;flex:1}
   .btag{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.66rem;letter-spacing:.14em;
     text-transform:uppercase;color:rgb(var(--accs));padding:6px 14px;border-radius:999px;
     background:linear-gradient(158deg,rgba(255,255,255,.18),rgba(255,255,255,.05));
@@ -941,9 +948,9 @@
     text-shadow:0 0 14px rgba(var(--accs),.95),0 0 32px rgba(var(--accs),.55),0 2px 6px rgba(12,7,34,.6)}
   .bcard h3::after{content:"";display:block;width:52px;height:4px;border-radius:4px;margin-top:9px;
     background:rgb(var(--accs));box-shadow:0 0 14px rgba(var(--accs),.9)}
-  .bcard p{font-size:.76rem;color:rgba(255,255,255,.9);line-height:1.42;font-weight:600;margin-top:6px;
+  .bcard p{font-size:.75rem;color:rgba(255,255,255,.9);line-height:1.38;font-weight:600;margin-top:5px;
     text-shadow:0 1px 4px rgba(12,7,34,.55)}
-  .bcard ul{margin:auto 0 0;padding:11px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+  .bcard ul{margin:auto 0 0;padding:9px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
   .bcard li{font-family:'Baloo 2';font-weight:700;font-size:.68rem;color:#fff;
     padding:4px 10px;border-radius:30px;
     background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
@@ -1002,7 +1009,7 @@
   .fleet-empty{display:none;text-align:center;font-family:'Baloo 2';font-weight:800;
     color:#fff;padding:40px 0}
   .fleet-empty.on{display:block}
-  .fleet-wrap{position:relative;margin-top:34px}
+  .fleet-wrap{position:relative;margin-top:30px}
   .fleet-viewport{overflow:hidden;border-radius:26px}
   .fleet-page{padding:16px 14px}
   .fleet-wrap::before{content:"";position:absolute;inset:-26px -18px;border-radius:38px;z-index:-1;
@@ -1167,7 +1174,7 @@
   </div>
 </section>
 
-<section class="block" style="padding:34px 0 0">
+<section class="block" style="padding:76px 0 0">
   <div class="wrap">
     <div class="price-hero" style="margin:0">
       <div class="pchip-wrap"><div class="pchip pmain"><small>Ceny atrakcí</small><b>2 000–10 000 Kč</b><span>/ akce podle velikosti</span></div></div>
@@ -1175,7 +1182,7 @@
   </div>
 </section>
 
-<section class="block" style="padding-top:0">
+<section class="block" style="padding:76px 0 52px">
   <div class="wrap">
     <div class="bsell">
       <article class="bcard b1" data-kk-item="hrad-velka-skluzavka" data-cat="velke skluzavky" data-kk-name="Velká skluzavka" data-kk-img="assets/hrady/hrad-velka-skluzavka.webp"><span class="bnum" aria-hidden="true">01</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-velka-skluzavka.webp" alt="Velká skluzavka — nafukovací atrakce"></div><span class="bveil" aria-hidden="true">1</span><div class="bbody"><span class="btag">NEJPRODÁVANĚJŠÍ</span><h3>Velká skluzavka</h3><p>Sedmimetrová dominanta, kterou si všimne celé náměstí. Fronta u ní nekončí od rána do večera.</p><ul><li>7×4×6 m</li><li>Až 15 dětí</li><li>Dozor v ceně</li></ul><div class="fprice"><b>8 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></article>
