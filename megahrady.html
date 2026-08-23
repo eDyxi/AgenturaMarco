@@ -916,81 +916,99 @@
   @media(prefers-reduced-motion:reduce){.bcard,.bcard.in{opacity:1;transform:none;transition:none}
     .bcard:hover{transform:none}.bcard::after{animation:none;opacity:.5}.btag{animation:none}
     .bshot img,.bcard:hover .bshot img{transition:none;transform:none}}
-  /* ---- flotila hradu ---- */
-  .fleet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:30px 26px;
-    margin-top:38px;align-items:stretch}
-  .fleet-grid .fcard{height:100%}
-  .fcard .fmeta{min-height:170px}
-  .fcard{--acc:#F0C86B;--accs:240,200,107;position:relative;
-    display:flex;flex-direction:column;isolation:isolate;text-decoration:none;
-    background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
-    border:5px solid var(--acc);border-radius:38px;
-    outline:2px solid rgba(255,255,255,.5);outline-offset:-7px;
-    box-shadow:0 0 0 1.5px rgba(24,14,56,.45),0 20px 38px rgba(24,14,56,.3),
-               0 1px 0 rgba(255,255,255,.18) inset;
-    opacity:0;transform:translateY(22px);
-    transition:opacity .5s ease,transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
-  .fleet-grid .fcard:nth-child(3n+2){--acc:#C3ABE8;--accs:195,171,232}
-  .fleet-grid .fcard:nth-child(3n){--acc:#A9CFF0;--accs:169,207,240}
-  .fcard.in{opacity:1;transform:none}
-  .fcard:hover{transform:translateY(-9px);
-    box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 30px 54px rgba(24,14,56,.4),
-               0 0 26px rgba(var(--accs),.3),0 1px 0 rgba(255,255,255,.2) inset}
-  .fcard::after{content:"";position:absolute;inset:-5px;border-radius:43px;padding:5px;
-    background:conic-gradient(from var(--mcAng),rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,rgba(255,255,255,.2) 358deg,rgba(255,255,255,0) 360deg);
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    mask-composite:exclude;opacity:.85;transition:opacity .3s ease;pointer-events:none;z-index:4;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.5));
-    animation:mcSpin 7s linear infinite}
-  .fleet-grid .fcard:nth-child(3n+2)::after{animation-delay:-2.6s}
-  .fleet-grid .fcard:nth-child(3n)::after{animation-delay:-5.2s}
-  .fcard:hover::after,.fcard:focus-within::after{opacity:1;animation-duration:2.6s}
-  .fcard .fimg{position:relative;z-index:1;margin:9px 9px 0;aspect-ratio:4/3;width:calc(100% - 18px);
-    object-fit:cover;display:block;background:#4B3A82;
-    border-radius:30px;clip-path:inset(0 round 30px);
-    -webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0);
-    box-shadow:0 0 0 2px rgba(var(--accs),.55),0 8px 18px rgba(30,18,64,.35);
-    transition:transform .55s cubic-bezier(.22,.9,.3,1)}
-  .fcard:hover .fimg{transform:scale(1.05)}
-  .fcard .fmeta{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;
-    padding:15px 16px 18px;text-align:center}
-  .fcard .ftag{display:inline-block;align-self:center;font-family:'Baloo 2';font-weight:800;
-    font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:5px}
-  .fcard h3{font-family:'Baloo 2';font-weight:800;font-size:1.12rem;color:#fff;margin-bottom:4px;
-    text-shadow:0 2px 10px rgba(25,15,60,.45)}
-  .fcard h3::after{content:"";display:block;width:32px;height:3px;border-radius:3px;margin:8px auto 0;
-    background:var(--acc);box-shadow:0 0 10px rgba(var(--accs),.6)}
-  .fcard p{font-size:.85rem;color:rgba(255,255,255,.84);line-height:1.5;font-weight:600;margin-top:8px}
-  .fcard [data-kk-slot]{position:absolute;top:-25px;right:12px;z-index:5;display:flex}
-  .fcard .kk-prod{width:38px;height:38px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
+  /* ---- flotila hradu: sklenene karty se strankovanim ---- */
+  .fleet-head{text-align:center}
+  .fleet-head .eyebrow{margin-left:auto;margin-right:auto}
+  .fleet-head .sub{margin-left:auto;margin-right:auto;text-align:center}
+  .fleet-wrap{position:relative;margin-top:38px}
+  .fleet-viewport{overflow:hidden;border-radius:26px}
+  .fleet-rail{display:flex;transition:transform .62s cubic-bezier(.66,0,.2,1);will-change:transform}
+  .fleet-page{flex:0 0 100%;min-width:100%;display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,auto);gap:22px;padding:4px}
+  .fcard{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
+    display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:stretch;
+    text-decoration:none;overflow:hidden;
+    background:linear-gradient(150deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+    -webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+    border:1px solid rgba(255,255,255,.42);border-radius:26px;
+    box-shadow:0 14px 34px rgba(24,14,56,.3),0 1px 0 rgba(255,255,255,.5) inset;
+    transition:transform .32s cubic-bezier(.3,.9,.4,1),box-shadow .32s ease,background .32s ease}
+  .fleet-page .fcard:nth-child(2){--acc:#C3ABE8;--accs:195,171,232}
+  .fleet-page .fcard:nth-child(3){--acc:#A9CFF0;--accs:169,207,240}
+  .fleet-page .fcard:nth-child(4){--acc:#F0C86B;--accs:240,200,107}
+  .fcard:hover{transform:translateY(-5px);
+    background:linear-gradient(150deg,rgba(255,255,255,.24),rgba(255,255,255,.09));
+    box-shadow:0 22px 46px rgba(24,14,56,.38),0 0 24px rgba(var(--accs),.32),
+               0 1px 0 rgba(255,255,255,.6) inset}
+  /* cela fotka - nic se neorezava */
+  .fcard .fimg{width:100%;height:100%;min-height:168px;object-fit:contain;object-position:center;
+    display:block;padding:12px;background:rgba(24,14,56,.28);
+    border-right:1px solid rgba(255,255,255,.22)}
+  .fcard .fmeta{position:relative;padding:16px 18px 18px;display:flex;flex-direction:column;
+    justify-content:center;gap:2px;text-align:left;min-height:0}
+  .fcard .ftag{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.64rem;
+    letter-spacing:.12em;text-transform:uppercase;color:#2A1E52;background:var(--acc);
+    padding:5px 12px;border-radius:999px;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+  .fcard h3{font-family:'Baloo 2';font-weight:800;font-size:1.02rem;color:#fff;margin-top:8px;
+    text-shadow:0 2px 8px rgba(20,12,50,.5)}
+  .fcard p{font-size:.79rem;color:rgba(255,255,255,.82);line-height:1.42;font-weight:600;margin-top:6px}
+  .fcard [data-kk-slot]{position:absolute;top:12px;right:12px;z-index:5;display:flex}
+  .fcard .kk-prod{width:34px;height:34px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
     display:grid;place-items:center;border-radius:999px;
     background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),
-      linear-gradient(158deg,rgba(255,255,255,.13),rgba(255,255,255,.02));
-    background-size:64% 3.5px,3.5px 64%,100% 100%;
+      linear-gradient(158deg,rgba(255,255,255,.2),rgba(255,255,255,.04));
+    background-size:60% 3px,3px 60%,100% 100%;
     background-position:center,center,0 0;background-repeat:no-repeat;
-    -webkit-backdrop-filter:blur(22px) saturate(200%);backdrop-filter:blur(22px) saturate(200%);
-    box-shadow:0 8px 22px rgba(18,10,46,.4),0 0 0 1px rgba(255,255,255,.3) inset,
-               0 1px 0 rgba(255,255,255,.45) inset;
-    color:#fff;transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s,box-shadow .22s}
+    -webkit-backdrop-filter:blur(18px) saturate(190%);backdrop-filter:blur(18px) saturate(190%);
+    box-shadow:0 6px 16px rgba(18,10,46,.4),0 0 0 1px rgba(255,255,255,.42) inset;
+    color:#fff;transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s}
   .fcard .kk-prod::before{content:"";display:none}
   .fcard .kk-prod:hover{transform:scale(1.1)}
   .fcard .kk-prod:active{transform:scale(.94)}
-  .fcard .kk-prod.on{background-image:linear-gradient(158deg,rgba(74,205,136,.42),rgba(30,140,86,.2));
+  .fcard .kk-prod.on{background-image:linear-gradient(158deg,rgba(74,205,136,.5),rgba(30,140,86,.24));
     background-size:100% 100%;background-position:0 0}
   .fcard .kk-prod.on::before{content:"\2713";display:block;font-family:system-ui,-apple-system,sans-serif;
-    font-size:1.5rem;font-weight:500;line-height:0;color:#fff}
-  .fcard.faction .fmeta{padding-bottom:16px}
-  @media(max-width:700px){.fleet-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px 14px}
-    .fcard{border-radius:28px;border-width:4px}.fcard::after{border-radius:32px;inset:-4px;padding:4px}
-    .fcard .fimg{border-radius:21px;clip-path:inset(0 round 21px);margin:7px 7px 0;width:calc(100% - 14px)}
-    .fcard .kk-prod{width:34px;height:34px;background-size:64% 3px,3px 64%,100% 100%}
-    .fcard [data-kk-slot]{top:-22px;right:10px}}
-  @media(prefers-reduced-motion:reduce){.fcard,.fcard.in{opacity:1;transform:none;transition:none}
-    .fcard:hover{transform:none}.fcard::after{animation:none;opacity:.5}
-    .fcard .fimg,.fcard:hover .fimg{transition:none;transform:none}}
-</style>
+    font-size:1.25rem;font-weight:500;line-height:0;color:#fff}
+  .fcard.faction .fimg{object-fit:cover;padding:0}
+  /* sipky */
+  .fleet-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;
+    display:grid;place-items:center;font-family:'Baloo 2';font-weight:900;font-size:1.7rem;
+    line-height:1;color:#fff;
+    background:linear-gradient(158deg,rgba(255,255,255,.22),rgba(255,255,255,.06));
+    -webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);
+    box-shadow:0 10px 26px rgba(18,10,46,.45),0 0 0 1px rgba(255,255,255,.4) inset;
+    transition:transform .22s cubic-bezier(.34,1.5,.5,1),opacity .25s ease,background .22s}
+  .fleet-arrow.prev{left:-16px}
+  .fleet-arrow.next{right:-16px}
+  .fleet-arrow:hover{transform:translateY(-50%) scale(1.1);
+    background:linear-gradient(158deg,rgba(255,255,255,.34),rgba(255,255,255,.12))}
+  .fleet-arrow:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .fleet-arrow[disabled]{opacity:.28;pointer-events:none}
+  /* cisla stranek */
+  .fleet-dots{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:26px;flex-wrap:wrap}
+  .fleet-dots button{min-width:36px;height:36px;padding:0 10px;border:0;border-radius:999px;cursor:pointer;
+    font-family:'Baloo 2';font-weight:800;font-size:.88rem;color:rgba(255,255,255,.82);
+    background:linear-gradient(158deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    box-shadow:0 0 0 1px rgba(255,255,255,.3) inset;
+    transition:transform .22s cubic-bezier(.34,1.5,.5,1),color .22s,background .22s,box-shadow .22s}
+  .fleet-dots button:hover{transform:translateY(-2px);color:#fff}
+  .fleet-dots button[aria-current="true"]{color:#2A1E52;background:#FDF4E2;
+    box-shadow:0 6px 16px rgba(18,10,46,.4),0 0 0 3px rgba(255,255,255,.32)}
+  .fleet-dots button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  @media(max-width:700px){
+    .fleet-page{grid-template-columns:minmax(0,1fr);gap:16px}
+    .fcard{grid-template-columns:minmax(0,.95fr) minmax(0,1fr)}
+    .fcard .fimg{min-height:132px}
+    .fcard h3{font-size:.96rem}.fcard p{display:none}
+    .fleet-arrow{width:44px;height:44px;font-size:1.4rem}
+    .fleet-arrow.prev{left:-8px}.fleet-arrow.next{right:-8px}}
+  @media(prefers-reduced-motion:reduce){
+    .fleet-rail{transition:none}
+    .fcard:hover,.fleet-arrow:hover,.fleet-dots button:hover{transform:none}
+    .fleet-arrow:hover{transform:translateY(-50%)}}
+  </style>
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -1052,46 +1070,73 @@
         <p class="sub">26 atrakcí a reálné záběry z akcí. Vyberte si a my přivezeme, postavíme a pohlídáme.</p>
       </div>
     </div>
-    <div class="fleet-grid">
-      <div class="fcard" data-kk-item="hrad-wipeout" data-kk-name="WipeOut aréna" data-kk-img="assets/hrady/hrad-wipeout.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-wipeout.webp" alt="WipeOut aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Aréna</span><h3>WipeOut aréna</h3><p>Nafukovací kolotoč s rotujícím ramenem — kdo vydrží nejdéle, vyhrává.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-piratska-lod" data-kk-name="Pirátská loď" data-kk-img="assets/hrady/hrad-piratska-lod.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-piratska-lod.webp" alt="Pirátská loď — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Pirátská loď</h3><p>Prolézačka ve tvaru pirátské lodi, ideální pro děti do šesti let.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-houpaci-zviratka" data-kk-name="Houpací zvířátka" data-kk-img="assets/hrady/hrad-houpaci-zviratka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-houpaci-zviratka.webp" alt="Houpací zvířátka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Batolata</span><h3>Houpací zvířátka</h3><p>Nafukovací zvířátka na houpání pro ty nejmenší návštěvníky.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-kolotoc-mickey" data-kk-name="Kolotoč Mickey" data-kk-img="assets/hrady/hrad-kolotoc-mickey.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-kolotoc-mickey.webp" alt="Kolotoč Mickey — nafukovací atrakce"><div class="fmeta"><span class="ftag">Batolata</span><h3>Kolotoč Mickey</h3><p>Točící se kolotoč s Mickeym, bezpečný i pro dvouleté.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-minikombi" data-kk-name="Minikombi" data-kk-img="assets/hrady/hrad-minikombi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-minikombi.webp" alt="Minikombi — nafukovací atrakce"><div class="fmeta"><span class="ftag">Na zahradu 3×4 m</span><h3>Minikombi</h3><p>Nejmenší hrad se skluzavkou — vejde se i na běžnou zahradu.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hrad-kombi" data-kk-name="Hrad Kombi" data-kk-img="assets/hrady/hrad-hrad-kombi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-kombi.webp" alt="Hrad Kombi — nafukovací atrakce"><div class="fmeta"><span class="ftag">Klasika 5×5 m</span><h3>Hrad Kombi</h3><p>Osvědčený skákací hrad se skluzavkou a prolézačkou.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hrad-ledove-kralovstvi" data-kk-name="Hrad Ledové království" data-kk-img="assets/hrady/hrad-hrad-ledove-kralovstvi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-ledove-kralovstvi.webp" alt="Hrad Ledové království — nafukovací atrakce"><div class="fmeta"><span class="ftag">Elsa a Olaf</span><h3>Hrad Ledové království</h3><p>Modrý zámek s postavami z Ledového království.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hrad-princeznovsky" data-kk-name="Princeznovský hrad" data-kk-img="assets/hrady/hrad-hrad-princeznovsky.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-princeznovsky.webp" alt="Princeznovský hrad — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro princezny</span><h3>Princeznovský hrad</h3><p>Fialový zámek s věžemi — jednička mezi holčičími hrady.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hrad-rytirsky" data-kk-name="Rytířský hrad" data-kk-img="assets/hrady/hrad-hrad-rytirsky.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-rytirsky.webp" alt="Rytířský hrad — nafukovací atrakce"><div class="fmeta"><span class="ftag">Kamenná pevnost</span><h3>Rytířský hrad</h3><p>Hrad v podobě kamenné pevnosti s cimbuřím a skluzavkou.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hrad-hasici" data-kk-name="Hrad Hasiči" data-kk-img="assets/hrady/hrad-hrad-hasici.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-hasici.webp" alt="Hrad Hasiči — nafukovací atrakce"><div class="fmeta"><span class="ftag">Klučičí hit</span><h3>Hrad Hasiči</h3><p>Hasičská stanice se skluzavkou a prolézací věží.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hraci-centrum-safari" data-kk-name="Hrací centrum Safari" data-kk-img="assets/hrady/hrad-hraci-centrum-safari.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hraci-centrum-safari.webp" alt="Hrací centrum Safari — nafukovací atrakce"><div class="fmeta"><span class="ftag">Novinka</span><h3>Hrací centrum Safari</h3><p>Velké hrací centrum se zvířaty, prolézačkami a skluzavkou.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-hraci-centrum-gorila" data-kk-name="Hrací centrum Gorila" data-kk-img="assets/hrady/hrad-hraci-centrum-gorila.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hraci-centrum-gorila.webp" alt="Hrací centrum Gorila — nafukovací atrakce"><div class="fmeta"><span class="ftag">Džungle</span><h3>Hrací centrum Gorila</h3><p>Džungle s gorilou, průlezy a překážkami na velké ploše.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-skluzavka-spiderman" data-kk-name="Skluzavka Spiderman" data-kk-img="assets/hrady/hrad-skluzavka-spiderman.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-spiderman.webp" alt="Skluzavka Spiderman — nafukovací atrakce"><div class="fmeta"><span class="ftag">Superhrdina</span><h3>Skluzavka Spiderman</h3><p>Skákací hrad se skluzavkou v barvách Spidermana.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-skluzavka-sladke-kralovstvi" data-kk-name="Skluzavka Sladké království" data-kk-img="assets/hrady/hrad-skluzavka-sladke-kralovstvi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-sladke-kralovstvi.webp" alt="Skluzavka Sladké království — nafukovací atrakce"><div class="fmeta"><span class="ftag">Cukrový svět</span><h3>Skluzavka Sladké království</h3><p>Růžová skluzavka s motivem sladkostí a bonbonů.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-skluzavka-morsky-svet" data-kk-name="Skluzavka Mořský svět" data-kk-img="assets/hrady/hrad-skluzavka-morsky-svet.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-morsky-svet.webp" alt="Skluzavka Mořský svět — nafukovací atrakce"><div class="fmeta"><span class="ftag">Podmořská</span><h3>Skluzavka Mořský svět</h3><p>Skluzavka s podmořským motivem a rybičkami.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-skluzavka-duhova" data-kk-name="Duhová skluzavka" data-kk-img="assets/hrady/hrad-skluzavka-duhova.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-duhova.webp" alt="Duhová skluzavka — nafukovací atrakce"><div class="fmeta"><span class="ftag">6×3,5×5 m</span><h3>Duhová skluzavka</h3><p>Barevná skluzavka střední velikosti s prolézací částí.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-velka-skluzavka" data-kk-name="Velká skluzavka" data-kk-img="assets/hrady/hrad-velka-skluzavka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-velka-skluzavka.webp" alt="Velká skluzavka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Obr 7×4×6 m</span><h3>Velká skluzavka</h3><p>Nejoblíbenější velká skluzavka — dominanta každé akce.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-skluzavka-big-red" data-kk-name="Skluzavka Big Red" data-kk-img="assets/hrady/hrad-skluzavka-big-red.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-big-red.webp" alt="Skluzavka Big Red — nafukovací atrakce"><div class="fmeta"><span class="ftag">Nejvyšší ve flotile</span><h3>Skluzavka Big Red</h3><p>Nejvyšší skluzavka, kterou vozíme — pro odvážné.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-vodni-skluzavka" data-kk-name="Vodní skluzavka" data-kk-img="assets/hrady/hrad-vodni-skluzavka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-vodni-skluzavka.webp" alt="Vodní skluzavka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Letní hit</span><h3>Vodní skluzavka</h3><p>Skluzavka s vodou a dojezdovým bazénkem pro horké dny.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-prekazkova-draha" data-kk-name="Překážková dráha XXL" data-kk-img="assets/hrady/hrad-prekazkova-draha.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-prekazkova-draha.webp" alt="Překážková dráha XXL — nafukovací atrakce"><div class="fmeta"><span class="ftag">Závodní</span><h3>Překážková dráha XXL</h3><p>Dlouhá dráha s překážkami — závody dětí i dospělých.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-fotbalova-arena" data-kk-name="Fotbalová aréna" data-kk-img="assets/hrady/hrad-fotbalova-arena.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-fotbalova-arena.webp" alt="Fotbalová aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Turnaje</span><h3>Fotbalová aréna</h3><p>Nafukovací hřiště s mantinely na malé fotbalové turnaje.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-bazen" data-kk-name="Nafukovací bazén" data-kk-img="assets/hrady/hrad-bazen.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-bazen.webp" alt="Nafukovací bazén — nafukovací atrakce"><div class="fmeta"><span class="ftag">Horké dny</span><h3>Nafukovací bazén</h3><p>Velký nafukovací bazén na letní akce a dětské dny.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-bazen-slon" data-kk-name="Bazén se skluzavkou Slon" data-kk-img="assets/hrady/hrad-bazen-slon.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-bazen-slon.webp" alt="Bazén se skluzavkou Slon — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Bazén se skluzavkou Slon</h3><p>Bazének se skluzavkou ve tvaru slona pro nejmenší děti.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-sportovni-arena" data-kk-name="Lukostřelecká aréna" data-kk-img="assets/hrady/hrad-sportovni-arena.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-sportovni-arena.webp" alt="Lukostřelecká aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Soutěže</span><h3>Lukostřelecká aréna</h3><p>Nafukovací aréna s lukostřelbou na měkké šípy.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-sipky-suchy-zip" data-kk-name="Šipky na suchý zip" data-kk-img="assets/hrady/hrad-sipky-suchy-zip.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-sipky-suchy-zip.webp" alt="Šipky na suchý zip — nafukovací atrakce"><div class="fmeta"><span class="ftag">Zábava pro všechny</span><h3>Šipky na suchý zip</h3><p>Obří terč se šipkami na suchý zip — hit firemních akcí.</p><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="hrad-gladiatorsky-souboj" data-kk-name="Gladiátorský souboj" data-kk-img="assets/hrady/hrad-gladiatorsky-souboj.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-gladiatorsky-souboj.webp" alt="Gladiátorský souboj — nafukovací atrakce"><div class="fmeta"><span class="ftag">Duel</span><h3>Gladiátorský souboj</h3><p>Souboj na kládě nad nafukovací žíněnkou.</p><div data-kk-slot></div></div></div>
-      <a class="fcard faction" href="assets/hrady/hgal-01.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-01.webp" alt="Překážková dráha na dětském dni"><div class="fmeta"><span class="ftag">V akci</span><h3>Překážková dráha na dětském dni</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-02.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-02.webp" alt="Lukostřelecká aréna na školní akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Lukostřelecká aréna na školní akci</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-03.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-03.webp" alt="Hrad Ledové království na obecní slavnosti"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad Ledové království na obecní slavnosti</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-04.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-04.webp" alt="Velký hrad se skluzavkou v akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Velký hrad se skluzavkou v akci</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-05.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-05.webp" alt="Děti soutěží v nafukovací aréně"><div class="fmeta"><span class="ftag">V akci</span><h3>Děti soutěží v nafukovací aréně</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-06.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-06.webp" alt="Obří terč se šipkami na akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Obří terč se šipkami na akci</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-07.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-07.webp" alt="Lukostřelba pro děti na akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Lukostřelba pro děti na akci</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-08.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-08.webp" alt="WipeOut na vodě během letního dne"><div class="fmeta"><span class="ftag">V akci</span><h3>WipeOut na vodě během letního dne</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-09.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-09.webp" alt="Hrací centrum plné dětí"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrací centrum plné dětí</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-10.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-10.webp" alt="Hrad s dinosauřím motivem"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad s dinosauřím motivem</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-11.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-11.webp" alt="Duhová skluzavka připravená k akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Duhová skluzavka připravená k akci</h3></div></a>
-      <a class="fcard faction" href="assets/hrady/hgal-12.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-12.webp" alt="Hrad se skluzavkou na trávě"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad se skluzavkou na trávě</h3></div></a>
+    <div class="fleet-wrap">
+      <div class="fleet-viewport">
+        <div class="fleet-rail" id="fleetRail">
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-wipeout" data-kk-name="WipeOut aréna" data-kk-img="assets/hrady/hrad-wipeout.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-wipeout.webp" alt="WipeOut aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Aréna</span><h3>WipeOut aréna</h3><p>Nafukovací kolotoč s rotujícím ramenem — kdo vydrží nejdéle, vyhrává.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-piratska-lod" data-kk-name="Pirátská loď" data-kk-img="assets/hrady/hrad-piratska-lod.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-piratska-lod.webp" alt="Pirátská loď — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Pirátská loď</h3><p>Prolézačka ve tvaru pirátské lodi, ideální pro děti do šesti let.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-houpaci-zviratka" data-kk-name="Houpací zvířátka" data-kk-img="assets/hrady/hrad-houpaci-zviratka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-houpaci-zviratka.webp" alt="Houpací zvířátka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Batolata</span><h3>Houpací zvířátka</h3><p>Nafukovací zvířátka na houpání pro ty nejmenší návštěvníky.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-kolotoc-mickey" data-kk-name="Kolotoč Mickey" data-kk-img="assets/hrady/hrad-kolotoc-mickey.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-kolotoc-mickey.webp" alt="Kolotoč Mickey — nafukovací atrakce"><div class="fmeta"><span class="ftag">Batolata</span><h3>Kolotoč Mickey</h3><p>Točící se kolotoč s Mickeym, bezpečný i pro dvouleté.</p><div data-kk-slot></div></div></div>
+          </div>
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-minikombi" data-kk-name="Minikombi" data-kk-img="assets/hrady/hrad-minikombi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-minikombi.webp" alt="Minikombi — nafukovací atrakce"><div class="fmeta"><span class="ftag">Na zahradu 3×4 m</span><h3>Minikombi</h3><p>Nejmenší hrad se skluzavkou — vejde se i na běžnou zahradu.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-hrad-kombi" data-kk-name="Hrad Kombi" data-kk-img="assets/hrady/hrad-hrad-kombi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-kombi.webp" alt="Hrad Kombi — nafukovací atrakce"><div class="fmeta"><span class="ftag">Klasika 5×5 m</span><h3>Hrad Kombi</h3><p>Osvědčený skákací hrad se skluzavkou a prolézačkou.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-hrad-ledove-kralovstvi" data-kk-name="Hrad Ledové království" data-kk-img="assets/hrady/hrad-hrad-ledove-kralovstvi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-ledove-kralovstvi.webp" alt="Hrad Ledové království — nafukovací atrakce"><div class="fmeta"><span class="ftag">Elsa a Olaf</span><h3>Hrad Ledové království</h3><p>Modrý zámek s postavami z Ledového království.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-hrad-princeznovsky" data-kk-name="Princeznovský hrad" data-kk-img="assets/hrady/hrad-hrad-princeznovsky.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-princeznovsky.webp" alt="Princeznovský hrad — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro princezny</span><h3>Princeznovský hrad</h3><p>Fialový zámek s věžemi — jednička mezi holčičími hrady.</p><div data-kk-slot></div></div></div>
+          </div>
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-hrad-rytirsky" data-kk-name="Rytířský hrad" data-kk-img="assets/hrady/hrad-hrad-rytirsky.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-rytirsky.webp" alt="Rytířský hrad — nafukovací atrakce"><div class="fmeta"><span class="ftag">Kamenná pevnost</span><h3>Rytířský hrad</h3><p>Hrad v podobě kamenné pevnosti s cimbuřím a skluzavkou.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-hrad-hasici" data-kk-name="Hrad Hasiči" data-kk-img="assets/hrady/hrad-hrad-hasici.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hrad-hasici.webp" alt="Hrad Hasiči — nafukovací atrakce"><div class="fmeta"><span class="ftag">Klučičí hit</span><h3>Hrad Hasiči</h3><p>Hasičská stanice se skluzavkou a prolézací věží.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-hraci-centrum-safari" data-kk-name="Hrací centrum Safari" data-kk-img="assets/hrady/hrad-hraci-centrum-safari.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hraci-centrum-safari.webp" alt="Hrací centrum Safari — nafukovací atrakce"><div class="fmeta"><span class="ftag">Novinka</span><h3>Hrací centrum Safari</h3><p>Velké hrací centrum se zvířaty, prolézačkami a skluzavkou.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-hraci-centrum-gorila" data-kk-name="Hrací centrum Gorila" data-kk-img="assets/hrady/hrad-hraci-centrum-gorila.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hraci-centrum-gorila.webp" alt="Hrací centrum Gorila — nafukovací atrakce"><div class="fmeta"><span class="ftag">Džungle</span><h3>Hrací centrum Gorila</h3><p>Džungle s gorilou, průlezy a překážkami na velké ploše.</p><div data-kk-slot></div></div></div>
+          </div>
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-skluzavka-spiderman" data-kk-name="Skluzavka Spiderman" data-kk-img="assets/hrady/hrad-skluzavka-spiderman.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-spiderman.webp" alt="Skluzavka Spiderman — nafukovací atrakce"><div class="fmeta"><span class="ftag">Superhrdina</span><h3>Skluzavka Spiderman</h3><p>Skákací hrad se skluzavkou v barvách Spidermana.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-skluzavka-sladke-kralovstvi" data-kk-name="Skluzavka Sladké království" data-kk-img="assets/hrady/hrad-skluzavka-sladke-kralovstvi.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-sladke-kralovstvi.webp" alt="Skluzavka Sladké království — nafukovací atrakce"><div class="fmeta"><span class="ftag">Cukrový svět</span><h3>Skluzavka Sladké království</h3><p>Růžová skluzavka s motivem sladkostí a bonbonů.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-skluzavka-morsky-svet" data-kk-name="Skluzavka Mořský svět" data-kk-img="assets/hrady/hrad-skluzavka-morsky-svet.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-morsky-svet.webp" alt="Skluzavka Mořský svět — nafukovací atrakce"><div class="fmeta"><span class="ftag">Podmořská</span><h3>Skluzavka Mořský svět</h3><p>Skluzavka s podmořským motivem a rybičkami.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-skluzavka-duhova" data-kk-name="Duhová skluzavka" data-kk-img="assets/hrady/hrad-skluzavka-duhova.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-duhova.webp" alt="Duhová skluzavka — nafukovací atrakce"><div class="fmeta"><span class="ftag">6×3,5×5 m</span><h3>Duhová skluzavka</h3><p>Barevná skluzavka střední velikosti s prolézací částí.</p><div data-kk-slot></div></div></div>
+          </div>
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-velka-skluzavka" data-kk-name="Velká skluzavka" data-kk-img="assets/hrady/hrad-velka-skluzavka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-velka-skluzavka.webp" alt="Velká skluzavka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Obr 7×4×6 m</span><h3>Velká skluzavka</h3><p>Nejoblíbenější velká skluzavka — dominanta každé akce.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-skluzavka-big-red" data-kk-name="Skluzavka Big Red" data-kk-img="assets/hrady/hrad-skluzavka-big-red.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-skluzavka-big-red.webp" alt="Skluzavka Big Red — nafukovací atrakce"><div class="fmeta"><span class="ftag">Nejvyšší ve flotile</span><h3>Skluzavka Big Red</h3><p>Nejvyšší skluzavka, kterou vozíme — pro odvážné.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-vodni-skluzavka" data-kk-name="Vodní skluzavka" data-kk-img="assets/hrady/hrad-vodni-skluzavka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-vodni-skluzavka.webp" alt="Vodní skluzavka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Letní hit</span><h3>Vodní skluzavka</h3><p>Skluzavka s vodou a dojezdovým bazénkem pro horké dny.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-prekazkova-draha" data-kk-name="Překážková dráha XXL" data-kk-img="assets/hrady/hrad-prekazkova-draha.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-prekazkova-draha.webp" alt="Překážková dráha XXL — nafukovací atrakce"><div class="fmeta"><span class="ftag">Závodní</span><h3>Překážková dráha XXL</h3><p>Dlouhá dráha s překážkami — závody dětí i dospělých.</p><div data-kk-slot></div></div></div>
+          </div>
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-fotbalova-arena" data-kk-name="Fotbalová aréna" data-kk-img="assets/hrady/hrad-fotbalova-arena.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-fotbalova-arena.webp" alt="Fotbalová aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Turnaje</span><h3>Fotbalová aréna</h3><p>Nafukovací hřiště s mantinely na malé fotbalové turnaje.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-bazen" data-kk-name="Nafukovací bazén" data-kk-img="assets/hrady/hrad-bazen.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-bazen.webp" alt="Nafukovací bazén — nafukovací atrakce"><div class="fmeta"><span class="ftag">Horké dny</span><h3>Nafukovací bazén</h3><p>Velký nafukovací bazén na letní akce a dětské dny.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-bazen-slon" data-kk-name="Bazén se skluzavkou Slon" data-kk-img="assets/hrady/hrad-bazen-slon.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-bazen-slon.webp" alt="Bazén se skluzavkou Slon — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Bazén se skluzavkou Slon</h3><p>Bazének se skluzavkou ve tvaru slona pro nejmenší děti.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-sportovni-arena" data-kk-name="Lukostřelecká aréna" data-kk-img="assets/hrady/hrad-sportovni-arena.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-sportovni-arena.webp" alt="Lukostřelecká aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Soutěže</span><h3>Lukostřelecká aréna</h3><p>Nafukovací aréna s lukostřelbou na měkké šípy.</p><div data-kk-slot></div></div></div>
+          </div>
+          <div class="fleet-page">
+  <div class="fcard" data-kk-item="hrad-sipky-suchy-zip" data-kk-name="Šipky na suchý zip" data-kk-img="assets/hrady/hrad-sipky-suchy-zip.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-sipky-suchy-zip.webp" alt="Šipky na suchý zip — nafukovací atrakce"><div class="fmeta"><span class="ftag">Zábava pro všechny</span><h3>Šipky na suchý zip</h3><p>Obří terč se šipkami na suchý zip — hit firemních akcí.</p><div data-kk-slot></div></div></div>
+  <div class="fcard" data-kk-item="hrad-gladiatorsky-souboj" data-kk-name="Gladiátorský souboj" data-kk-img="assets/hrady/hrad-gladiatorsky-souboj.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-gladiatorsky-souboj.webp" alt="Gladiátorský souboj — nafukovací atrakce"><div class="fmeta"><span class="ftag">Duel</span><h3>Gladiátorský souboj</h3><p>Souboj na kládě nad nafukovací žíněnkou.</p><div data-kk-slot></div></div></div>
+  <a class="fcard faction" href="assets/hrady/hgal-01.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-01.webp" alt="Překážková dráha na dětském dni"><div class="fmeta"><span class="ftag">V akci</span><h3>Překážková dráha na dětském dni</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-02.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-02.webp" alt="Lukostřelecká aréna na školní akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Lukostřelecká aréna na školní akci</h3></div></a>
+          </div>
+          <div class="fleet-page">
+  <a class="fcard faction" href="assets/hrady/hgal-03.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-03.webp" alt="Hrad Ledové království na obecní slavnosti"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad Ledové království na obecní slavnosti</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-04.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-04.webp" alt="Velký hrad se skluzavkou v akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Velký hrad se skluzavkou v akci</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-05.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-05.webp" alt="Děti soutěží v nafukovací aréně"><div class="fmeta"><span class="ftag">V akci</span><h3>Děti soutěží v nafukovací aréně</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-06.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-06.webp" alt="Obří terč se šipkami na akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Obří terč se šipkami na akci</h3></div></a>
+          </div>
+          <div class="fleet-page">
+  <a class="fcard faction" href="assets/hrady/hgal-07.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-07.webp" alt="Lukostřelba pro děti na akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Lukostřelba pro děti na akci</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-08.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-08.webp" alt="WipeOut na vodě během letního dne"><div class="fmeta"><span class="ftag">V akci</span><h3>WipeOut na vodě během letního dne</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-09.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-09.webp" alt="Hrací centrum plné dětí"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrací centrum plné dětí</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-10.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-10.webp" alt="Hrad s dinosauřím motivem"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad s dinosauřím motivem</h3></div></a>
+          </div>
+          <div class="fleet-page">
+  <a class="fcard faction" href="assets/hrady/hgal-11.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-11.webp" alt="Duhová skluzavka připravená k akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Duhová skluzavka připravená k akci</h3></div></a>
+  <a class="fcard faction" href="assets/hrady/hgal-12.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-12.webp" alt="Hrad se skluzavkou na trávě"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad se skluzavkou na trávě</h3></div></a>
+          </div>
+        </div>
+      </div>
+      <button class="fleet-arrow prev" type="button" data-dir="-1" aria-label="Předchozí strana">‹</button>
+      <button class="fleet-arrow next" type="button" data-dir="1" aria-label="Další strana">›</button>
     </div>
+    <div class="fleet-dots" id="fleetDots" role="tablist" aria-label="Stránky nabídky"></div>
   </div>
 </section>
 
@@ -1153,6 +1198,47 @@
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
   document.querySelectorAll('.baleni,.mask-card,.pkgx,.fitem,.fcard,.bcard').forEach(function(el){io.observe(el)});
+
+
+  (function(){
+    var rail=document.getElementById('fleetRail');
+    if(!rail) return;
+    var pages=rail.querySelectorAll('.fleet-page');
+    var dots=document.getElementById('fleetDots');
+    var prev=document.querySelector('.fleet-arrow.prev');
+    var next=document.querySelector('.fleet-arrow.next');
+    var cur=0;
+    function go(n){
+      cur=Math.max(0,Math.min(pages.length-1,n));
+      rail.style.transform='translateX('+(-cur*100)+'%)';
+      dots.querySelectorAll('button').forEach(function(b,i){
+        b.setAttribute('aria-current', i===cur ? 'true' : 'false');
+      });
+      prev.disabled = cur===0;
+      next.disabled = cur===pages.length-1;
+    }
+    for(var i=0;i<pages.length;i++){
+      (function(i){
+        var b=document.createElement('button');
+        b.type='button'; b.textContent=String(i+1);
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Strana '+(i+1));
+        b.addEventListener('click',function(){go(i);});
+        dots.appendChild(b);
+      })(i);
+    }
+    prev.addEventListener('click',function(){go(cur-1);});
+    next.addEventListener('click',function(){go(cur+1);});
+    var x0=null;
+    rail.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    rail.addEventListener('touchend',function(e){
+      if(x0===null) return;
+      var dx=e.changedTouches[0].clientX-x0;
+      if(Math.abs(dx)>50) go(cur+(dx<0?1:-1));
+      x0=null;
+    },{passive:true});
+    go(0);
+  })();
 
   var pxbs=document.querySelectorAll('.pxb i');
   if(pxbs.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
