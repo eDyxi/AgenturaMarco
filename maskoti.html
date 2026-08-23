@@ -575,7 +575,7 @@
   .gal-arrow:focus-visible{outline:3px solid #fff;outline-offset:3px}
   @media(max-width:700px){.gal-arrow{width:44px;height:44px;font-size:1.4rem}
     .gal-arrow.prev{left:-4px}.gal-arrow.next{right:-4px}}
-  .mask-grid.clipped .mask-card:nth-child(n+11){display:none}
+  .mask-grid.clipped .mask-card:nth-child(n+9){display:none}
   .mask-more{display:flex;justify-content:center;margin:58px 0 18px}
   .mask-more button{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;
     font-family:'Baloo 2';font-weight:900;font-size:.92rem;color:#2A1E52;background:#FDF4E2;
@@ -742,7 +742,7 @@
   /* --- maskoti: tri karty s fotkou na plno --- */
   @property --mcAng{syntax:'<angle>';initial-value:0deg;inherits:false}
   .mcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:0;
-    padding:94px 0 46px;align-items:start}
+    padding:52px 0 34px;align-items:start}
   .mcard{--acc:#FFD23F;--accd:#4A3705;--accs:255,210,63;
     position:relative;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;
     min-height:520px;margin-top:26px;overflow:hidden;
@@ -809,9 +809,9 @@
   .mcard:hover::after{animation-duration:2.4s}
   @keyframes mcFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
   @keyframes mcSpin{to{--mcAng:360deg}}
-  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:94px 0 38px}
+  @media(max-width:1024px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:44px 0 30px}
     .mcard,.mcard.n2{margin-top:0;--tilt:0deg!important}}
-  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:30px;padding:78px 0 30px}
+  @media(max-width:700px){.mcards{grid-template-columns:minmax(0,1fr);gap:30px;padding:36px 0 26px}
     .mcard{min-height:470px}.mcbody{padding:6px 18px 22px}.mcnum{width:66px;height:66px;font-size:1.4rem}}
   @media(prefers-reduced-motion:reduce){
     .mcard,.mcard.in{opacity:1;transform:none;translate:0 0;animation:none;transition:none}
@@ -980,7 +980,7 @@
   </div>
 </section>
 
-<section class="block">
+<section class="block" style="padding:0">
   <div class="wrap">
     <div class="mcards">
       <article class="mcard n1">
