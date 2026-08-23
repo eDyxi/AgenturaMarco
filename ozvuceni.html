@@ -866,13 +866,30 @@
   }
 
 
+  .gal-wrap{position:relative}
+  .gal-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;
+    font-family:'Baloo 2';font-weight:900;font-size:1.7rem;line-height:1;color:#fff;
+    text-shadow:0 0 12px rgba(240,200,107,.8);
+    background:linear-gradient(158deg,rgba(118,92,184,.55),rgba(52,36,96,.62));
+    -webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);
+    box-shadow:0 10px 26px rgba(18,10,46,.4),0 0 0 1.5px rgba(240,200,107,.6) inset,
+               0 1px 0 rgba(255,255,255,.35) inset;
+    transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s}
+  .gal-arrow.prev{left:-10px}
+  .gal-arrow.next{right:-10px}
+  .gal-arrow:hover{transform:translateY(-50%) scale(1.1);
+    background:linear-gradient(158deg,rgba(140,112,206,.65),rgba(64,46,118,.7))}
+  .gal-arrow:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  @media(max-width:700px){.gal-arrow{width:44px;height:44px;font-size:1.4rem}
+    .gal-arrow.prev{left:-4px}.gal-arrow.next{right:-4px}}
   /* ---- balicky ozvuceni: obloukove karty ---- */
   .pkgx-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:38px 24px;
     margin-top:66px;align-items:stretch;justify-items:center}
   .pkgx{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;width:100%;
     display:flex;flex-direction:column;align-items:center;text-align:center;
-    padding:46px 22px 24px;border:0;
-    border-radius:120px 120px 22px 22px;
+    padding:46px 24px 40px;border:0;
+    border-radius:120px;
     background:linear-gradient(178deg,rgba(134,108,200,.78) 0%,rgba(48,33,94,.94) 78%);
     -webkit-backdrop-filter:blur(22px) saturate(190%);backdrop-filter:blur(22px) saturate(190%);
     box-shadow:0 1px 0 rgba(255,255,255,.42) inset,0 0 26px rgba(var(--accs),.24);
@@ -928,11 +945,22 @@
     -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;max-width:15ch;
     text-shadow:0 0 14px rgba(var(--accs),.8),0 2px 5px rgba(12,7,34,.6)}
   /* cena v kolecku */
-  .pprice{display:grid;place-items:center;gap:0;margin-top:16px;width:132px;height:132px;border-radius:50%;
+  .pprice{position:relative;display:grid;place-items:center;gap:0;margin-top:16px;
+    width:132px;height:132px;border-radius:50%;
     background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-    box-shadow:0 0 0 2.5px rgba(var(--accs),.75) inset,0 0 26px rgba(var(--accs),.4),
-               0 8px 20px rgba(12,7,34,.4)}
+    box-shadow:0 0 22px rgba(var(--accs),.35),0 8px 20px rgba(12,7,34,.4)}
+  .pprice::after{content:"";position:absolute;inset:-4px;border-radius:50%;padding:4px;
+    background:conic-gradient(from var(--mcAng),
+      rgba(var(--accs),.35) 0deg,rgba(var(--accs),.35) 176deg,
+      rgb(var(--accs)) 244deg,rgba(255,255,255,.98) 292deg,rgb(var(--accs)) 320deg,
+      rgba(255,255,255,.92) 342deg,rgb(var(--accs)) 356deg,rgba(var(--accs),.35) 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;pointer-events:none;
+    filter:drop-shadow(0 0 7px rgba(var(--accs),.85));
+    animation:mcSpin 4.5s linear infinite}
+  .pkgx:hover .pprice::after{animation-duration:1.8s}
   .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.5rem;line-height:1;color:rgb(var(--accs));
     -webkit-text-stroke:1px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 0 16px rgba(var(--accs),.8)}
@@ -954,7 +982,7 @@
   .pkgx .kk-prod.on{color:#0D3F28;background:#7FE3B2;
     box-shadow:0 0 0 3px rgba(255,255,255,.4),0 0 20px rgba(127,227,178,.7),0 6px 16px rgba(12,7,34,.45)}
   @media(max-width:700px){.pkgx-row{grid-template-columns:minmax(0,1fr);gap:34px 0;margin-top:46px}
-    .pkgx{border-radius:96px 96px 20px 20px;padding:40px 18px 20px;max-width:380px}
+    .pkgx{border-radius:96px;padding:40px 18px 30px;max-width:380px}
     .pkgx h3{font-size:1.12rem}.pprice{width:118px;height:118px}.pprice b{font-size:1.34rem}}
   @media(prefers-reduced-motion:reduce){.pkgx,.pkgx.in{opacity:1;transform:none;transition:none}
     .pkgx:hover{transform:none}.pkgx::after,.pkgx::before,.pbadge{animation:none}
@@ -1153,7 +1181,7 @@
   </div>
 </section>
 
-<section class="block bsell-block" style="padding:108px 0 52px">
+<section class="block bsell-block" style="padding:108px 0 64px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Balíčky</span>
@@ -1170,69 +1198,6 @@
   </div>
 </section>
 
-<section class="block fleet" id="flotila">
-  <div class="wrap">
-    <div class="fleet-head">
-      <span class="eyebrow">Celá nabídka</span>
-      <h2 class="h2">Zvuk, světla a efekty</h2>
-      <p class="sub">24 položek nabídky a reálné záběry z akcí. Vyberte si a my přivezeme, postavíme a obsloužíme.</p>
-    </div>
-    <div class="fleet-filters" id="fleetFilters" role="group" aria-label="Filtr kategorií">
-      <button type="button" data-cat="all" aria-pressed="true">Vše</button>
-      <button type="button" data-cat="zvuk" aria-pressed="false">Ozvučení</button>
-      <button type="button" data-cat="dj" aria-pressed="false">DJ</button>
-      <button type="button" data-cat="svetla" aria-pressed="false">Osvětlení</button>
-      <button type="button" data-cat="efekty" aria-pressed="false">Efekty</button>
-      <button type="button" data-cat="svatby" aria-pressed="false">Svatby</button>
-      <button type="button" data-cat="akce" aria-pressed="false">V akci</button>
-    </div>
-    <div class="fleet-wrap">
-      <div class="fleet-viewport">
-        <div class="fleet-rail" id="fleetRail">
-          <div class="fleet-page">
-      <div class="fcard" data-kk-item="oz-ozvuceni-akce" data-cat="zvuk" data-kk-name="Ozvučení akce" data-kk-img="assets/ozvuceni/oz-ozvuceni-akce.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-ozvuceni-akce.webp" alt="Ozvučení akce"><div class="fmeta"><span class="ftag">Od 1 000 Kč/hod</span><h3>Ozvučení akce</h3><p>Profi aparatura, hudba na míru a moderování programu.</p><div class="fprice"><b>1 000 Kč</b><span>/ hodina</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-dj-moderator" data-cat="zvuk dj" data-kk-name="DJ + Moderátor" data-kk-img="assets/ozvuceni/oz-dj-moderator.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-moderator.webp" alt="DJ + Moderátor"><div class="fmeta"><span class="ftag">Hrad zdarma</span><h3>DJ + Moderátor</h3><p>Kompletní aparatura, světelná show a moderátor celé akce.</p><div class="fprice"><b>15 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-dj-saxofonista" data-cat="zvuk dj svatby" data-kk-name="DJ + Saxofonista" data-kk-img="assets/ozvuceni/oz-dj-saxofonista.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-saxofonista.webp" alt="DJ + Saxofonista"><div class="fmeta"><span class="ftag">Top svatby</span><h3>DJ + Saxofonista</h3><p>DJ set doplněný živým saxofonem — hit svatebních večerů.</p><div class="fprice"><b>20 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-svatebni-efekty" data-cat="efekty svatby" data-kk-name="Svatební efekty" data-kk-img="assets/ozvuceni/oz-svatebni-efekty.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-svatebni-efekty.webp" alt="Svatební efekty"><div class="fmeta"><span class="ftag">Efekty</span><h3>Svatební efekty</h3><p>Plazivá mlha na parket a dvě fontány studených jisker.</p><div class="fprice"><b>8 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-          </div>
-          <div class="fleet-page">
-      <div class="fcard" data-kk-item="oz-laser-snih" data-cat="efekty svatby" data-kk-name="Laser + sníh k 1. tanci" data-kk-img="assets/ozvuceni/oz-laser-snih.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-laser-snih.webp" alt="Laser + sníh k 1. tanci"><div class="fmeta"><span class="ftag">První tanec</span><h3>Laser + sníh k 1. tanci</h3><p>Kuželový laser a sněhový efekt pro kouzelný první tanec.</p><div class="fprice"><b>6 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-mlha-prvni-tanec" data-cat="efekty svatby" data-kk-name="Plazivá mlha" data-kk-img="assets/ozvuceni/oz-mlha-prvni-tanec.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-mlha-prvni-tanec.webp" alt="Plazivá mlha"><div class="fmeta"><span class="ftag">Efekty</span><h3>Plazivá mlha</h3><p>Těžká mlha, která zůstane na parketu — novomanželé jako v oblacích.</p><div class="fprice"><b>4 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-osvetleni-salu" data-cat="svetla" data-kk-name="Nasvícení sálu" data-kk-img="assets/ozvuceni/oz-osvetleni-salu.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-osvetleni-salu.webp" alt="Nasvícení sálu"><div class="fmeta"><span class="ftag">Osvětlení</span><h3>Nasvícení sálu</h3><p>LED nasvícení stěn v barvě podle vašeho přání.</p><div class="fprice"><b>5 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-led-osvetleni" data-cat="svetla efekty" data-kk-name="LED efekty a laser" data-kk-img="assets/ozvuceni/oz-led-osvetleni.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-led-osvetleni.webp" alt="LED efekty a laser"><div class="fmeta"><span class="ftag">Osvětlení</span><h3>LED efekty a laser</h3><p>Pohyblivé hlavy, laser a stroboskopy pro taneční část večera.</p><div class="fprice"><b>6 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-          </div>
-          <div class="fleet-page">
-      <div class="fcard" data-kk-item="oz-venkovni-aparatura" data-cat="zvuk" data-kk-name="Venkovní aparatura" data-kk-img="assets/ozvuceni/oz-venkovni-aparatura.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-venkovni-aparatura.webp" alt="Venkovní aparatura"><div class="fmeta"><span class="ftag">Obecní akce</span><h3>Venkovní aparatura</h3><p>Odolná sestava pro venkovní akce včetně stanu a obsluhy.</p><div class="fprice"><b>9 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <div class="fcard" data-kk-item="oz-dj-pult" data-cat="zvuk dj" data-kk-name="DJ pult a mixáž" data-kk-img="assets/ozvuceni/oz-dj-pult.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-pult.webp" alt="DJ pult a mixáž"><div class="fmeta"><span class="ftag">Technika</span><h3>DJ pult a mixáž</h3><p>Kompletní DJ pult s mixem, mikrofony a odposlechem.</p><div class="fprice"><b>7 000 Kč</b><span>/ akce</span></div><div data-kk-slot></div></div></div>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-01.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-01.webp" alt="Mixážní pult a světla na venkovní akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Mixážní pult a světla na venkovní akci</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-02.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-02.webp" alt="DJ set rozsvícený na párty"><div class="fmeta"><span class="ftag">V akci</span><h3>DJ set rozsvícený na párty</h3></div></a>
-          </div>
-          <div class="fleet-page">
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-03.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-03.webp" alt="Reprosoustavy na obecní akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Reprosoustavy na obecní akci</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-04.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-04.webp" alt="Aparatura pod stanem"><div class="fmeta"><span class="ftag">V akci</span><h3>Aparatura pod stanem</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-05.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-05.webp" alt="Kompletní zvuková sestava"><div class="fmeta"><span class="ftag">V akci</span><h3>Kompletní zvuková sestava</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-06.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-06.webp" alt="DJ pult s notebookem"><div class="fmeta"><span class="ftag">V akci</span><h3>DJ pult s notebookem</h3></div></a>
-          </div>
-          <div class="fleet-page">
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-07.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-07.webp" alt="Nasvícený sál před akcí"><div class="fmeta"><span class="ftag">V akci</span><h3>Nasvícený sál před akcí</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-08.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-08.webp" alt="DJ v akci na dětském dni"><div class="fmeta"><span class="ftag">V akci</span><h3>DJ v akci na dětském dni</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-09.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-09.webp" alt="Reproduktor na venkovní scéně"><div class="fmeta"><span class="ftag">V akci</span><h3>Reproduktor na venkovní scéně</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-10.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-10.webp" alt="Zpěvačka v barevném osvětlení"><div class="fmeta"><span class="ftag">V akci</span><h3>Zpěvačka v barevném osvětlení</h3></div></a>
-          </div>
-          <div class="fleet-page">
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-11.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-11.webp" alt="DJ pult připravený k večeru"><div class="fmeta"><span class="ftag">V akci</span><h3>DJ pult připravený k večeru</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-12.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-12.webp" alt="DJ ovladač zblízka"><div class="fmeta"><span class="ftag">V akci</span><h3>DJ ovladač zblízka</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-13.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-13.webp" alt="Studené fontány při prvním tanci"><div class="fmeta"><span class="ftag">V akci</span><h3>Studené fontány při prvním tanci</h3></div></a>
-      <a class="fcard faction" data-cat="akce" href="assets/ozvuceni/ozgal-14.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-14.webp" alt="Mlha na parketu při prvním tanci"><div class="fmeta"><span class="ftag">V akci</span><h3>Mlha na parketu při prvním tanci</h3></div></a>
-          </div>
-        </div>
-      </div>
-      <button class="fleet-arrow prev" type="button" data-dir="-1" aria-label="Předchozí strana">‹</button>
-      <button class="fleet-arrow next" type="button" data-dir="1" aria-label="Další strana">›</button>
-    </div>
-    <div class="fleet-dots" id="fleetDots" role="tablist" aria-label="Stránky nabídky"></div>
-  </div>
-</section>
 
 <section class="block facts-block">
   <div class="wrap">
@@ -1248,27 +1213,30 @@
   </div>
 </section>
 
-<section class="block gal-block" style="padding-bottom:0">
+<section class="block gal-block" style="padding-bottom:64px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Galerie</span>
       <h2 class="h2">Zvuk a světla v akci</h2>
     </div>
+    <div class="gal-wrap">
     <div class="gal-track" id="galTrack" tabindex="0" aria-label="Galerie — posouvejte do stran">
-      <a href="assets/ozvuceni/ozgal-01.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-01.webp" alt="Mixážní pult a světla na venkovní akci"></a>
-      <a href="assets/ozvuceni/ozgal-02.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-02.webp" alt="DJ set rozsvícený na párty"></a>
-      <a href="assets/ozvuceni/ozgal-03.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-03.webp" alt="Reprosoustavy na obecní akci"></a>
-      <a href="assets/ozvuceni/ozgal-04.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-04.webp" alt="Aparatura pod stanem"></a>
-      <a href="assets/ozvuceni/ozgal-05.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-05.webp" alt="Kompletní zvuková sestava"></a>
-      <a href="assets/ozvuceni/ozgal-06.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-06.webp" alt="DJ pult s notebookem"></a>
-      <a href="assets/ozvuceni/ozgal-07.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-07.webp" alt="Nasvícený sál před akcí"></a>
-      <a href="assets/ozvuceni/ozgal-08.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-08.webp" alt="DJ v akci na dětském dni"></a>
-      <a href="assets/ozvuceni/ozgal-09.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-09.webp" alt="Reproduktor na venkovní scéně"></a>
-      <a href="assets/ozvuceni/ozgal-10.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-10.webp" alt="Zpěvačka v barevném osvětlení"></a>
-      <a href="assets/ozvuceni/ozgal-11.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-11.webp" alt="DJ pult připravený k večeru"></a>
-      <a href="assets/ozvuceni/ozgal-12.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-12.webp" alt="DJ ovladač zblízka"></a>
-      <a href="assets/ozvuceni/ozgal-13.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-13.webp" alt="Studené fontány při prvním tanci"></a>
-      <a href="assets/ozvuceni/ozgal-14.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-14.webp" alt="Mlha na parketu při prvním tanci"></a>
+      <a href="assets/ozvuceni/ozgal-01.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-01.webp" alt="Saxofonista při vystoupení"></a>
+      <a href="assets/ozvuceni/ozgal-02.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-02.webp" alt="Studené fontány při prvním tanci"></a>
+      <a href="assets/ozvuceni/ozgal-03.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-03.webp" alt="Nasvícení sálu na svatbě"></a>
+      <a href="assets/ozvuceni/ozgal-04.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-04.webp" alt="DJ pult připravený k večeru"></a>
+      <a href="assets/ozvuceni/ozgal-05.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-05.webp" alt="DJ ovladač zblízka"></a>
+      <a href="assets/ozvuceni/ozgal-06.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-06.webp" alt="Mlha na parketu při prvním tanci"></a>
+      <a href="assets/ozvuceni/ozgal-07.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-07.webp" alt="Mixážní pult a světla"></a>
+      <a href="assets/ozvuceni/ozgal-08.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-08.webp" alt="DJ set rozsvícený na párty"></a>
+      <a href="assets/ozvuceni/ozgal-09.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-09.webp" alt="Reprosoustavy na obecní akci"></a>
+      <a href="assets/ozvuceni/ozgal-10.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-10.webp" alt="Aparatura pod stanem"></a>
+      <a href="assets/ozvuceni/ozgal-11.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-11.webp" alt="Kompletní zvuková sestava"></a>
+      <a href="assets/ozvuceni/ozgal-12.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-12.webp" alt="DJ pult s notebookem"></a>
+      <a href="assets/ozvuceni/ozgal-13.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-13.webp" alt="Nasvícený sál před akcí"></a>
+      <a href="assets/ozvuceni/ozgal-14.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-14.webp" alt="DJ v akci na dětském dni"></a>
+      <a href="assets/ozvuceni/ozgal-15.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-15.webp" alt="Reproduktor na venkovní scéně"></a>
+      <a href="assets/ozvuceni/ozgal-16.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-16.webp" alt="Zpěvačka v barevném osvětlení"></a>
     </div>
     <p class="fleet-hint">← posouvej prstem →</p>
   </div>
@@ -1325,6 +1293,9 @@
       <a href="index.html">Domů</a><a href="index.html#o-nas">O nás</a><a href="index.html#sluzby">Služby</a>
       <a href="index.html#bestsellery">Bestsellery</a><a href="index.html#reference">Recenze</a><a href="index.html#kontakt">Kontakt</a>
     </div>
+    <button class="gal-arrow prev" type="button" data-dir="-1" aria-label="Posunout doleva">‹</button>
+    <button class="gal-arrow next" type="button" data-dir="1" aria-label="Posunout doprava">›</button>
+    </div>
     <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
   </div>
 </footer>
@@ -1338,73 +1309,12 @@
     document.querySelectorAll('.pkgx,.fitem,.fcard,.baleni,.gal-track a').forEach(function(el){el.classList.add('in');});
   },1600);
 
-  var rail=document.getElementById('fleetRail');
-  if(!rail) return;
-  var all=[].slice.call(rail.querySelectorAll('.fcard'));
-  var pages=rail.querySelectorAll('.fleet-page');
-  var dots=document.getElementById('fleetDots');
-  var prev=document.querySelector('.fleet-arrow.prev');
-  var next=document.querySelector('.fleet-arrow.next');
-  var PER=4, cur=0;
-  var empty=document.createElement('p');
-  empty.className='fleet-empty';
-  empty.textContent='V této kategorii zatím nic nemáme.';
-  rail.parentNode.parentNode.appendChild(empty);
-
-  function go(n){
-    cur=Math.max(0,Math.min(pages.length-1,n));
-    rail.style.transform='translateX('+(-cur*100)+'%)';
-    dots.querySelectorAll('button').forEach(function(b,i){
-      b.setAttribute('aria-current', i===cur ? 'true' : 'false');
-    });
-    prev.disabled = cur===0;
-    next.disabled = cur>=pages.length-1;
-  }
-  function makeDot(i){
-    var b=document.createElement('button');
-    b.type='button'; b.textContent=String(i+1);
-    b.setAttribute('role','tab');
-    b.setAttribute('aria-label','Strana '+(i+1));
-    b.addEventListener('click',function(){go(i);});
-    dots.appendChild(b);
-  }
-  function layout(cat){
-    var list=all.filter(function(c){
-      if(cat==='all') return true;
-      return (c.getAttribute('data-cat')||'').split(' ').indexOf(cat)!==-1;
-    });
-    rail.innerHTML='';
-    for(var k=0;k<list.length;k+=PER){
-      var pg=document.createElement('div');
-      pg.className='fleet-page';
-      list.slice(k,k+PER).forEach(function(c){c.classList.add('in');pg.appendChild(c);});
-      rail.appendChild(pg);
-    }
-    pages=rail.querySelectorAll('.fleet-page');
-    dots.innerHTML='';
-    for(var i=0;i<pages.length;i++) makeDot(i);
-    empty.classList.toggle('on',pages.length===0);
-    go(0);
-  }
-  document.querySelectorAll('#fleetFilters button').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('#fleetFilters button').forEach(function(o){
-        o.setAttribute('aria-pressed', o===btn ? 'true':'false');
-      });
-      layout(btn.getAttribute('data-cat'));
-    });
-  });
-  prev.addEventListener('click',function(){go(cur-1);});
-  next.addEventListener('click',function(){go(cur+1);});
-  var x0=null;
-  rail.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
-  rail.addEventListener('touchend',function(e){
-    if(x0===null) return;
-    var dx=e.changedTouches[0].clientX-x0;
-    if(Math.abs(dx)>50) go(cur+(dx<0?1:-1));
-    x0=null;
-  },{passive:true});
-  layout('all');
+  var gt=document.getElementById('galTrack');
+  if(gt){document.querySelectorAll('.gal-arrow').forEach(function(b){
+    b.addEventListener('click',function(){
+      gt.scrollBy({left:352*(+b.dataset.dir),
+        behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    });});}
 })();
 </script>
 <script src="assets/js/kosik.js" defer></script>
