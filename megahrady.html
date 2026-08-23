@@ -885,9 +885,12 @@
   .bsell .bcard.b1{z-index:2;transform:scale(.95) translate(7%,10px) rotate(-2.6deg)}
   .bsell .bcard.b2{z-index:3;transform:scale(1.08)}
   .bsell .bcard.b3{z-index:2;transform:scale(.95) translate(-7%,10px) rotate(2.6deg)}
-  .bsell .bcard{filter:blur(3px) saturate(.7) brightness(.6)}
-  .bsell .bcard.revealed{filter:none}
-  .bsell .bcard:hover,.bsell .bcard:focus-within{z-index:6;filter:none;
+  .bsell .bcard .bshot,.bsell .bcard .bbody{filter:blur(3px) saturate(.7) brightness(.6);
+    transition:filter .45s ease}
+  .bsell .bcard.revealed .bshot,.bsell .bcard.revealed .bbody{filter:none}
+  .bsell .bcard:hover .bshot,.bsell .bcard:hover .bbody,
+  .bsell .bcard:focus-within .bshot,.bsell .bcard:focus-within .bbody{filter:none}
+  .bsell .bcard:hover,.bsell .bcard:focus-within{z-index:6;
     background:linear-gradient(158deg,rgba(142,115,208,.78),rgba(52,36,100,.9));
     box-shadow:0 0 46px rgba(var(--accs),.55),0 0 96px rgba(var(--accs),.3),
                0 1px 0 rgba(255,255,255,.55) inset}
@@ -986,7 +989,8 @@
     font-size:1.4rem;font-weight:500;line-height:0;color:#fff}
   @media(max-width:1024px){
     .bsell{grid-template-columns:minmax(0,1fr);gap:22px;padding:0;max-width:520px}
-    .bsell .bcard,.bsell .bcard.b1,.bsell .bcard.b2,.bsell .bcard.b3{transform:none;filter:none;z-index:1}
+    .bsell .bcard,.bsell .bcard.b1,.bsell .bcard.b2,.bsell .bcard.b3{transform:none;z-index:1}
+    .bsell .bcard .bshot,.bsell .bcard .bbody{filter:none}
     .bveil{opacity:0}
     .bcard{border-radius:26px;grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}.bcard::after{padding:4px}
     .bnum{top:20px;left:20px;width:40px;height:40px;font-size:1rem}
@@ -1018,7 +1022,7 @@
   .fleet-empty{display:none;text-align:center;font-family:'Baloo 2';font-weight:800;
     color:#fff;padding:40px 0}
   .fleet-empty.on{display:block}
-  .fleet-wrap{position:relative;margin-top:30px}
+  .fleet-wrap{position:relative;margin-top:58px}
   .fleet-viewport{overflow:hidden;border-radius:26px}
   .fleet-page{padding:16px 14px}
   .fleet-wrap::before{content:"";position:absolute;inset:-26px -18px;border-radius:38px;z-index:-1;
