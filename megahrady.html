@@ -788,23 +788,6 @@
     .mctag{animation:none}
     .mcard::after{animation:none;opacity:.5}
     .mcimg i,.mcard:hover .mcimg i{transition:none;transform:none}}
-  /* ---- flotila: horizontální carousel ---- */
-  .fleet{padding-top:70px}
-  .fleet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .fleet-nav{display:flex;gap:10px}
-  .fleet-nav button{width:48px;height:48px;border:none;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3rem;cursor:pointer;display:grid;place-items:center;transition:transform .25s ease,background .25s ease}
-  .fleet-nav button:hover{background:var(--gold);color:var(--navy);transform:scale(1.08)}
-  .fleet-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,300px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px 4px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .fleet-track::-webkit-scrollbar{display:none}
-  .fcard{scroll-snap-align:start;background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.22,.9,.3,1),box-shadow .35s ease}
-  .fcard:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(27,58,99,.22)}
-  .fcard .fimg{aspect-ratio:4/3;width:100%;object-fit:cover;display:block;background:#dfeefb}
-  .fcard .fmeta{padding:18px 20px 22px}
-  .fcard .ftag{font-family:'Baloo 2';font-weight:800;font-size:.72rem;letter-spacing:.08em;color:var(--sky);text-transform:uppercase}
-  .fcard h3{font-family:'Baloo 2';font-weight:800;font-size:1.18rem;color:var(--navy);margin-top:4px;line-height:1.25}
-  .fleet-hint{text-align:center;font-family:'Caveat',cursive;font-size:1.35rem;color:var(--navy-soft);margin-top:6px}
-  @media (min-width:1024px){.fleet-hint{display:none}}
-  @media (prefers-reduced-motion:reduce){.fcard,.fleet-nav button{transition:none}.fcard:hover{transform:none}}
   /* ---- video baleni: emphasized ---- */
   .baleni{background:linear-gradient(150deg,var(--navy) 0%,#24467a 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
   .baleni .h2{color:#fff}
@@ -866,22 +849,67 @@
   }
 
 
-  /* ---- flotila hradu ---- */
+  /* ---- bestsellery ---- */
+  .bsell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:44px;align-items:start}
+  .bcard{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
+    display:flex;flex-direction:column;padding:0 0 0 76px;min-height:300px;
+    background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
+    border:4px solid var(--acc);border-radius:0 34px 34px 0;
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.45),0 20px 38px rgba(24,14,56,.3);
+    opacity:0;transform:translateY(24px);
+    transition:opacity .5s ease,transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
+  .bcard.b2{--acc:#C3ABE8;--accs:195,171,232;margin-top:26px}
+  .bcard.b3{--acc:#A9CFF0;--accs:169,207,240;margin-top:52px}
+  .bcard.in{opacity:1;transform:none}
+  .bcard:hover{transform:translateY(-9px);
+    box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 30px 54px rgba(24,14,56,.4),0 0 28px rgba(var(--accs),.32)}
+  /* svisly pruh s poradim */
+  .bnum{position:absolute;left:0;top:0;bottom:0;width:76px;z-index:2;display:grid;place-items:center;
+    background:var(--acc);color:#2A1E52;font-family:'Baloo 2';font-weight:900;font-size:2.5rem;line-height:1;
+    writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.06em;
+    box-shadow:inset -2px 0 0 rgba(255,255,255,.5)}
+  /* fotka nahore */
+  .bshot{position:relative;z-index:1;margin:10px 10px 0;border-radius:26px;overflow:hidden;
+    clip-path:inset(0 round 26px);-webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0);
+    box-shadow:0 0 0 2px rgba(var(--accs),.55),0 8px 18px rgba(30,18,64,.35)}
+  .bshot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;
+    transition:transform .55s cubic-bezier(.22,.9,.3,1)}
+  .bcard:hover .bshot img{transform:scale(1.05)}
+  .bbody{position:relative;z-index:2;padding:14px 18px 20px;display:flex;flex-direction:column;flex:1}
+  .btag{font-family:'Baloo 2';font-weight:800;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--acc)}
+  .bcard h3{font-family:'Baloo 2';font-weight:900;font-size:1.2rem;color:#fff;margin-top:4px;
+    text-shadow:0 2px 10px rgba(25,15,60,.45)}
+  .bcard h3::after{content:"";display:block;width:44px;height:4px;border-radius:4px;margin-top:8px;
+    background:var(--acc);box-shadow:0 0 10px rgba(var(--accs),.6)}
+  .bcard p{font-size:.88rem;color:rgba(255,255,255,.86);line-height:1.55;font-weight:600;margin-top:10px}
+  .bcard ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .bcard li{font-family:'Baloo 2';font-weight:700;font-size:.76rem;background:rgba(255,255,255,.1);
+    border:2px solid var(--acc);color:#fff;padding:5px 12px;border-radius:30px}
+  .bcard [data-kk-slot]{position:absolute;top:-20px;right:14px;z-index:5;display:flex}
+  .bcard::after{content:"";position:absolute;inset:-4px;border-radius:0 38px 38px 0;padding:4px;
+    background:conic-gradient(from var(--mcAng),rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,rgba(255,255,255,.2) 358deg,rgba(255,255,255,0) 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;opacity:.85;pointer-events:none;z-index:4;
+    filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.5));
+    animation:mcSpin 7s linear infinite}
+  .bcard.b2::after{animation-delay:-2.6s}
+  .bcard.b3::after{animation-delay:-5.2s}
+  .bcard:hover::after{opacity:1;animation-duration:2.6s}
+  @media(max-width:1024px){.bsell{grid-template-columns:minmax(0,1fr);gap:24px}
+    .bcard.b2,.bcard.b3{margin-top:0}}
+  @media(max-width:700px){.bcard{padding-left:56px;border-radius:0 26px 26px 0}
+    .bcard::after{border-radius:0 30px 30px 0}
+    .bnum{width:56px;font-size:2rem}}
+  @media(prefers-reduced-motion:reduce){.bcard,.bcard.in{opacity:1;transform:none;transition:none}
+    .bcard:hover{transform:none}.bcard::after{animation:none;opacity:.5}
+    .bshot img,.bcard:hover .bshot img{transition:none;transform:none}}
+/* ---- flotila hradu ---- */
   .fleet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .fleet-nav{display:flex;gap:10px}
-  .fleet-nav button{width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;
-    font-family:'Baloo 2';font-weight:900;font-size:1.5rem;line-height:1;
-    background:#FDF4E2;color:#3E2A6B;box-shadow:0 6px 16px rgba(22,13,52,.42);
-    transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s}
-  .fleet-nav button:hover{transform:scale(1.08);background:#fff}
-  .fleet-nav button:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .fleet-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(80vw,318px);gap:30px;
-    overflow-x:auto;scroll-snap-type:x mandatory;padding:38px 8px 30px;scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-    mask-image:linear-gradient(90deg,#000 0,#000 94%,transparent 100%);
-    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 94%,transparent 100%)}
-  .fleet-track::-webkit-scrollbar{display:none}
-  .fcard{--acc:#F0C86B;--accs:240,200,107;position:relative;scroll-snap-align:center;
+  .fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:30px 26px;
+    margin-top:42px}
+  .fcard{--acc:#F0C86B;--accs:240,200,107;position:relative;
     display:flex;flex-direction:column;isolation:isolate;text-decoration:none;
     background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
     border:5px solid var(--acc);border-radius:38px;
@@ -890,8 +918,8 @@
                0 1px 0 rgba(255,255,255,.18) inset;
     opacity:0;transform:translateY(22px);
     transition:opacity .5s ease,transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
-  .fleet-track .fcard:nth-child(3n+2){--acc:#C3ABE8;--accs:195,171,232}
-  .fleet-track .fcard:nth-child(3n){--acc:#A9CFF0;--accs:169,207,240}
+  .fleet-grid .fcard:nth-child(3n+2){--acc:#C3ABE8;--accs:195,171,232}
+  .fleet-grid .fcard:nth-child(3n){--acc:#A9CFF0;--accs:169,207,240}
   .fcard.in{opacity:1;transform:none}
   .fcard:hover{transform:translateY(-9px);
     box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 30px 54px rgba(24,14,56,.4),
@@ -903,8 +931,8 @@
     mask-composite:exclude;opacity:.85;transition:opacity .3s ease;pointer-events:none;z-index:4;
     filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.5));
     animation:mcSpin 7s linear infinite}
-  .fleet-track .fcard:nth-child(3n+2)::after{animation-delay:-2.6s}
-  .fleet-track .fcard:nth-child(3n)::after{animation-delay:-5.2s}
+  .fleet-grid .fcard:nth-child(3n+2)::after{animation-delay:-2.6s}
+  .fleet-grid .fcard:nth-child(3n)::after{animation-delay:-5.2s}
   .fcard:hover::after,.fcard:focus-within::after{opacity:1;animation-duration:2.6s}
   .fcard .fimg{position:relative;z-index:1;margin:9px 9px 0;aspect-ratio:4/3;width:calc(100% - 18px);
     object-fit:cover;display:block;background:#4B3A82;
@@ -941,7 +969,7 @@
   .fcard .kk-prod.on::before{content:"\2713";display:block;font-family:system-ui,-apple-system,sans-serif;
     font-size:1.5rem;font-weight:500;line-height:0;color:#fff}
   .fcard.faction .fmeta{padding-bottom:16px}
-  @media(max-width:700px){.fleet-track{grid-auto-columns:min(84vw,280px);gap:22px}
+  @media(max-width:700px){.fleet-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px 14px}
     .fcard{border-radius:28px;border-width:4px}.fcard::after{border-radius:32px;inset:-4px;padding:4px}
     .fcard .fimg{border-radius:21px;clip-path:inset(0 round 21px);margin:7px 7px 0;width:calc(100% - 14px)}
     .fcard .kk-prod{width:34px;height:34px;background-size:64% 3px,3px 64%,100% 100%}
@@ -994,16 +1022,11 @@
 
 <section class="block" style="padding-top:10px">
   <div class="wrap">
-    <div class="hrady-rows">
-      <div class="hrow nsky">
-        <div class="himg" style="background-image:url('assets/hrady/hrad-wipeout.webp')"></div>
-        <div class="hbody">
-          <span class="tag">NEJOBLÍBENĚJŠÍ</span>
-          <h3>WipeOut aréna</h3>
-          <p>Adrenalinová aréna, kterou milují děti i dospělí. Rotující rameno, skoky, pády do měkkého — souboj o to, kdo vydrží nejdéle.</p>
-          <ul><li>Zábava i pro dospělé</li><li>Soutěžní režim</li><li>S dozorem</li></ul>
-        </div>
-      </div>
+    <div class="bsell">
+      <article class="bcard b1" data-kk-item="hrad-velka-skluzavka" data-kk-name="Velká skluzavka" data-kk-img="assets/hrady/hrad-velka-skluzavka.webp"><span class="bnum" aria-hidden="true">01</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-velka-skluzavka.webp" alt="Velká skluzavka — nafukovací atrakce"></div><div class="bbody"><span class="btag">NEJPRODÁVANĚJŠÍ</span><h3>Velká skluzavka</h3><p>Sedmimetrová dominanta, kterou si všimne celé náměstí. Fronta u ní nekončí od rána do večera.</p><ul><li>7×4×6 m</li><li>Až 15 dětí</li><li>Dozor v ceně</li></ul><div data-kk-slot></div></div></article>
+      <article class="bcard b2" data-kk-item="hrad-wipeout" data-kk-name="WipeOut aréna" data-kk-img="assets/hrady/hrad-wipeout.webp"><span class="bnum" aria-hidden="true">02</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-wipeout.webp" alt="WipeOut aréna — nafukovací atrakce"></div><div class="bbody"><span class="btag">ADRENALIN</span><h3>WipeOut aréna</h3><p>Rotující rameno, skoky a pády do měkkého. Jediná atrakce, u které soutěží i tátové.</p><ul><li>Soutěžní režim</li><li>I pro dospělé</li><li>Aréna 8×8 m</li></ul><div data-kk-slot></div></div></article>
+      <article class="bcard b3" data-kk-item="hrad-hraci-centrum-safari" data-kk-name="Hrací centrum Safari" data-kk-img="assets/hrady/hrad-hraci-centrum-safari.webp"><span class="bnum" aria-hidden="true">03</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-hraci-centrum-safari.webp" alt="Hrací centrum Safari — nafukovací atrakce"></div><div class="bbody"><span class="btag">PRO NEJMENŠÍ</span><h3>Hrací centrum Safari</h3><p>Prolézačky, průlezy a skluzavka na jedné ploše. Nejbezpečnější volba pro děti do šesti let.</p><ul><li>Do 6 let</li><li>Velká plocha</li><li>Novinka</li></ul><div data-kk-slot></div></div></article>
+    </div>
       <div class="hrow npur">
         <div class="himg" style="background-image:url('assets/hrady/hrad-velka-skluzavka.webp')"></div>
         <div class="hbody">
@@ -1034,12 +1057,8 @@
         <h2 class="h2">Celá nabídka — hrady i v akci</h2>
         <p class="sub">26 atrakcí a reálné záběry z akcí. Vyberte si a my přivezeme, postavíme a pohlídáme.</p>
       </div>
-      <div class="fleet-nav" aria-hidden="false">
-        <button type="button" data-dir="-1" aria-label="Posunout doleva">‹</button>
-        <button type="button" data-dir="1" aria-label="Posunout doprava">›</button>
-      </div>
     </div>
-    <div class="fleet-track" id="fleetTrack" tabindex="0" aria-label="Nabídka hradů — posouvejte do stran">
+    <div class="fleet-grid">
       <div class="fcard" data-kk-item="hrad-wipeout" data-kk-name="WipeOut aréna" data-kk-img="assets/hrady/hrad-wipeout.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-wipeout.webp" alt="WipeOut aréna — nafukovací atrakce"><div class="fmeta"><span class="ftag">Aréna</span><h3>WipeOut aréna</h3><p>Nafukovací kolotoč s rotujícím ramenem — kdo vydrží nejdéle, vyhrává.</p><div data-kk-slot></div></div></div>
       <div class="fcard" data-kk-item="hrad-piratska-lod" data-kk-name="Pirátská loď" data-kk-img="assets/hrady/hrad-piratska-lod.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-piratska-lod.webp" alt="Pirátská loď — nafukovací atrakce"><div class="fmeta"><span class="ftag">Pro nejmenší</span><h3>Pirátská loď</h3><p>Prolézačka ve tvaru pirátské lodi, ideální pro děti do šesti let.</p><div data-kk-slot></div></div></div>
       <div class="fcard" data-kk-item="hrad-houpaci-zviratka" data-kk-name="Houpací zvířátka" data-kk-img="assets/hrady/hrad-houpaci-zviratka.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hrad-houpaci-zviratka.webp" alt="Houpací zvířátka — nafukovací atrakce"><div class="fmeta"><span class="ftag">Batolata</span><h3>Houpací zvířátka</h3><p>Nafukovací zvířátka na houpání pro ty nejmenší návštěvníky.</p><div data-kk-slot></div></div></div>
@@ -1079,7 +1098,6 @@
       <a class="fcard faction" href="assets/hrady/hgal-11.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-11.webp" alt="Duhová skluzavka připravená k akci"><div class="fmeta"><span class="ftag">V akci</span><h3>Duhová skluzavka připravená k akci</h3></div></a>
       <a class="fcard faction" href="assets/hrady/hgal-12.webp"><img class="fimg" loading="lazy" decoding="async" width="880" height="660" src="assets/hrady/hgal-12.webp" alt="Hrad se skluzavkou na trávě"><div class="fmeta"><span class="ftag">V akci</span><h3>Hrad se skluzavkou na trávě</h3></div></a>
     </div>
-    <p class="fleet-hint">← posouvej prstem →</p>
   </div>
 </section>
 
@@ -1140,13 +1158,7 @@
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
-  document.querySelectorAll('.hrow,.baleni,.mask-card,.pkgx,.fitem,.fcard').forEach(function(el){io.observe(el)});
-  var tr = document.getElementById('fleetTrack');
-  document.querySelectorAll('.fleet-nav button').forEach(function(b){
-    b.addEventListener('click', function(){
-      tr.scrollBy({left: 320 * (+b.dataset.dir), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
-    });
-  });
+  document.querySelectorAll('.baleni,.mask-card,.pkgx,.fitem,.fcard,.bcard').forEach(function(el){io.observe(el)});
 
   var pxbs=document.querySelectorAll('.pxb i');
   if(pxbs.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
