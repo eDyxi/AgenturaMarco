@@ -866,52 +866,24 @@
   }
 
 
-  /* ---- bestsellery: balicek karet, prostredni v popredi ---- */
-  .bsell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 auto;
-    align-items:center;max-width:1240px;padding:62px 0 30px}
-  .bcard{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
-    display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);align-items:stretch;overflow:hidden;
-    border:0;border-radius:30px;
+  /* ---- balicky ozvuceni ---- */
+  .pkgx-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:52px}
+  .pkgx{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
+    display:flex;flex-direction:column;overflow:hidden;border:0;border-radius:28px;
     background:linear-gradient(158deg,rgba(122,97,188,.72),rgba(42,29,84,.86));
-    -webkit-backdrop-filter:blur(26px) saturate(200%);backdrop-filter:blur(26px) saturate(200%);
+    -webkit-backdrop-filter:blur(24px) saturate(190%);backdrop-filter:blur(24px) saturate(190%);
     box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 0 26px rgba(var(--accs),.24);
-    opacity:0;
-    transition:opacity .5s ease,transform .5s cubic-bezier(.3,.9,.4,1),
-               filter .45s ease,box-shadow .4s ease,background .35s ease,z-index 0s}
-  .bcard.b2{--acc:#C3ABE8;--accs:195,171,232}
-  .bcard.b3{--acc:#A9CFF0;--accs:169,207,240}
-  /* vychozi stav balicku: prvni v popredi, ostatni zatajene */
-  .bcard.in{opacity:1}
-  .bsell .bcard.b1{z-index:2;transform:scale(.95) translate(7%,10px) rotate(-2.6deg)}
-  .bsell .bcard.b2{z-index:3;transform:scale(1.08)}
-  .bsell .bcard.b3{z-index:2;transform:scale(.95) translate(-7%,10px) rotate(2.6deg)}
-  .bsell .bcard{filter:blur(3px) saturate(.7) brightness(.6)}
-  .bsell .bcard.revealed{filter:none}
-  .bsell .bcard:hover,.bsell .bcard:focus-within{z-index:6;filter:none;
-    background:linear-gradient(158deg,rgba(142,115,208,.78),rgba(52,36,100,.9));
-    box-shadow:0 0 46px rgba(var(--accs),.55),0 0 96px rgba(var(--accs),.3),
-               0 1px 0 rgba(255,255,255,.55) inset}
-  .bsell .bcard.b1:hover,.bsell .bcard.b1:focus-within{transform:scale(1.1) translate(7%,-8px) rotate(0deg)}
-  .bsell .bcard.b2:hover,.bsell .bcard.b2:focus-within{transform:scale(1.14) translateY(-10px)}
-  .bsell .bcard.b3:hover,.bsell .bcard.b3:focus-within{transform:scale(1.1) translate(-7%,-8px) rotate(0deg)}
-  /* velke poradove cislo na zatajenych kartach */
-  .bveil{position:absolute;inset:-5px;z-index:7;display:grid;place-items:center;pointer-events:none;
-    border-radius:32px;overflow:hidden;
-    font-family:'Baloo 2';font-weight:900;font-size:4rem;line-height:1;color:#fff;
-    text-shadow:0 0 22px rgba(var(--accs),.95),0 0 54px rgba(var(--accs),.55),0 4px 10px rgba(10,6,30,.6);
-    opacity:1;transition:opacity .35s ease,transform .45s cubic-bezier(.3,.9,.4,1);
-    background:radial-gradient(70% 55% at 50% 50%,rgba(24,14,56,.45),transparent 72%)}
-  .bcard.revealed .bveil{opacity:0;transform:scale(1.35);pointer-events:none}
-  .bsell .bcard:hover .bveil,.bsell .bcard:focus-within .bveil{opacity:0;transform:scale(1.35)}
-  /* sunray jen na zatajenych kartach */
-  .bveil::after{content:"";position:absolute;top:0;left:-60%;width:42%;height:100%;
-    background:linear-gradient(105deg,transparent,rgba(255,255,255,.34),transparent);
-    animation:bSheen 4.6s ease-in-out infinite;animation-delay:var(--bd,0s)}
-  .bcard.b2 .bveil{--bd:.9s}
-  .bcard.b3 .bveil{--bd:1.8s}
-  @keyframes bSheen{0%,64%{transform:translateX(0)}100%{transform:translateX(380%)}}
-  /* tlusta obihajici kontura */
-  .bcard::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:4px;
+    opacity:0;transform:translateY(22px);
+    transition:opacity .5s ease,transform .38s cubic-bezier(.3,.9,.4,1),box-shadow .32s ease,background .32s ease}
+  .pkgx.p2{--acc:#C3ABE8;--accs:195,171,232}
+  .pkgx.p3{--acc:#A9CFF0;--accs:169,207,240}
+  .pkgx.p4{--acc:#F0C86B;--accs:240,200,107}
+  .pkgx.p5{--acc:#C3ABE8;--accs:195,171,232}
+  .pkgx.in{opacity:1;transform:none}
+  .pkgx:hover{transform:translateY(-8px);
+    background:linear-gradient(158deg,rgba(142,115,208,.8),rgba(52,36,100,.92));
+    box-shadow:0 0 40px rgba(var(--accs),.48),0 1px 0 rgba(255,255,255,.55) inset}
+  .pkgx::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:4px;
     background:conic-gradient(from var(--mcAng),
       rgba(var(--accs),.5) 0deg,rgba(var(--accs),.5) 186deg,
       rgb(var(--accs)) 248deg,rgba(255,255,255,.98) 296deg,rgb(var(--accs)) 324deg,
@@ -919,84 +891,57 @@
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;pointer-events:none;z-index:6;
-    filter:drop-shadow(0 0 7px rgba(var(--accs),.75));
-    animation:mcSpin 6.5s linear infinite}
-  .bcard.b2::after{animation-delay:-2.2s}
-  .bcard.b3::after{animation-delay:-4.4s}
-  .bsell .bcard:hover::after{animation-duration:2.4s;
-    filter:drop-shadow(0 0 10px rgba(var(--accs),.95)) drop-shadow(0 0 22px rgba(var(--accs),.55))}
-  /* pulzujici vnitrni zare */
-  .bcard::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;
-    background:radial-gradient(120% 62% at 50% 0%,rgba(var(--accs),.3),transparent 60%),
-               radial-gradient(90% 50% at 50% 100%,rgba(var(--accs),.22),transparent 70%);
-    animation:bGlow 4.2s ease-in-out infinite;animation-delay:var(--bd,0s)}
-  @keyframes bGlow{0%,100%{opacity:.6}50%{opacity:1}}
-  /* fotka - vzdy cela videt */
-  .bshot{position:relative;z-index:1;margin:0;border-radius:0;overflow:hidden;
-    display:grid;place-items:center;background:rgba(12,7,34,.5);
-    border-right:1.5px solid rgba(var(--accs),.5)}
-  .bshot img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;
-    padding:4px;transition:transform .6s cubic-bezier(.22,.9,.3,1)}
-  .bsell .bcard:hover .bshot img{transform:scale(1.04)}
-  .bnum{position:absolute;top:12px;left:12px;z-index:4;width:32px;height:32px;
-    display:grid;place-items:center;border-radius:15px;
-    font-family:'Baloo 2';font-weight:900;font-size:.92rem;line-height:1;color:#fff;
-    background:linear-gradient(158deg,rgba(255,255,255,.24),rgba(255,255,255,.07));
-    -webkit-backdrop-filter:blur(16px) saturate(190%);backdrop-filter:blur(16px) saturate(190%);
-    box-shadow:0 6px 16px rgba(16,9,42,.45),0 0 0 1.5px rgba(var(--accs),.7) inset,
-               0 1px 0 rgba(255,255,255,.45) inset;
-    text-shadow:0 0 10px rgba(var(--accs),.9)}
-  .bbody{position:relative;z-index:2;padding:16px 17px 16px;display:flex;flex-direction:column;
-    justify-content:center;min-height:246px}
-  .btag{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.66rem;letter-spacing:.14em;
-    text-transform:uppercase;color:rgb(var(--accs));padding:6px 14px;border-radius:999px;
+    filter:drop-shadow(0 0 7px rgba(var(--accs),.75));animation:mcSpin 6.5s linear infinite}
+  .pkgx.p2::after{animation-delay:-1.3s}
+  .pkgx.p3::after{animation-delay:-2.6s}
+  .pkgx.p4::after{animation-delay:-3.9s}
+  .pkgx.p5::after{animation-delay:-5.2s}
+  .pkgx:hover::after{animation-duration:2.4s}
+  .pshot{position:relative;z-index:1;overflow:hidden;display:grid;place-items:center;
+    background:rgba(12,7,34,.5);border-bottom:1.5px solid rgba(var(--accs),.5)}
+  .pshot img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;padding:4px;
+    transition:transform .55s cubic-bezier(.22,.9,.3,1)}
+  .pkgx:hover .pshot img{transform:scale(1.05)}
+  .pbody{position:relative;z-index:2;padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
+  .pbadge{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:rgb(var(--accs));padding:6px 14px;border-radius:999px;margin-bottom:9px;
     background:linear-gradient(158deg,rgba(255,255,255,.18),rgba(255,255,255,.05));
     -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-    box-shadow:0 0 0 1.5px rgba(var(--accs),.6) inset;
-    text-shadow:0 0 10px rgba(var(--accs),.8)}
-  .bcard h3{font-family:'Baloo 2';font-weight:900;font-size:1.14rem;color:#fff;margin-top:9px;
-    text-shadow:0 0 14px rgba(var(--accs),.95),0 0 32px rgba(var(--accs),.55),0 2px 6px rgba(12,7,34,.6)}
-  .bcard h3::after{content:"";display:block;width:52px;height:4px;border-radius:4px;margin-top:9px;
-    background:rgb(var(--accs));box-shadow:0 0 14px rgba(var(--accs),.9)}
-  .bcard p{font-size:.8rem;color:rgba(255,255,255,.9);line-height:1.45;font-weight:600;margin-top:7px;
-    text-shadow:0 1px 4px rgba(12,7,34,.55)}
-  .bcard ul{margin:auto 0 0;padding:9px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-  .bcard li{font-family:'Baloo 2';font-weight:700;font-size:.72rem;color:#fff;
-    padding:5px 11px;border-radius:30px;
-    background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    box-shadow:0 0 0 1.5px rgba(var(--accs),.5) inset}
-  .bcard [data-kk-slot]{position:absolute;top:12px;right:12px;z-index:8;display:flex}
-  .bcard .kk-prod{width:32px;height:32px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
+    box-shadow:0 0 0 1.5px rgba(var(--accs),.6) inset;text-shadow:0 0 10px rgba(var(--accs),.8);
+    animation:tagpulse 2.4s ease-in-out infinite}
+  .pkgx h3{font-family:'Baloo 2';font-weight:900;font-size:1.16rem;color:#fff;
+    text-shadow:0 0 14px rgba(var(--accs),.9),0 0 30px rgba(var(--accs),.45),0 2px 6px rgba(12,7,34,.6)}
+  .pprice{display:flex;align-items:baseline;gap:6px;margin-top:9px;flex-wrap:wrap}
+  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.5rem;color:rgb(var(--accs));
+    text-shadow:0 0 14px rgba(var(--accs),.7),0 2px 6px rgba(12,7,34,.6)}
+  .pprice span{font-family:'Baloo 2';font-weight:700;font-size:.82rem;color:rgba(255,255,255,.75)}
+  .pkgx ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+  .pkgx li{position:relative;padding-left:24px;font-size:.85rem;font-weight:600;line-height:1.4;
+    color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(12,7,34,.55)}
+  .pkgx li::before{content:"";position:absolute;left:0;top:.42em;width:12px;height:12px;border-radius:50%;
+    background:rgb(var(--accs));box-shadow:0 0 10px rgba(var(--accs),.9)}
+  .pkgx [data-kk-slot]{position:absolute;top:14px;right:14px;z-index:8;display:flex}
+  .pkgx .kk-prod{width:36px;height:36px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
     display:grid;place-items:center;border-radius:999px;
     background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),
       linear-gradient(158deg,rgba(255,255,255,.24),rgba(255,255,255,.07));
-    background-size:58% 3.4px,3.4px 58%,100% 100%;
+    background-size:58% 3.2px,3.2px 58%,100% 100%;
     background-position:center,center,0 0;background-repeat:no-repeat;
     -webkit-backdrop-filter:blur(18px) saturate(190%);backdrop-filter:blur(18px) saturate(190%);
     box-shadow:0 8px 20px rgba(16,9,42,.45),0 0 0 1.5px rgba(var(--accs),.7) inset,
                0 1px 0 rgba(255,255,255,.45) inset;
     transition:transform .22s cubic-bezier(.34,1.5,.5,1)}
-  .bcard .kk-prod::before{content:"";display:none}
-  .bcard .kk-prod:hover{transform:scale(1.1)}
-  .bcard .kk-prod:active{transform:scale(.94)}
-  .bcard .kk-prod.on{background-image:linear-gradient(158deg,rgba(74,205,136,.55),rgba(30,140,86,.3));
+  .pkgx .kk-prod::before{content:"";display:none}
+  .pkgx .kk-prod:hover{transform:scale(1.1)}
+  .pkgx .kk-prod.on{background-image:linear-gradient(158deg,rgba(74,205,136,.55),rgba(30,140,86,.3));
     background-size:100% 100%;background-position:0 0}
-  .bcard .kk-prod.on::before{content:"\2713";display:block;font-family:system-ui,-apple-system,sans-serif;
+  .pkgx .kk-prod.on::before{content:"\2713";display:block;font-family:system-ui,-apple-system,sans-serif;
     font-size:1.4rem;font-weight:500;line-height:0;color:#fff}
-  @media(max-width:1024px){
-    .bsell{grid-template-columns:minmax(0,1fr);gap:22px;padding:0;max-width:520px}
-    .bsell .bcard,.bsell .bcard.b1,.bsell .bcard.b2,.bsell .bcard.b3{transform:none;filter:none;z-index:1}
-    .bveil{opacity:0}
-    .bcard{border-radius:26px;grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}.bcard::after{padding:4px}
-    .bnum{top:20px;left:20px;width:40px;height:40px;font-size:1rem}
-    .bcard [data-kk-slot]{top:20px;right:20px}
-    .bbody{padding:14px 14px 16px;min-height:0}}
-  @media(prefers-reduced-motion:reduce){
-    .bcard,.bcard.in{opacity:1;transition:none}
-    .bcard::after,.bcard::before,.bveil::after{animation:none}
-    .bveil::after{display:none}
-    .bshot img,.bsell .bcard:hover .bshot img{transition:none;transform:none}}
+  @media(max-width:700px){.pkgx-row{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:38px}
+    .pkgx{border-radius:24px}.pkgx::after{padding:3px}}
+  @media(prefers-reduced-motion:reduce){.pkgx,.pkgx.in{opacity:1;transform:none;transition:none}
+    .pkgx:hover{transform:none}.pkgx::after,.pbadge{animation:none}
+    .pshot img,.pkgx:hover .pshot img{transition:none;transform:none}}
   /* ---- flotila hradu: sklenene karty se strankovanim ---- */
   .fleet-head{text-align:center}
   .fleet-head .eyebrow{margin-left:auto;margin-right:auto}
@@ -1194,14 +1139,16 @@
 <section class="block bsell-block" style="padding:108px 0 52px">
   <div class="wrap">
     <div class="center">
-      <span class="eyebrow">Bestsellery</span>
-      <h2 class="h2">Tři balíčky, které si berou nejčastěji</h2>
+      <span class="eyebrow">Balíčky</span>
+      <h2 class="h2">Vyberte si balíček</h2>
       <p class="sub">Od jednoduchého ozvučení po svatební večer se živým saxofonem. Vše včetně dovozu, stavby a obsluhy.</p>
     </div>
-    <div class="bsell">
-      <article class="bcard b1" data-kk-item="oz-dj-moderator" data-kk-name="DJ + Moderátor" data-kk-img="assets/ozvuceni/oz-dj-moderator.webp"><span class="bveil" aria-hidden="true">1</span><span class="bnum" aria-hidden="true">1</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-moderator.webp" alt="DJ + Moderátor"></div><div class="bbody"><span class="btag">HRAD ZDARMA</span><h3>DJ + Moderátor</h3><p>Kompletní aparatura, světelná show a moderátor, který drží program v tempu. Ke každé objednávce skákací hrad zdarma.</p><ul><li>Kompletní aparatura</li><li>Světelná show</li><li>Hrad zdarma</li></ul><div data-kk-slot></div></div></article>
-      <article class="bcard b2" data-kk-item="oz-dj-saxofonista" data-kk-name="DJ + Saxofonista" data-kk-img="assets/ozvuceni/oz-dj-saxofonista.webp"><span class="bveil" aria-hidden="true">2</span><span class="bnum" aria-hidden="true">2</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-saxofonista.webp" alt="DJ + Saxofonista"></div><div class="bbody"><span class="btag">TOP SVATBY</span><h3>DJ + Saxofonista</h3><p>Živý saxofon nad DJ setem — parket se plní od první písničky. Nejžádanější kombinace na svatbách.</p><ul><li>Živý saxofon</li><li>Aparatura a světla</li><li>Hrad zdarma</li></ul><div data-kk-slot></div></div></article>
-      <article class="bcard b3" data-kk-item="oz-ozvuceni-akce" data-kk-name="Ozvučení akce" data-kk-img="assets/ozvuceni/oz-ozvuceni-akce.webp"><span class="bveil" aria-hidden="true">3</span><span class="bnum" aria-hidden="true">3</span><div class="bshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-ozvuceni-akce.webp" alt="Ozvučení akce"></div><div class="bbody"><span class="btag">OD 1 000 KČ</span><h3>Ozvučení akce</h3><p>Profi aparatura a hudba na míru akci. Ideální na obecní dny, sportovní odpoledne i firemní setkání.</p><ul><li>Profi aparatura</li><li>Hudba na míru</li><li>Moderování</li></ul><div data-kk-slot></div></div></article>
+    <div class="pkgx-row">
+      <article class="pkgx p1" data-kk-item="oz-ozvuceni-akce" data-kk-name="Ozvučení akce" data-kk-img="assets/ozvuceni/oz-ozvuceni-akce.webp"><div class="pshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-ozvuceni-akce.webp" alt="Ozvučení akce"></div><div class="pbody"><h3>Ozvučení akce</h3><div class="pprice"><b>1 000 Kč</b><span>/ hod</span></div><ul><li>Profi aparatura</li><li>Hudba na míru akci</li><li>Moderování programu</li></ul><div data-kk-slot></div></div></article>
+      <article class="pkgx p2" data-kk-item="oz-dj-moderator" data-kk-name="DJ + Moderátor" data-kk-img="assets/ozvuceni/oz-dj-moderator.webp"><div class="pshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-moderator.webp" alt="DJ + Moderátor"></div><div class="pbody"><span class="pbadge">HRAD ZDARMA</span><h3>DJ + Moderátor</h3><div class="pprice"><b>15 000 Kč</b></div><ul><li>Kompletní aparatura</li><li>Světelná show</li><li>Moderátor celé akce</li><li>Skákací hrad zdarma</li></ul><div data-kk-slot></div></div></article>
+      <article class="pkgx p3" data-kk-item="oz-dj-saxofonista" data-kk-name="DJ + Saxofonista" data-kk-img="assets/ozvuceni/oz-dj-saxofonista.webp"><div class="pshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-dj-saxofonista.webp" alt="DJ + Saxofonista"></div><div class="pbody"><span class="pbadge">TOP SVATBY</span><h3>DJ + Saxofonista</h3><div class="pprice"><b>20 000 Kč</b></div><ul><li>DJ set + živý saxofon</li><li>Aparatura a světla</li><li>Skákací hrad zdarma</li></ul><div data-kk-slot></div></div></article>
+      <article class="pkgx p4" data-kk-item="oz-svatebni-efekty" data-kk-name="Svatební efekty" data-kk-img="assets/ozvuceni/oz-svatebni-efekty.webp"><div class="pshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-svatebni-efekty.webp" alt="Svatební efekty"></div><div class="pbody"><h3>Svatební efekty</h3><div class="pprice"><b>8 000 Kč</b></div><ul><li>Plazivá mlha na parket</li><li>2× fontána jisker</li></ul><div data-kk-slot></div></div></article>
+      <article class="pkgx p5" data-kk-item="oz-laser-snih" data-kk-name="Laser + sníh k 1. tanci" data-kk-img="assets/ozvuceni/oz-laser-snih.webp"><div class="pshot"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/oz-laser-snih.webp" alt="Laser + sníh k 1. tanci"></div><div class="pbody"><h3>Laser + sníh k 1. tanci</h3><div class="pprice"><b>6 000 Kč</b></div><ul><li>Kuželový laser</li><li>Sněhový efekt</li><li>Kouzelný první tanec</li></ul><div data-kk-slot></div></div></article>
     </div>
   </div>
 </section>
@@ -1364,6 +1311,85 @@
     <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
   </div>
 </footer>
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.pkgx,.fitem,.fcard,.baleni,.gal-track a').forEach(function(el){io.observe(el);});
+  setTimeout(function(){
+    document.querySelectorAll('.pkgx,.fitem,.fcard,.baleni,.gal-track a').forEach(function(el){el.classList.add('in');});
+  },1600);
+
+  var rail=document.getElementById('fleetRail');
+  if(!rail) return;
+  var all=[].slice.call(rail.querySelectorAll('.fcard'));
+  var pages=rail.querySelectorAll('.fleet-page');
+  var dots=document.getElementById('fleetDots');
+  var prev=document.querySelector('.fleet-arrow.prev');
+  var next=document.querySelector('.fleet-arrow.next');
+  var PER=4, cur=0;
+  var empty=document.createElement('p');
+  empty.className='fleet-empty';
+  empty.textContent='V této kategorii zatím nic nemáme.';
+  rail.parentNode.parentNode.appendChild(empty);
+
+  function go(n){
+    cur=Math.max(0,Math.min(pages.length-1,n));
+    rail.style.transform='translateX('+(-cur*100)+'%)';
+    dots.querySelectorAll('button').forEach(function(b,i){
+      b.setAttribute('aria-current', i===cur ? 'true' : 'false');
+    });
+    prev.disabled = cur===0;
+    next.disabled = cur>=pages.length-1;
+  }
+  function makeDot(i){
+    var b=document.createElement('button');
+    b.type='button'; b.textContent=String(i+1);
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Strana '+(i+1));
+    b.addEventListener('click',function(){go(i);});
+    dots.appendChild(b);
+  }
+  function layout(cat){
+    var list=all.filter(function(c){
+      if(cat==='all') return true;
+      return (c.getAttribute('data-cat')||'').split(' ').indexOf(cat)!==-1;
+    });
+    rail.innerHTML='';
+    for(var k=0;k<list.length;k+=PER){
+      var pg=document.createElement('div');
+      pg.className='fleet-page';
+      list.slice(k,k+PER).forEach(function(c){c.classList.add('in');pg.appendChild(c);});
+      rail.appendChild(pg);
+    }
+    pages=rail.querySelectorAll('.fleet-page');
+    dots.innerHTML='';
+    for(var i=0;i<pages.length;i++) makeDot(i);
+    empty.classList.toggle('on',pages.length===0);
+    go(0);
+  }
+  document.querySelectorAll('#fleetFilters button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('#fleetFilters button').forEach(function(o){
+        o.setAttribute('aria-pressed', o===btn ? 'true':'false');
+      });
+      layout(btn.getAttribute('data-cat'));
+    });
+  });
+  prev.addEventListener('click',function(){go(cur-1);});
+  next.addEventListener('click',function(){go(cur+1);});
+  var x0=null;
+  rail.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  rail.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50) go(cur+(dx<0?1:-1));
+    x0=null;
+  },{passive:true});
+  layout('all');
+})();
+</script>
 <script src="assets/js/kosik.js" defer></script>
 <script src="assets/js/poptavka.js" defer></script>
 </body>
