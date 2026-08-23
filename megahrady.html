@@ -923,9 +923,9 @@
   .fleet-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:34px}
   .fleet-filters button{border:0;cursor:pointer;padding:10px 18px;border-radius:999px;
     font-family:'Baloo 2';font-weight:800;font-size:.82rem;color:rgba(255,255,255,.85);
-    background:linear-gradient(158deg,rgba(255,255,255,.15),rgba(255,255,255,.04));
+    background:linear-gradient(158deg,rgba(110,86,174,.5),rgba(52,36,96,.58));
     -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
-    box-shadow:0 0 0 1px rgba(255,255,255,.32) inset;
+    box-shadow:0 0 0 1.5px rgba(240,200,107,.55) inset,0 1px 0 rgba(255,255,255,.3) inset;
     transition:transform .22s cubic-bezier(.34,1.5,.5,1),color .22s,background .22s,box-shadow .22s}
   .fleet-filters button:hover{transform:translateY(-2px);color:#fff}
   .fleet-filters button[aria-pressed="true"]{color:#2A1E52;background:#FDF4E2;
@@ -942,16 +942,16 @@
   .fcard{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
     display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:stretch;
     text-decoration:none;overflow:hidden;
-    background:linear-gradient(150deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+    background:linear-gradient(150deg,rgba(110,86,174,.42),rgba(52,36,96,.55));
     -webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
     border:0;border-radius:26px;
-    box-shadow:0 1px 0 rgba(255,255,255,.45) inset;
+    box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 0 0 1px rgba(var(--accs),.45) inset;
     transition:transform .32s cubic-bezier(.3,.9,.4,1),box-shadow .32s ease,background .32s ease}
   .fcard::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;
     background:conic-gradient(from var(--mcAng),
-      rgba(255,255,255,.14) 0deg,rgba(255,255,255,.14) 200deg,
-      rgba(var(--accs),.5) 246deg,rgba(255,255,255,.95) 292deg,rgb(var(--accs)) 320deg,
-      rgba(255,255,255,.95) 340deg,rgba(var(--accs),.5) 356deg,rgba(255,255,255,.14) 360deg);
+      rgba(var(--accs),.45) 0deg,rgba(var(--accs),.45) 190deg,
+      rgb(var(--accs)) 250deg,rgba(255,255,255,.95) 296deg,rgb(var(--accs)) 322deg,
+      rgba(255,255,255,.9) 342deg,rgb(var(--accs)) 356deg,rgba(var(--accs),.45) 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;pointer-events:none;z-index:6;
@@ -966,12 +966,13 @@
   .fleet-page .fcard:nth-child(3){--acc:#A9CFF0;--accs:169,207,240}
   .fleet-page .fcard:nth-child(4){--acc:#F0C86B;--accs:240,200,107}
   .fcard:hover{transform:translateY(-5px);
-    background:linear-gradient(150deg,rgba(255,255,255,.24),rgba(255,255,255,.09));
-    box-shadow:0 0 26px rgba(var(--accs),.34),0 1px 0 rgba(255,255,255,.6) inset}
+    background:linear-gradient(150deg,rgba(126,100,192,.5),rgba(60,42,110,.6));
+    box-shadow:0 0 30px rgba(var(--accs),.4),0 1px 0 rgba(255,255,255,.45) inset,
+               0 0 0 1px rgba(var(--accs),.7) inset}
   /* cela fotka - nic se neorezava */
   .fcard .fimg{width:100%;height:100%;min-height:168px;object-fit:contain;object-position:center;
     display:block;padding:12px;background:rgba(24,14,56,.28);
-    border-right:1px solid rgba(255,255,255,.22)}
+    border-right:1px solid rgba(var(--accs),.4)}
   .fcard .fmeta{position:relative;padding:16px 18px 18px;display:flex;flex-direction:column;
     justify-content:center;gap:2px;text-align:left;min-height:0}
   .fcard .ftag{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.64rem;
@@ -984,11 +985,12 @@
   .fcard .kk-prod{width:34px;height:34px;min-width:0;margin:0;padding:0;gap:0;font-size:0;
     display:grid;place-items:center;border-radius:999px;
     background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),
-      linear-gradient(158deg,rgba(255,255,255,.2),rgba(255,255,255,.04));
+      linear-gradient(158deg,rgba(118,92,184,.55),rgba(52,36,96,.6));
     background-size:60% 3px,3px 60%,100% 100%;
     background-position:center,center,0 0;background-repeat:no-repeat;
     -webkit-backdrop-filter:blur(18px) saturate(190%);backdrop-filter:blur(18px) saturate(190%);
-    box-shadow:0 6px 16px rgba(18,10,46,.4),0 0 0 1px rgba(255,255,255,.42) inset;
+    box-shadow:0 6px 16px rgba(18,10,46,.4),0 0 0 1.5px rgba(var(--accs),.6) inset,
+               0 1px 0 rgba(255,255,255,.35) inset;
     color:#fff;transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s}
   .fcard .kk-prod::before{content:"";display:none}
   .fcard .kk-prod:hover{transform:scale(1.1)}
@@ -1003,23 +1005,24 @@
     width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;
     display:grid;place-items:center;font-family:'Baloo 2';font-weight:900;font-size:1.7rem;
     line-height:1;color:#fff;
-    background:linear-gradient(158deg,rgba(255,255,255,.22),rgba(255,255,255,.06));
+    background:linear-gradient(158deg,rgba(118,92,184,.55),rgba(52,36,96,.62));
     -webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);
-    box-shadow:0 10px 26px rgba(18,10,46,.45),0 0 0 1px rgba(255,255,255,.4) inset;
+    box-shadow:0 10px 26px rgba(18,10,46,.4),0 0 0 1.5px rgba(240,200,107,.6) inset,
+               0 1px 0 rgba(255,255,255,.35) inset;
     transition:transform .22s cubic-bezier(.34,1.5,.5,1),opacity .25s ease,background .22s}
   .fleet-arrow.prev{left:-16px}
   .fleet-arrow.next{right:-16px}
   .fleet-arrow:hover{transform:translateY(-50%) scale(1.1);
-    background:linear-gradient(158deg,rgba(255,255,255,.34),rgba(255,255,255,.12))}
+    background:linear-gradient(158deg,rgba(140,112,206,.65),rgba(64,46,118,.7))}
   .fleet-arrow:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .fleet-arrow[disabled]{opacity:.28;pointer-events:none}
   /* cisla stranek */
   .fleet-dots{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:26px;flex-wrap:wrap}
   .fleet-dots button{min-width:44px;height:44px;padding:0 12px;border:0;border-radius:999px;cursor:pointer;
     font-family:'Baloo 2';font-weight:900;font-size:1.02rem;color:#fff;
-    background:linear-gradient(158deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
-    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-    box-shadow:0 0 0 1px rgba(255,255,255,.3) inset;
+    background:linear-gradient(158deg,rgba(110,86,174,.5),rgba(52,36,96,.58));
+    -webkit-backdrop-filter:blur(14px) saturate(180%);backdrop-filter:blur(14px) saturate(180%);
+    box-shadow:0 0 0 1.5px rgba(195,171,232,.55) inset,0 1px 0 rgba(255,255,255,.3) inset;
     transition:transform .22s cubic-bezier(.34,1.5,.5,1),color .22s,background .22s,box-shadow .22s}
   .fleet-dots button:hover{transform:translateY(-2px);color:#fff}
   .fleet-dots button[aria-current="true"]{color:#2A1E52;background:#FDF4E2;transform:scale(1.12);
@@ -1095,7 +1098,6 @@
   <div class="wrap">
     <div class="fleet-head">
       <div>
-        <span class="eyebrow">Celá nabídka</span>
         <h2 class="h2">Celá nabídka — hrady i v akci</h2>
         <p class="sub">26 atrakcí a reálné záběry z akcí. Vyberte si a my přivezeme, postavíme a pohlídáme.</p>
       </div>
