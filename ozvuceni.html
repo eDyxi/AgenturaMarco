@@ -822,7 +822,7 @@
   .baleni.in .bstep:nth-child(2){transition-delay:.15s}
   .baleni.in .bstep:nth-child(3){transition-delay:.3s}
   /* ---- gallery ---- */
-  .page-cta{text-align:center;padding:44px 0 96px}
+  .page-cta{text-align:center;padding:34px 0 96px}
   .page-cta .h2{font-weight:900;font-size:clamp(2.1rem,5vw,3.1rem);color:#fff;transform:skew(-4deg);
     -webkit-text-stroke:2.2px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 14px rgba(255,210,63,.6),0 0 30px rgba(255,107,122,.32)}
@@ -946,7 +946,7 @@
     text-shadow:0 0 14px rgba(var(--accs),.8),0 2px 5px rgba(12,7,34,.6)}
   /* cena v kolecku */
   .pprice{position:relative;display:grid;place-items:center;gap:0;margin-top:16px;
-    width:132px;height:132px;border-radius:50%;
+    width:138px;height:138px;border-radius:50%;padding:0 8px;text-align:center;
     background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
     box-shadow:0 0 22px rgba(var(--accs),.35),0 8px 20px rgba(12,7,34,.4)}
@@ -961,10 +961,12 @@
     filter:drop-shadow(0 0 7px rgba(var(--accs),.85));
     animation:mcSpin 4.5s linear infinite}
   .pkgx:hover .pprice::after{animation-duration:1.8s}
-  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.5rem;line-height:1;color:rgb(var(--accs));
+  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.42rem;line-height:1.05;
+    color:rgb(var(--accs));white-space:nowrap;
     -webkit-text-stroke:1px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 0 16px rgba(var(--accs),.8)}
-  .pprice span{font-family:'Baloo 2';font-weight:800;font-size:.76rem;color:rgba(255,255,255,.8);margin-top:3px}
+  .pprice span{font-family:'Baloo 2';font-weight:800;font-size:.74rem;line-height:1;
+    color:rgba(255,255,255,.82);margin-top:5px;white-space:nowrap}
   .pkgx ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;
     align-items:center;width:100%}
   .pkgx li{position:relative;padding-left:24px;font-size:.85rem;font-weight:700;line-height:1.4;
@@ -983,7 +985,7 @@
     box-shadow:0 0 0 3px rgba(255,255,255,.4),0 0 20px rgba(127,227,178,.7),0 6px 16px rgba(12,7,34,.45)}
   @media(max-width:700px){.pkgx-row{grid-template-columns:minmax(0,1fr);gap:34px 0;margin-top:46px}
     .pkgx{border-radius:96px;padding:40px 18px 30px;max-width:380px}
-    .pkgx h3{font-size:1.12rem}.pprice{width:118px;height:118px}.pprice b{font-size:1.34rem}}
+    .pkgx h3{font-size:1.12rem}.pprice{width:126px;height:126px}.pprice b{font-size:1.3rem}}
   @media(prefers-reduced-motion:reduce){.pkgx,.pkgx.in{opacity:1;transform:none;transition:none}
     .pkgx:hover{transform:none}.pkgx::after,.pkgx::before,.pbadge{animation:none}
     .pkgx .kk-prod:hover{transform:none}}
@@ -1181,7 +1183,7 @@
   </div>
 </section>
 
-<section class="block bsell-block" style="padding:108px 0 64px">
+<section class="block bsell-block" style="padding:70px 0 64px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Balíčky</span>
@@ -1213,7 +1215,7 @@
   </div>
 </section>
 
-<section class="block gal-block" style="padding-bottom:64px">
+<section class="block gal-block" style="padding-bottom:24px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Galerie</span>
@@ -1237,6 +1239,9 @@
       <a href="assets/ozvuceni/ozgal-14.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-14.webp" alt="DJ v akci na dětském dni"></a>
       <a href="assets/ozvuceni/ozgal-15.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-15.webp" alt="Reproduktor na venkovní scéně"></a>
       <a href="assets/ozvuceni/ozgal-16.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-16.webp" alt="Zpěvačka v barevném osvětlení"></a>
+    </div>
+      <button class="gal-arrow prev" type="button" data-dir="-1" aria-label="Posunout doleva">‹</button>
+      <button class="gal-arrow next" type="button" data-dir="1" aria-label="Posunout doprava">›</button>
     </div>
     <p class="fleet-hint">← posouvej prstem →</p>
   </div>
@@ -1293,8 +1298,6 @@
       <a href="index.html">Domů</a><a href="index.html#o-nas">O nás</a><a href="index.html#sluzby">Služby</a>
       <a href="index.html#bestsellery">Bestsellery</a><a href="index.html#reference">Recenze</a><a href="index.html#kontakt">Kontakt</a>
     </div>
-    <button class="gal-arrow prev" type="button" data-dir="-1" aria-label="Posunout doleva">‹</button>
-    <button class="gal-arrow next" type="button" data-dir="1" aria-label="Posunout doprava">›</button>
     </div>
     <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
   </div>
