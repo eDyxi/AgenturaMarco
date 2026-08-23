@@ -945,9 +945,9 @@
     -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;max-width:15ch;
     text-shadow:0 0 14px rgba(var(--accs),.8),0 2px 5px rgba(12,7,34,.6)}
   /* cena v kolecku */
-  .pprice{position:relative;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;
-    gap:5px;margin-top:16px;
-    width:138px;height:138px;border-radius:50%;padding:0 8px;text-align:center;
+  .pprice{position:relative;display:flex;flex-wrap:wrap;align-items:center;align-content:center;
+    justify-content:center;gap:5px;line-height:1;margin-top:16px;
+    width:138px;height:138px;border-radius:50%;padding:8px;text-align:center;box-sizing:border-box;
     background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
     box-shadow:0 0 22px rgba(var(--accs),.35),0 8px 20px rgba(12,7,34,.4)}
@@ -962,7 +962,7 @@
     filter:drop-shadow(0 0 7px rgba(var(--accs),.85));
     animation:mcSpin 4.5s linear infinite}
   .pkgx:hover .pprice::after{animation-duration:1.8s}
-  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.42rem;line-height:1.05;
+  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.42rem;line-height:1;display:block;
     color:rgb(var(--accs));white-space:nowrap;
     -webkit-text-stroke:1px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 0 16px rgba(var(--accs),.8)}
@@ -1204,20 +1204,6 @@
 </section>
 
 
-<section class="block facts-block">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Praktické info</span>
-      <h2 class="h2">Rychlá fakta k ozvučení</h2>
-    </div>
-    <div class="facts">
-      <div class="fitem"><span class="flab">Dojezd</span><span class="fval">Celá ČR</span><span class="fnote">Přijedeme kamkoliv — vzdálenost domluvíme předem.</span></div>
-      <div class="fitem"><span class="flab">Program</span><span class="fval">DJ i moderátor</span><span class="fnote">Hudba na míru akci, moderování programu a světla.</span></div>
-      <div class="fitem"><span class="flab">Storno</span><span class="fval">Do 24 h</span><span class="fnote">Zrušit rezervaci můžete až 24 hodin před akcí.</span></div>
-    </div>
-  </div>
-</section>
-
 <section class="block gal-block" style="padding-bottom:44px">
   <div class="wrap">
     <div class="center">
@@ -1244,6 +1230,20 @@
       <button class="gal-arrow next" type="button" data-dir="1" aria-label="Posunout doprava">›</button>
     </div>
     <p class="fleet-hint">← posouvej prstem →</p>
+  </div>
+</section>
+
+<section class="block facts-block">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Praktické info</span>
+      <h2 class="h2">Rychlá fakta k ozvučení</h2>
+    </div>
+    <div class="facts">
+      <div class="fitem"><span class="flab">Dojezd</span><span class="fval">Celá ČR</span><span class="fnote">Přijedeme kamkoliv — vzdálenost domluvíme předem.</span></div>
+      <div class="fitem"><span class="flab">Program</span><span class="fval">DJ i moderátor</span><span class="fnote">Hudba na míru akci, moderování programu a světla.</span></div>
+      <div class="fitem"><span class="flab">Storno</span><span class="fval">Do 24 h</span><span class="fnote">Zrušit rezervaci můžete až 24 hodin před akcí.</span></div>
+    </div>
   </div>
 </section>
 
