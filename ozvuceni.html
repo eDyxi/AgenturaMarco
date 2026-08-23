@@ -822,7 +822,7 @@
   .baleni.in .bstep:nth-child(2){transition-delay:.15s}
   .baleni.in .bstep:nth-child(3){transition-delay:.3s}
   /* ---- gallery ---- */
-  .page-cta{text-align:center;padding:34px 0 96px}
+  .page-cta{text-align:center;padding:48px 0 96px}
   .page-cta .h2{font-weight:900;font-size:clamp(2.1rem,5vw,3.1rem);color:#fff;transform:skew(-4deg);
     -webkit-text-stroke:2.2px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 14px rgba(255,210,63,.6),0 0 30px rgba(255,107,122,.32)}
@@ -945,7 +945,8 @@
     -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;max-width:15ch;
     text-shadow:0 0 14px rgba(var(--accs),.8),0 2px 5px rgba(12,7,34,.6)}
   /* cena v kolecku */
-  .pprice{position:relative;display:grid;place-items:center;gap:0;margin-top:16px;
+  .pprice{position:relative;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;
+    gap:5px;margin-top:16px;
     width:138px;height:138px;border-radius:50%;padding:0 8px;text-align:center;
     background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
@@ -965,8 +966,10 @@
     color:rgb(var(--accs));white-space:nowrap;
     -webkit-text-stroke:1px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 0 16px rgba(var(--accs),.8)}
-  .pprice span{font-family:'Baloo 2';font-weight:800;font-size:.74rem;line-height:1;
-    color:rgba(255,255,255,.82);margin-top:5px;white-space:nowrap}
+  .pprice span{font-family:'Baloo 2';font-weight:800;font-size:.76rem;line-height:1;
+    color:rgba(255,255,255,.82);white-space:nowrap}
+  .pkgx.p1 .pprice b{font-size:1.2rem}
+  .pkgx.p1 .pprice span{font-size:.72rem}
   .pkgx ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;
     align-items:center;width:100%}
   .pkgx li{position:relative;padding-left:24px;font-size:.85rem;font-weight:700;line-height:1.4;
@@ -1215,7 +1218,7 @@
   </div>
 </section>
 
-<section class="block gal-block" style="padding-bottom:24px">
+<section class="block gal-block" style="padding-bottom:44px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Galerie</span>
@@ -1223,11 +1226,8 @@
     </div>
     <div class="gal-wrap">
     <div class="gal-track" id="galTrack" tabindex="0" aria-label="Galerie — posouvejte do stran">
-      <a href="assets/ozvuceni/ozgal-01.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-01.webp" alt="Saxofonista při vystoupení"></a>
       <a href="assets/ozvuceni/ozgal-02.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-02.webp" alt="Studené fontány při prvním tanci"></a>
-      <a href="assets/ozvuceni/ozgal-03.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-03.webp" alt="Nasvícení sálu na svatbě"></a>
       <a href="assets/ozvuceni/ozgal-04.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-04.webp" alt="DJ pult připravený k večeru"></a>
-      <a href="assets/ozvuceni/ozgal-05.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-05.webp" alt="DJ ovladač zblízka"></a>
       <a href="assets/ozvuceni/ozgal-06.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-06.webp" alt="Mlha na parketu při prvním tanci"></a>
       <a href="assets/ozvuceni/ozgal-07.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-07.webp" alt="Mixážní pult a světla"></a>
       <a href="assets/ozvuceni/ozgal-08.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/ozvuceni/ozgal-08.webp" alt="DJ set rozsvícený na párty"></a>
@@ -1249,7 +1249,7 @@
 
 <section class="page-cta">
   <div class="wrap">
-    <span class="eyebrow">Rezervace</span>
+    <span class="eyebrow">Poptávka</span>
     <h2 class="h2">Chcete pořádný zvuk na vaší akci?</h2>
     <p class="sub" style="margin:10px auto 26px;max-width:520px">Napište datum, místo a typ akce — navrhneme sestavu a ozveme se s cenou.</p>
     <a class="btn" href="index.html#kontakt">🎉 Nezávazná poptávka</a>
