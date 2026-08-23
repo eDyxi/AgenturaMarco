@@ -558,8 +558,25 @@
   .gal-track a.in{opacity:1}
   .fleet-hint{text-align:center;font-family:'Caveat',cursive;font-size:1.35rem;color:var(--navy-soft);margin-top:6px}
   @media (min-width:1024px){.fleet-hint{display:none}}
+  .gal-wrap{position:relative}
+  .gal-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;
+    font-family:'Baloo 2';font-weight:900;font-size:1.7rem;line-height:1;color:#fff;
+    text-shadow:0 0 12px rgba(240,200,107,.8);
+    background:linear-gradient(158deg,rgba(118,92,184,.55),rgba(52,36,96,.62));
+    -webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);
+    box-shadow:0 10px 26px rgba(18,10,46,.4),0 0 0 1.5px rgba(240,200,107,.6) inset,
+               0 1px 0 rgba(255,255,255,.35) inset;
+    transition:transform .22s cubic-bezier(.34,1.5,.5,1),background .22s}
+  .gal-arrow.prev{left:-10px}
+  .gal-arrow.next{right:-10px}
+  .gal-arrow:hover{transform:translateY(-50%) scale(1.1);
+    background:linear-gradient(158deg,rgba(140,112,206,.65),rgba(64,46,118,.7))}
+  .gal-arrow:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  @media(max-width:700px){.gal-arrow{width:44px;height:44px;font-size:1.4rem}
+    .gal-arrow.prev{left:-4px}.gal-arrow.next{right:-4px}}
   .mask-grid.clipped .mask-card:nth-child(n+11){display:none}
-  .mask-more{display:flex;justify-content:center;margin-top:34px}
+  .mask-more{display:flex;justify-content:center;margin:58px 0 18px}
   .mask-more button{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;
     font-family:'Baloo 2';font-weight:900;font-size:.92rem;color:#2A1E52;background:#FDF4E2;
     padding:13px 26px;border-radius:999px;
@@ -1006,6 +1023,7 @@
       <span class="eyebrow">Galerie</span>
       <h2 class="h2">Maskoti v akci</h2>
     </div>
+    <div class="gal-wrap">
     <div class="gal-track" id="galTrack" tabindex="0" aria-label="Galerie — posouvejte do stran">
       <a href="assets/maskoti/gal-01.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-01.webp" alt="Maskoti tančí s dětmi na letní akci"></a>
       <a href="assets/maskoti/gal-02.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-02.webp" alt="Sonic obklopený dětmi na dětském dni"></a>
@@ -1019,6 +1037,23 @@
       <a href="assets/maskoti/gal-10.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-10.webp" alt="Máša a Medvěd na dětské oslavě"></a>
       <a href="assets/maskoti/gal-11.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-11.webp" alt="Hulk pózuje dětem na náměstí"></a>
       <a href="assets/maskoti/gal-12.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-12.webp" alt="Bing rozdává radost během průvodu"></a>
+      <a href="assets/maskoti/gal-13.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-13.webp" alt="Sonic v davu dětí"></a>
+      <a href="assets/maskoti/gal-14.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-14.webp" alt="Chase pozdravuje na akci"></a>
+      <a href="assets/maskoti/gal-15.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-15.webp" alt="Sonic zblízka v ulici"></a>
+      <a href="assets/maskoti/gal-16.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-16.webp" alt="Medvídek Pú mává dětem"></a>
+      <a href="assets/maskoti/gal-17.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-17.webp" alt="Woody na náměstí"></a>
+      <a href="assets/maskoti/gal-18.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-18.webp" alt="Goofy mezi dětmi"></a>
+      <a href="assets/maskoti/gal-19.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-19.webp" alt="Bing na dětské akci"></a>
+      <a href="assets/maskoti/gal-20.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-20.webp" alt="Gorila na náměstí"></a>
+      <a href="assets/maskoti/gal-21.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-21.webp" alt="Hulk pózuje dětem"></a>
+      <a href="assets/maskoti/gal-22.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-22.webp" alt="Donatello v davu"></a>
+      <a href="assets/maskoti/gal-23.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-23.webp" alt="Gorila a Donatello s dětmi"></a>
+      <a href="assets/maskoti/gal-24.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-24.webp" alt="Donatello se fotí s dětmi"></a>
+      <a href="assets/maskoti/gal-25.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-25.webp" alt="Olaf v obchodním centru"></a>
+      <a href="assets/maskoti/gal-26.webp"><img loading="lazy" decoding="async" width="880" height="660" src="assets/maskoti/gal-26.webp" alt="Olaf s dětmi na akci"></a>
+    </div>
+      <button class="gal-arrow prev" type="button" data-dir="-1" aria-label="Posunout doleva">‹</button>
+      <button class="gal-arrow next" type="button" data-dir="1" aria-label="Posunout doprava">›</button>
     </div>
     <p class="fleet-hint">← posouvej prstem →</p>
   </div>
@@ -1054,6 +1089,13 @@
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.2});
   document.querySelectorAll('.mcard,.hrow,.baleni,.gal-track a,.mask-card,.pkgx,.fitem').forEach(function(el,i){el.style.transitionDelay=(i%4)*0.07+'s';io.observe(el)});
+
+  var gt=document.getElementById('galTrack');
+  if(gt){document.querySelectorAll('.gal-arrow').forEach(function(b){
+    b.addEventListener('click',function(){
+      gt.scrollBy({left:356*(+b.dataset.dir),
+        behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    });});}
 
   var mg=document.getElementById('maskGrid'), mb=document.getElementById('maskMore');
   if(mg&&mb){mb.addEventListener('click',function(){
