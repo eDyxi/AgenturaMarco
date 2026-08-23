@@ -866,15 +866,16 @@
   }
 
 
-  /* ---- balicky ozvuceni: pohadkovy utrzek ---- */
-  .pkgx-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:34px 26px;
-    margin-top:64px;align-items:stretch}
-  .pkgx{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
-    display:flex;flex-direction:column;padding:26px 24px 24px 40px;border:0;
-    border-radius:10px 26px 26px 10px;
-    background:linear-gradient(158deg,rgba(122,97,188,.74),rgba(42,29,84,.9));
+  /* ---- balicky ozvuceni: obloukove karty ---- */
+  .pkgx-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:38px 24px;
+    margin-top:66px;align-items:stretch;justify-items:center}
+  .pkgx{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;width:100%;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:46px 22px 24px;border:0;
+    border-radius:120px 120px 22px 22px;
+    background:linear-gradient(178deg,rgba(134,108,200,.78) 0%,rgba(48,33,94,.94) 78%);
     -webkit-backdrop-filter:blur(22px) saturate(190%);backdrop-filter:blur(22px) saturate(190%);
-    box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 0 26px rgba(var(--accs),.24);
+    box-shadow:0 1px 0 rgba(255,255,255,.42) inset,0 0 26px rgba(var(--accs),.24);
     opacity:0;transform:translateY(20px);
     transition:opacity .45s ease,transform .34s cubic-bezier(.3,.9,.4,1),box-shadow .3s ease,background .3s ease}
   .pkgx.p2{--acc:#C3ABE8;--accs:195,171,232}
@@ -882,16 +883,20 @@
   .pkgx.p4{--acc:#F0C86B;--accs:240,200,107}
   .pkgx.p5{--acc:#C3ABE8;--accs:195,171,232}
   .pkgx.in{opacity:1;transform:none}
-  .pkgx:hover{transform:translateY(-7px);
-    background:linear-gradient(158deg,rgba(142,115,208,.82),rgba(52,36,100,.95));
-    box-shadow:0 0 40px rgba(var(--accs),.5),0 1px 0 rgba(255,255,255,.5) inset}
-  /* utrzeny lem s perforaci */
-  .pkgx::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;z-index:3;
-    background:
-      radial-gradient(circle at 0 12px,transparent 5px,rgb(var(--accs)) 5.5px) 0 0/14px 26px repeat-y;
-    border-radius:10px 0 0 10px;
-    filter:drop-shadow(0 0 10px rgba(var(--accs),.85))}
-  /* obihajici kontura */
+  .pkgx:hover{transform:translateY(-8px);
+    background:linear-gradient(178deg,rgba(152,124,218,.84) 0%,rgba(58,40,110,.96) 78%);
+    box-shadow:0 0 42px rgba(var(--accs),.5),0 1px 0 rgba(255,255,255,.5) inset}
+  /* svetlo v oblouku */
+  .pkgx::before{content:"";position:absolute;left:8%;right:8%;top:0;height:52%;z-index:0;
+    border-radius:120px 120px 50% 50%;pointer-events:none;
+    background:radial-gradient(70% 78% at 50% 6%,rgba(var(--accs),.42),transparent 70%);
+    animation:bGlow 4.4s ease-in-out infinite;animation-delay:var(--pd,0s)}
+  .pkgx.p2::before{--pd:.9s}
+  .pkgx.p3::before{--pd:1.8s}
+  .pkgx.p4::before{--pd:2.7s}
+  .pkgx.p5::before{--pd:3.6s}
+  @keyframes bGlow{0%,100%{opacity:.55}50%{opacity:1}}
+  /* obihajici kontura kopiruje oblouk */
   .pkgx::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:3px;
     background:conic-gradient(from var(--mcAng),
       rgba(var(--accs),.45) 0deg,rgba(var(--accs),.45) 190deg,
@@ -906,16 +911,12 @@
   .pkgx.p4::after{animation-delay:-3.9s}
   .pkgx.p5::after{animation-delay:-5.2s}
   .pkgx:hover::after{animation-duration:2.2s}
-  .pbody{position:relative;z-index:2;display:flex;flex-direction:column;flex:1}
-  /* neonova pilulka mimo kartu */
-  .pbadge{position:absolute;top:-16px;left:50%;transform:translateX(-50%) rotate(-2deg);z-index:9;
+  .pbody{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;flex:1;width:100%}
+  /* neonova cedule nad obloukem */
+  .pbadge{position:absolute;top:-17px;left:50%;transform:translateX(-50%) rotate(-2deg);z-index:9;
     white-space:nowrap;font-family:'Baloo 2';font-weight:900;font-size:.7rem;letter-spacing:.16em;
-    text-transform:uppercase;color:rgb(var(--accs));
-    padding:9px 20px;border-radius:999px;
-    background:linear-gradient(158deg,rgba(52,36,100,.92),rgba(30,20,64,.94));
-    box-shadow:0 0 0 2px rgba(var(--accs),.9),
-               0 0 14px rgba(var(--accs),.75),0 0 34px rgba(var(--accs),.45),
-               0 6px 16px rgba(12,7,34,.5);
+    text-transform:uppercase;color:rgb(var(--accs));padding:9px 20px;border-radius:999px;
+    background:linear-gradient(158deg,rgba(52,36,100,.94),rgba(28,19,62,.96));
     text-shadow:0 0 10px rgba(var(--accs),.95),0 0 24px rgba(var(--accs),.6);
     animation:neonBadge 2.6s ease-in-out infinite}
   @keyframes neonBadge{
@@ -923,38 +924,40 @@
       0 0 28px rgba(var(--accs),.32),0 6px 16px rgba(12,7,34,.5)}
     50%{box-shadow:0 0 0 2px rgba(var(--accs),1),0 0 20px rgba(var(--accs),.95),
       0 0 48px rgba(var(--accs),.6),0 6px 16px rgba(12,7,34,.5)}}
-  .pkgx h3{font-family:'Baloo 2';font-weight:900;font-size:1.26rem;line-height:1.2;color:#fff;
-    -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;
+  .pkgx h3{font-family:'Baloo 2';font-weight:900;font-size:1.2rem;line-height:1.22;color:#fff;
+    -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;max-width:15ch;
     text-shadow:0 0 14px rgba(var(--accs),.8),0 2px 5px rgba(12,7,34,.6)}
-  .pprice{display:flex;align-items:baseline;gap:6px;margin-top:10px;flex-wrap:wrap;
-    padding-bottom:14px;border-bottom:2.5px dashed rgba(var(--accs),.5)}
-  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.8rem;color:rgb(var(--accs));
+  /* cena v kolecku */
+  .pprice{display:grid;place-items:center;gap:0;margin-top:16px;width:132px;height:132px;border-radius:50%;
+    background:linear-gradient(158deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    box-shadow:0 0 0 2.5px rgba(var(--accs),.75) inset,0 0 26px rgba(var(--accs),.4),
+               0 8px 20px rgba(12,7,34,.4)}
+  .pprice b{font-family:'Baloo 2';font-weight:900;font-size:1.5rem;line-height:1;color:rgb(var(--accs));
     -webkit-text-stroke:1px #0B0F1C;paint-order:stroke fill;
-    text-shadow:0 0 16px rgba(var(--accs),.75),0 2px 5px rgba(12,7,34,.6)}
-  .pprice span{font-family:'Baloo 2';font-weight:800;font-size:.84rem;color:rgba(255,255,255,.78)}
-  .pkgx ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-  .pkgx li{position:relative;padding-left:26px;font-size:.87rem;font-weight:700;line-height:1.4;
-    color:rgba(255,255,255,.92);text-shadow:0 1px 4px rgba(12,7,34,.5)}
+    text-shadow:0 0 16px rgba(var(--accs),.8)}
+  .pprice span{font-family:'Baloo 2';font-weight:800;font-size:.76rem;color:rgba(255,255,255,.8);margin-top:3px}
+  .pkgx ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;
+    align-items:center;width:100%}
+  .pkgx li{position:relative;padding-left:24px;font-size:.85rem;font-weight:700;line-height:1.4;
+    color:rgba(255,255,255,.92);text-shadow:0 1px 4px rgba(12,7,34,.5);text-align:left;max-width:24ch}
   .pkgx li::before{content:"\2726";position:absolute;left:0;top:-.06em;font-size:.95rem;
     color:rgb(var(--accs));text-shadow:0 0 10px rgba(var(--accs),.95)}
-  .pkgx [data-kk-slot]{margin-top:auto;padding-top:18px;display:flex}
-  .pkgx .kk-prod{width:auto;height:auto;min-width:0;margin:0;padding:11px 20px;gap:8px;
+  .pkgx [data-kk-slot]{margin-top:auto;padding-top:20px;display:flex}
+  .pkgx .kk-prod{width:auto;height:auto;min-width:0;margin:0;padding:11px 22px;gap:8px;
     font-family:'Baloo 2';font-weight:900;font-size:.84rem;line-height:1;border-radius:999px;
     color:#2A1E52;background:rgb(var(--accs));
-    box-shadow:0 0 0 3px rgba(255,255,255,.3),0 0 18px rgba(var(--accs),.6),
-               0 6px 16px rgba(12,7,34,.45);
+    box-shadow:0 0 0 3px rgba(255,255,255,.3),0 0 18px rgba(var(--accs),.6),0 6px 16px rgba(12,7,34,.45);
     transition:transform .22s cubic-bezier(.34,1.5,.5,1),box-shadow .22s}
   .pkgx .kk-prod:hover{transform:translateY(-3px) scale(1.03);
-    box-shadow:0 0 0 3px rgba(255,255,255,.45),0 0 28px rgba(var(--accs),.9),
-               0 10px 22px rgba(12,7,34,.5)}
+    box-shadow:0 0 0 3px rgba(255,255,255,.45),0 0 28px rgba(var(--accs),.9),0 10px 22px rgba(12,7,34,.5)}
   .pkgx .kk-prod.on{color:#0D3F28;background:#7FE3B2;
-    box-shadow:0 0 0 3px rgba(255,255,255,.4),0 0 20px rgba(127,227,178,.7),
-               0 6px 16px rgba(12,7,34,.45)}
-  @media(max-width:700px){.pkgx-row{grid-template-columns:minmax(0,1fr);gap:30px 0;margin-top:44px}
-    .pkgx{padding:24px 20px 20px 34px}
-    .pkgx h3{font-size:1.16rem}.pprice b{font-size:1.6rem}}
+    box-shadow:0 0 0 3px rgba(255,255,255,.4),0 0 20px rgba(127,227,178,.7),0 6px 16px rgba(12,7,34,.45)}
+  @media(max-width:700px){.pkgx-row{grid-template-columns:minmax(0,1fr);gap:34px 0;margin-top:46px}
+    .pkgx{border-radius:96px 96px 20px 20px;padding:40px 18px 20px;max-width:380px}
+    .pkgx h3{font-size:1.12rem}.pprice{width:118px;height:118px}.pprice b{font-size:1.34rem}}
   @media(prefers-reduced-motion:reduce){.pkgx,.pkgx.in{opacity:1;transform:none;transition:none}
-    .pkgx:hover{transform:none}.pkgx::after,.pbadge{animation:none}
+    .pkgx:hover{transform:none}.pkgx::after,.pkgx::before,.pbadge{animation:none}
     .pkgx .kk-prod:hover{transform:none}}
   /* ---- flotila hradu: sklenene karty se strankovanim ---- */
   .fleet-head{text-align:center}
