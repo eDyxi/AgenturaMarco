@@ -194,7 +194,7 @@
     -webkit-text-stroke:.5px #1B2438;paint-order:stroke fill}
   .sub{font-size:1.12rem;line-height:1.6;color:#fff;font-weight:700;max-width:600px;
     -webkit-text-stroke:.75px #000;paint-order:stroke fill;text-shadow:none}
-  .facts-block .sub,.gal-block .sub,.page-cta .sub,.baleni .sub{color:#fff;font-weight:800;
+  .facts-block .sub,.gal-block .sub,.page-cta .sub,.baleni .sub,.fkblock .sub{color:#fff;font-weight:800;
     font-size:1.2rem;line-height:1.66;-webkit-text-stroke:1.8px #000;paint-order:stroke fill;
     text-shadow:none}
   .center{text-align:center}
@@ -445,7 +445,7 @@
     text-shadow:0 1px 0 rgba(255,255,255,.85),0 0 14px rgba(255,255,255,.5);
     animation:heroPop .7s .16s cubic-bezier(.22,.9,.3,1) both}
   @keyframes heroPop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
-  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:76px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
+  .price-hero{display:flex;gap:22px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:96px;animation:heroPop .7s .24s cubic-bezier(.22,.9,.3,1) both}
   .pchip{position:relative;font-family:'Baloo 2',sans-serif;font-weight:800;padding:42px 92px 44px;text-align:center;line-height:1.15;min-width:348px;
     clip-path:polygon(50% 0%,57% 12%,68% 4%,70% 17%,84% 12%,81% 26%,96% 26%,88% 38%,100% 46%,89% 53%,97% 65%,84% 66%,88% 80%,74% 76%,73% 91%,62% 83%,50% 94%,42% 82%,29% 90%,29% 76%,15% 79%,20% 66%,5% 63%,14% 52%,0% 45%,12% 37%,4% 25%,19% 26%,15% 12%,29% 16%,32% 3%,42% 11%);
     transform:rotate(-2deg);animation:boomPop 2.1s ease-in-out infinite}
@@ -476,11 +476,12 @@
   @media(max-width:700px){.page-hero{padding:120px 0 0}.pxb i:nth-child(5),.pxb i:nth-child(6){display:none}}
   @media(prefers-reduced-motion:reduce){.page-hero .eyebrow,.page-hero .h1,.page-hero .sub{animation:none}.pxb i{animation:none}.comic-burst,.comic-lines,.comic-note,.comic-bolt,.comic-bubble,.comic-boom{animation:none;opacity:1}.comic-note{filter:drop-shadow(0 0 6px rgba(150,96,235,.55))}.comic-spark{animation:none;opacity:.85}.comic-lines{opacity:.9}.hero-fig{animation:none;opacity:1}.hero-fig .cape{animation:none}.fig-rays{animation:none}.hero-fig .bounce{animation:none}}
   @media(prefers-reduced-motion:reduce){.hrow::after,.gal-track a::after,.mask-card::after{animation:none;opacity:.3}.hrow::before{animation:none}.hbody .tag{animation:none}.fitem:hover,.hrow:hover,.mask-card:hover{transform:none;animation:none}.hrow,.gal-track a,.mask-card,.pkgx,.fitem{opacity:1!important;transition:none}}
-.fleet .h2,.facts-block .h2,.baleni .h2,.gal-block .h2{font-weight:900;font-size:clamp(1.85rem,4.2vw,2.6rem);
+.fleet .h2,.facts-block .h2,.baleni .h2,.gal-block .h2,.fkblock .h2{font-weight:900;font-size:clamp(1.85rem,4.2vw,2.6rem);
     color:#fff;-webkit-text-stroke:2px #0B0F1C;paint-order:stroke fill;
     text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 12px rgba(255,210,63,.5),0 0 26px rgba(255,210,63,.25)}
   .fleet .h2::after,.facts-block .h2::after,.baleni .h2::after,.gal-block .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
-  .facts-block{padding-top:34px;margin-top:0}
+  section.block.facts-block{padding-top:104px}
+  .facts-block{margin-top:0}
   section.block.gal-block.picks-block{padding-top:86px}
   @media(max-width:700px){section.block.gal-block.picks-block{padding-top:62px}}
   .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
@@ -837,10 +838,21 @@
   @media (min-width:1024px){.fleet-hint{display:none}}
   @media (prefers-reduced-motion:reduce){.fcard,.fleet-nav button{transition:none}.fcard:hover{transform:none}}
   /* ---- video baleni: emphasized ---- */
-  .baleni{background:linear-gradient(150deg,var(--navy) 0%,#24467a 100%);color:#fff;position:relative;overflow:hidden;padding:84px 0}
+  section.block.baleni{padding:64px 0 56px}
+  .baleni{color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(150deg,#6E56AE 0%,#43317A 100%)}
+  .baleni::after{content:"";position:absolute;top:-30%;left:-20%;width:52%;aspect-ratio:1;z-index:0;
+    pointer-events:none;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.32) 0%,rgba(255,255,255,.16) 26%,
+      rgba(255,255,255,.06) 46%,transparent 68%);
+    filter:blur(26px);animation:heliBeam 17s ease-in-out infinite alternate}
+  @keyframes heliBeam{0%{transform:translate(0,0) scale(1)}28%{transform:translate(95%,52%) scale(1.16)}
+    56%{transform:translate(178%,14%) scale(.92)}80%{transform:translate(112%,74%) scale(1.1)}
+    100%{transform:translate(16%,26%) scale(1)}}
+  .baleni>*{position:relative;z-index:1}
   .baleni .h2{color:#fff}
   .baleni .sub{color:rgba(255,255,255,.75)}
-  .baleni-frame{position:relative;max-width:760px;margin:44px auto 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+  .baleni-frame{position:relative;max-width:760px;margin:36px auto 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45)}
   .baleni-frame::before{content:"";position:absolute;inset:-3px;border-radius:inherit;border:3px dashed var(--gold);animation:dashspin 14s linear infinite;pointer-events:none;z-index:3}
   @keyframes dashspin{to{transform:rotate(360deg)}}
   .baleni-frame::before{inset:-40%;border:none;background:conic-gradient(var(--gold) 0 8deg,transparent 8deg 22deg);opacity:.0}
@@ -907,7 +919,7 @@
     opacity:0;transform:translateY(22px);
     transition:opacity .5s ease,transform .4s cubic-bezier(.3,.9,.4,1)}
   .fkpack.in{opacity:1;transform:none}
-  .fkpack::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:5px;
+  .fkpack::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:8px;
     background:conic-gradient(from var(--mcAng),
       rgba(var(--accs),.45) 0deg,rgba(var(--accs),.45) 186deg,
       rgb(var(--accs)) 248deg,rgba(255,255,255,.98) 296deg,rgb(var(--accs)) 324deg,
@@ -915,7 +927,8 @@
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;pointer-events:none;z-index:7;
-    filter:drop-shadow(0 0 7px rgba(var(--accs),.75));animation:mcSpin 7s linear infinite}
+    filter:drop-shadow(0 0 9px rgba(var(--accs),.85)) drop-shadow(0 0 20px rgba(var(--accs),.4));
+    animation:mcSpin 7s linear infinite}
   /* levy sloupec: posuvne fotky */
   .fkshots{position:relative;z-index:1;min-height:100%;background:rgba(12,7,34,.55);
     border-right:1.5px solid rgba(var(--accs),.45);overflow:hidden}
@@ -1032,7 +1045,7 @@
   </div>
 </section>
 
-<section class="block" style="padding:70px 0 52px">
+<section class="block fkblock" style="padding:104px 0 52px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Balíček</span>
@@ -1089,7 +1102,6 @@
         <source src="assets/fotokoutek/fotokoutek.mp4" type="video/mp4">
       </video>
     </div>
-    <p class="vid-soon">Video z akce brzy doplníme ✦</p>
   </div>
 </section>
 
