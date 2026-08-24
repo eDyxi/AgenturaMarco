@@ -858,14 +858,14 @@
   .baleni-frame::before{content:"";position:absolute;inset:-5px;border-radius:calc(var(--radius-lg) + 5px);
     padding:5px;pointer-events:none;z-index:5;
     background:conic-gradient(from var(--mcAng),
-      rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,
-      rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,
-      rgba(255,255,255,.2) 358deg,rgba(255,255,255,0) 360deg);
+      rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 244deg,rgba(255,255,255,.1) 272deg,
+      rgba(255,255,255,.26) 302deg,rgba(255,255,255,.4) 324deg,rgba(255,255,255,.34) 340deg,
+      rgba(255,255,255,.14) 352deg,rgba(255,255,255,0) 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.5));
-    animation:mcSpin 7s linear infinite}
+    filter:drop-shadow(0 0 5px rgba(255,255,255,.3));
+    animation:mcSpin 9s linear infinite}
   @keyframes dashspin{to{transform:rotate(360deg)}}
   .baleni-frame::before{inset:-40%;border:none;background:conic-gradient(var(--gold) 0 8deg,transparent 8deg 22deg);opacity:.0}
   .baleni-frame video{display:block;width:100%;border-radius:calc(var(--radius-lg) - 5px);
@@ -946,35 +946,36 @@
     background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
     border:8px solid var(--acc);
     box-shadow:0 0 0 2px rgba(24,14,56,.5),0 1px 0 rgba(255,255,255,.22) inset,
-               0 0 34px rgba(var(--accs),.4),0 26px 54px rgba(20,12,52,.4);
+               0 0 26px rgba(var(--accs),.3),0 26px 54px rgba(20,12,52,.4);
     opacity:0;transform:translateY(22px);
     transition:opacity .5s ease,transform .38s cubic-bezier(.3,.9,.4,1),box-shadow .34s ease}
-  .fkpack.in:hover{transform:translateY(-7px);
-    box-shadow:0 0 0 2px rgba(24,14,56,.55),0 1px 0 rgba(255,255,255,.28) inset,
-               0 0 48px rgba(var(--accs),.6),0 34px 66px rgba(20,12,52,.48)}
-  .fkpack.in:hover::after{animation-duration:2.8s}
-  .fkpack.in:hover .fkrail img{transform:scale(1.03)}
+  .fkpack.in:hover{transform:translateY(-4px);
+    box-shadow:0 0 0 2px rgba(24,14,56,.5),0 1px 0 rgba(255,255,255,.24) inset,
+               0 0 38px rgba(var(--accs),.42),0 30px 60px rgba(20,12,52,.44)}
+  .fkpack.in:hover::after{animation-duration:5.5s}
+  .fkpack.in:hover .fkrail img{transform:scale(1.02)}
   .fkrail img{transition:transform .55s cubic-bezier(.22,.9,.3,1)}
   @media(prefers-reduced-motion:reduce){.fkpack.in:hover{transform:none}
     .fkrail img,.fkpack.in:hover .fkrail img{transition:none;transform:none}}
   .fkpack.in{opacity:1;transform:none}
   .fkpack::after{content:"";position:absolute;inset:-8px;border-radius:42px;padding:8px;
     background:conic-gradient(from var(--mcAng),
-      rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,
-      rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,
-      rgba(255,255,255,.2) 358deg,rgba(255,255,255,0) 360deg);
+      rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 244deg,rgba(255,255,255,.1) 272deg,
+      rgba(255,255,255,.26) 302deg,rgba(255,255,255,.4) 324deg,rgba(255,255,255,.34) 340deg,
+      rgba(255,255,255,.14) 352deg,rgba(255,255,255,0) 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;pointer-events:none;z-index:7;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.5));
-    animation:mcSpin 7s linear infinite}
+    filter:drop-shadow(0 0 5px rgba(255,255,255,.3));
+    animation:mcSpin 9s linear infinite}
   /* levy sloupec: posuvne fotky */
   .fkshots{position:relative;z-index:1;min-height:100%;background:rgba(12,7,34,.42);
     border-right:1.5px solid rgba(var(--accs),.45);overflow:hidden;
     border-radius:26px 0 0 26px;clip-path:inset(0 round 26px 0 0 26px);
     -webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0)}
   .fkrail{display:flex;height:100%;transition:transform .55s cubic-bezier(.66,0,.2,1);will-change:transform}
-  .fkrail figure{flex:0 0 100%;min-width:100%;margin:0;display:grid;place-items:center}
+  .fkrail figure{flex:0 0 100%;min-width:100%;margin:0;display:grid;place-items:center;
+    overflow:hidden;transform:translateZ(0)}
   .fkrail img{display:block;width:100%;height:100%;max-height:440px;object-fit:cover}
   .fkarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;
     width:44px;height:44px;border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;
