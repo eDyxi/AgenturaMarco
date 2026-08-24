@@ -857,6 +857,24 @@
   @keyframes dashspin{to{transform:rotate(360deg)}}
   .baleni-frame::before{inset:-40%;border:none;background:conic-gradient(var(--gold) 0 8deg,transparent 8deg 22deg);opacity:.0}
   .baleni-frame video{display:block;width:100%;border-radius:inherit;position:relative;z-index:2}
+  .vplay{position:absolute;inset:0;z-index:4;display:grid;place-items:center;border:0;cursor:pointer;
+    background:rgba(20,12,52,.28);border-radius:inherit;
+    transition:opacity .3s ease,background .3s ease}
+  .vplay span{display:grid;place-items:center;width:88px;height:88px;border-radius:50%;
+    background:linear-gradient(158deg,rgba(255,255,255,.28),rgba(255,255,255,.1));
+    -webkit-backdrop-filter:blur(18px) saturate(190%);backdrop-filter:blur(18px) saturate(190%);
+    box-shadow:0 0 0 2px rgba(240,200,107,.85) inset,0 0 26px rgba(240,200,107,.6),
+               0 10px 26px rgba(12,7,34,.5);
+    transition:transform .25s cubic-bezier(.34,1.5,.5,1)}
+  .vplay span::before{content:"";width:0;height:0;margin-left:7px;
+    border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;
+    filter:drop-shadow(0 0 8px rgba(240,200,107,.8))}
+  .vplay:hover span{transform:scale(1.09)}
+  .vplay:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+  .vplay.hidden{opacity:0;pointer-events:none}
+  @media(max-width:700px){.vplay span{width:70px;height:70px}
+    .vplay span::before{border-left-width:21px;border-top-width:13px;border-bottom-width:13px}}
+  @media(prefers-reduced-motion:reduce){.vplay:hover span{transform:none}}
   .baleni-badge{position:absolute;top:-26px;right:-14px;z-index:4;background:var(--gold);color:var(--navy);font-family:'Baloo 2';font-weight:800;font-size:1rem;padding:12px 22px;border-radius:36px;transform:rotate(7deg);box-shadow:0 10px 26px rgba(0,0,0,.35);animation:badgebob 3s ease-in-out infinite}
   @keyframes badgebob{0%,100%{transform:rotate(7deg) translateY(0)}50%{transform:rotate(5deg) translateY(-7px)}}
   .baleni-steps{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
@@ -912,25 +930,25 @@
   .fkpack{--acc:#F0C86B;--accs:240,200,107;position:relative;isolation:isolate;
     display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
     margin-top:52px;border:0;border-radius:34px;overflow:hidden;
-    background:linear-gradient(158deg,rgba(122,97,188,.74),rgba(42,29,84,.9));
-    -webkit-backdrop-filter:blur(24px) saturate(190%);backdrop-filter:blur(24px) saturate(190%);
-    box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 0 30px rgba(var(--accs),.26),
+    background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%);
+    border:5px solid var(--acc);
+    box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 0 26px rgba(var(--accs),.28),
                0 26px 54px rgba(20,12,52,.4);
     opacity:0;transform:translateY(22px);
     transition:opacity .5s ease,transform .4s cubic-bezier(.3,.9,.4,1)}
   .fkpack.in{opacity:1;transform:none}
-  .fkpack::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:8px;
+  .fkpack::after{content:"";position:absolute;inset:-5px;border-radius:39px;padding:5px;
     background:conic-gradient(from var(--mcAng),
-      rgba(var(--accs),.45) 0deg,rgba(var(--accs),.45) 186deg,
-      rgb(var(--accs)) 248deg,rgba(255,255,255,.98) 296deg,rgb(var(--accs)) 324deg,
-      rgba(255,255,255,.92) 344deg,rgb(var(--accs)) 357deg,rgba(var(--accs),.45) 360deg);
+      rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,
+      rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,
+      rgba(255,255,255,.2) 358deg,rgba(255,255,255,0) 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;pointer-events:none;z-index:7;
-    filter:drop-shadow(0 0 9px rgba(var(--accs),.85)) drop-shadow(0 0 20px rgba(var(--accs),.4));
+    filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.5));
     animation:mcSpin 7s linear infinite}
   /* levy sloupec: posuvne fotky */
-  .fkshots{position:relative;z-index:1;min-height:100%;background:rgba(12,7,34,.55);
+  .fkshots{position:relative;z-index:1;min-height:100%;background:rgba(12,7,34,.42);
     border-right:1.5px solid rgba(var(--accs),.45);overflow:hidden}
   .fkrail{display:flex;height:100%;transition:transform .55s cubic-bezier(.66,0,.2,1);will-change:transform}
   .fkrail figure{flex:0 0 100%;min-width:100%;margin:0;display:grid;place-items:center}
@@ -1101,6 +1119,7 @@
       <video controls preload="metadata" playsinline poster="assets/fotokoutek/fk-01.webp">
         <source src="assets/fotokoutek/fotokoutek.mp4" type="video/mp4">
       </video>
+      <button class="vplay" type="button" id="vPlay" aria-label="Přehrát video"><span></span></button>
     </div>
   </div>
 </section>
@@ -1212,6 +1231,13 @@
 </footer>
 <script>
 (function(){
+  var v=document.querySelector('.baleni-frame video'), pb=document.getElementById('vPlay');
+  if(v&&pb){
+    pb.addEventListener('click',function(){v.play();});
+    v.addEventListener('play',function(){pb.classList.add('hidden');});
+    v.addEventListener('pause',function(){pb.classList.remove('hidden');});
+    v.addEventListener('ended',function(){pb.classList.remove('hidden');});
+  }
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
   document.querySelectorAll('.fkpack,.fitem,.gal-track a,.baleni').forEach(function(el){io.observe(el);});
