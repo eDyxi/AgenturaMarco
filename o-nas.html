@@ -487,6 +487,8 @@
   section.block.gal-block.picks-block{padding-top:86px}
   @media(max-width:700px){section.block.gal-block.picks-block{padding-top:62px}}
   .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+  .facts .fitem.fmid{grid-column:2}
+  @media(max-width:900px){.facts .fitem.fmid{grid-column:auto}}
   @media(max-width:900px){.facts{grid-template-columns:1fr}}
   .fitem{--acc:#F5D68C;--accs:245,214,140;
     position:relative;display:flex;flex-direction:column;gap:3px;isolation:isolate;
@@ -1161,6 +1163,7 @@
       <div class="fitem"><span class="flab">Technika</span><span class="fval">Profi vybavení</span><span class="fnote">Certifikované atrakce, revize a pravidelná údržba.</span></div>
       <div class="fitem"><span class="flab">Obsluha</span><span class="fval">Vždy s námi</span><span class="fnote">Nikdy nenecháme atrakci bez dozoru — postavíme, hlídáme, sklidíme.</span></div>
       <div class="fitem"><span class="flab">Domluva</span><span class="fval">Bez papírování</span><span class="fnote">Napište datum a místo, cenu potvrdíme do pár hodin.</span></div>
+      <div class="fitem fmid"><span class="flab">Bezpečnost</span><span class="fval">Pojištění v ceně</span><span class="fnote">Máme pojištění odpovědnosti a atrakce s platnou revizí — o nic se nestaráte.</span></div>
     </div>
   </div>
 </section>
