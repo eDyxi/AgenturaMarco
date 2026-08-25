@@ -1096,6 +1096,20 @@
     color:#fff;text-transform:none;transition:background .18s,color .18s}
   .navdrop-menu a:hover{background:#FDF4E2;color:#2A1E52}
   @media(max-width:900px){.navdrop-menu{display:none}}
+
+  /* ---- vykon na mobilu: sklo je nejdrazsi efekt, na malych displejich vypnuto ---- */
+  @media(max-width:900px){
+    .fcard,.bcard,.pkgx,.fkpack,.mask-card .kk-prod,.fcard .kk-prod,.pkgx .kk-prod,
+    .bcard .kk-prod,.fkpack .kk-prod,.fleet-filters button,.fleet-dots button,
+    .fleet-arrow,.gal-arrow,.fkarrow,.bnum,.btag,.fktag,.mcbody li,.bcard li,.fkpack li,
+    .navdrop-menu,.vplay span{
+      -webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+    .fcard,.bcard,.pkgx,.fkpack{background:linear-gradient(158deg,#6E56AE 0%,#43317A 100%)}
+    .fleet-arrow,.gal-arrow,.fkarrow,.fleet-filters button,.fleet-dots button{
+      background:linear-gradient(158deg,#5F4A9E,#3B2A70)}
+  }
+  /* ---- kontury se zastavi mimo obrazovku ---- */
+  .anim-off,.anim-off::after,.anim-off::before{animation-play-state:paused!important}
 </style>
 </head>
 <body>
@@ -1366,5 +1380,17 @@
 </script>
 <script src="assets/js/kosik.js" defer></script>
 <script src="assets/js/poptavka.js" defer></script>
+
+<script>
+(function(){
+  var sel='.mask-card,.fcard,.bcard,.pkgx,.fkpack,.fitem,.mcard,.gal-track a';
+  var els=document.querySelectorAll(sel);
+  if(!els.length||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){e.target.classList.toggle('anim-off',!e.isIntersecting);});
+  },{rootMargin:'200px 0px'});
+  els.forEach(function(el){io.observe(el);});
+})();
+</script>
 </body>
 </html>
