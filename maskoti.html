@@ -948,6 +948,29 @@
   @media(max-width:700px){
     .mask-card .mimg,.mask-card .mimg i{background-image:var(--sm)!important}
   }
+
+  /* ---- mobil: karty vedle sebe s posouvanim ---- */
+  .mcar-wrap{position:relative}
+  .mcar-nav{display:none}
+  @media(max-width:700px){
+    .mcar{display:flex!important;grid-template-columns:none!important;
+      overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;
+      padding:6px 2px 12px;margin:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .mcar::-webkit-scrollbar{display:none}
+    .mcar>*{flex:0 0 82%;min-width:82%;scroll-snap-align:center;margin-top:0!important}
+    .mcar-nav{display:grid;place-items:center;position:absolute;top:50%;z-index:7;
+      width:40px;height:40px;border:0;border-radius:50%;cursor:pointer;
+      transform:translateY(-50%);
+      font-family:'Baloo 2',sans-serif;font-weight:900;font-size:1.4rem;line-height:1;color:#fff;
+      background:linear-gradient(158deg,#5F4A9E,#3B2A70);
+      box-shadow:0 8px 20px rgba(18,10,46,.45),0 0 0 1.5px rgba(240,200,107,.6) inset;
+      transition:opacity .2s ease,transform .2s ease}
+    .mcar-nav.prev{left:-6px}
+    .mcar-nav.next{right:-6px}
+    .mcar-nav:active{transform:translateY(-50%) scale(.92)}
+    .mcar-nav[disabled]{opacity:.25;pointer-events:none}
+    .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
+  }
 </style>
 </head>
 <body>
@@ -1235,6 +1258,38 @@
     es.forEach(function(e){e.target.classList.toggle('anim-off',!e.isIntersecting);});
   },{rootMargin:'200px 0px'});
   els.forEach(function(el){io.observe(el);});
+})();
+</script>
+
+<script>
+(function(){
+  if(!window.matchMedia||!matchMedia('(max-width:700px)').matches) return;
+  var sel='.mask-grid,.facts,.mcards,.bsell,.pkgx-row,.tiles-row';
+  document.querySelectorAll(sel).forEach(function(g){
+    if(g.children.length<2||g.closest('.mcar-wrap')) return;
+    g.classList.add('mcar');
+    var wrap=document.createElement('div');
+    wrap.className='mcar-wrap';
+    g.parentNode.insertBefore(wrap,g);
+    wrap.appendChild(g);
+    var mk=function(dir,label,ch){
+      var b=document.createElement('button');
+      b.type='button'; b.className='mcar-nav '+dir; b.textContent=ch;
+      b.setAttribute('aria-label',label);
+      b.addEventListener('click',function(){
+        g.scrollBy({left:(dir==='next'?1:-1)*g.clientWidth*0.86,
+          behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+      });
+      wrap.appendChild(b); return b;
+    };
+    var prev=mk('prev','Předchozí','\u2039'), next=mk('next','Další','\u203A');
+    var upd=function(){
+      prev.disabled=g.scrollLeft<8;
+      next.disabled=g.scrollLeft>=g.scrollWidth-g.clientWidth-8;
+    };
+    g.addEventListener('scroll',upd,{passive:true});
+    setTimeout(upd,60);
+  });
 })();
 </script>
 </body>
