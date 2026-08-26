@@ -1276,6 +1276,7 @@
   },{threshold:.2});
   document.querySelectorAll('.hrow,.baleni,.mask-card,.pkgx,.fitem').forEach(function(el){io.observe(el)});
   var tr = document.getElementById('fleetTrack');
+  if(tr)
   document.querySelectorAll('.fleet-nav button').forEach(function(b){
     b.addEventListener('click', function(){
       tr.scrollBy({left: 320 * (+b.dataset.dir), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
