@@ -44,8 +44,17 @@
   var lenis = null;
   function smooth() {
     if (RM || !window.Lenis || !FINE) return;
-    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.9, smoothWheel: true });
+    lenis = new Lenis({
+      lerp: 0.085, wheelMultiplier: 1, smoothWheel: true, syncTouch: false,
+      /* modaly (poptávka, košík) a vnořené scrollovací boxy scrollují nativně */
+      prevent: function (n) { return !!(n && n.closest && n.closest(".pq-card,.kk-list,[data-lenis-prevent]")); }
+    });
+    window.lenis = lenis;
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    /* když modal zamkne body (overflow:hidden), zastav i Lenis */
+    new MutationObserver(function () {
+      if (document.body.style.overflow === "hidden") lenis.stop(); else lenis.start();
+    }).observe(document.body, { attributes: true, attributeFilter: ["style"] });
     document.addEventListener("click", function (e) {
       var a = e.target.closest('a[href^="#"]'); if (!a) return;
       var id = a.getAttribute("href").slice(1), t = id && document.getElementById(id);
@@ -56,7 +65,7 @@
   /* ---------- reveal sekcí ---------- */
   function reveal() {
     if (RM || !("IntersectionObserver" in window)) return;
-    var els = $$("main > section:not(.hero):not(.page-hero) .center, .fleet-head, .page-cta .wrap > *, .tiles-row .tile, .pgrid .fcard, .contact-card, .extra");
+    var els = $$("main > section:not(.hero):not(.page-hero) > .wrap > .center, .fleet-head, .page-cta .wrap > *, .extra");
     var vh = innerHeight;
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px" });
     els.forEach(function (el) {
@@ -121,7 +130,8 @@
     addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd);
   }
 
-  function start() { smooth(); reveal(); trail(); services(); }
+  /* index: data-fx="scroll" = jen plynulý scroll, zbytek stránky beze změny */
+  function start() { smooth(); if (document.body.getAttribute("data-fx") === "scroll") return; reveal(); trail(); services(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { dino(start); });
   else dino(start);
 })();
