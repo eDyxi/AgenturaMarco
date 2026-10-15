@@ -1,0 +1,164 @@
+/* fonty lokálně (latin + latin-ext) – bez Google Fonts */
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(/assets/fonts/baloo2-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(/assets/fonts/baloo2-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 700; font-display: swap; src: url(/assets/fonts/caveat-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 700; font-display: swap; src: url(/assets/fonts/caveat-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Nunito'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/assets/fonts/nunito-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Nunito'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/assets/fonts/nunito-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* =====================================================================
+   AGENTURA MARCO – FINALIZACE 10/2026 (sdílená vrstva pro všechny stránky)
+   Tokeny rozložení: Weby/_layout-system.md · načítá se PO inline <style> stránky
+   ===================================================================== */
+:root{
+  --sec-y:clamp(72px,9vw,144px); --gutter:clamp(16px,4vw,32px); --wrapw:1200px;
+  --s-eyebrow:12px; --s-head:20px; --s-cta:32px; --s-block:clamp(40px,5vw,64px);
+  --gap:clamp(16px,2vw,24px); --measure:31em; --ease:cubic-bezier(.2,.8,.2,1);
+}
+html,body{overflow-x:clip}
+
+/* kontejner: max 1200 px obsahu, stejné boční okraje */
+.wrap{width:min(100% - 2 * var(--gutter),var(--wrapw));max-width:none;padding-left:0;padding-right:0;margin-inline:auto}
+
+/* sekce: jednotný padding nahoře i dole */
+main > section.block,main > section.tiles,main > section.page-cta{padding-top:var(--sec-y)!important;padding-bottom:var(--sec-y)!important;margin-top:0!important;margin-bottom:0!important}
+
+/* hlavička sekce: eyebrow → nadpis 12 · nadpis → text 20 · text → tlačítko 32 */
+.eyebrow{display:table;margin-bottom:var(--s-eyebrow)!important}
+.center .eyebrow,.page-cta .eyebrow,.page-hero .eyebrow{margin-left:auto;margin-right:auto}
+.eyebrow + .h2,.eyebrow + h2{margin-top:0!important}
+.h2{margin-bottom:0!important}
+.h2 + .sub,.h2 + p,.h1 + .sub{margin-top:var(--s-head)!important}
+.sub,.lead{max-width:var(--measure)!important}
+.center .sub,.page-hero .sub,.page-cta .sub{margin-left:auto!important;margin-right:auto!important}
+.page-cta .sub{margin-bottom:0!important}
+.page-cta .sub + .btn{margin-top:var(--s-cta)}
+.hero h1{margin-bottom:0!important}
+.hero h1 + .lead{margin-top:var(--s-head)!important;margin-bottom:0!important}
+.hero .lead + .btn{margin-top:var(--s-cta)!important}
+/* hlavička → obsah */
+.center + .tiles-row,.center + .pkgx-row,.center + .bsell,.center + .facts,.center + .pgrid,.center + .gal-wrap{margin-top:var(--s-block)!important}
+
+/* mřížky: jeden gap */
+.tiles-row,.facts,.pgrid,.pkg-row,.best-row,.rev-row,.fleet-page,.mcards,.mcar{gap:var(--gap)!important}
+
+/* hover: jednotně jen posun nahoru (karty 6 px, tlačítka 2 px), jen transform */
+.tile,.pkg,.best,.fcard,.mask-card,.fitem,.rev,.pkgx,.contact-card{transition:transform .25s var(--ease)!important}
+.tile:hover,.pkg:hover,.best:hover,.fcard:hover,.mask-card:hover,.fitem:hover,.pkgx:hover{transform:translateY(-6px)!important}
+.btn{transition:transform .2s var(--ease),filter .2s var(--ease)!important}
+.btn:hover{transform:translateY(-2px)!important}
+.btn:active{transform:translateY(1px)!important}
+:focus-visible{outline:3px solid #6B4FA0;outline-offset:3px}
+
+/* patička: odkazy na mobilu bez osamělého řádku */
+footer .fbar{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}
+@media (max-width:600px){footer .fbar{display:grid;grid-template-columns:repeat(4,auto);justify-content:center;gap:8px 16px}}
+
+/* reveal sekcí (fx.js): jemně, max 0,7 s */
+.rv{opacity:0;transform:translateY(22px)}
+.rv.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+
+/* jiskřičky za kurzorem */
+.am-trail{position:fixed;inset:0;z-index:9998;pointer-events:none}
+
+/* ===================== úvodní dinosaurus (jen index, 1× za session) ===================== */
+.dino-intro{display:none}
+html.dino .dino-intro{display:block;position:fixed;inset:-14px;z-index:10000;overflow:hidden;cursor:pointer;
+  background:linear-gradient(180deg,#BFE6FF 0%,#DDF2FF 62%,#FFF6DA 62.2%,#FFE9A6 100%);
+  animation:dinoSafe .35s 4.6s forwards}
+html.dino body{overflow:hidden}
+html.dino .iballs{display:none!important}
+.dino-intro .di-scene{position:absolute;inset:0}
+.dino-intro .di-ground{position:absolute;left:0;right:0;top:62%;height:6px;background:#1B3A63;opacity:.12}
+.dino-intro .di-hint{position:absolute;right:28px;bottom:24px;margin:0;font:700 .9rem/1 'Nunito',sans-serif;color:#1B3A63;opacity:.7}
+.dino-intro .di-dino{position:absolute;left:0;top:62%;width:clamp(230px,38vw,540px);aspect-ratio:260/200;translate:-110% -88%;will-change:transform}
+.dino-intro .di-dino svg{display:block;width:100%;height:100%;overflow:visible}
+.dino-intro.go .di-dino{animation:dinoWalk 3.3s linear forwards}
+.dino-intro.go .di-bob{animation:dinoBob .8s ease-in-out infinite}
+.dino-intro .dn-legf,.dino-intro .dn-legb{transform-box:fill-box;transform-origin:50% 8%}
+.dino-intro.go .dn-legf{animation:legA .8s ease-in-out infinite}
+.dino-intro.go .dn-legb{animation:legA .8s ease-in-out infinite reverse}
+.dino-intro .dn-tail{transform-box:fill-box;transform-origin:100% 40%}
+.dino-intro.go .dn-tail{animation:tail .8s ease-in-out infinite}
+.dino-intro .dn-head{transform-box:fill-box;transform-origin:20% 80%}
+.dino-intro.go .dn-head{animation:head .8s ease-in-out infinite}
+.dino-intro .di-shake{position:absolute;inset:0}
+.dino-intro .di-shake.on{animation:shake .18s linear}
+.dino-intro.out{animation:dinoOut .5s var(--ease) forwards}
+.di-dust{position:absolute;width:var(--s,18px);height:var(--s,18px);border-radius:50%;background:#fff;border:3px solid #1B3A63;opacity:0;animation:dust .65s var(--ease) forwards}
+.di-bum{position:absolute;width:128px;height:128px;margin:-190px 0 0 30px;display:grid;place-items:center;animation:bum .7s var(--ease) forwards;opacity:0}
+.di-bum svg{position:absolute;inset:0;width:100%;height:100%}
+.di-bum b{position:relative;font:900 1.7rem/1 'Baloo 2',sans-serif;color:#1B3A63;letter-spacing:.02em;rotate:-8deg}
+@keyframes dinoWalk{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 120%))}}
+@keyframes dinoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3%)}}
+@keyframes legA{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
+@keyframes tail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+@keyframes head{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+@keyframes shake{0%{transform:translate(0,0)}20%{transform:translate(-7px,5px)}40%{transform:translate(6px,-6px)}60%{transform:translate(-5px,4px)}80%{transform:translate(4px,-3px)}100%{transform:translate(0,0)}}
+@keyframes dust{0%{opacity:.95;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.25)}}
+@keyframes bum{0%{opacity:0;transform:scale(.3) rotate(-14deg)}30%{opacity:1;transform:scale(1.12) rotate(4deg)}55%{transform:scale(1) rotate(0)}100%{opacity:0;transform:scale(1.05) translateY(-14px)}}
+@keyframes dinoOut{to{opacity:0;transform:scale(1.04);visibility:hidden}}
+@keyframes dinoSafe{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media (prefers-reduced-motion:reduce){html.dino .dino-intro{display:none}}
+
+/* ===================== služby: mřížka 3×3 + pinovaná scéna (desktop) ===================== */
+.tiles{margin-top:0!important}
+.tiles-row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media (max-width:700px){.tiles-row{grid-template-columns:none!important}}
+.svc-stage{display:none}
+@media (min-width:1024px) and (min-height:760px){
+  main > section.tiles.svc{height:calc(100svh + 9 * 34svh);padding:0!important}
+  .svc .svc-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+  .svc .svc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,4vw,64px);align-items:center;width:min(100% - 2 * var(--gutter),var(--wrapw))}
+  .svc .center{text-align:left}
+  .svc .center .eyebrow,.svc .center .sub{margin-left:0!important;margin-right:0!important}
+  .svc .tiles-row{margin-top:var(--s-block)!important}
+  .svc .tile{padding:26px 10px 14px}
+  .svc .tile .ico{width:76px;height:76px;margin:-26px auto 6px}
+  .svc .tile.on{transform:translateY(-6px)!important;border-color:#FFCE3A;box-shadow:0 0 16px rgba(255,206,58,.6),0 0 34px rgba(245,179,36,.3),0 16px 34px rgba(43,30,82,.16)}
+  .svc-stage{display:block;position:relative;aspect-ratio:4/4.4;max-height:calc(100svh - 160px);width:100%}
+  .svc-panel{position:absolute;inset:0;display:flex;flex-direction:column;border-radius:28px;overflow:hidden;color:#fff;text-decoration:none;
+    background:linear-gradient(160deg,#6E4DB0,#452C7C);box-shadow:0 30px 70px rgba(30,20,64,.35),0 0 0 2px rgba(255,210,63,.55) inset,0 0 26px rgba(96,190,255,.35);
+    opacity:0;transform:translateY(28px) scale(.97);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
+  .svc-panel.on{opacity:1;transform:none;pointer-events:auto}
+  .svc-panel .sp-img{flex:1;min-height:0;background:radial-gradient(80% 70% at 50% 40%,rgba(255,255,255,.18),transparent 70%)}
+  .svc-panel .sp-img img{width:100%;height:100%;object-fit:cover}
+  .svc-panel .sp-img img.contain{object-fit:contain;padding:18px}
+  .svc-panel .sp-body{padding:22px 26px 26px}
+  .svc-panel .sp-n{font:800 .78rem/1 'Baloo 2',sans-serif;letter-spacing:.14em;color:#FFD23F}
+  .svc-panel h3{font:900 clamp(1.6rem,2.4vw,2.1rem)/1.1 'Baloo 2',sans-serif;margin:8px 0 0}
+  .svc-panel p{margin:10px 0 0;font-weight:700;line-height:1.5;color:rgba(255,255,255,.88);max-width:34em}
+  .svc-panel .sp-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+  .svc-panel .sp-price{font:900 1.25rem/1 'Baloo 2',sans-serif}
+  .svc-panel .sp-price small{font:700 .8rem/1 'Nunito',sans-serif;opacity:.75;margin-left:6px}
+  .svc-panel .sp-go{font:800 .95rem/1 'Baloo 2',sans-serif;color:#1B3A63;background:#FFD23F;border-radius:99px;padding:12px 18px 10px;white-space:nowrap}
+  .svc-dots{position:absolute;right:-26px;top:50%;translate:0 -50%;display:grid;gap:8px}
+  .svc-dots i{width:8px;height:8px;border-radius:50%;background:rgba(27,58,99,.25);transition:transform .3s var(--ease)}
+  .svc-dots i.on{background:#6B4FA0;transform:scale(1.5)}
+}
+@media (prefers-reduced-motion:reduce){.svc-panel{transition:none}.rv{opacity:1;transform:none}}
+
+/* ===================== nové podstránky: mřížka produktových karet ===================== */
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.pgrid .fcard{display:flex;flex-direction:column}
+.pgrid .fcard .fimg{aspect-ratio:4/3;height:auto;min-height:0;background:radial-gradient(80% 70% at 50% 40%,rgba(255,255,255,.14),transparent 70%)}
+.pgrid .fcard .fmeta{flex:1}
+.pgrid .fcard .fprice{margin-top:auto;padding-top:9px}
+.pgrid .fcard.todo .ftag{background:#FFD23F;color:#1B3A63}
+@media (max-width:960px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.extra{margin-top:var(--s-block);border-radius:24px;padding:26px 28px;background:linear-gradient(160deg,#6E4DB0,#452C7C);color:#fff;
+  box-shadow:0 24px 60px rgba(30,20,64,.3),0 0 0 2px rgba(255,210,63,.45) inset}
+.extra h3{font:900 1.3rem/1.1 'Baloo 2',sans-serif;margin:0 0 14px}
+.extra ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px}
+.extra li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(255,255,255,.25);padding-bottom:8px;font-weight:700}
+.extra li b{font-family:'Baloo 2',sans-serif;white-space:nowrap;color:#FFD23F}
+.extra .note{margin:14px 0 0;font-size:.9rem;color:rgba(255,255,255,.8)}
+@media (max-width:700px){.extra ul{grid-template-columns:minmax(0,1fr)}}
+
+/* kontrast AA: nadpisy a podtitulky na světlém pozadí podstránek navy (tmavé sekce .baleni / recenze zůstávají bílé) */
+.facts-block .h2,.gal-block .h2,.page-cta .h2,.pblock .h2,.fkblock .h2,.bsell-block .h2,.fleet .h2{color:#1B3A63!important;text-shadow:0 1px 0 rgba(255,255,255,.95),0 0 20px rgba(255,255,255,.7),0 0 34px rgba(245,179,36,.26)!important}
+.facts-block .sub,.gal-block .sub,.page-cta .sub,.pblock .sub,.fkblock .sub,.bsell-block .sub,.fleet .sub{color:#31507C!important;text-shadow:0 1px 0 rgba(255,255,255,.85),0 0 14px rgba(255,255,255,.5)!important}
+/* tečky karuselů: vidět 8 px, dotyková plocha 24 px (a11y target-size) */
+.slider-dots{gap:0!important}
+.slider-dots button{width:24px!important;height:24px!important;padding:8px!important;background-clip:content-box!important;box-sizing:border-box}
+.fkdots button{width:25px!important;height:25px!important;padding:8px!important;background-clip:content-box!important;box-sizing:border-box}
+.fkdots{gap:0!important}

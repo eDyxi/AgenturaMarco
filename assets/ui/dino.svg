@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" fill="none" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <!-- zadní noha (tmavší) -->
+  <g class="dn-legb">
+    <path d="M72 112 C90 106 104 118 100 140 L96 166 L112 168 C117 168 118 175 112 176 L82 176 C78 176 78 170 82 168 L84 140 Z" fill="#2E9E52"/>
+  </g>
+  <!-- ocas + tělo -->
+  <g class="dn-body">
+    <g class="dn-tail">
+      <path d="M96 84 C70 86 44 92 10 98 C40 106 64 118 90 128" fill="#43C463"/>
+    </g>
+    <path d="M86 84 C112 76 140 72 162 56 L188 70 C184 94 178 112 162 128 C142 146 106 148 86 136 C70 126 64 100 86 84 Z" fill="#43C463"/>
+    <path d="M86 132 C106 144 140 140 160 124 C152 138 130 148 106 148 C98 148 90 142 86 132 Z" fill="#FFD23F"/>
+    <g fill="#6B4FA0"><path d="M62 90 L70 76 L78 87"/><path d="M84 83 L93 69 L101 80"/><path d="M107 77 L117 63 L124 74"/><path d="M130 71 L141 57 L146 68"/><path d="M150 62 L160 48 L163 59"/></g>
+    <g fill="#2E9E52" stroke="none" opacity=".55"><circle cx="112" cy="98" r="6"/><circle cx="132" cy="90" r="4.5"/><circle cx="96" cy="104" r="4"/><circle cx="148" cy="100" r="3.5"/></g>
+    <path d="M162 100 C172 101 178 107 176 114 M176 114 l5 1 M176 114 l2 5" />
+    <!-- hlava -->
+    <g class="dn-head">
+      <path d="M160 30 C176 16 216 16 236 30 C247 38 249 52 241 60 L231 67 L206 67 C200 74 190 78 178 76 C166 74 158 62 156 50 C155 41 156 34 160 30 Z" fill="#43C463"/>
+      <path d="M206 67 L241 60" />
+      <g fill="#fff" stroke-width="2"><path d="M212 64 L215 70 L218 63.5"/><path d="M222 62.6 L225 68.6 L228 62"/><path d="M231 61 L233.5 66.5 L236 60.4"/></g>
+      <circle cx="202" cy="36" r="7.5" fill="#fff"/>
+      <circle cx="204" cy="36.5" r="3.6" fill="#1B3A63" stroke="none"/>
+      <circle cx="205.3" cy="35" r="1.2" fill="#fff" stroke="none"/>
+      <path d="M230 40 l3 0" />
+      <path d="M186 50 C190 54 196 55 200 53" stroke-width="2.4"/>
+      <circle cx="190" cy="44" r="0" />
+    </g>
+  </g>
+  <!-- přední noha -->
+  <g class="dn-legf">
+    <path d="M110 112 C130 106 146 120 141 142 L137 166 L154 168 C159 168 160 175 154 176 L122 176 C118 176 118 170 122 168 L124 142 Z" fill="#43C463"/>
+  </g>
+</svg>

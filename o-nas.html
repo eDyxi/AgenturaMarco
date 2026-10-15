@@ -21,9 +21,7 @@
 <link rel="icon" href="assets/icons/hrad.webp" type="image/webp">
 <link rel="apple-touch-icon" href="assets/icons/hrad.webp">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800;900&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet"><style>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baloo2-latin.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/nunito-latin.woff2" crossorigin><style>
   :root{
     --gold:#F5B324;
     --gold-dark:#e0a015;
@@ -1136,6 +1134,7 @@
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
 </style>
+<link rel="stylesheet" href="assets/css/finale.css?v=20261015a">
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -1161,7 +1160,7 @@
           <a href="fotokoutek.html">Fotokoutek</a>
           <a href="penova-party.html">Pěnová párty</a>
           <a href="malovani-na-oblicej.html">Malování na obličej</a>
-          <a href="umele-tetovani.html">Umělé tetování</a>
+          <a href="umele-tetovani.html">Umělé tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
           <a href="avengers.html">Superhrdinská show</a>
           </span></span><span class="sep">|</span>
         <a href="index.html#reference">RECENZE</a><span class="sep">|</span>
@@ -1173,10 +1172,11 @@
     </div>
   </div>
   <div class="mobmenu" id="mm">
-  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Umělé tetování</a><a href="avengers.html">Superhrdinská show</a>
+  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Umělé tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
   <a href="index.html#reference">Recenze</a><a href="index.html#kontakt">Kontakt</a>
 </div>
 </header>
+<main id="obsah">
 
 <section class="page-hero">
   <svg class="hero-fig fl" viewBox="0 0 100 130" aria-hidden="true" style="overflow:visible"><g class="fig-rays"><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(0 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(45 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(90 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(135 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(180 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(225 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".85" transform="rotate(270 50 65)"/><polygon points="50,65 44,-20 56,-20" fill="#FFD23F" opacity=".6" transform="rotate(315 50 65)"/></g><g class="bounce"><path d="M20 46 H80 Q88 46 88 54 V92 Q88 100 80 100 H56 L44 116 L42 100 H20 Q12 100 12 92 V54 Q12 46 20 46 Z" fill="#7FD0FF" stroke="#1B3A63" stroke-width="3.4" stroke-linejoin="round"/><circle cx="50" cy="62" r="4.6" fill="#1B3A63"/><rect x="45.4" y="70" width="9.2" height="20" rx="4.6" fill="#1B3A63"/></g></svg>
@@ -1256,8 +1256,8 @@
     <span class="eyebrow">Poptávka</span>
     <h2 class="h2">Chcete nás na vaší akci?</h2>
     <p class="sub" style="margin:10px auto 26px;max-width:520px">Napište datum a místo — přivezeme barvy, třpytky a dobrou náladu.</p>
-    <a class="btn" href="index.html#kontakt">🎉 Nezávazná poptávka</a>
-    <span class="cta-hint">Odpovídáme zpravidla do pár hodin ✍</span>
+    <a class="btn" href="index.html#kontakt">Nezávazná poptávka</a>
+    <span class="cta-hint">Odpovídáme zpravidla do pár hodin</span>
   </div>
 </section>
 
@@ -1315,10 +1315,11 @@
   }
 })();
 </script>
+</main>
 <footer>
   <div class="wrap">
     <div class="fbar">
-      <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="index.html#sluzby">Služby</a>
+      <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="index.html#sluzby">Služby</a><a href="motokary.html">Motokáry</a><a href="hry.html">Hry</a>
       <a href="index.html#bestsellery">Bestsellery</a><a href="index.html#reference">Recenze</a><a href="index.html#kontakt">Kontakt</a>
     </div>
     <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
@@ -1413,5 +1414,7 @@
   });
 })();
 </script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/fx.js?v=20261015a" defer></script>
 </body>
 </html>
