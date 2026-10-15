@@ -1,4 +1,11 @@
 .git
+.github
+.wrangler
 assets/MARCO
 scripts
+node_modules
 *.log
+*.md
+wrangler.jsonc
+.assetsignore
+.gitignore

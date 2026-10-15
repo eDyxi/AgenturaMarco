@@ -22,9 +22,7 @@
 <link rel="apple-touch-icon" href="assets/icons/hrad.webp">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Agentura Marco", "description": "Zábava na klíč pro děti i dospělé — skákací hrady, maskoti, ozvučení, fotokoutek a další.", "url": "https://www.agenturamarco.cz/", "email": "agenturamarco@seznam.cz", "address": {"@type": "PostalAddress", "addressLocality": "Ostrava", "addressCountry": "CZ"}, "areaServed": "CZ", "priceRange": "1000-20000 Kč"}</script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800;900&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/baloo2-latin.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/nunito-latin.woff2" crossorigin>
 <style>
   :root{
     --gold:#F5B324;
@@ -535,8 +533,44 @@
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
 </style>
+<link rel="stylesheet" href="assets/css/finale.css?v=20261015a">
+<script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
 </head>
 <body>
+<div class="dino-intro" aria-hidden="true"><div class="di-shake"><div class="di-ground"></div><div class="di-dino"><div class="di-bob"><svg aria-hidden="true" focusable="false" viewBox="0 0 260 200" fill="none" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <!-- zadní noha (tmavší) -->
+  <g class="dn-legb">
+    <path d="M72 112 C90 106 104 118 100 140 L96 166 L112 168 C117 168 118 175 112 176 L82 176 C78 176 78 170 82 168 L84 140 Z" fill="#2E9E52"/>
+  </g>
+  <!-- ocas + tělo -->
+  <g class="dn-body">
+    <g class="dn-tail">
+      <path d="M96 84 C70 86 44 92 10 98 C40 106 64 118 90 128" fill="#43C463"/>
+    </g>
+    <path d="M86 84 C112 76 140 72 162 56 L188 70 C184 94 178 112 162 128 C142 146 106 148 86 136 C70 126 64 100 86 84 Z" fill="#43C463"/>
+    <path d="M86 132 C106 144 140 140 160 124 C152 138 130 148 106 148 C98 148 90 142 86 132 Z" fill="#FFD23F"/>
+    <g fill="#6B4FA0"><path d="M62 90 L70 76 L78 87"/><path d="M84 83 L93 69 L101 80"/><path d="M107 77 L117 63 L124 74"/><path d="M130 71 L141 57 L146 68"/><path d="M150 62 L160 48 L163 59"/></g>
+    <g fill="#2E9E52" stroke="none" opacity=".55"><circle cx="112" cy="98" r="6"/><circle cx="132" cy="90" r="4.5"/><circle cx="96" cy="104" r="4"/><circle cx="148" cy="100" r="3.5"/></g>
+    <path d="M162 100 C172 101 178 107 176 114 M176 114 l5 1 M176 114 l2 5" />
+    <!-- hlava -->
+    <g class="dn-head">
+      <path d="M160 30 C176 16 216 16 236 30 C247 38 249 52 241 60 L231 67 L206 67 C200 74 190 78 178 76 C166 74 158 62 156 50 C155 41 156 34 160 30 Z" fill="#43C463"/>
+      <path d="M206 67 L241 60" />
+      <g fill="#fff" stroke-width="2"><path d="M212 64 L215 70 L218 63.5"/><path d="M222 62.6 L225 68.6 L228 62"/><path d="M231 61 L233.5 66.5 L236 60.4"/></g>
+      <circle cx="202" cy="36" r="7.5" fill="#fff"/>
+      <circle cx="204" cy="36.5" r="3.6" fill="#1B3A63" stroke="none"/>
+      <circle cx="205.3" cy="35" r="1.2" fill="#fff" stroke="none"/>
+      <path d="M230 40 l3 0" />
+      <path d="M186 50 C190 54 196 55 200 53" stroke-width="2.4"/>
+      <circle cx="190" cy="44" r="0" />
+    </g>
+  </g>
+  <!-- přední noha -->
+  <g class="dn-legf">
+    <path d="M110 112 C130 106 146 120 141 142 L137 166 L154 168 C159 168 160 175 154 176 L122 176 C118 176 118 170 122 168 L124 142 Z" fill="#43C463"/>
+  </g>
+</svg>
+</div></div></div><p class="di-hint">Klepněte pro přeskočení</p></div>
 <div class="iballs" id="iballs" aria-hidden="true"></div>
 <div id="pbg" aria-hidden="true">
   <div class="pbw" style="top:6%;left:3%"   data-s="0.18"><span class="pb purple" style="width:74px;height:92px"></span></div>
@@ -577,7 +611,7 @@
           <a href="fotokoutek.html">Fotokoutek</a>
           <a href="penova-party.html">Pěnová párty</a>
           <a href="malovani-na-oblicej.html">Malování na obličej</a>
-          <a href="umele-tetovani.html">Umělé tetování</a>
+          <a href="umele-tetovani.html">Umělé tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
           <a href="avengers.html">Superhrdinská show</a>
           </span></span><span class="sep">|</span>
         <a href="#reference">RECENZE</a><span class="sep">|</span>
@@ -589,10 +623,11 @@
     </div>
   </div>
   <div class="mobmenu" id="mm">
-  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Umělé tetování</a><a href="avengers.html">Superhrdinská show</a>
+  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Umělé tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
   <a href="#reference">Recenze</a><a href="#kontakt">Kontakt</a>
 </div>
 </header>
+<main id="obsah">
 
 <!-- ================= HERO ================= -->
 <section class="hero">
@@ -618,14 +653,16 @@
 </section>
 
 <!-- ================= SERVICE TILES ================= -->
-<section class="tiles" id="sluzby">
-  <div class="wrap">
-      <div class="center">
-        <span class="eyebrow">Co umíme</span>
-        <h2 class="h2">Zábava pro každou akci</h2>
-        <p class="sub">Vyberte si jednu atrakci nebo je zkombinujte. Vše přivezeme, postavíme a po akci zase odvezeme.</p>
-      </div>
-    <div class="tiles-row">
+<section class="tiles svc" id="sluzby">
+  <div class="svc-pin">
+    <div class="wrap svc-grid">
+      <div class="svc-left">
+        <div class="center">
+          <span class="eyebrow">Co umíme</span>
+          <h2 class="h2">Zábava pro každou akci</h2>
+          <p class="sub">Vyberte si jednu atrakci nebo je zkombinujte. Vše přivezeme, postavíme a po akci zase odvezeme.</p>
+        </div>
+        <div class="tiles-row">
       <a class="tile" href="megahrady.html">
         <img class="ico" src="assets/icons/hrad.webp" width="360" height="360" loading="lazy" decoding="async" alt="Nafukovací skákací hrad s překážkovou dráhou">
         <div class="name">Skákací hrady</div>
@@ -654,6 +691,28 @@
         <img class="ico" src="assets/icons/tetovani.webp" width="360" height="360" loading="lazy" decoding="async" alt="Airbrush pistole, šablony, barvy a třpytky">
         <div class="name">Umělé tetování</div>
       </a>
+      <a class="tile" href="motokary.html">
+        <img class="ico" src="assets/icons/motokary.webp" width="360" height="360" loading="lazy" decoding="async" alt="Šlapací motokára se sedačkou a vlaječkou">
+        <div class="name">Motokáry a vozítka</div>
+      </a>
+      <a class="tile" href="hry.html">
+        <img class="ico" src="assets/icons/hry.webp" width="360" height="360" loading="lazy" decoding="async" alt="Zlatý pohár na podstavci s konfetami">
+        <div class="name">Hry a soutěže</div>
+      </a>
+        </div>
+      </div>
+      <div class="svc-stage">
+          <a class="svc-panel" href="megahrady.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/hrady/hrad-velka-skluzavka.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">01 / 09</span><h3>Skákací hrady</h3><p>26 nafukovacích atrakcí: hrady, obří skluzavky, překážkové dráhy i bazény.</p><div class="sp-foot"><span class="sp-price">2 000–10 000 Kč<small>/ akce</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="maskoti.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/maskoti/gal-01.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">02 / 09</span><h3>Maskoti</h3><p>25 maskotů z pohádek v profi kvalitě. Tančí, objímají a fotí se s dětmi.</p><div class="sp-foot"><span class="sp-price">od 3 000 Kč<small>/ maskot / hod</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="ozvuceni.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/ozvuceni/ozgal-02.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">03 / 09</span><h3>DJ a ozvučení</h3><p>Ozvučení, DJ, moderátor a světelná show pro svatby, obecní dny i firmy.</p><div class="sp-foot"><span class="sp-price">1 000–20 000 Kč<small>/ podle rozsahu</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="fotokoutek.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/fotokoutek/fk-01.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">04 / 09</span><h3>Fotokoutek</h3><p>Neomezené focení s tiskem na místě. Rekvizity, fotostěna i obsluha v ceně.</p><div class="sp-foot"><span class="sp-price">8 000 Kč<small>/ 4 hodiny</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="penova-party.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/pena/pn-01.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">05 / 09</span><h3>Pěnová párty</h3><p>Vlastní pěnové dělo s obsluhou, pěna šetrná k pokožce. Venku i v hale.</p><div class="sp-foot"><span class="sp-price">8 000 Kč<small>/ akce</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="malovani-na-oblicej.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/malovani/ml-01.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">06 / 09</span><h3>Malování na obličej</h3><p>Šetrné barvy, motivy na přání a airbrush pro děti každého věku.</p><div class="sp-foot"><span class="sp-price">1 000 Kč<small>/ hodina</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="umele-tetovani.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/tetovani/tt-01.webp" alt="" width="1040" height="780" loading="lazy" decoding="async"></div><div class="sp-body"><span class="sp-n">07 / 09</span><h3>Umělé tetování</h3><p>Airbrush a třpytivá tetování ze šablon. Vydrží 3–5 dní, smyjí se bez bolesti.</p><div class="sp-foot"><span class="sp-price">1 000 Kč<small>/ hodina</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="motokary.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/motokary/slapaci-motokara.webp" alt="" width="1040" height="780" loading="lazy" decoding="async" class="contain"></div><div class="sp-body"><span class="sp-n">08 / 09</span><h3>Motokáry a vozítka</h3><p>Šlapací motokáry, dostihová dráha s koníky a kolotoč pro nejmenší.</p><div class="sp-foot"><span class="sp-price">od 1 000 Kč<small>/ motokára / 4 h</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+          <a class="svc-panel" href="hry.html" aria-hidden="true" tabindex="-1"><div class="sp-img"><img src="assets/hry/olympijske-hry.webp" alt="" width="1040" height="780" loading="lazy" decoding="async" class="contain"></div><div class="sp-body"><span class="sp-n">09 / 09</span><h3>Hry a soutěže</h3><p>Stolní hry s obsluhou, olympijské hry a sportovní stanoviště.</p><div class="sp-foot"><span class="sp-price">od 2 500 Kč<small>/ stanoviště</small></span><span class="sp-go">Prohlédnout</span></div></div></a>
+        <div class="svc-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
     </div>
   </div>
 </section>
@@ -856,10 +915,11 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
+</main>
 <footer>
   <div class="wrap">
     <div class="fbar">
-      <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="#sluzby">Služby</a>
+      <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="#sluzby">Služby</a><a href="motokary.html">Motokáry</a><a href="hry.html">Hry</a>
       <a href="#bestsellery">Bestsellery</a><a href="#reference">Recenze</a><a href="#kontakt">Kontakt</a>
     </div>
     <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
@@ -1064,5 +1124,7 @@
   });
 })();
 </script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/fx.js?v=20261015a" defer></script>
 </body>
 </html>
