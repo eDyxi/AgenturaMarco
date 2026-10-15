@@ -18,10 +18,13 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-stopped{overflow:clip}
 
-/* video sekce: dole stejně těsné jako nahoře (cenovka → nadpis) */
-section.block.baleni{padding-bottom:56px!important}
-.baleni + section.block,.baleni + section{padding-top:40px!important}
-@media (max-width:700px){section.block.baleni{padding-bottom:40px!important}.baleni + section.block,.baleni + section{padding-top:32px!important}}
+/* jednotné mezery podle megahrady (text → cenovka ≈ 74 px): hero cenovka, pod videem, fakta → galerie */
+.page-hero .price-hero{margin-top:76px!important}
+section.block.baleni{padding-bottom:48px!important}
+.baleni + section.block,.baleni + section{padding-top:38px!important}
+section.block.facts-block{padding-bottom:44px!important}
+.facts-block + .gal-block{padding-top:41px!important}
+@media (max-width:700px){.page-hero .price-hero{margin-top:52px!important}}
 
 /* patička: nové odkazy se zalomí čistě */
 footer .fbar{display:flex;flex-wrap:wrap;justify-content:center}
