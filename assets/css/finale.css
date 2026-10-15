@@ -162,3 +162,4 @@ html.dino .iballs{display:none!important}
 .slider-dots button{width:24px!important;height:24px!important;padding:8px!important;background-clip:content-box!important;box-sizing:border-box}
 .fkdots button{width:25px!important;height:25px!important;padding:8px!important;background-clip:content-box!important;box-sizing:border-box}
 .fkdots{gap:0!important}
+.slider-dots button.on,.fkdots button[aria-current="true"]{transform:none!important;padding:5px!important}
