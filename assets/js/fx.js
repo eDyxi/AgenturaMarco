@@ -5,20 +5,38 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  /* ---------- úvodní dinosaurus ---------- */
+  /* ---------- úvodní intro: dinosaurus → bestseller karta → balónky odhalí stránku ---------- */
   function dino(done) {
     var el = $(".dino-intro");
-    if (!el || !document.documentElement.classList.contains("dino")) return done();
-    var shake = $(".di-shake", el), dn = $(".di-dino", el), finished = false, timers = [];
-    function end() {
-      if (finished) return; finished = true;
-      timers.forEach(clearTimeout);
-      el.classList.add("out");
-      setTimeout(function () { el.remove(); document.documentElement.classList.remove("dino"); done(); }, 520);
-      ["pointerdown", "wheel", "touchstart", "keydown"].forEach(function (e) { removeEventListener(e, end); });
-    }
-    ["pointerdown", "wheel", "touchstart", "keydown"].forEach(function (e) { addEventListener(e, end, { passive: true }); });
+    if (!el || !document.documentElement.classList.contains("dino")) { if (el) el.remove(); return done(); }
+    var shake = $(".di-shake", el), dn = $(".di-dino", el), card = $(".di-card", el), box = $(".di-balloons", el);
+    var phase = 1, timers = [];
     try { sessionStorage.setItem("am-dino", "1"); } catch (e) {}
+    var COLS = [["#FFD23F", "#FFE98A"], ["#38B6FF", "#9EDCFF"], ["#9B7BE0", "#CDB8F5"], ["#FF7A8A", "#FFC0C8"], ["#43C463", "#A6EBB6"], ["#FF9F1C", "#FFD08A"]];
+    function skip(e) {
+      if (e && e.type === "pointerdown" && card && card.contains(e.target)) return; /* klik na kartu = odkaz */
+      balloons();
+    }
+    var EV = ["pointerdown", "wheel", "touchmove", "keydown"];
+    EV.forEach(function (e) { addEventListener(e, skip, { passive: true }); });
+    function showCard() { if (phase > 1) return; phase = 2; el.classList.add("card"); }
+    function balloons() {
+      if (phase > 2) return; phase = 3;
+      timers.forEach(clearTimeout);
+      EV.forEach(function (e) { removeEventListener(e, skip); });
+      el.classList.add("fly");
+      var n = innerWidth < 700 ? 18 : 30, html = "";
+      for (var i = 0; i < n; i++) {
+        var c = COLS[i % COLS.length], w = (innerWidth < 700 ? 70 : 100) + Math.random() * (innerWidth < 700 ? 60 : 100);
+        html += '<i class="di-bl" style="--x:' + ((i / n) * 108 - 8 + Math.random() * 4).toFixed(1) + "%;--w:" + w.toFixed(0) +
+          "px;--c:" + c[0] + ";--c2:" + c[1] + ";--d:" + (Math.random() * 0.35).toFixed(2) + "s;--t:" + (1.3 + Math.random() * 0.5).toFixed(2) +
+          "s;--r:" + (Math.random() * 16 - 8).toFixed(1) + 'deg"></i>';
+      }
+      box.innerHTML = html;
+      var H = document.documentElement;
+      setTimeout(function () { el.classList.add("clear"); H.classList.add("dino-free"); done(); }, 620);
+      setTimeout(function () { el.remove(); H.classList.remove("dino", "dino-free"); }, 2400);
+    }
     function stomp() {
       shake.classList.remove("on"); void shake.offsetWidth; shake.classList.add("on");
       var r = dn.getBoundingClientRect(), sr = shake.getBoundingClientRect();
@@ -36,7 +54,8 @@
     requestAnimationFrame(function () {
       el.classList.add("go");
       [900, 1700, 2500].forEach(function (t) { timers.push(setTimeout(stomp, t)); });
-      timers.push(setTimeout(end, 3500));
+      timers.push(setTimeout(showCard, 3000));      /* dino odchází → vyskočí karta */
+      timers.push(setTimeout(balloons, 7200));      /* karta ~4 s, pak balónky */
     });
   }
 
