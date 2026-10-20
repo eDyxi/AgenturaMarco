@@ -189,8 +189,9 @@
   /* ---------- service tiles ---------- */
   .tiles{position:relative;z-index:3;margin-top:-30px}
   /* vlastní žlutá vlna za mřížkou služeb: fixní vlna v pozadí ji při scrollu usekávala uprostřed karet */
-  #sluzby .tiles-row{position:relative}
-  #sluzby .tiles-row::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-64px;bottom:-64px;left:50%;width:100vw;transform:translateX(-50%);
+  #sluzby .tiles-row,#sluzby .mcar-wrap{position:relative}
+  /* mobil: z mřížky je karusel (.mcar, overflow-x) → vlna je na obalu karuselu, ne uvnitř */
+  #sluzby .tiles-row:not(.mcar)::before,#sluzby .mcar-wrap::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-64px;bottom:-64px;left:50%;width:100vw;transform:translateX(-50%);
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 400' preserveAspectRatio='none'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='.3'%3E%3Cstop offset='0' stop-color='%23f8ce62'/%3E%3Cstop offset='1' stop-color='%23f2b52c'/%3E%3C/linearGradient%3E%3Cpath d='M0 38 C260 0 420 70 700 44 C980 18 1120 -4 1340 30 C1450 46 1540 56 1600 50 L1600 352 C1400 384 1240 336 1000 360 C760 384 560 334 320 356 C180 368 60 350 0 358 Z' fill='url(%23g)'/%3E%3C/svg%3E") center/100% 100% no-repeat}
   .tiles-row{display:grid;grid-template-columns:repeat(7,1fr);gap:14px;margin-top:40px}
   .tile{background:var(--card);border:2.5px solid #C9A227;border-radius:var(--radius);box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 8px 20px rgba(43,30,82,.12);padding:44px 12px 18px;text-align:center;transition:transform .18s,box-shadow .18s,border-color .18s}

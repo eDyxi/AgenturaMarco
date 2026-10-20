@@ -65,3 +65,13 @@ footer .fbar{display:flex;flex-wrap:wrap;justify-content:center}
 /* dropdown SLUŽBY: krémový text (nav.pill a ho přebíjel na tmavý), hover zlatý, bez masky; kontrast ≥ 4.5:1 */
 nav.pill .navdrop-menu a{color:#FFF6E0;-webkit-mask:none;mask:none;opacity:1}
 nav.pill .navdrop-menu a:hover,nav.pill .navdrop-menu a:focus-visible{color:#FFD45A;background:rgba(26,16,60,.55)}
+
+/* ===== mobil (≤700 px, desktop beze změny) ===== */
+@media (max-width:700px){
+  /* komiksový nadpis: nejdelší slovo (SUPERHRDINOVÉ) se vejde na 390 px */
+  body .page-hero .h1{font-size:clamp(2.2rem,11.4vw,3.3rem)}
+  /* starburst: text cenového rozsahu nevjíždí do cípů (padding jako u cenovky balíčků) */
+  body .price-hero .pchip{padding-left:44px;padding-right:44px}
+  /* balónky v hero pod textem, ne přes něj */
+  body .page-hero .pxb{z-index:-1}
+}
