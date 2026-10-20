@@ -1132,7 +1132,7 @@
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
 </style>
-<link rel="stylesheet" href="assets/css/finale.css?v=20261015c">
+<link rel="stylesheet" href="assets/css/finale.css?v=20261020a">
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -1188,7 +1188,7 @@
   </div>
 </section>
 
-<section class="block fkblock" style="padding:132px 0 64px">
+<section class="block fkblock" style="padding:96px 0 64px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Balíček</span>
@@ -1317,10 +1317,14 @@
   if(pbg){
     var cols=['blue','gold','purple','red'];
     var n=13,frag=document.createDocumentFragment();
+    /* balónky se vyhnou svislému pásu cenového starburstu (fixní parallax by přes něj jinak projížděl) */
+    var lo=0,hi=0,pcs=document.querySelectorAll('.price-hero .pchip-wrap');
+    if(pcs.length){var L=1e9,R=-1e9;pcs.forEach(function(c){var r=c.getBoundingClientRect();L=Math.min(L,r.left);R=Math.max(R,r.right)});lo=(L-80)/innerWidth*100;hi=(R+16)/innerWidth*100;if(hi-lo>70){lo=hi=0}}
     for(var i=0;i<n;i++){
       var w=document.createElement('div');
       w.className='pbw';
-      w.style.left=(Math.random()*100)+'%';
+      var x=Math.random()*100;if(hi>lo&&x>lo&&x<hi){x=Math.random()<.5?Math.random()*Math.max(lo,0):hi+Math.random()*(100-hi)}
+      w.style.left=x+'%';
       w.style.top=(Math.random()*140-20)+'vh';
       var s=34+Math.random()*36;
       var b=document.createElement('div');

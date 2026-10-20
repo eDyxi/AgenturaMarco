@@ -957,7 +957,7 @@
     50%{box-shadow:0 0 0 2px rgba(var(--accs),1),0 0 20px rgba(var(--accs),.95),
       0 0 48px rgba(var(--accs),.6),0 6px 16px rgba(12,7,34,.5)}}
   .pkgx h3{font-family:'Baloo 2';font-weight:900;font-size:1.2rem;line-height:1.22;color:#fff;
-    -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;max-width:15ch;
+    -webkit-text-stroke:1.1px #0B0F1C;paint-order:stroke fill;max-width:24ch;
     text-shadow:0 0 14px rgba(var(--accs),.8),0 2px 5px rgba(12,7,34,.6)}
   /* cena v kolecku */
   .pprice{position:relative;display:flex;flex-wrap:wrap;align-items:center;align-content:center;
@@ -1206,7 +1206,7 @@
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
 </style>
-<link rel="stylesheet" href="assets/css/finale.css?v=20261015c">
+<link rel="stylesheet" href="assets/css/finale.css?v=20261020a">
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -1262,12 +1262,12 @@
 <section class="block" style="padding:76px 0 0">
   <div class="wrap">
     <div class="price-hero" style="margin:0">
-      <div class="pchip-wrap"><div class="pchip pmain"><small>Cena</small><b>1 000–20 000 Kč</b><span>/ podle rozsahu</span></div></div>
+      <div class="pchip-wrap"><div class="pchip pmain"><small>Cena</small><b>1 000&nbsp;– 20 000 Kč</b><span>/ podle rozsahu</span></div></div>
     </div>
   </div>
 </section>
 
-<section class="block bsell-block" style="padding:70px 0 64px">
+<section class="block bsell-block" style="padding:86px 0 64px">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Balíčky</span>
@@ -1344,10 +1344,14 @@
   if(!pbg)return;
   var cols=['blue','gold','purple','red'];
   var n=13,frag=document.createDocumentFragment();
+  /* balónky se vyhnou svislému pásu cenového starburstu (fixní parallax by přes něj jinak projížděl) */
+  var lo=0,hi=0,pcs=document.querySelectorAll('.price-hero .pchip-wrap');
+  if(pcs.length){var L=1e9,R=-1e9;pcs.forEach(function(c){var r=c.getBoundingClientRect();L=Math.min(L,r.left);R=Math.max(R,r.right)});lo=(L-80)/innerWidth*100;hi=(R+16)/innerWidth*100;if(hi-lo>70){lo=hi=0}}
   for(var i=0;i<n;i++){
     var w=document.createElement('div');
     w.className='pbw';
-    w.style.left=(Math.random()*100)+'%';
+    var x=Math.random()*100;if(hi>lo&&x>lo&&x<hi){x=Math.random()<.5?Math.random()*Math.max(lo,0):hi+Math.random()*(100-hi)}
+    w.style.left=x+'%';
     w.style.top=(Math.random()*140-20)+'vh';
     var s=34+Math.random()*36;
     var b=document.createElement('div');

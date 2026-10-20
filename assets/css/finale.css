@@ -61,3 +61,7 @@ footer .fbar{display:flex;flex-wrap:wrap;justify-content:center}
 .fkdots button{width:25px!important;height:25px!important;padding:8px!important;background-clip:content-box!important;box-sizing:border-box}
 .fkdots{gap:0!important}
 .slider-dots button.on,.fkdots button[aria-current="true"]{transform:none!important;padding:5px!important}
+
+/* dropdown SLUŽBY: krémový text (nav.pill a ho přebíjel na tmavý), hover zlatý, bez masky; kontrast ≥ 4.5:1 */
+nav.pill .navdrop-menu a{color:#FFF6E0;-webkit-mask:none;mask:none;opacity:1}
+nav.pill .navdrop-menu a:hover,nav.pill .navdrop-menu a:focus-visible{color:#FFD45A;background:rgba(26,16,60,.55)}
