@@ -296,12 +296,6 @@
   .field textarea{resize:vertical;min-height:120px}
   .contact-right .btn{width:100%;justify-content:center;margin-top:6px}
 
-  /* ---------- footer ---------- */
-  footer{background:oklch(30% .05 70);color:oklch(78% .04 80);padding:40px 0 32px;text-align:center}
-  footer .fbar{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-bottom:18px}
-  footer .fbar a{font-family:'Baloo 2';font-weight:700;font-size:.9rem;color:oklch(90% .05 85)}
-  footer .fbar a:hover{color:var(--gold)}
-  footer small{font-size:.82rem;color:oklch(68% .03 80)}
 
   /* ---------- responsive ---------- */
   @media(max-width:960px){
@@ -1136,7 +1130,8 @@
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
 </style>
-<link rel="stylesheet" href="assets/css/finale.css?v=20261020b">
+<link rel="stylesheet" href="assets/css/finale.css?v=20261024a">
+<link rel="stylesheet" href="assets/css/footer.css?v=20261024a">
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -1359,14 +1354,9 @@
 })();
 </script>
 </main>
-<footer>
-  <div class="wrap">
-    <div class="fbar">
-      <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="index.html#sluzby">Služby</a><a href="motokary.html">Motokáry</a><a href="hry.html">Hry</a>
-      <a href="index.html#bestsellery">Bestsellery</a><a href="index.html#reference">Recenze</a><a href="index.html#kontakt">Kontakt</a>
-    </div>
-    <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
-  </div>
+<footer class="mfoot">
+  <div class="wrap mfoot__in"><a class="mfoot__logo" href="index.html" aria-label="Agentura Marco – úvod"><img src="assets/logo.webp" width="420" height="354" loading="lazy" decoding="async" alt="Agentura Marco – zábava na klíč"></a></div>
+  <p class="mfoot__meta">Agentura Marco · Miroslav Demeter · Krakovská 1078/18, Ostrava-Hrabůvka<br>+420 736 214 975 · agenturamarco@seznam.cz</p>
 </footer>
 <script>
 (function(){

@@ -26,9 +26,6 @@ section.block.facts-block{padding-bottom:44px!important}
 .facts-block + .gal-block{padding-top:41px!important}
 @media (max-width:700px){.page-hero .price-hero{margin-top:52px!important}}
 
-/* patička: nové odkazy se zalomí čistě */
-footer .fbar{display:flex;flex-wrap:wrap;justify-content:center}
-
 /* reveal nadpisů sekcí (fx.js) – jen opacity/translate, karty se nehýbou */
 .rv{opacity:0;translate:0 22px}
 .rv.in{opacity:1;translate:0 0;transition:opacity .7s var(--ease),translate .7s var(--ease);transition-delay:var(--d,0s)}

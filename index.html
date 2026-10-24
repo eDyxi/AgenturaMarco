@@ -417,12 +417,6 @@
   @media(prefers-reduced-motion:reduce){.contact-right .btn{animation:none}}
   .contact-right .btn:hover{animation:none;filter:saturate(1.2) brightness(1.12) drop-shadow(0 14px 26px rgba(255,198,26,.55))}
 
-  /* ---------- footer ---------- */
-  footer{background:oklch(30% .05 70);color:oklch(78% .04 80);padding:40px 0 32px;text-align:center}
-  footer .fbar{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-bottom:18px}
-  footer .fbar a{font-family:'Baloo 2';font-weight:700;font-size:.9rem;color:oklch(90% .05 85)}
-  footer .fbar a:hover{color:var(--gold)}
-  footer small{font-size:.82rem;color:oklch(68% .03 80)}
 
   /* ---------- responsive ---------- */
   @media(max-width:960px){
@@ -614,6 +608,7 @@
   @media(prefers-reduced-motion:reduce){.dn-sway,.dn-arm-l,.dn-arm-r{animation:none}.dn-svg,.dn-pop,.dn-cta{transition:none}}
 </style>
 <link rel="stylesheet" href="assets/css/intro.css?v=1">
+<link rel="stylesheet" href="assets/css/footer.css?v=20261024a">
 <script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
 </head>
 <body data-fx="scroll">
@@ -1026,14 +1021,9 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="wrap">
-    <div class="fbar">
-      <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="#sluzby">Služby</a><a href="motokary.html">Motokáry</a><a href="hry.html">Hry</a>
-      <a href="#bestsellery">Bestsellery</a><a href="#reference">Recenze</a><a href="#kontakt">Kontakt</a>
-    </div>
-    <small>© 2026 Agentura Marco — Zábava na klíč pro děti i dospělé · Ostrava</small>
-  </div>
+<footer class="mfoot">
+  <div class="wrap mfoot__in"><a class="mfoot__logo" href="index.html" aria-label="Agentura Marco – úvod"><img src="assets/logo.webp" width="420" height="354" loading="lazy" decoding="async" alt="Agentura Marco – zábava na klíč"></a></div>
+  <p class="mfoot__meta">Agentura Marco · Miroslav Demeter · Krakovská 1078/18, Ostrava-Hrabůvka<br>+420 736 214 975 · agenturamarco@seznam.cz</p>
 </footer>
 
 <script>

@@ -1,0 +1,18 @@
+/* Společná patička všech 16 stránek (vzor: skakacihradyprodej).
+   Dvě čáry, které se nedotýkají okrajů, uprostřed logo, pod ním kontakty jako čistý text.
+   Pozadí je průhledné, takže plynule navazuje na pozadí stránky. Body je flex sloupec,
+   takže patička sedí na konci stránky i na krátkých stránkách (404) a pod ní nic nezbývá. */
+body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+body>footer.mfoot{margin-top:auto}
+footer.mfoot{background:none;color:#1E2A44;padding:40px 0 34px;text-align:center}
+.mfoot__in{display:flex;align-items:center;gap:22px}
+.mfoot__in::before,.mfoot__in::after{content:"";flex:1;height:2px;border-radius:2px;background:rgba(30,42,68,.22)}
+.mfoot__logo{display:block;flex:none;width:118px}
+.mfoot__logo img{display:block;width:100%;height:auto}
+.mfoot__meta{margin:14px auto 0;padding:0 16px;max-width:62ch;font-family:'Nunito',sans-serif;font-weight:600;font-size:.92rem;line-height:1.6;color:#2C3E5C}
+@media(max-width:700px){
+  footer.mfoot{padding:32px 0 28px}
+  .mfoot__in{gap:16px}
+  .mfoot__logo{width:96px}
+  .mfoot__meta{font-size:.86rem}
+}
