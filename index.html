@@ -587,29 +587,11 @@
   .dn-tag svg{width:20px;height:14px;flex:none}
   .dn-btn:hover .dn-svg,.dn-btn:focus-visible .dn-svg{transform:translateY(-4px)}
   .dn-svg{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
-  .dn-pop{position:absolute;z-index:12;right:calc(100% + 18px);top:50%;width:300px;text-align:left;background:#fff;border:3px solid #8B5CD6;border-radius:22px;
-    box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 22px 48px rgba(43,30,82,.28);overflow:hidden;
-    opacity:0;visibility:hidden;transform:translateY(-46%);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
-  .dancer.open .dn-pop{opacity:1;visibility:visible;transform:translateY(-50%);transition:opacity .22s ease,transform .22s ease,visibility 0s}
-  .dn-pop img{display:block;width:100%;height:150px;object-fit:cover;object-position:50% 30%}
-  .dn-pop .dn-in{padding:14px 18px 18px}
-  .dn-pop h3{font-family:'Baloo 2';font-weight:800;font-size:1.2rem;color:var(--navy);line-height:1.1}
-  .dn-pop p{font-size:.9rem;color:#39557a;margin:6px 0 8px;line-height:1.45}
-  .dn-pop ul{list-style:none;display:flex;flex-direction:column;gap:4px;margin:0 0 10px;font-size:.86rem;font-weight:700;color:#39557a}
-  .dn-pop li::before{content:"✓ ";color:#6B4FA0}
-  .dn-price{font-family:'Baloo 2';font-weight:900;font-size:1.5rem;color:#C8860A;line-height:1}
-  .dn-price small{font-size:.8rem;color:var(--navy-soft);font-weight:700}
-  .dn-cta{display:inline-flex;margin-top:10px;font-family:'Baloo 2';font-weight:800;font-size:.9rem;color:var(--navy);border:2.5px solid #8B5CD6;border-radius:30px;padding:6px 16px;transition:transform .18s ease}
-  .dn-cta:hover{transform:translateY(-2px)}
-  .dn-x{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:0;cursor:pointer;background:rgba(27,30,68,.72);color:#fff;font-size:1.2rem;line-height:1;display:grid;place-items:center}
-  @media(max-width:1099px){
-    .dn-pop{position:relative;right:auto;top:auto;width:min(100%,380px);margin:14px auto 0;display:none;transform:none}
-    .dancer.open .dn-pop{display:block;transform:none}
-  }
-  @media(prefers-reduced-motion:reduce){.dn-sway,.dn-arm-l,.dn-arm-r{animation:none}.dn-svg,.dn-pop,.dn-cta{transition:none}}
+  @media(prefers-reduced-motion:reduce){.dn-sway,.dn-arm-l,.dn-arm-r{animation:none}.dn-svg{transition:none}}
 </style>
 <link rel="stylesheet" href="assets/css/intro.css?v=1">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
+<link rel="stylesheet" href="assets/css/pmodal.css?v=20261025a">
 <link rel="stylesheet" href="assets/css/waves.css?v=20261025a">
 <script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
 </head>
@@ -782,7 +764,7 @@
       </a>
     </div>
       <aside class="dancer" id="dancer">
-        <button class="dn-btn" type="button" aria-expanded="false" aria-controls="dnPop" aria-label="Air tanečníci – zobrazit nabídku">
+        <button class="dn-btn" type="button" aria-label="Air tanečníci – zobrazit nabídku" data-pm data-kk-item="tanecnici" data-kk-name="Air tanečníci" data-kk-img="assets/img/tanecnici.webp" data-pm-title="Air tanečníci" data-pm-badge="Upoutávka" data-pm-price="&lt;b&gt;3 000 Kč&lt;/b&gt;&lt;span&gt;/ akce&lt;/span&gt;" data-pm-desc="Nafukovací tanečníci, kteří hravými pohyby přitáhnou oko už z dálky a nasměrují hosty přímo k vaší oslavě." data-pm-list="Tři nafukovací tanečníci na výběr|Místo je živé a plné energie|Ukážou hostům cestu k akci" data-gal="assets/img/tanecnici.webp,assets/img/tanecnici-2.webp">
           <svg class="dn-svg" viewBox="0 0 220 350" aria-hidden="true">
             <defs>
               <linearGradient id="dnBody" x1="0" x2="1"><stop offset="0" stop-color="#F5B324"/><stop offset=".55" stop-color="#FFD23F"/><stop offset="1" stop-color="#E09A12"/></linearGradient>
@@ -805,18 +787,6 @@
           </svg>
           <span class="dn-tag" aria-hidden="true">Tohle potřebuješ<svg viewBox="0 0 20 14" fill="none"><path d="M2 7 H17 M12 2 l5 5 -5 5" stroke="var(--navy)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <div class="dn-pop" id="dnPop" role="dialog" aria-label="Air tanečníci" data-kk-item="tanecnici" data-kk-name="Air tanečníci" data-kk-img="assets/img/tanecnici.webp">
-          <button class="dn-x" type="button" aria-label="Zavřít">×</button>
-          <img src="assets/img/tanecnici.webp" width="600" height="507" loading="lazy" decoding="async" alt="Nafukovací air tanečníci na akci">
-          <div class="dn-in">
-            <h3>Air tanečníci</h3>
-            <p>Nafukovací tanečníci, kteří hravými pohyby přitáhnou oko už z dálky a nasměrují hosty přímo k vaší oslavě.</p>
-            <ul><li>Tři nafukovací tanečníci na výběr</li><li>Místo je živé a plné energie</li><li>Ukážou hostům cestu k akci</li></ul>
-            <div class="dn-price">3&nbsp;000&nbsp;<small>Kč</small></div>
-            <a class="dn-cta" href="#kontakt">Nezávazná poptávka →</a>
-            <div data-kk-slot></div>
-          </div>
-        </div>
       </aside>
     </div>
   </div>
@@ -1180,21 +1150,9 @@
   else window.addEventListener('load', launchBalloons);
 })();
 </script>
-<script>
-/* air tanečník u služeb: klik otevře kartu, zavření křížkem, Esc nebo klikem vedle */
-(function(){
-  var d=document.getElementById('dancer'); if(!d) return;
-  var btn=d.querySelector('.dn-btn'), pop=d.querySelector('.dn-pop');
-  var set=function(o){d.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');};
-  btn.addEventListener('click',function(e){e.stopPropagation();set(!d.classList.contains('open'));});
-  d.querySelector('.dn-x').addEventListener('click',function(e){e.stopPropagation();set(false);btn.focus();});
-  pop.querySelector('.dn-cta').addEventListener('click',function(){set(false);});
-  document.addEventListener('click',function(e){if(!d.contains(e.target))set(false);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open')){set(false);btn.focus();}});
-})();
-</script>
 <script src="assets/js/kosik.js" defer></script>
 <script src="assets/js/poptavka.js" defer></script>
+<script src="assets/js/pmodal.js?v=20261025a" defer></script>
 
 <script>
 (function(){
