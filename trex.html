@@ -1143,9 +1143,22 @@
   background:radial-gradient(120% 80% at 70% 20%,rgba(155,225,93,.16),transparent 60%),linear-gradient(170deg,#2A1858 0%,#1A2D4A 48%,#0F3B2E 100%);background-origin:border-box}
 .tx-glow{z-index:-2;opacity:.45}
 .tx-stars{position:absolute;inset:0;z-index:-2;opacity:.7;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 32% 8%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 58% 14%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 78% 6%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 90% 22%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 46% 26%,#fff 50%,transparent 51%)}
-.tx-leaves{position:absolute;inset:-60px 0;z-index:-1;pointer-events:none;will-change:transform}
-.tx-leaves svg{width:100%;height:100%}
-.tx-leaves.l3{opacity:.55}.tx-leaves.l2{opacity:.8}.tx-leaves.l1{opacity:1}
+/* fialový pás ve vlně za kartou (40–75 % výšky hero), vlna pomalu pluje do strany */
+.tx-band{--wv-h:64px;--wv-w:1100px;position:absolute;left:calc(var(--wv-w) * -1);width:calc(100% + var(--wv-w) * 2);top:40%;height:35%;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,#4A2E8F 0%,#6E4DB0 30%,#5B3BA8 60%,#7A4FC8 100%);opacity:.92;animation:txBand 46s linear infinite;will-change:transform}
+.tx-band .wv-glow i:nth-child(1){left:30%}.tx-band .wv-glow i:nth-child(2){right:30%;background:radial-gradient(circle,rgba(155,225,93,.4),rgba(155,225,93,0) 68%)}
+@keyframes txBand{to{transform:translate3d(var(--wv-w),0,0)}}
+/* listy rostou z okrajů a rohů, přesahují přes kraj, kartu rámují */
+.tx-leaves{position:absolute;inset:0;z-index:-1;pointer-events:none;will-change:transform}
+.tx-leaves .lf{position:absolute;--w:clamp(300px,34vw,560px);width:var(--w);aspect-ratio:1.03;left:var(--x);top:calc(var(--y) - var(--w) / 2.06);fill:var(--lc);color:var(--lc);transform-origin:2% 45%;transform:rotate(var(--r));overflow:visible}
+.tx-leaves .lf-rib{fill:none;stroke:rgba(255,255,255,.12);stroke-width:5}
+.tx-leaves.l3{--lc:#2F7D5A;opacity:.55}.tx-leaves.l2{--lc:#235F44;opacity:.85}.tx-leaves.l1{--lc:#164A35}
+/* --x/--y = základna listu (u okraje), --r = směr dovnitř */
+.l3 .tl{--x:-3%;--y:3%}.l3 .tr{--x:103%;--y:6%}.l3 .ml{--x:-3%;--y:50%;--w:clamp(260px,30vw,480px)}.l3 .mr{--x:103%;--y:58%;--w:clamp(260px,30vw,480px)}
+.l2 .bl{--x:-3%;--y:97%}.l2 .br{--x:103%;--y:98%}.l2 .tl2{--x:-3%;--y:22%;--w:clamp(240px,26vw,420px)}.l2 .tr2{--x:103%;--y:26%;--w:clamp(240px,26vw,420px)}
+.l1 .bl{--x:-1%;--y:104%}.l1 .br{--x:101%;--y:104%}.l1 .tl{--x:-1%;--y:-3%}.l1 .mr2{--x:103%;--y:78%;--w:clamp(260px,28vw,460px)}
+@media(max-width:700px){.tx-leaves .lf{--w:clamp(170px,48vw,240px)}.tx-leaves .ml,.tx-leaves .mr,.tx-leaves .tl2,.tx-leaves .tr2,.tx-leaves .mr2{display:none}}
+@media(prefers-reduced-motion:reduce){.tx-band{animation:none}}
 .tx-card{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;gap:20px;
   border-radius:32px;padding:44px 48px;background:linear-gradient(150deg,rgba(110,77,176,.55),rgba(15,59,46,.55));
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
@@ -1185,25 +1198,29 @@
   border:0;box-shadow:none;transform:rotate(-10deg);animation:txPop 2.8s ease-in-out infinite}
 @keyframes txPop{0%,100%{transform:rotate(-10deg) scale(1)}50%{transform:rotate(-6deg) scale(1.08)}}
 /* stopy dinosaura podél stránky (kreslí se podle scrollu) */
-.tx-trail{position:absolute;right:max(6px,calc((100% - 1180px)/2 - 144px));top:0;width:130px;z-index:0;pointer-events:none;overflow:visible;display:none}
-.tx-trail path{fill:none;stroke:rgba(30,42,68,.28);stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
-.tx-trail .draw{stroke:rgba(110,77,176,.5);stroke-dasharray:none;stroke-width:3}
-.tx-trail .fp{fill:#6E4DB0;opacity:0;transition:opacity .4s ease}
-.tx-trail .fp.on{opacity:.55}
+/* stopy: dvě cesty (vlevo i vpravo) od nohou dinosaura v hero přes Jak to probíhá, na pásu Rychlých faktů vyblednou */
+.tx-trail{position:absolute;left:0;top:0;width:100%;z-index:3;pointer-events:none;overflow:visible;display:none}
+.tx-trail .fp{fill:#6E4DB0;opacity:0;transition:opacity .45s ease}
+.tx-trail .fp.dk{fill:#9BE15D}.tx-trail .fp.bd{fill:#fff}
+.tx-trail .fp.on{opacity:var(--o,.55)}
 @media(min-width:1100px){.tx-trail{display:block}}
 /* sekce: 74 px mezi bloky jako megahrady */
 /* pořadí: hero → Jak to probíhá (výrazný fialový pás ve vlně) → Rychlá fakta → galerie → CTA */
-.trex-page section.tx-how{position:relative;padding:95px 0 84px;margin-top:calc(var(--wv-h) * -1 - 1px);color:#fff;isolation:isolate;
+.trex-page section.tx-how{position:relative;padding:74px 0 74px;color:#fff}
+/* Rychlá fakta na fialovém pásu ve vlně (zhruba poloviční výška proti dřívějšímu pásu Jak to probíhá) */
+.trex-page section.tx-facts{position:relative;padding:22px 0 28px!important;color:#fff;isolation:isolate;
   background:linear-gradient(160deg,#3A2470 0%,#5B3BA8 55%,#7A4FC8 100%);background-origin:border-box}
-.trex-page section.tx-how .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(155,225,93,.45),rgba(155,225,93,0) 68%)}
-.trex-page section.tx-facts{padding:96px 0 74px!important}
+.trex-page section.tx-facts .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(155,225,93,.45),rgba(155,225,93,0) 68%)}
+.trex-page section.tx-facts .facts{margin-top:26px}
 .trex-page .tx-facts3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .tx-steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;position:relative}
-.tx-steps::before{content:"";position:absolute;left:12%;right:12%;top:38px;height:6px;border-radius:6px;z-index:0;
-  background:linear-gradient(90deg,#FFD23F,#9BE15D,#C9B3F2);box-shadow:0 0 18px rgba(155,225,93,.55);transform-origin:left center;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
-.tx-steps.go::before{transform:scaleX(1)}
+/* ručně kreslené šipky 1 → 2 → 3 (JS je postaví podle karet, kreslí se podle scrollu) */
+.tx-arrows{position:absolute;left:0;top:0;width:100%;height:100%;z-index:3;overflow:visible;pointer-events:none}
+.tx-arrows path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.tx-arrows .ao{stroke:#1E2A44;stroke-width:9}.tx-arrows .ai{stroke:#FFD23F;stroke-width:4.5}.tx-arrows .a2 .ai{stroke:#fff}
+.tx-arrows .ah{opacity:0;transition:opacity .25s ease}.tx-arrows .ah.on{opacity:1}
 .tx-steps li{position:relative;z-index:1;text-align:center;padding:96px 24px 28px;border-radius:30px;
-  background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.05));border:3px solid rgba(255,210,63,.75);
+  background:linear-gradient(165deg,#6E4DB0,#452C7C);border:3px solid rgba(255,210,63,.75);
   box-shadow:0 0 0 1.5px rgba(14,9,36,.4),0 22px 44px rgba(14,9,36,.35),0 0 24px rgba(255,210,63,.18);
   opacity:0;transform:translateY(34px) scale(.96);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .tx-steps li:nth-child(2){border-color:rgba(155,225,93,.8);transition-delay:.25s}
@@ -1218,7 +1235,7 @@
 .tx-steps li:nth-child(2) .tx-ico{stroke:#9BE15D}.tx-steps li:nth-child(3) .tx-ico{stroke:#C9B3F2}
 .tx-steps h3{font:900 1.45rem/1.15 'Baloo 2',sans-serif;color:#fff;text-shadow:0 2px 10px rgba(14,9,36,.45)}
 .tx-steps p{margin:10px auto 0;max-width:300px;font-weight:700;line-height:1.55;color:rgba(255,255,255,.9)}
-.trex-page section.tx-gal{padding-top:0!important;padding-bottom:44px}
+.trex-page section.tx-gal{padding-top:60px!important;padding-bottom:44px}
 .tx-gal .tx-portrait{object-position:50% 18%}
 .tx-cta .btn{border:0;cursor:pointer}
 .tx-how .h2{font-weight:900;font-size:clamp(1.85rem,4.2vw,2.6rem);color:#fff;-webkit-text-stroke:2px #0B0F1C;paint-order:stroke fill;text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 12px rgba(255,210,63,.5),0 0 26px rgba(255,210,63,.25)}
@@ -1232,9 +1249,7 @@
 @media(max-width:700px){
   .trex-page .tx-facts3{grid-template-columns:minmax(0,1fr)}
   .tx-steps{grid-template-columns:minmax(0,1fr);gap:58px;margin-top:64px}
-  .tx-steps::before{left:50%;right:auto;top:20px;bottom:20px;width:6px;height:auto;margin-left:-3px;transform-origin:center top;transform:scaleY(0)}
-  .tx-steps.go::before{transform:scaleY(1)}
-  .tx-steps li{padding:86px 20px 24px;background:linear-gradient(165deg,#6C4FBA,#4B3290)}
+  .tx-steps li{padding:86px 20px 24px}
   .tx-boom{right:-14px}
   .tx-roar{font-size:1.25rem;top:4px}
 }
@@ -1288,14 +1303,16 @@
 </div>
 </header>
 <main id="obsah" class="trex-page">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="lf-fr" viewBox="-20 -560 1340 1300" overflow="visible"><path d="M120 5Q172 164 318 288Q232 116 142 6ZM174 10Q228 184 386 321Q294 133 196 12ZM227 17Q283 202 449 350Q354 149 249 20ZM281 25Q336 218 507 374Q411 164 303 29ZM335 36Q389 233 561 394Q465 179 357 41ZM389 48Q441 247 612 411Q518 193 410 54ZM442 63Q492 259 659 423Q569 207 464 69ZM496 79Q542 271 704 433Q618 221 517 85ZM550 97Q592 282 746 438Q666 235 571 104ZM604 117Q642 292 786 441Q712 248 624 125ZM658 138Q692 302 825 442Q757 261 678 147ZM711 162Q742 311 862 440Q801 275 731 171ZM765 187Q791 320 897 436Q845 288 785 197ZM819 215Q841 329 932 430Q887 302 838 225ZM872 244Q890 338 965 421Q928 316 892 254ZM926 275Q939 347 996 410Q968 330 945 286ZM980 307Q988 351 1022 390Q1006 341 999 319ZM120 5Q258 -42 354 -182Q206 -99 142 6ZM174 10Q328 -33 442 -179Q274 -98 196 12ZM227 17Q394 -20 524 -168Q341 -91 249 20ZM281 25Q457 -3 601 -149Q406 -80 303 29ZM335 36Q516 17 672 -124Q469 -64 357 41ZM389 48Q573 39 737 -94Q529 -45 410 54ZM442 63Q626 63 796 -59Q587 -22 464 69ZM496 79Q675 88 848 -22Q642 4 517 85ZM550 97Q722 115 894 18Q695 32 571 104ZM604 117Q766 142 934 59Q744 63 624 125ZM658 138Q808 169 969 100Q791 95 678 147ZM711 162Q848 197 998 141Q836 128 731 171ZM765 187Q885 224 1022 181Q878 163 785 197ZM819 215Q921 251 1041 220Q917 198 838 225ZM872 244Q956 278 1056 257Q955 234 892 254ZM926 275Q989 304 1066 291Q989 270 945 286ZM980 307Q1017 327 1065 321Q1019 306 999 319Z"/><path d="M0 0 L50 1 L100 3 L150 7 L200 13 L250 20 L300 29 L350 39 L400 51 L450 65 L500 80 L550 97 L600 115 L650 135 L700 157 L750 180 L800 205 L850 231 L900 259 L950 289 L1000 320" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><path class="lf-rib" d="M0 0 L50 1 L100 3 L150 7 L200 13 L250 20 L300 29 L350 39 L400 51 L450 65 L500 80 L550 97 L600 115 L650 135 L700 157 L750 180 L800 205 L850 231 L900 259 L950 289 L1000 320"/></symbol><symbol id="lf-ba" viewBox="-60 -330 1340 760" overflow="visible"><path d="M66 0 L88 81 L95 87 L103 92 L111 98 L118 103 L126 108 L133 114 L104 1 L98 1 L91 1 L85 1 L79 1 L72 1 L66 0ZM116 1 L147 123 L168 136 L188 149 L208 161 L228 173 L248 184 L267 194 L223 5 L205 4 L187 4 L169 3 L152 2 L134 2 L116 1ZM235 6 L280 201 L288 205 L296 209 L304 212 L312 216 L320 220 L328 223 L279 8 L272 7 L264 7 L257 7 L249 6 L242 6 L235 6ZM291 8 L340 229 L362 238 L384 246 L405 254 L427 260 L448 266 L469 271 L418 18 L397 16 L376 14 L355 13 L334 11 L312 10 L291 8ZM430 19 L480 274 L493 277 L506 279 L518 281 L531 282 L543 283 L556 284 L510 26 L496 25 L483 23 L470 22 L457 21 L444 20 L430 19ZM522 27 L567 285 L577 285 L586 285 L595 285 L605 285 L614 284 L623 284 L582 34 L572 33 L562 32 L552 30 L542 29 L532 28 L522 27ZM594 35 L634 283 L655 280 L675 277 L695 273 L715 268 L735 262 L755 255 L728 53 L705 50 L683 47 L661 44 L639 41 L616 38 L594 35ZM740 55 L766 251 L774 248 L782 244 L791 241 L799 237 L807 234 L815 230 L794 63 L785 62 L776 60 L767 59 L758 57 L749 56 L740 55ZM806 65 L826 224 L839 217 L852 210 L865 203 L878 195 L891 186 L903 177 L893 80 L879 77 L864 75 L850 72 L835 70 L821 67 L806 65ZM905 82 L914 169 L926 160 L938 150 L949 140 L961 127 L973 113 L984 97 L984 97 L971 94 L958 92 L945 89 L931 87 L918 84 L905 82ZM66 0 L90 -80 L98 -86 L106 -91 L114 -96 L122 -102 L130 -106 L138 -111 L104 1 L98 1 L91 1 L85 1 L79 1 L72 1 L66 0ZM116 1 L153 -120 L175 -133 L197 -144 L219 -155 L241 -166 L262 -175 L284 -184 L223 5 L205 4 L187 4 L169 3 L152 2 L134 2 L116 1ZM235 6 L298 -190 L307 -193 L316 -196 L325 -199 L334 -202 L343 -205 L352 -208 L279 8 L272 7 L264 7 L257 7 L249 6 L242 6 L235 6ZM291 8 L366 -212 L391 -218 L415 -224 L440 -229 L464 -232 L488 -235 L511 -236 L418 18 L397 16 L376 14 L355 13 L334 11 L312 10 L291 8ZM430 19 L524 -237 L539 -237 L553 -237 L567 -236 L581 -235 L595 -234 L609 -232 L510 26 L496 25 L483 23 L470 22 L457 21 L444 20 L430 19ZM522 27 L621 -230 L631 -229 L642 -226 L652 -224 L662 -222 L672 -219 L682 -216 L582 34 L572 33 L562 32 L552 30 L542 29 L532 28 L522 27ZM594 35 L693 -212 L715 -204 L735 -195 L756 -185 L776 -174 L795 -162 L814 -149 L728 53 L705 50 L683 47 L661 44 L639 41 L616 38 L594 35ZM740 55 L824 -142 L832 -136 L839 -130 L847 -123 L854 -117 L861 -110 L868 -103 L794 63 L785 62 L776 60 L767 59 L758 57 L749 56 L740 55ZM806 65 L877 -94 L888 -83 L899 -71 L909 -58 L919 -45 L929 -32 L938 -18 L893 80 L879 77 L864 75 L850 72 L835 70 L821 67 L806 65ZM905 82 L946 -5 L954 8 L961 23 L968 39 L975 56 L980 76 L984 97 L984 97 L971 94 L958 92 L945 89 L931 87 L918 84 L905 82Z"/><path d="M-40 0 L50 0 L100 1 L150 2 L200 4 L250 6 L300 9 L350 12 L400 16 L450 20 L500 25 L550 30 L600 36 L650 42 L700 49 L750 56 L800 64 L850 72 L900 81 L950 90 L1000 100" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round"/><path class="lf-rib" d="M-40 0 L50 0 L100 1 L150 2 L200 4 L250 6 L300 9 L350 12 L400 16 L450 20 L500 25 L550 30 L600 36 L650 42 L700 49 L750 56 L800 64 L850 72 L900 81 L950 90 L1000 100"/></symbol></defs></svg>
 <svg class="tx-trail" aria-hidden="true"></svg>
 
 <section class="trex-hero wv wv-out" style="--wv-x:-140px">
   <div class="wv-glow tx-glow" aria-hidden="true"><i></i><i></i></div>
   <div class="tx-stars" aria-hidden="true"></div>
-  <div class="tx-leaves l3" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><g fill="#1E4A3A"><path d="M-40 900 C40 640 120 520 260 430 C200 560 190 700 230 900Z"/><path d="M1640 900 C1560 660 1470 540 1330 470 C1400 590 1410 720 1370 900Z"/><path d="M120 120 C260 80 380 120 470 210 C340 190 240 210 140 270 C180 210 160 160 120 120Z"/><path d="M1480 160 C1340 110 1220 140 1130 230 C1260 210 1360 230 1460 290 C1420 230 1440 190 1480 160Z"/></g></svg></div>
-  <div class="tx-leaves l2" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><g fill="#163A2E"><path d="M-60 520 C80 470 200 500 300 590 C190 600 110 640 40 720 C60 640 30 580 -60 520Z"/><path d="M60 900 C90 760 150 680 250 630 C230 720 230 800 260 900Z"/><path d="M1660 560 C1520 500 1390 530 1290 620 C1400 630 1490 670 1560 750 C1540 670 1570 610 1660 560Z"/><path d="M1540 900 C1510 770 1450 690 1350 640 C1370 730 1370 810 1340 900Z"/></g></svg></div>
-  <div class="tx-leaves l1" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><g fill="#0E2A22"><path d="M-80 260 C60 200 210 230 330 330 C210 330 100 370 10 450 C30 360 0 300 -80 260Z"/><path d="M-40 900 C0 800 70 740 170 710 C140 780 150 850 180 900Z"/><path d="M1680 300 C1530 230 1380 260 1270 360 C1390 360 1500 400 1590 480 C1570 390 1600 330 1680 300Z"/><path d="M1640 900 C1600 800 1530 740 1430 710 C1460 780 1450 850 1420 900Z"/></g></svg></div>
+  <div class="tx-band wv" aria-hidden="true"><div class="wv-glow"><i></i><i></i></div></div>
+  <div class="tx-leaves l3" aria-hidden="true"><svg class="lf tl" style="--r:28deg"><use href="#lf-fr"/></svg><svg class="lf tr" style="--r:152deg"><use href="#lf-fr"/></svg><svg class="lf ml" style="--r:-8deg"><use href="#lf-ba"/></svg><svg class="lf mr" style="--r:188deg"><use href="#lf-ba"/></svg></div>
+  <div class="tx-leaves l2" aria-hidden="true"><svg class="lf bl" style="--r:-38deg"><use href="#lf-fr"/></svg><svg class="lf br" style="--r:218deg"><use href="#lf-fr"/></svg><svg class="lf tl2" style="--r:38deg"><use href="#lf-ba"/></svg><svg class="lf tr2" style="--r:142deg"><use href="#lf-ba"/></svg></div>
+  <div class="tx-leaves l1" aria-hidden="true"><svg class="lf bl" style="--r:-52deg"><use href="#lf-ba"/></svg><svg class="lf br" style="--r:232deg"><use href="#lf-ba"/></svg><svg class="lf tl" style="--r:58deg"><use href="#lf-fr"/></svg><svg class="lf mr2" style="--r:196deg"><use href="#lf-fr"/></svg></div>
   <div class="wrap">
     <div class="tx-card" data-kk-item="maskot-tyranosaurus" data-kk-name="Chodící Tyranosaurus" data-kk-img="assets/maskoti/maskot-tyranosaurus-sm.webp">
       <div class="tx-copy">
@@ -1318,8 +1335,7 @@
   </div>
 </section>
 
-<section class="block tx-how wv wv-out" style="--wv-x:-140px">
-  <div class="wv-glow" aria-hidden="true"><i></i><i></i></div>
+<section class="block tx-how">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Jak to probíhá</span>
@@ -1329,11 +1345,13 @@
       <li><span class="tx-n">1</span><svg class="tx-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="10" width="34" height="31" rx="6"/><path d="M7 19h34M16 6v8M32 6v8"/><path d="M17 29l5 5 9-10"/></svg><h3>Domluvíme termín</h3><p>Pošlete datum a místo. Potvrdíme dostupnost a rozplánujeme vstupy do programu.</p></li>
       <li><span class="tx-n">2</span><svg class="tx-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c3 5 3 10 1 14l7-9c4 3 5 8 3 12l6-3c1 6-3 11-9 12-3 6-9 9-15 7-7-2-10-9-7-15 2-5 7-7 11-6-2-4-1-8 3-12z"/></svg><h3>T-Rex vyráží</h3><p>Tři vstupy po 20 minutách. Prochází se mezi hosty, řve a pózuje, mezi vstupy si dá pauzu.</p></li>
       <li><span class="tx-n">3</span><svg class="tx-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="14" width="38" height="26" rx="6"/><path d="M17 14l3-6h8l3 6"/><circle cx="24" cy="27" r="7"/></svg><h3>Focení a ROAR finále</h3><p>Fotky s dětmi i dospělými a společný řev na závěr. Dojezd po celé ČR.</p></li>
+      <svg class="tx-arrows" aria-hidden="true"></svg>
     </ol>
   </div>
 </section>
 
-<section class="block facts-block tx-facts">
+<section class="block facts-block tx-facts wv wv-out" style="--wv-x:-420px">
+  <div class="wv-glow" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Rychlá fakta</span>
@@ -1544,9 +1562,9 @@
 (function(){
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hero=document.querySelector('.trex-hero'), fig=document.querySelector('.tx-fig'), head=document.querySelector('.tx-head');
-  var leaves=[].slice.call(document.querySelectorAll('.tx-leaves')), speeds=[.08,.18,.3];
+  var leaves=[].slice.call(document.querySelectorAll('.tx-leaves')), speeds=[.03,.05,.08];
   var trail=document.querySelector('.tx-trail'), main=document.querySelector('.trex-page');
-  var hover=0, scrollRot=0, drawPath=null, len=0, fps=[], tTop=0, tH=0;
+  var hover=0, scrollRot=0, fps=[], shown=0, stepT=0, arrows=[];
 
   function setHead(){ if(head) head.style.transform='rotate('+(scrollRot+hover).toFixed(2)+'deg)'; }
   if(fig&&!RM){
@@ -1555,45 +1573,78 @@
     card.addEventListener('pointerleave',function(){ hover=0;setHead(); });
   }
 
-  /* stopy: cik-cak cesta podél levého okraje, kreslí se stroke-dashoffsetem podle scrollu */
+  /* stopy: dvě cesty od nohou dinosaura (vlevo i vpravo), postupně se objevují podle scrollu, na pásu faktů vyblednou */
+  function rel(el){ var r=el.getBoundingClientRect(), m=main.getBoundingClientRect(); return {l:r.left-m.left,t:r.top-m.top,r:r.right-m.left,b:r.bottom-m.top,w:r.width,h:r.height}; }
   function buildTrail(){
+    fps=[]; shown=0;
     if(!trail||getComputedStyle(trail).display==='none') return;
-    var ns='http://www.w3.org/2000/svg';
-    tTop=hero.offsetHeight-40; tH=Math.max(200,main.offsetHeight-tTop-120);
-    trail.style.top=tTop+'px'; trail.setAttribute('width',130); trail.setAttribute('height',tH); trail.setAttribute('viewBox','0 0 130 '+tH);
-    var d='M65 0', step=180, i=0;
-    for(var y=step;y<=tH;y+=step){ var x=(i++%2)?95:35; d+=' Q'+(i%2?20:110)+' '+(y-step/2)+' '+x+' '+y; }
-    trail.innerHTML='';
-    var base=document.createElementNS(ns,'path'); base.setAttribute('d',d); trail.appendChild(base);
-    drawPath=document.createElementNS(ns,'path'); drawPath.setAttribute('d',d); drawPath.setAttribute('class','draw'); trail.appendChild(drawPath);
-    len=drawPath.getTotalLength(); drawPath.style.strokeDasharray=len; drawPath.style.strokeDashoffset=len;
-    fps=[]; var foot='M0 -14 C3 -9 3 -4 1 0 L5 -9 C8 -6 8 -2 4 2 C6 6 3 10 0 10 C-3 10 -6 6 -4 2 C-8 -2 -8 -6 -5 -9 L-1 0 C-3 -4 -3 -9 0 -14Z';
-    for(var l=60, k=0; l<len; l+=110, k++){
-      var p=drawPath.getPointAtLength(l), q=drawPath.getPointAtLength(Math.min(len,l+2));
-      var ang=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI+90, off=(k%2?11:-11);
-      var g=document.createElementNS(ns,'path'); g.setAttribute('d',foot); g.setAttribute('class','fp');
-      g.setAttribute('transform','translate('+(p.x+off).toFixed(1)+' '+p.y.toFixed(1)+') rotate('+ang.toFixed(1)+') scale(1.5)');
-      trail.appendChild(g); fps.push({el:g,l:l});
+    var ns='http://www.w3.org/2000/svg', W=main.clientWidth, card=rel(document.querySelector('.tx-card')), fg=rel(fig), hb=hero.offsetTop+hero.offsetHeight;
+    var fx=document.querySelector('.tx-facts'), fT=fx.offsetTop, fB=fT+fx.offsetHeight;
+    var mx=Math.max(34,Math.min(110,(W-card.w)/4)), end=fB-40, sx=fg.l+fg.w*.55, sy=card.b-18;
+    trail.setAttribute('width',W); trail.setAttribute('height',end); trail.setAttribute('viewBox','0 0 '+W+' '+end); trail.style.height=end+'px'; trail.innerHTML='';
+    var foot='M0 -14 C3 -9 3 -4 1 0 L5 -9 C8 -6 8 -2 4 2 C6 6 3 10 0 10 C-3 10 -6 6 -4 2 C-8 -2 -8 -6 -5 -9 L-1 0 C-3 -4 -3 -9 0 -14Z';
+    [[W-mx,1],[mx,-1]].forEach(function(side){
+      var x0=side[0], y1=card.b+60, d='M'+sx.toFixed(0)+' '+sy.toFixed(0)+' C'+(sx+(x0-sx)*.35).toFixed(0)+' '+(y1+10)+' '+x0+' '+(y1-20)+' '+x0+' '+(y1+90);
+      for(var y=y1+110;y<=end;y+=20) d+=' L'+(x0+Math.sin((y-y1)/95)*16*side[1]).toFixed(1)+' '+y;
+      var p=document.createElementNS(ns,'path'); p.setAttribute('d',d); trail.appendChild(p); var len=p.getTotalLength(); trail.removeChild(p);
+      for(var l=26,k=0;l<len;l+=62,k++){
+        var a=p.getPointAtLength(l), b=p.getPointAtLength(Math.min(len,l+2)), ang=Math.atan2(b.y-a.y,b.x-a.x), off=(k%2?9:-9);
+        var px=a.x-Math.sin(ang)*off, py=a.y+Math.cos(ang)*off;
+        var g=document.createElementNS(ns,'path'); g.setAttribute('d',foot);
+        g.setAttribute('class','fp'+(py<hb?' dk':py>fT?' bd':''));
+        if(py>fT) g.style.setProperty('--o',(.55*Math.max(0,1-(py-fT)/(end-fT))).toFixed(2));
+        g.setAttribute('transform','translate('+px.toFixed(1)+' '+py.toFixed(1)+') rotate('+(ang*180/Math.PI+90).toFixed(1)+') scale(1.4)');
+        trail.appendChild(g); fps.push({el:g,y:py});
+      }
+    });
+    fps.sort(function(a,b){ return a.y-b.y; });
+  }
+  /* šipky Jak to probíhá: 1 → 2 → 3 nad kartami, na mobilu dolů mezi kartami */
+  function buildArrows(){
+    var svg=document.querySelector('.tx-arrows'); arrows=[]; if(!svg) return;
+    var st=svg.parentNode, sr=st.getBoundingClientRect(), li=[].slice.call(st.querySelectorAll('li')).map(function(e){ var r=e.getBoundingClientRect(); return {l:r.left-sr.left,t:r.top-sr.top,w:r.width,b:r.bottom-sr.top,cx:r.left-sr.left+r.width/2}; });
+    var ns='http://www.w3.org/2000/svg', stacked=li.length>1&&li[1].t>li[0].b-2; svg.innerHTML='';
+    for(var i=0;i<li.length-1;i++){
+      var a=li[i], b=li[i+1], d;
+      if(stacked){ var s1=[a.cx+64,a.b-10], e1=[b.cx+50,b.t+22]; d='M'+s1+' C'+(s1[0]+46)+','+(s1[1]+22)+' '+(e1[0]+40)+','+(e1[1]-26)+' '+e1; }
+      else { var s2=[a.cx+60,a.t-6], e2=[b.cx-50,b.t+4], dx=e2[0]-s2[0]; d='M'+s2+' C'+(s2[0]+dx*.22)+','+(s2[1]-66)+' '+(e2[0]-dx*.28)+','+(e2[1]-74)+' '+(e2[0]-2)+','+(e2[1]-3); }
+      var g=document.createElementNS(ns,'g'); g.setAttribute('class','a'+(i+1)); svg.appendChild(g);
+      var o=document.createElementNS(ns,'path'), n=document.createElementNS(ns,'path'); o.setAttribute('d',d); o.setAttribute('class','ao'); n.setAttribute('d',d); n.setAttribute('class','ai'); g.appendChild(o); g.appendChild(n);
+      var L=n.getTotalLength(), e=n.getPointAtLength(L), q=n.getPointAtLength(L-14), an=Math.atan2(e.y-q.y,e.x-q.x), h='';
+      [-.5,.5].forEach(function(da){ h+='M'+(e.x-Math.cos(an+da)*20).toFixed(1)+' '+(e.y-Math.sin(an+da)*20).toFixed(1)+' L'+e.x.toFixed(1)+' '+e.y.toFixed(1)+' '; });
+      var ho=document.createElementNS(ns,'path'), hi=document.createElementNS(ns,'path'); ho.setAttribute('d',h); ho.setAttribute('class','ao ah'); hi.setAttribute('d',h); hi.setAttribute('class','ai ah'); g.appendChild(ho); g.appendChild(hi);
+      [o,n].forEach(function(p){ p.style.strokeDasharray=L; p.style.strokeDashoffset=L; });
+      arrows.push({p:[o,n],h:[ho,hi],L:L,y:stacked?a.b:a.t,i:stacked?0:i});
     }
+  }
+  function walk(){
+    var target=0, line=window.scrollY+innerHeight*.95-(main.getBoundingClientRect().top+window.scrollY);
+    if(RM) target=fps.length; else while(target<fps.length&&fps[target].y<=line) target++;
+    var now=performance.now();
+    if(RM) shown=target;
+    else if(target!==shown&&now-stepT>55){ stepT=now; shown+=target>shown?Math.min(2,target-shown):-Math.min(4,shown-target); }
+    fps.forEach(function(f,i){ f.el.classList.toggle('on',i<shown); });
+    if(target!==shown) requestAnimationFrame(walk);
   }
   function onScroll(){
     var y=window.scrollY;
     if(!RM){
-      leaves.forEach(function(el,i){ el.style.transform='translate3d(0,'+(y*speeds[i]).toFixed(1)+'px,0)'; });
+      leaves.forEach(function(el,i){ el.style.transform='translate3d(0,'+Math.min(40,y*speeds[i]).toFixed(1)+'px,0)'; });
       scrollRot=Math.max(-9,Math.min(4,-y/60+2)); setHead();
     }
-    if(drawPath){
-      var vis=y+innerHeight*.7-(main.getBoundingClientRect().top+y)-tTop;
-      var prog=RM?1:Math.max(0,Math.min(1,vis/tH)), drawn=len*prog;
-      drawPath.style.strokeDashoffset=(len-drawn).toFixed(1);
-      fps.forEach(function(f){ f.el.classList.toggle('on',f.l<=drawn); });
-    }
+    if(fps.length) walk();
+    var sr=arrows.length?document.querySelector('.tx-steps').getBoundingClientRect().top:0;
+    arrows.forEach(function(a){
+      var top=sr+a.y, p=RM?1:Math.max(0,Math.min(1,(innerHeight*.86-top-a.i*innerHeight*.1)/(innerHeight*.26)));
+      a.p.forEach(function(el){ el.style.strokeDashoffset=(a.L*(1-p)).toFixed(1); });
+      a.h.forEach(function(el){ el.classList.toggle('on',p>.97); });
+    });
   }
   var tick=false;
   window.addEventListener('scroll',function(){ if(tick) return; tick=true; requestAnimationFrame(function(){ onScroll(); tick=false; }); },{passive:true});
-  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ buildTrail(); onScroll(); },200); });
-  window.addEventListener('load',function(){ buildTrail(); onScroll(); });
-  buildTrail(); onScroll();
+  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ buildTrail(); buildArrows(); onScroll(); },200); });
+  window.addEventListener('load',function(){ buildTrail(); buildArrows(); onScroll(); });
+  buildTrail(); buildArrows(); onScroll();
 
   /* Jak to probíhá: čára a karty kroků se rozjedou, když sekce vjede do obrazu */
   var steps=document.querySelector('.tx-steps');
