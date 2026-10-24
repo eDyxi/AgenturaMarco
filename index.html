@@ -290,7 +290,7 @@
   .best:hover .go{background:var(--gold);color:var(--navy);border-color:rgba(255,206,58,.9);box-shadow:0 0 14px rgba(245,179,36,.5)}
 
   /* ---------- reviews ---------- */
-  .reviews{background:linear-gradient(160deg,#2B1E52 0%,#3A2470 45%,#4A2A85 100%);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+  .reviews{background:linear-gradient(160deg,#2B1E52 0%,#3A2470 45%,#4A2A85 100%);background-origin:border-box;color:#fff;position:relative;overflow:hidden;isolation:isolate}
   .reviews>*{position:relative;z-index:2}
   .reviews::before,.reviews::after{content:"";position:absolute;z-index:0;border-radius:50%;filter:blur(70px);pointer-events:none;will-change:transform}
   .reviews::before{width:46vw;height:46vw;max-width:560px;max-height:560px;top:8%;left:-14%;background:radial-gradient(circle,rgba(255,255,255,.5) 0%,rgba(255,255,255,.16) 42%,rgba(255,255,255,0) 70%);animation:revDrift1 34s ease-in-out infinite}

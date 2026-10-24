@@ -1135,13 +1135,13 @@
 </style>
 <link rel="stylesheet" href="assets/css/finale.css?v=20261024a">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
+<link rel="stylesheet" href="assets/css/waves.css?v=20261025a">
 <style>
 /* ===== trex.html – „Jurský bestseller“: noční džungle, comic h1, stopy podle scrollu ===== */
 .trex-page{position:relative}
-.trex-hero{position:relative;overflow:hidden;padding:110px 0 158px;color:#fff;isolation:isolate;
-  background:radial-gradient(120% 80% at 70% 20%,rgba(155,225,93,.16),transparent 60%),linear-gradient(170deg,#2A1858 0%,#1A2D4A 48%,#0F3B2E 100%)}
-.trex-hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;z-index:2;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 70' preserveAspectRatio='none'%3E%3Cpath d='M0 38 C260 0 420 70 700 44 C980 18 1120 -4 1340 30 C1450 46 1540 56 1600 50 L1600 70 L0 70 Z' fill='%23bfe3fb'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.trex-hero{position:relative;overflow:clip;overflow-clip-margin:calc(var(--wv-h) / 2);padding:110px 0 158px;color:#fff;isolation:isolate;
+  background:radial-gradient(120% 80% at 70% 20%,rgba(155,225,93,.16),transparent 60%),linear-gradient(170deg,#2A1858 0%,#1A2D4A 48%,#0F3B2E 100%);background-origin:border-box}
+.tx-glow{z-index:-2;opacity:.45}
 .tx-stars{position:absolute;inset:0;z-index:-2;opacity:.7;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 32% 8%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 58% 14%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 78% 6%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 90% 22%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 46% 26%,#fff 50%,transparent 51%)}
 .tx-leaves{position:absolute;inset:-60px 0;z-index:-1;pointer-events:none;will-change:transform}
 .tx-leaves svg{width:100%;height:100%}
@@ -1185,24 +1185,39 @@
   border:0;box-shadow:none;transform:rotate(-10deg);animation:txPop 2.8s ease-in-out infinite}
 @keyframes txPop{0%,100%{transform:rotate(-10deg) scale(1)}50%{transform:rotate(-6deg) scale(1.08)}}
 /* stopy dinosaura podél stránky (kreslí se podle scrollu) */
-.tx-trail{position:absolute;left:max(6px,calc((100% - 1180px)/2 - 144px));top:0;width:130px;z-index:0;pointer-events:none;overflow:visible;display:none}
+.tx-trail{position:absolute;right:max(6px,calc((100% - 1180px)/2 - 144px));top:0;width:130px;z-index:0;pointer-events:none;overflow:visible;display:none}
 .tx-trail path{fill:none;stroke:rgba(30,42,68,.28);stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
 .tx-trail .draw{stroke:rgba(110,77,176,.5);stroke-dasharray:none;stroke-width:3}
 .tx-trail .fp{fill:#6E4DB0;opacity:0;transition:opacity .4s ease}
 .tx-trail .fp.on{opacity:.55}
 @media(min-width:1100px){.tx-trail{display:block}}
 /* sekce: 74 px mezi bloky jako megahrady */
-.trex-page section.tx-facts{padding:0 0 74px!important}
+/* pořadí: hero → Jak to probíhá (výrazný fialový pás ve vlně) → Rychlá fakta → galerie → CTA */
+.trex-page section.tx-how{position:relative;padding:95px 0 84px;margin-top:calc(var(--wv-h) * -1 - 1px);color:#fff;isolation:isolate;
+  background:linear-gradient(160deg,#3A2470 0%,#5B3BA8 55%,#7A4FC8 100%);background-origin:border-box}
+.trex-page section.tx-how .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(155,225,93,.45),rgba(155,225,93,0) 68%)}
+.trex-page section.tx-facts{padding:96px 0 74px!important}
 .trex-page .tx-facts3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.trex-page section.tx-how{padding:0 0 96px}
-.tx-steps{list-style:none;margin:var(--s-block,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;position:relative;counter-reset:s}
-.tx-steps::before{content:"";position:absolute;left:16%;right:16%;top:31px;height:4px;border-radius:4px;background:linear-gradient(90deg,#FFD23F,#9BE15D,#6E4DB0);opacity:.85}
-.tx-steps li{position:relative;text-align:center;padding:0 10px}
-.tx-n{position:relative;z-index:1;display:grid;place-items:center;width:66px;height:66px;margin:0 auto 14px;border-radius:50%;font:900 1.7rem/1 'Baloo 2',sans-serif;color:#1E2A44;
-  background:#FFD23F;border:3px solid #1E2A44;box-shadow:4px 4px 0 #1E2A44}
+.tx-steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;position:relative}
+.tx-steps::before{content:"";position:absolute;left:12%;right:12%;top:38px;height:6px;border-radius:6px;z-index:0;
+  background:linear-gradient(90deg,#FFD23F,#9BE15D,#C9B3F2);box-shadow:0 0 18px rgba(155,225,93,.55);transform-origin:left center;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.tx-steps.go::before{transform:scaleX(1)}
+.tx-steps li{position:relative;z-index:1;text-align:center;padding:96px 24px 28px;border-radius:30px;
+  background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.05));border:3px solid rgba(255,210,63,.75);
+  box-shadow:0 0 0 1.5px rgba(14,9,36,.4),0 22px 44px rgba(14,9,36,.35),0 0 24px rgba(255,210,63,.18);
+  opacity:0;transform:translateY(34px) scale(.96);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.tx-steps li:nth-child(2){border-color:rgba(155,225,93,.8);transition-delay:.25s}
+.tx-steps li:nth-child(3){border-color:rgba(201,179,242,.85);transition-delay:.5s}
+.tx-steps.go li{opacity:1;transform:none}
+.tx-n{position:absolute;left:50%;top:-6px;z-index:2;display:grid;place-items:center;width:88px;height:88px;margin-left:-44px;border-radius:50%;
+  font:900 2.6rem/1 'Baloo 2',sans-serif;color:#1E2A44;background:#FFD23F;border:4px solid #1E2A44;box-shadow:5px 5px 0 #1E2A44}
 .tx-steps li:nth-child(2) .tx-n{background:#9BE15D}.tx-steps li:nth-child(3) .tx-n{background:#C9B3F2}
-.tx-steps h3{font:900 1.25rem/1.15 'Baloo 2',sans-serif;color:#fff;-webkit-text-stroke:1.5px #0B0F1C;paint-order:stroke fill;text-shadow:0 0 10px rgba(255,210,63,.4)}
-.tx-steps p{margin:8px auto 0;max-width:300px;font-weight:700;line-height:1.55;color:#1E2A44}
+.tx-steps li:hover .tx-n{transform:rotate(-8deg) scale(1.06)}
+.tx-n{transition:transform .25s cubic-bezier(.34,1.5,.5,1)}
+.tx-ico{display:block;width:44px;height:44px;margin:0 auto 10px;fill:none;stroke:#FFD23F;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.tx-steps li:nth-child(2) .tx-ico{stroke:#9BE15D}.tx-steps li:nth-child(3) .tx-ico{stroke:#C9B3F2}
+.tx-steps h3{font:900 1.45rem/1.15 'Baloo 2',sans-serif;color:#fff;text-shadow:0 2px 10px rgba(14,9,36,.45)}
+.tx-steps p{margin:10px auto 0;max-width:300px;font-weight:700;line-height:1.55;color:rgba(255,255,255,.9)}
 .trex-page section.tx-gal{padding-top:0!important;padding-bottom:44px}
 .tx-gal .tx-portrait{object-position:50% 18%}
 .tx-cta .btn{border:0;cursor:pointer}
@@ -1216,11 +1231,10 @@
 }
 @media(max-width:700px){
   .trex-page .tx-facts3{grid-template-columns:minmax(0,1fr)}
-  .tx-steps{grid-template-columns:minmax(0,1fr);gap:22px}
-  .tx-steps::before{left:32px;right:auto;top:20px;bottom:20px;width:4px;height:auto}
-  .tx-steps li{display:grid;grid-template-columns:66px minmax(0,1fr);column-gap:16px;text-align:left;padding:0}
-  .tx-steps .tx-n{grid-row:span 2;margin:0}
-  .tx-steps p{margin:6px 0 0}
+  .tx-steps{grid-template-columns:minmax(0,1fr);gap:58px;margin-top:64px}
+  .tx-steps::before{left:50%;right:auto;top:20px;bottom:20px;width:6px;height:auto;margin-left:-3px;transform-origin:center top;transform:scaleY(0)}
+  .tx-steps.go::before{transform:scaleY(1)}
+  .tx-steps li{padding:86px 20px 24px;background:linear-gradient(165deg,#6C4FBA,#4B3290)}
   .tx-boom{right:-14px}
   .tx-roar{font-size:1.25rem;top:4px}
 }
@@ -1228,6 +1242,7 @@
   .tx-leaves{transform:none!important}
   .tx-roar{animation:none}
   .tx-fig .tx-head,.tx-btn,.tx-roarbtn,.tx-trail .fp{transition:none}
+  .tx-steps li,.tx-steps::before,.tx-n{transition:none}.tx-steps li{opacity:1;transform:none}.tx-steps::before{transform:none}
   .tx-fig.shake .tx-body,.tx-fig.shake .tx-head{animation:none}
 }
 </style>
@@ -1275,7 +1290,8 @@
 <main id="obsah" class="trex-page">
 <svg class="tx-trail" aria-hidden="true"></svg>
 
-<section class="trex-hero">
+<section class="trex-hero wv wv-out" style="--wv-x:-140px">
+  <div class="wv-glow tx-glow" aria-hidden="true"><i></i><i></i></div>
   <div class="tx-stars" aria-hidden="true"></div>
   <div class="tx-leaves l3" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><g fill="#1E4A3A"><path d="M-40 900 C40 640 120 520 260 430 C200 560 190 700 230 900Z"/><path d="M1640 900 C1560 660 1470 540 1330 470 C1400 590 1410 720 1370 900Z"/><path d="M120 120 C260 80 380 120 470 210 C340 190 240 210 140 270 C180 210 160 160 120 120Z"/><path d="M1480 160 C1340 110 1220 140 1130 230 C1260 210 1360 230 1460 290 C1420 230 1440 190 1480 160Z"/></g></svg></div>
   <div class="tx-leaves l2" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><g fill="#163A2E"><path d="M-60 520 C80 470 200 500 300 590 C190 600 110 640 40 720 C60 640 30 580 -60 520Z"/><path d="M60 900 C90 760 150 680 250 630 C230 720 230 800 260 900Z"/><path d="M1660 560 C1520 500 1390 530 1290 620 C1400 630 1490 670 1560 750 C1540 670 1570 610 1660 560Z"/><path d="M1540 900 C1510 770 1450 690 1350 640 C1370 730 1370 810 1340 900Z"/></g></svg></div>
@@ -1302,6 +1318,21 @@
   </div>
 </section>
 
+<section class="block tx-how wv wv-out" style="--wv-x:-140px">
+  <div class="wv-glow" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Jak to probíhá</span>
+      <h2 class="h2">Tři vstupy, které rozhýbou celou akci</h2>
+    </div>
+    <ol class="tx-steps">
+      <li><span class="tx-n">1</span><svg class="tx-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="10" width="34" height="31" rx="6"/><path d="M7 19h34M16 6v8M32 6v8"/><path d="M17 29l5 5 9-10"/></svg><h3>Domluvíme termín</h3><p>Pošlete datum a místo. Potvrdíme dostupnost a rozplánujeme vstupy do programu.</p></li>
+      <li><span class="tx-n">2</span><svg class="tx-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c3 5 3 10 1 14l7-9c4 3 5 8 3 12l6-3c1 6-3 11-9 12-3 6-9 9-15 7-7-2-10-9-7-15 2-5 7-7 11-6-2-4-1-8 3-12z"/></svg><h3>T-Rex vyráží</h3><p>Tři vstupy po 20 minutách. Prochází se mezi hosty, řve a pózuje, mezi vstupy si dá pauzu.</p></li>
+      <li><span class="tx-n">3</span><svg class="tx-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="14" width="38" height="26" rx="6"/><path d="M17 14l3-6h8l3 6"/><circle cx="24" cy="27" r="7"/></svg><h3>Focení a ROAR finále</h3><p>Fotky s dětmi i dospělými a společný řev na závěr. Dojezd po celé ČR.</p></li>
+    </ol>
+  </div>
+</section>
+
 <section class="block facts-block tx-facts">
   <div class="wrap">
     <div class="center">
@@ -1313,20 +1344,6 @@
       <div class="fitem"><span class="flab">Projev</span><span class="fval">Řve a hýbe se</span><span class="fnote">Otáčí hlavou, cvaká čelistí a řve. Chodí mezi lidmi.</span></div>
       <div class="fitem"><span class="flab">Pro koho</span><span class="fval">Děti i dospělí</span><span class="fnote">Menší děti se drží blíž rodičů, velké focení si užije každý.</span></div>
     </div>
-  </div>
-</section>
-
-<section class="block tx-how">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Jak to probíhá</span>
-      <h2 class="h2">Tři vstupy, které rozhýbou celou akci</h2>
-    </div>
-    <ol class="tx-steps">
-      <li><span class="tx-n">1</span><h3>Domluvíme termín</h3><p>Pošlete datum a místo. Potvrdíme dostupnost a rozplánujeme vstupy do programu.</p></li>
-      <li><span class="tx-n">2</span><h3>T-Rex vyráží</h3><p>Tři vstupy po 20 minutách. Prochází se mezi hosty, řve a pózuje, mezi vstupy si dá pauzu.</p></li>
-      <li><span class="tx-n">3</span><h3>Focení a ROAR finále</h3><p>Fotky s dětmi i dospělými a společný řev na závěr. Dojezd po celé ČR.</p></li>
-    </ol>
   </div>
 </section>
 
@@ -1578,20 +1595,46 @@
   window.addEventListener('load',function(){ buildTrail(); onScroll(); });
   buildTrail(); onScroll();
 
+  /* Jak to probíhá: čára a karty kroků se rozjedou, když sekce vjede do obrazu */
+  var steps=document.querySelector('.tx-steps');
+  if(steps){ if(RM||!('IntersectionObserver' in window)) steps.classList.add('go'); else { var so=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ steps.classList.add('go'); so.disconnect(); } }); },{threshold:.25}); so.observe(steps); } }
+
   /* ROAR: syntetizovaný řev přes Web Audio, jen po kliku (nikdy autoplay) */
   var ctx=null;
   function roar(){
     try{
       ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); if(ctx.state==='suspended') ctx.resume();
-      var t=ctx.currentTime, dur=1.4, out=ctx.createGain(); out.gain.setValueAtTime(0.0001,t); out.gain.exponentialRampToValueAtTime(0.9,t+0.08); out.gain.exponentialRampToValueAtTime(0.0001,t+dur); out.connect(ctx.destination);
-      var shaper=ctx.createWaveShaper(), c=new Float32Array(1024); for(var i=0;i<1024;i++){var x=i/512-1;c[i]=Math.tanh(x*3.2);} shaper.curve=c; shaper.connect(out);
-      var o=ctx.createOscillator(); o.type='sawtooth'; o.frequency.setValueAtTime(130,t); o.frequency.exponentialRampToValueAtTime(48,t+dur);
-      var lfo=ctx.createOscillator(), lg=ctx.createGain(); lfo.frequency.value=23; lg.gain.value=14; lfo.connect(lg); lg.connect(o.frequency);
-      var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.setValueAtTime(900,t); lp.frequency.exponentialRampToValueAtTime(260,t+dur); o.connect(lp); lp.connect(shaper);
-      var buf=ctx.createBuffer(1,ctx.sampleRate*dur,ctx.sampleRate), dt=buf.getChannelData(0); for(var j=0;j<dt.length;j++) dt[j]=Math.random()*2-1;
-      var n=ctx.createBufferSource(); n.buffer=buf; var bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.setValueAtTime(600,t); bp.frequency.exponentialRampToValueAtTime(180,t+dur); bp.Q.value=.8;
-      var ng=ctx.createGain(); ng.gain.value=.55; n.connect(bp); bp.connect(ng); ng.connect(shaper);
-      o.start(t); lfo.start(t); n.start(t); o.stop(t+dur); lfo.stop(t+dur); n.stop(t+dur);
+      var t=ctx.currentTime+0.02, D=2.6, sr=ctx.sampleRate;
+      /* výstup: komprese + dozvuk velkého prostoru */
+      var master=ctx.createGain(); master.gain.value=0.9;
+      var comp=ctx.createDynamicsCompressor(); comp.threshold.value=-18; comp.ratio.value=6; comp.attack.value=0.003; comp.release.value=0.25;
+      var verb=ctx.createConvolver(), ir=ctx.createBuffer(2,sr*1.8,sr);
+      for(var ch=0;ch<2;ch++){ var d=ir.getChannelData(ch); for(var i=0;i<d.length;i++){ d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3.2); } }
+      verb.buffer=ir; var wet=ctx.createGain(); wet.gain.value=0.32;
+      master.connect(comp); comp.connect(ctx.destination); master.connect(verb); verb.connect(wet); wet.connect(comp);
+      /* obálka: nádech, vrchol, dlouhé doznění */
+      var env=ctx.createGain(); env.gain.setValueAtTime(0.0001,t); env.gain.exponentialRampToValueAtTime(0.55,t+0.18); env.gain.exponentialRampToValueAtTime(1,t+0.55);
+      env.gain.setValueAtTime(1,t+1.2); env.gain.exponentialRampToValueAtTime(0.0001,t+D); env.connect(master);
+      /* chrčení: amplitudová modulace ~28 Hz */
+      var rasp=ctx.createGain(); rasp.gain.value=0.6; var am=ctx.createOscillator(), amg=ctx.createGain(); am.frequency.value=28; amg.gain.value=0.4; am.connect(amg); amg.connect(rasp.gain); rasp.connect(env);
+      /* hrdlo: 3 rozladěné pily, tón stoupne a pak padá dolů */
+      var drive=ctx.createWaveShaper(), cv=new Float32Array(2048); for(var k=0;k<2048;k++){ var x=k/1024-1; cv[k]=Math.tanh(x*4.5); } drive.curve=cv; drive.oversample='4x';
+      var f1=ctx.createBiquadFilter(); f1.type='bandpass'; f1.frequency.value=420; f1.Q.value=1.2;
+      var f2=ctx.createBiquadFilter(); f2.type='bandpass'; f2.frequency.value=1050; f2.Q.value=1.6;
+      var f2g=ctx.createGain(); f2g.gain.value=0.55; var low=ctx.createBiquadFilter(); low.type='lowpass'; low.frequency.setValueAtTime(1400,t); low.frequency.linearRampToValueAtTime(2600,t+0.6); low.frequency.exponentialRampToValueAtTime(500,t+D);
+      drive.connect(f1); drive.connect(f2); f2.connect(f2g); f1.connect(low); f2g.connect(low); low.connect(rasp);
+      var jit=ctx.createOscillator(), jg=ctx.createGain(); jit.frequency.value=7; jg.gain.value=6; jit.connect(jg);
+      [-9,0,7].forEach(function(det,ix){ var o=ctx.createOscillator(); o.type='sawtooth'; o.detune.value=det*3;
+        o.frequency.setValueAtTime(62+ix*2,t); o.frequency.exponentialRampToValueAtTime(98+ix*3,t+0.45); o.frequency.exponentialRampToValueAtTime(70,t+1.3); o.frequency.exponentialRampToValueAtTime(36,t+D);
+        jg.connect(o.frequency); var og=ctx.createGain(); og.gain.value=0.38; o.connect(og); og.connect(drive); o.start(t); o.stop(t+D+0.05); });
+      /* sub: hluboké dunění hrudníku */
+      var sub=ctx.createOscillator(), sg=ctx.createGain(); sub.type='sine'; sub.frequency.setValueAtTime(48,t); sub.frequency.exponentialRampToValueAtTime(30,t+D); sg.gain.value=0.5; sub.connect(sg); sg.connect(env);
+      /* dech: šum přes posouvající se pásmo */
+      var nb=ctx.createBuffer(1,sr*D,sr), nd=nb.getChannelData(0); for(var j=0;j<nd.length;j++) nd[j]=Math.random()*2-1;
+      var ns=ctx.createBufferSource(); ns.buffer=nb; var nbp=ctx.createBiquadFilter(); nbp.type='bandpass'; nbp.Q.value=0.9;
+      nbp.frequency.setValueAtTime(500,t); nbp.frequency.exponentialRampToValueAtTime(1600,t+0.5); nbp.frequency.exponentialRampToValueAtTime(320,t+D);
+      var ngn=ctx.createGain(); ngn.gain.value=0.5; ns.connect(nbp); nbp.connect(ngn); ngn.connect(drive);
+      am.start(t); jit.start(t); sub.start(t); ns.start(t); am.stop(t+D+0.05); jit.stop(t+D+0.05); sub.stop(t+D+0.05); ns.stop(t+D);
     }catch(e){}
     if(fig&&!RM){ fig.classList.remove('shake'); void fig.offsetWidth; fig.classList.add('shake'); hover=-9; setHead(); setTimeout(function(){hover=0;setHead();},700); }
   }
