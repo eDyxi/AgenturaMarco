@@ -924,21 +924,12 @@
   @media(max-width:900px){.navdrop-menu{display:none}}
   /* maskoti: 3 jednoduché karty služeb (show, karnevaly, pochody) – fotka, ikona, nadpis, 2 řádky, CTA */
   .svc3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;padding:52px 0 34px}
-  .svc{position:relative;display:flex;flex-direction:column;padding:14px 14px 20px;border-radius:28px;color:#fff;
-    background:linear-gradient(158deg,#6E4DB0 0%,#452C7C 100%);box-shadow:0 0 0 1.5px rgba(240,200,107,.55) inset,0 18px 40px rgba(27,16,64,.28);
-    transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
-  .svc:hover{transform:translateY(-6px);box-shadow:0 0 0 2px rgba(255,210,63,.9) inset,0 0 22px rgba(255,210,63,.35),0 24px 48px rgba(27,16,64,.32)}
-  .svc-img{position:relative;border-radius:18px}
-  .svc-img img{display:block;width:100%;aspect-ratio:4/3;height:auto;object-fit:cover;border-radius:18px}
-  .svc-ico{position:absolute;left:14px;bottom:-22px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#2A1E52;
-    background:linear-gradient(160deg,#FFE27A,#F5B324);box-shadow:0 0 0 3px #452C7C,0 6px 14px rgba(0,0,0,.25)}
-  .svc-ico svg{width:24px;height:24px}
-  .svc h3{margin:34px 6px 6px;font-family:'Baloo 2',sans-serif;font-weight:900;font-size:1.45rem;line-height:1.1;color:#fff}
-  .svc p{margin:0 6px;font-size:.98rem;line-height:1.5;color:rgba(255,255,255,.86)}
-  .svc [data-kk-slot]{margin:auto 6px 0;padding-top:4px}
   @media(max-width:1024px){.svc3{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;padding:44px 0 30px}}
   @media(max-width:700px){.svc3{grid-template-columns:minmax(0,1fr);gap:24px;padding:36px 0 26px}}
-  @media(prefers-reduced-motion:reduce){.svc,.svc:hover{transition:none;transform:none}}
+  /* karty služeb mají stejný rámeček a animace jako karty maskotů nahoře, jen fotka je na šířku */
+  .svc3 .mask-card{opacity:1;transform:none}
+  .svc3 .mask-card .mimg{aspect-ratio:4/3}
+  .svc3 .mask-card .mimg i{background-position:center}
   /* dropdown SLUŽBY: 12 px mezera pod bílou bublinou, neviditelný most přes mezeru, zavření se zpožděním 200 ms */
   .navdrop-menu{top:calc(100% + 30px);pointer-events:auto;transition:opacity .22s ease .2s,transform .22s ease .2s,visibility 0s linear .42s}
   .navdrop-menu::before{content:"";position:absolute;left:-16px;right:-16px;bottom:100%;height:36px}
@@ -1084,24 +1075,9 @@
 <section class="block" style="padding:0">
   <div class="wrap">
     <div class="svc3">
-      <article class="svc" data-kk-item="maskoti-show" data-kk-name="Show s maskoty" data-kk-img="assets/maskoti/svc-show-sm.webp">
-        <div class="svc-img"><img src="assets/maskoti/svc-show.webp" srcset="assets/maskoti/svc-show-sm.webp 440w, assets/maskoti/svc-show.webp 880w" sizes="(max-width:700px) 90vw, (max-width:1024px) 45vw, 360px" width="880" height="660" loading="lazy" decoding="async" alt="Děti tančí s maskoty na zahradní akci"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13" /><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span></div>
-        <h3>Show s maskoty</h3>
-        <p>Maskoti tančí, soutěží a roztancují děti i rodiče. Vystoupení s hudbou.</p>
-        <div data-kk-slot></div>
-      </article>
-      <article class="svc" data-kk-item="maskoti-karneval" data-kk-name="Karnevaly" data-kk-img="assets/maskoti/svc-karneval-sm.webp">
-        <div class="svc-img"><img src="assets/maskoti/svc-karneval.webp" srcset="assets/maskoti/svc-karneval-sm.webp 440w, assets/maskoti/svc-karneval.webp 880w" sizes="(max-width:700px) 90vw, (max-width:1024px) 45vw, 360px" width="880" height="660" loading="lazy" decoding="async" alt="Dětský klaun s barevným padákem na karnevalu"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h-6z"/><circle cx="12" cy="14" r="5"/><path d="M10 13h.01M14 13h.01M10 16c1.2 1 2.8 1 4 0"/></svg></span></div>
-        <h3>Karnevaly</h3>
-        <p>Akci uvádí moderátor s dětským klaunem. Soutěže, průvod masek i ceny.</p>
-        <div data-kk-slot></div>
-      </article>
-      <article class="svc" data-kk-item="maskoti-pochod" data-kk-name="Pochody" data-kk-img="assets/maskoti/svc-pochod-sm.webp">
-        <div class="svc-img"><img src="assets/maskoti/svc-pochod.webp" srcset="assets/maskoti/svc-pochod-sm.webp 440w, assets/maskoti/svc-pochod.webp 880w" sizes="(max-width:700px) 90vw, (max-width:1024px) 45vw, 360px" width="880" height="660" loading="lazy" decoding="async" alt="Maskoti v průvodu na náměstí"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span></div>
-        <h3>Pochody</h3>
-        <p>Průvod maskotů po náměstí nebo městě. Focení s dětmi na každém kroku.</p>
-        <div data-kk-slot></div>
-      </article>
+      <article class="mask-card" data-kk-item="maskoti-show" data-kk-name="Show s maskoty" data-kk-img="assets/maskoti/svc-show-sm.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/maskoti/svc-show.webp');--sm:url('assets/maskoti/svc-show-sm.webp')" role="img" aria-label="Děti tančí s maskoty na zahradní akci"><i style="background-image:url('assets/maskoti/svc-show.webp');--sm:url('assets/maskoti/svc-show-sm.webp')"></i></div><div class="mtxt"><h3>Show s maskoty</h3><p>Dva maskoti a klaun moderátor roztancují děti. Tance, soutěže, odměny a focení.</p><div class="mprice"><b>8&nbsp;000 Kč</b><span>/ 45–60 min</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskoti-karneval" data-kk-name="Karnevaly" data-kk-img="assets/maskoti/svc-karneval-sm.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/maskoti/svc-karneval.webp');--sm:url('assets/maskoti/svc-karneval-sm.webp')" role="img" aria-label="Dětský klaun s barevným padákem na karnevalu"><i style="background-image:url('assets/maskoti/svc-karneval.webp');--sm:url('assets/maskoti/svc-karneval-sm.webp')"></i></div><div class="mtxt"><h3>Karnevaly</h3><p>Akci uvádí klaun moderátor. Promenáda masek, dva maskoti, soutěže a sladké odměny.</p><div class="mprice"><b>15&nbsp;000 Kč</b><span>/ 2–3 h</span></div><div data-kk-slot></div></div></article>
+      <article class="mask-card" data-kk-item="maskoti-pochod" data-kk-name="Pochody" data-kk-img="assets/maskoti/svc-pochod-sm.webp"><div class="mbg" aria-hidden="true"></div><div class="mimg" style="background-image:url('assets/maskoti/svc-pochod.webp');--sm:url('assets/maskoti/svc-pochod-sm.webp')" role="img" aria-label="Maskoti v průvodu na náměstí"><i style="background-image:url('assets/maskoti/svc-pochod.webp');--sm:url('assets/maskoti/svc-pochod-sm.webp')"></i></div><div class="mtxt"><h3>Pochody</h3><p>Průvod maskotů po náměstí nebo městě. Postavy chodí mezi lidmi a fotí se s dětmi.</p><div class="mprice"><b>3&nbsp;000 Kč</b><span>/ maskot / hod</span></div><div data-kk-slot></div></div></article>
     </div>
   </div>
 </section>
