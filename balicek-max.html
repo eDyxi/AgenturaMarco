@@ -769,6 +769,11 @@
     color:#fff;text-transform:none;transition:background .18s,color .18s}
   .navdrop-menu a:hover{background:#FDF4E2;color:#2A1E52}
   @media(max-width:900px){.navdrop-menu{display:none}}
+  /* fotky balíčku: maskoti na výšku v širokém okně → obličej nahoře v záběru */
+  .gtile img[src*="250723-"]{object-position:50% 22%}.gtile img[src*="250723-32"]{object-position:50% 12%}
+  .gtile img[src*="63a7b0b5"],.gtile img[src*="IMG_8935"]{object-position:50% 40%}
+  /* T-Rex: hlava vždy v záběru */
+  img[src*="maskot-tyranosaurus"]{object-position:50% 18%}
   /* nadpisy sekcí jako megahrady: bílé, zlatý glow, podtržení */
   section#obsah .h2,#fotky .h2{font-weight:900;font-size:clamp(1.85rem,4.2vw,2.6rem);color:#fff;-webkit-text-stroke:2px #0B0F1C;paint-order:stroke fill;text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 12px rgba(255,210,63,.5),0 0 26px rgba(255,210,63,.25)}
   section#obsah .h2::after,#fotky .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
@@ -933,7 +938,7 @@
         </div>
       </div>
       <div class="gtile">
-        <img src="assets/maskoti/maskot-tyranosaurus.webp" alt="Chodící Tyranosaurus mezi návštěvníky" loading="lazy" width="800" height="600" srcset="assets/maskoti/maskot-tyranosaurus-sm.webp 440w, assets/maskoti/maskot-tyranosaurus.webp 1040w" sizes="(max-width:700px) 92vw, (max-width:1024px) 46vw, 560px">
+        <img src="assets/maskoti/maskot-tyranosaurus.webp" alt="Chodící Tyranosaurus mezi návštěvníky" loading="lazy" width="800" height="600" srcset="assets/maskoti/maskot-tyranosaurus-sm.webp 440w, assets/maskoti/maskot-tyranosaurus.webp 800w" sizes="(max-width:700px) 92vw, (max-width:1024px) 46vw, 560px">
         <div class="gcap">
           <span class="gtag">T-REX</span>
           <h3>Chodící Tyranosaurus</h3>
