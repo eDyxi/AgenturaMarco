@@ -1,0 +1,22 @@
+/* Jednotná vlnitá hrana sekcí (index, video sekce, trex).
+   Pravidelná vlna: dlaždice 900×40 se opakuje (repeat-x), takže má stejnou délku i výšku na každé šířce,
+   nikdy se nenatahuje přes výšku sekce. Střed je plný. --wv-x posune fázi, ať nejsou všechny vlny stejně. */
+.wv{--wv-h:40px;--wv-w:900px;--wv-x:0px;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 40' preserveAspectRatio='none'%3E%3Cpath d='M0 22 C150 4 300 4 450 22 C600 40 750 40 900 22 L900 40 L0 40 Z'/%3E%3C/svg%3E") var(--wv-x) 0/var(--wv-w) var(--wv-h) repeat-x,
+    linear-gradient(#000 0 0) 0 calc(var(--wv-h) - 1px)/100% calc(100% - var(--wv-h) * 2 + 2px) no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 40' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L900 0 L900 18 C750 36 600 36 450 18 C300 0 150 0 0 18 Z'/%3E%3C/svg%3E") var(--wv-x) 100%/var(--wv-w) var(--wv-h) repeat-x;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 40' preserveAspectRatio='none'%3E%3Cpath d='M0 22 C150 4 300 4 450 22 C600 40 750 40 900 22 L900 40 L0 40 Z'/%3E%3C/svg%3E") var(--wv-x) 0/var(--wv-w) var(--wv-h) repeat-x,
+    linear-gradient(#000 0 0) 0 calc(var(--wv-h) - 1px)/100% calc(100% - var(--wv-h) * 2 + 2px) no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 40' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L900 0 L900 18 C750 36 600 36 450 18 C300 0 150 0 0 18 Z'/%3E%3C/svg%3E") var(--wv-x) 100%/var(--wv-w) var(--wv-h) repeat-x}
+@media(max-width:700px){.wv{--wv-h:28px;--wv-w:540px}}
+/* .wv-out: vlna přesahuje do mezery (průhledný border + záporný margin) → obsah ani mezery se nehnou */
+.wv-out{margin-top:calc(var(--wv-h) / -2);margin-bottom:calc(var(--wv-h) / -2);
+  border-top:calc(var(--wv-h) / 2) solid transparent;border-bottom:calc(var(--wv-h) / 2) solid transparent}
+/* oranžové pozadí s bílým světlem, které pomalu krouží (služby na indexu, hero dinosaura) */
+.wv-glow{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.wv-glow i{position:absolute;border-radius:50%;filter:blur(60px);will-change:transform}
+.wv-glow i:nth-child(1){width:44vw;height:44vw;max-width:560px;max-height:560px;left:-8%;top:-30%;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 68%);animation:wvDrift1 26s ease-in-out infinite}
+.wv-glow i:nth-child(2){width:36vw;height:36vw;max-width:460px;max-height:460px;right:-6%;bottom:-36%;background:radial-gradient(circle,rgba(255,244,214,.6),rgba(255,244,214,0) 68%);animation:wvDrift2 22s ease-in-out infinite}
+@keyframes wvDrift1{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(90%,30%,0) scale(1.15)}66%{transform:translate3d(170%,-6%,0) scale(.9)}}
+@keyframes wvDrift2{0%,100%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(-120%,-24%,0) scale(.92)}}
+@media(prefers-reduced-motion:reduce){.wv-glow i{animation:none}}
