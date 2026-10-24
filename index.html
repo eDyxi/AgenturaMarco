@@ -191,7 +191,7 @@
   /* vlastní žlutá vlna za mřížkou služeb: fixní vlna v pozadí ji při scrollu usekávala uprostřed karet */
   #sluzby .tiles-row,#sluzby .mcar-wrap{position:relative}
   /* mobil: z mřížky je karusel (.mcar, overflow-x) → vlna je na obalu karuselu, ne uvnitř */
-  #sluzby .tiles-row:not(.mcar)::before,#sluzby .mcar-wrap::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-64px;bottom:-64px;left:50%;width:100vw;transform:translateX(-50%);
+  #sluzby .sv-layout::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-64px;bottom:-64px;left:50%;width:100vw;transform:translateX(-50%);
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 400' preserveAspectRatio='none'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='.3'%3E%3Cstop offset='0' stop-color='%23f8ce62'/%3E%3Cstop offset='1' stop-color='%23f2b52c'/%3E%3C/linearGradient%3E%3Cpath d='M0 38 C260 0 420 70 700 44 C980 18 1120 -4 1340 30 C1450 46 1540 56 1600 50 L1600 352 C1400 384 1240 336 1000 360 C760 384 560 334 320 356 C180 368 60 350 0 358 Z' fill='url(%23g)'/%3E%3C/svg%3E") center/100% 100% no-repeat}
   .tiles-row{display:grid;grid-template-columns:repeat(7,1fr);gap:14px;margin-top:40px}
   .tile{background:var(--card);border:2.5px solid #C9A227;border-radius:var(--radius);box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 8px 20px rgba(43,30,82,.12);padding:44px 12px 18px;text-align:center;transition:transform .18s,box-shadow .18s,border-color .18s}
@@ -555,6 +555,63 @@
   .lenis.lenis-smooth{scroll-behavior:auto!important}
   .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
   .lenis.lenis-stopped{overflow:clip}
+  /* dropdown SLUŽBY: 12 px mezera pod bílou bublinou, neviditelný most přes mezeru, zavření se zpožděním 200 ms */
+  .navdrop-menu{top:calc(100% + 30px);pointer-events:auto;transition:opacity .22s ease .2s,transform .22s ease .2s,visibility 0s linear .42s}
+  .navdrop-menu::before{content:"";position:absolute;left:-16px;right:-16px;bottom:100%;height:36px}
+  .navdrop:hover .navdrop-menu,.navdrop:focus-within .navdrop-menu{transition:opacity .22s ease,transform .22s ease,visibility 0s}
+
+  /* balíčky: úspora psacím písmem pod cenou */
+  .pkg .psave{font-family:'Caveat',cursive;font-weight:700;font-size:1.6rem;line-height:1;margin:0 0 2px 2px;transform:rotate(-3deg);transform-origin:left center}
+  .pkg.t-start .psave{color:#A85C1E}.pkg.t-plus .psave{color:#5E4A85}.pkg.t-max .psave{color:#9A6A00}
+
+  /* Nejžádanější: fotka T-Rexe větší nahoru i dolů, víc místa pod hlavičkou sekce */
+  .bestsellers .best-grid{margin-top:56px}
+  .best .bico--foto{width:172px;height:228px;margin-bottom:-36px}
+  @media(max-width:700px){.bestsellers .best-grid{margin-top:32px;padding-top:38px}}
+
+  /* služby + air tanečník vpravo (mobil/tablet pod ikonami) */
+  #sluzby .sv-layout{position:relative;margin-top:40px}
+  #sluzby .sv-layout>.tiles-row{margin-top:0}
+  @media(min-width:1100px){#sluzby .sv-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:26px;align-items:center}
+    #sluzby .sv-layout .tile{padding-left:6px;padding-right:6px}#sluzby .sv-layout .tile .name{font-size:.8rem;letter-spacing:.01em}}
+  .dancer{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+  @media(max-width:1099px){.dancer{margin-top:28px}}
+  .dn-hint{font-family:'Caveat',cursive;font-weight:700;font-size:1.75rem;line-height:1;color:var(--navy);transform:rotate(-4deg);display:flex;align-items:flex-end;gap:2px;margin:0 0 -6px -18px}
+  .dn-hint svg{width:46px;height:40px;flex:none;margin-bottom:-10px}
+  .dn-btn{position:relative;border:0;background:none;padding:0;cursor:pointer;display:block;border-radius:24px}
+  .dn-btn:focus-visible{outline:3px solid #38B6FF;outline-offset:4px}
+  .dn-svg{display:block;width:200px;height:272px;overflow:visible}
+  .dn-sway{transform-box:view-box;transform-origin:110px 302px;animation:dnSway 3.4s ease-in-out infinite alternate}
+  .dn-arm-l{transform-box:fill-box;transform-origin:100% 50%;animation:dnArmL 1.7s ease-in-out infinite alternate}
+  .dn-arm-r{transform-box:fill-box;transform-origin:0% 50%;animation:dnArmR 1.9s ease-in-out infinite alternate}
+  @keyframes dnSway{from{transform:translateX(-7px) rotate(-4deg)}to{transform:translateX(7px) rotate(4deg)}}
+  @keyframes dnArmL{from{transform:rotate(-10deg)}to{transform:rotate(14deg)}}
+  @keyframes dnArmR{from{transform:rotate(10deg)}to{transform:rotate(-14deg)}}
+  .dn-tag{position:absolute;left:50%;top:150px;transform:translateX(-50%) rotate(-6deg);white-space:nowrap;pointer-events:none;
+    font-family:'Caveat',cursive;font-weight:700;font-size:1.45rem;line-height:1;color:var(--navy);background:#fff;border:2.5px solid var(--navy);border-radius:14px;padding:5px 12px 6px;box-shadow:0 6px 14px rgba(27,30,68,.22);display:flex;align-items:center;gap:6px}
+  .dn-tag svg{width:20px;height:14px;flex:none}
+  .dn-btn:hover .dn-svg,.dn-btn:focus-visible .dn-svg{transform:translateY(-4px)}
+  .dn-svg{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+  .dn-pop{position:absolute;z-index:12;right:calc(100% + 18px);top:50%;width:300px;text-align:left;background:#fff;border:3px solid #8B5CD6;border-radius:22px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 22px 48px rgba(43,30,82,.28);overflow:hidden;
+    opacity:0;visibility:hidden;transform:translateY(-46%);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+  .dancer.open .dn-pop{opacity:1;visibility:visible;transform:translateY(-50%);transition:opacity .22s ease,transform .22s ease,visibility 0s}
+  .dn-pop img{display:block;width:100%;height:150px;object-fit:cover;object-position:50% 30%}
+  .dn-pop .dn-in{padding:14px 18px 18px}
+  .dn-pop h3{font-family:'Baloo 2';font-weight:800;font-size:1.2rem;color:var(--navy);line-height:1.1}
+  .dn-pop p{font-size:.9rem;color:#39557a;margin:6px 0 8px;line-height:1.45}
+  .dn-pop ul{list-style:none;display:flex;flex-direction:column;gap:4px;margin:0 0 10px;font-size:.86rem;font-weight:700;color:#39557a}
+  .dn-pop li::before{content:"✓ ";color:#6B4FA0}
+  .dn-price{font-family:'Baloo 2';font-weight:900;font-size:1.5rem;color:#C8860A;line-height:1}
+  .dn-price small{font-size:.8rem;color:var(--navy-soft);font-weight:700}
+  .dn-cta{display:inline-flex;margin-top:10px;font-family:'Baloo 2';font-weight:800;font-size:.9rem;color:var(--navy);border:2.5px solid #8B5CD6;border-radius:30px;padding:6px 16px;transition:transform .18s ease}
+  .dn-cta:hover{transform:translateY(-2px)}
+  .dn-x{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:0;cursor:pointer;background:rgba(27,30,68,.72);color:#fff;font-size:1.2rem;line-height:1;display:grid;place-items:center}
+  @media(max-width:1099px){
+    .dn-pop{position:relative;right:auto;top:auto;width:min(100%,380px);margin:14px auto 0;display:none;transform:none}
+    .dancer.open .dn-pop{display:block;transform:none}
+  }
+  @media(prefers-reduced-motion:reduce){.dn-sway,.dn-arm-l,.dn-arm-r{animation:none}.dn-svg,.dn-pop,.dn-cta{transition:none}}
 </style>
 <link rel="stylesheet" href="assets/css/intro.css?v=1">
 <script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
@@ -687,6 +744,7 @@
         <h2 class="h2">Zábava pro každou akci</h2>
         <p class="sub">Vyberte si jednu atrakci nebo je zkombinujte. Vše přivezeme, postavíme a po akci zase odvezeme.</p>
       </div>
+    <div class="sv-layout">
     <div class="tiles-row">
       <a class="tile" href="megahrady.html">
         <img class="ico" src="assets/icons/hrad.webp" width="360" height="360" loading="lazy" decoding="async" alt="Nafukovací skákací hrad s překážkovou dráhou">
@@ -725,6 +783,45 @@
         <div class="name">Hry a soutěže</div>
       </a>
     </div>
+      <aside class="dancer" id="dancer">
+        <p class="dn-hint" aria-hidden="true">Tak na něj klikni<svg viewBox="0 0 46 40" fill="none"><path d="M4 6 C22 2 36 12 36 32 M36 32 l-9 -6 M36 32 l5 -9" stroke="var(--navy)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        <button class="dn-btn" type="button" aria-expanded="false" aria-controls="dnPop" aria-label="Air tanečníci – zobrazit nabídku">
+          <svg class="dn-svg" viewBox="0 0 220 350" aria-hidden="true">
+            <defs>
+              <linearGradient id="dnBody" x1="0" x2="1"><stop offset="0" stop-color="#F5B324"/><stop offset=".55" stop-color="#FFD23F"/><stop offset="1" stop-color="#E09A12"/></linearGradient>
+              <linearGradient id="dnFace" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFF1D6"/></linearGradient>
+            </defs>
+            <ellipse cx="110" cy="340" rx="66" ry="8" fill="rgba(27,30,68,.18)"/>
+            <rect x="72" y="296" width="76" height="44" rx="12" fill="#6B4FA0" stroke="#1E2A44" stroke-width="4"/>
+            <rect x="86" y="309" width="48" height="6" rx="3" fill="#FFD23F"/><rect x="86" y="321" width="48" height="6" rx="3" fill="#FFD23F"/>
+            <g class="dn-sway">
+              <g class="dn-arm-l"><path d="M100 132 C78 126 58 104 30 108" fill="none" stroke="#1E2A44" stroke-width="22" stroke-linecap="round"/><path d="M100 132 C78 126 58 104 30 108" fill="none" stroke="#8E6FD0" stroke-width="14" stroke-linecap="round"/><circle cx="26" cy="108" r="10" fill="#FF5252" stroke="#1E2A44" stroke-width="4"/></g>
+              <g class="dn-arm-r"><path d="M120 132 C142 120 162 132 192 104" fill="none" stroke="#1E2A44" stroke-width="22" stroke-linecap="round"/><path d="M120 132 C142 120 162 132 192 104" fill="none" stroke="#8E6FD0" stroke-width="14" stroke-linecap="round"/><circle cx="196" cy="102" r="10" fill="#FF5252" stroke="#1E2A44" stroke-width="4"/></g>
+              <path d="M92 300 C84 246 104 206 94 160 C86 122 96 100 96 84 L126 84 C128 104 118 124 126 160 C136 206 118 246 128 300 Z" fill="url(#dnBody)" stroke="#1E2A44" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M90 268 C104 262 116 262 130 268 M92 214 C104 208 118 208 130 214 M92 168 C104 162 116 162 128 168" fill="none" stroke="#6B4FA0" stroke-width="7" stroke-linecap="round"/>
+              <path d="M84 30 C88 8 104 2 112 14 C118 0 138 4 140 22 C150 18 156 30 148 36 Z" fill="#38B6FF" stroke="#1E2A44" stroke-width="4" stroke-linejoin="round"/>
+              <ellipse cx="111" cy="58" rx="31" ry="32" fill="url(#dnFace)" stroke="#1E2A44" stroke-width="4"/>
+              <ellipse cx="100" cy="50" rx="4.5" ry="6" fill="#1E2A44"/><ellipse cx="122" cy="50" rx="4.5" ry="6" fill="#1E2A44"/>
+              <circle cx="111" cy="62" r="7" fill="#FF5252" stroke="#1E2A44" stroke-width="3"/>
+              <path d="M95 72 C102 84 120 84 127 72" fill="#FF8A8A" stroke="#1E2A44" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+          <span class="dn-tag" aria-hidden="true">Tohle potřebuješ<svg viewBox="0 0 20 14" fill="none"><path d="M2 7 H17 M12 2 l5 5 -5 5" stroke="var(--navy)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="dn-pop" id="dnPop" role="dialog" aria-label="Air tanečníci" data-kk-item="tanecnici" data-kk-name="Air tanečníci" data-kk-img="assets/img/tanecnici.webp">
+          <button class="dn-x" type="button" aria-label="Zavřít">×</button>
+          <img src="assets/img/tanecnici.webp" width="600" height="507" loading="lazy" decoding="async" alt="Nafukovací air tanečníci na akci">
+          <div class="dn-in">
+            <h3>Air tanečníci</h3>
+            <p>Nafukovací tanečníci, kteří hravými pohyby přitáhnou oko už z dálky a nasměrují hosty přímo k vaší oslavě.</p>
+            <ul><li>Tři nafukovací tanečníci na výběr</li><li>Místo je živé a plné energie</li><li>Ukážou hostům cestu k akci</li></ul>
+            <div class="dn-price">3&nbsp;000&nbsp;<small>Kč</small></div>
+            <a class="dn-cta" href="#kontakt">Nezávazná poptávka →</a>
+            <div data-kk-slot></div>
+          </div>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
@@ -740,6 +837,7 @@
       <div class="pkg t-start">
         <div class="pname">START</div>
         <div class="pprice">20&nbsp;000&nbsp;<small>Kč</small></div>
+        <div class="psave">ušetříte 15&nbsp;000&nbsp;Kč</div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#E0841E"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Skákací hrad s dozorem</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#E0841E"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Malování na obličej</li>
@@ -752,6 +850,7 @@
         <span class="flag">NEJOBLÍBENĚJŠÍ</span>
         <div class="pname">PLUS</div>
         <div class="pprice">50&nbsp;000&nbsp;<small>Kč</small></div>
+        <div class="psave">ušetříte 7&nbsp;000&nbsp;Kč</div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#8477A0"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Vše z balíčku START</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#8477A0"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Maskoti z pohádek + animátoři</li>
@@ -763,6 +862,7 @@
       <div class="pkg t-max">
         <div class="pname">MAX</div>
         <div class="pprice">100&nbsp;000&nbsp;<small>Kč</small></div>
+        <div class="psave">koordinátor a plán B v ceně</div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#F5B60C"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Vše z balíčku PLUS</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#F5B60C"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Avengers show + Tyranosaurus</li>
@@ -1086,6 +1186,19 @@
   }
   if (document.readyState === 'complete') launchBalloons();
   else window.addEventListener('load', launchBalloons);
+})();
+</script>
+<script>
+/* air tanečník u služeb: klik otevře kartu, zavření křížkem, Esc nebo klikem vedle */
+(function(){
+  var d=document.getElementById('dancer'); if(!d) return;
+  var btn=d.querySelector('.dn-btn'), pop=d.querySelector('.dn-pop');
+  var set=function(o){d.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');};
+  btn.addEventListener('click',function(e){e.stopPropagation();set(!d.classList.contains('open'));});
+  d.querySelector('.dn-x').addEventListener('click',function(e){e.stopPropagation();set(false);btn.focus();});
+  pop.querySelector('.dn-cta').addEventListener('click',function(){set(false);});
+  document.addEventListener('click',function(e){if(!d.contains(e.target))set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open')){set(false);btn.focus();}});
 })();
 </script>
 <script src="assets/js/kosik.js" defer></script>

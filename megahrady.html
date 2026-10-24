@@ -1177,6 +1177,10 @@
     color:#fff;text-transform:none;transition:background .18s,color .18s}
   .navdrop-menu a:hover{background:#FDF4E2;color:#2A1E52}
   @media(max-width:900px){.navdrop-menu{display:none}}
+  /* dropdown SLUŽBY: 12 px mezera pod bílou bublinou, neviditelný most přes mezeru, zavření se zpožděním 200 ms */
+  .navdrop-menu{top:calc(100% + 30px);pointer-events:auto;transition:opacity .22s ease .2s,transform .22s ease .2s,visibility 0s linear .42s}
+  .navdrop-menu::before{content:"";position:absolute;left:-16px;right:-16px;bottom:100%;height:36px}
+  .navdrop:hover .navdrop-menu,.navdrop:focus-within .navdrop-menu{transition:opacity .22s ease,transform .22s ease,visibility 0s}
 
   /* ---- vykon na mobilu: sklo je nejdrazsi efekt, na malych displejich vypnuto ---- */
   @media(max-width:900px){
