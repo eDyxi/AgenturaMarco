@@ -62,3 +62,11 @@ section.wave-sec+section.wave-sec{--ws-mt:100px}
 /* balíčky: #obsah a #fotky jdou těsně po sobě → mezera mezi vlnami ~48 px (mobil ~32) jako u ostatních sousedních vln */
 #obsah+#fotky.wave-sec{--ws-mt:174px}
 @media(max-width:700px){#obsah+#fotky.wave-sec{--ws-mt:112px}}
+/* .ws-photos: vlna jen za pásem fotek galerie (vrstva v .gal-wrap), nadpis sekce zůstává nad ní na pozadí stránky.
+   gal-wrap odsunutý o 104 px (mobil 82) → mezi nadpisem a hřebenem vlny ~30 px; fotky mají od hrany vlny ≥ 35 px. */
+section.wave-sec.ws-photos{--ws-pt:60px;--ws-pb:60px;--ws-mt:0px;--ws-mb:40px}
+.ws-photos .gal-wrap{margin-top:104px}
+@media(max-width:700px){
+  section.wave-sec.ws-photos{--ws-pt:44px;--ws-pb:78px;--ws-mb:20px}
+  .ws-photos .gal-wrap{margin-top:82px}
+  .ws-photos .fleet-hint{position:relative;color:#fff}}
