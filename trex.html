@@ -1198,17 +1198,18 @@
   border:0;box-shadow:none;transform:rotate(-10deg);animation:txPop 2.8s ease-in-out infinite}
 @keyframes txPop{0%,100%{transform:rotate(-10deg) scale(1)}50%{transform:rotate(-6deg) scale(1.08)}}
 /* stopy dinosaura podél stránky (kreslí se podle scrollu) */
-/* stopy: dvě cesty (vlevo i vpravo) od nohou dinosaura v hero přes Jak to probíhá, na pásu Rychlých faktů vyblednou */
+/* stopy: dvě cesty (vlevo i vpravo) od nohou dinosaura v hero až do konce stránky; přes pás Rychlých faktů jdou POD vlnou (fakta z-index 4 > stopy 3) */
 .tx-trail{position:absolute;left:0;top:0;width:100%;z-index:3;pointer-events:none;overflow:visible;display:none}
 .tx-trail .fp{fill:#6E4DB0;opacity:0;transition:opacity .45s ease}
-.tx-trail .fp.dk{fill:#9BE15D}.tx-trail .fp.bd{fill:#fff}
+.tx-trail .fp.dk{fill:#9BE15D}
 .tx-trail .fp.on{opacity:var(--o,.55)}
 @media(min-width:1100px){.tx-trail{display:block}}
 /* sekce: 74 px mezi bloky jako megahrady */
 /* pořadí: hero → Jak to probíhá (výrazný fialový pás ve vlně) → Rychlá fakta → galerie → CTA */
 .trex-page section.tx-how{position:relative;padding:74px 0 74px;color:#fff}
 /* Rychlá fakta na fialovém pásu ve vlně (zhruba poloviční výška proti dřívějšímu pásu Jak to probíhá) */
-.trex-page section.tx-facts{position:relative;padding:22px 0 28px!important;color:#fff;isolation:isolate;
+/* vlna 40→52 px, uvnitř víc místa (22/28 → 40/46); margin −20 místo −26 (= půl vlny) → mezera od hrany vlny k sousedům beze změny */
+.trex-page section.tx-facts{--wv-h:52px;position:relative;z-index:4;padding:40px 0 46px!important;margin-top:-20px;margin-bottom:-20px;color:#fff;isolation:isolate;
   background:linear-gradient(160deg,#3A2470 0%,#5B3BA8 55%,#7A4FC8 100%);background-origin:border-box}
 .trex-page section.tx-facts .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(155,225,93,.45),rgba(155,225,93,0) 68%)}
 .trex-page section.tx-facts .facts{margin-top:26px}
@@ -1248,6 +1249,7 @@
 }
 @media(max-width:700px){
   .trex-page .tx-facts3{grid-template-columns:minmax(0,1fr)}
+  .trex-page section.tx-facts{--wv-h:36px;padding:34px 0 40px!important;margin-top:-14px;margin-bottom:-14px}
   .tx-steps{grid-template-columns:minmax(0,1fr);gap:58px;margin-top:64px}
   .tx-steps li{padding:86px 20px 24px}
   .tx-boom{right:-14px}
@@ -1573,14 +1575,13 @@
     card.addEventListener('pointerleave',function(){ hover=0;setHead(); });
   }
 
-  /* stopy: dvě cesty od nohou dinosaura (vlevo i vpravo), postupně se objevují podle scrollu, na pásu faktů vyblednou */
+  /* stopy: dvě cesty od nohou dinosaura (vlevo i vpravo) až do konce main, postupně se objevují podle scrollu; pás faktů je zakryje svou vlnou */
   function rel(el){ var r=el.getBoundingClientRect(), m=main.getBoundingClientRect(); return {l:r.left-m.left,t:r.top-m.top,r:r.right-m.left,b:r.bottom-m.top,w:r.width,h:r.height}; }
   function buildTrail(){
     fps=[]; shown=0;
     if(!trail||getComputedStyle(trail).display==='none') return;
     var ns='http://www.w3.org/2000/svg', W=main.clientWidth, card=rel(document.querySelector('.tx-card')), fg=rel(fig), hb=hero.offsetTop+hero.offsetHeight;
-    var fx=document.querySelector('.tx-facts'), fT=fx.offsetTop, fB=fT+fx.offsetHeight;
-    var mx=Math.max(34,Math.min(110,(W-card.w)/4)), end=fB-40, sx=fg.l+fg.w*.55, sy=card.b-18;
+    var mx=Math.max(34,Math.min(110,(W-card.w)/4)), end=main.offsetHeight-60, sx=fg.l+fg.w*.55, sy=card.b-18;
     trail.setAttribute('width',W); trail.setAttribute('height',end); trail.setAttribute('viewBox','0 0 '+W+' '+end); trail.style.height=end+'px'; trail.innerHTML='';
     var foot='M0 -14 C3 -9 3 -4 1 0 L5 -9 C8 -6 8 -2 4 2 C6 6 3 10 0 10 C-3 10 -6 6 -4 2 C-8 -2 -8 -6 -5 -9 L-1 0 C-3 -4 -3 -9 0 -14Z';
     [[W-mx,1],[mx,-1]].forEach(function(side){
@@ -1591,8 +1592,7 @@
         var a=p.getPointAtLength(l), b=p.getPointAtLength(Math.min(len,l+2)), ang=Math.atan2(b.y-a.y,b.x-a.x), off=(k%2?9:-9);
         var px=a.x-Math.sin(ang)*off, py=a.y+Math.cos(ang)*off;
         var g=document.createElementNS(ns,'path'); g.setAttribute('d',foot);
-        g.setAttribute('class','fp'+(py<hb?' dk':py>fT?' bd':''));
-        if(py>fT) g.style.setProperty('--o',(.55*Math.max(0,1-(py-fT)/(end-fT))).toFixed(2));
+        g.setAttribute('class','fp'+(py<hb?' dk':''));
         g.setAttribute('transform','translate('+px.toFixed(1)+' '+py.toFixed(1)+') rotate('+(ang*180/Math.PI+90).toFixed(1)+') scale(1.4)');
         trail.appendChild(g); fps.push({el:g,y:py});
       }
