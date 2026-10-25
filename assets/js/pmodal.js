@@ -28,7 +28,7 @@
       desc: d.pmDesc || (p ? p.textContent : ''),
       price: d.pmPrice || (priceEl ? priceEl.innerHTML : ''),
       list: list, badge: d.pmBadge || (badgeEl ? badgeEl.textContent : ''), gal: gal,
-      id: d.kkItem || '', name: d.kkName || '', img: d.kkImg || gal[0] || '',
+      id: d.kkItem || d.pmItem || '', name: d.kkName || d.pmName || '', img: d.kkImg || gal[0] || '',
       neon: d.pmNeon || (el.closest('.nsky') ? '96,190,255' : el.closest('.npur') ? '170,127,230' : '255,210,63')
     };
   }
