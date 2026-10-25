@@ -23,3 +23,6 @@
 @keyframes wvDrift1{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(90%,30%,0) scale(1.15)}66%{transform:translate3d(170%,-6%,0) scale(.9)}}
 @keyframes wvDrift2{0%,100%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(-120%,-24%,0) scale(.92)}}
 @media(prefers-reduced-motion:reduce){.wv-glow i{animation:none}}
+/* .wv-drop: obal vlnité sekce/vrstvy → měkký stín pod spodní hranou (maska by drop-shadow na samotném .wv ořízla).
+   Obal nemá padding ani border, takže záporné marginy .wv-out jím propadnou a layout se nehne. */
+.wv-drop{filter:drop-shadow(0 16px 14px rgba(27,30,68,.22)) drop-shadow(0 4px 4px rgba(27,30,68,.12))}

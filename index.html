@@ -588,53 +588,89 @@
   .dn-btn:hover .dn-svg,.dn-btn:focus-visible .dn-svg{transform:translateY(-4px)}
   .dn-svg{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
   @media(prefers-reduced-motion:reduce){.dn-sway,.dn-arm-l,.dn-arm-r{animation:none}.dn-svg{transition:none}}
+
+  /* ===== dávka 19 ===== */
+  /* Co umíme: světlejší zlatý gradient jako zlaté vlny pozadí / vlna u loga, jen místy tmavší jako stín; výraznější bílé světlo */
+  #sluzby .sv-drop{position:absolute;inset:0;z-index:-1;pointer-events:none}
+  #sluzby .sv-bg{background:radial-gradient(60% 80% at 16% 88%,rgba(196,112,18,.22),rgba(196,112,18,0) 70%),radial-gradient(46% 70% at 90% 10%,rgba(196,112,18,.16),rgba(196,112,18,0) 70%),
+    linear-gradient(160deg,#F2B52C 0%,#F5BD3A 35%,#F8CE62 70%,#FBD97F 100%)}
+  #sluzby .sv-bg .wv-glow i{filter:blur(40px)}
+  #sluzby .sv-bg .wv-glow i:nth-child(1){width:52vw;height:52vw;max-width:680px;max-height:680px;background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(255,255,255,.7) 32%,rgba(255,255,255,0) 68%)}
+  #sluzby .sv-bg .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(255,250,232,.6) 36%,rgba(255,250,232,0) 68%)}
+  /* ikony zase na středu, panák vpravo mimo osu (≥1240 px); pod tím panák pod ikonami */
+  @media(min-width:1100px){#sluzby .sv-layout{display:block}}
+  @media(min-width:1240px){
+    #sluzby .sv-layout>.tiles-row{max-width:min(1051px,calc(100vw - 380px));margin-left:auto;margin-right:auto}
+    #sluzby .sv-layout .dancer{position:absolute;top:50%;left:calc(50% + min(1051px,calc(100vw - 380px)) / 2 + 14px);width:220px;margin:0;transform:translateY(-50%) scale(.78);transform-origin:0 50%}}
+  @media(min-width:1100px) and (max-width:1239px){#sluzby .sv-layout .dancer{margin-top:28px}}
+  /* Recenze: celá sekce o ~25 % menší (padding, nadpis, karty), vnější mezery stejné; pozadí jako video sekce na podstránkách */
+  section.block.reviews{padding:42px 0}
+  .reviews{background:linear-gradient(150deg,#6E56AE 0%,#43317A 100%);background-origin:border-box}
+  .reviews::after{display:none}
+  .reviews::before{width:52%;height:auto;aspect-ratio:1;max-width:none;max-height:none;top:-30%;left:-20%;filter:blur(26px);
+    background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.32) 0%,rgba(255,255,255,.16) 26%,rgba(255,255,255,.06) 46%,transparent 68%);animation:revBeam 17s ease-in-out infinite alternate}
+  @keyframes revBeam{0%{transform:translate(0,0) scale(1)}28%{transform:translate(95%,52%) scale(1.16)}56%{transform:translate(178%,14%) scale(.92)}80%{transform:translate(112%,74%) scale(1.1)}100%{transform:translate(16%,26%) scale(1)}}
+  .reviews .h2{font-size:clamp(1.55rem,3.4vw,2.15rem)}
+  .reviews .sub{font-size:.92rem;margin-top:6px}
+  .reviews .grating{margin-top:14px;padding:8px 16px;gap:9px}
+  .reviews .grating .num{font-size:1.2rem}
+  .reviews .grating .stars svg{width:16px;height:16px}
+  .rev-grid{max-width:920px;margin:24px auto 0;gap:16px}
+  .rev{padding:18px 18px}
+  .rev .stars svg{width:15px;height:15px}
+  .rev p{font-size:.9rem;line-height:1.5;margin:10px 0 14px}
+  .rev .av{width:36px;height:36px;font-size:.95rem}
+  .rev .who b{font-size:.92rem}
+  .rev .who span{font-size:.76rem}
+  @media(max-width:700px){section.block.reviews{padding:40px 0}.rev-grid{margin-top:22px}}
 </style>
-<link rel="stylesheet" href="assets/css/intro.css?v=1">
+<link rel="stylesheet" href="assets/css/intro.css?v=2">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
 <link rel="stylesheet" href="assets/css/pmodal.css?v=20261025a">
-<link rel="stylesheet" href="assets/css/waves.css?v=20261025b">
+<link rel="stylesheet" href="assets/css/waves.css?v=20261025c">
 <script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
 </head>
 <body data-fx="scroll">
-<div class="dino-intro" role="dialog" aria-label="Úvodní animace"><div class="di-bg" aria-hidden="true"></div><div class="di-shake" aria-hidden="true"><div class="di-ground"></div><div class="di-dino"><div class="di-bob"><svg aria-hidden="true" focusable="false" viewBox="0 0 260 200" fill="none" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-  <!-- zadní noha (tmavší) -->
-  <g class="dn-legb">
-    <path d="M72 112 C90 106 104 118 100 140 L96 166 L112 168 C117 168 118 175 112 176 L82 176 C78 176 78 170 82 168 L84 140 Z" fill="#2E9E52"/>
+<div class="dino-intro" role="dialog" aria-label="Úvodní animace"><div class="di-stage"><div class="di-bg" aria-hidden="true"><i class="di-cl c1"></i><i class="di-cl c2"></i><i class="di-cl c3"></i></div><div class="di-shake" aria-hidden="true"><div class="di-ground"></div><div class="di-dino"><div class="di-lunge"><div class="di-bob"><svg aria-hidden="true" focusable="false" viewBox="0 0 300 210" fill="none" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <defs>
+    <linearGradient id="dnG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74E08C"/><stop offset=".55" stop-color="#43C463"/><stop offset="1" stop-color="#2A9A4C"/></linearGradient>
+    <linearGradient id="dnD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46B862"/><stop offset="1" stop-color="#1F7A3B"/></linearGradient>
+    <linearGradient id="dnB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE68A"/><stop offset="1" stop-color="#F5B324"/></linearGradient>
+  </defs>
+  <ellipse class="dn-shadow" cx="150" cy="197" rx="98" ry="9" fill="#1B3A63" opacity=".16" stroke="none"/>
+  <!-- zadní noha a ručička (tmavší, za tělem) -->
+  <g class="dn-legb"><path d="M100 108 C112 94 140 98 144 122 C146 136 138 146 132 150 L131 174 L150 177 C157 178 157 186 150 186 L116 186 C109 186 109 179 116 177 L117 150 C104 140 96 124 100 108 Z" fill="url(#dnD)"/><path d="M128 186 v-5 M138 186 v-5" stroke-width="2"/></g>
+  <path d="M188 98 C198 98 206 104 207 112 C203 114 199 112 197 108 C194 111 188 110 185 106 Z" fill="url(#dnD)"/>
+  <!-- ocas -->
+  <g class="dn-tail"><path d="M102 84 C78 82 46 78 8 66 C14 75 28 85 46 93 C64 103 84 112 106 120 Z" fill="url(#dnG)"/><path d="M60 82 L66 72 L72 83 Z M36 76 L41 67 L47 78 Z" fill="#8B6FD0"/><path d="M30 80 C50 88 74 98 98 108" stroke="#2A9A4C" stroke-width="2.5" opacity=".55"/></g>
+  <!-- tělo -->
+  <g class="dn-torso">
+    <path d="M98 80 L106 65 L114 77 Z M118 70 L127 54 L136 67 Z M141 62 L151 46 L159 60 Z M164 58 L174 43 L181 57 Z" fill="#8B6FD0"/>
+    <path d="M96 82 C114 62 152 52 182 56 C202 59 212 74 208 96 C204 120 182 138 150 142 C122 145 98 136 90 118 C85 105 86 92 96 82 Z" fill="url(#dnG)"/>
+    <path d="M112 132 C140 140 178 132 200 108 C198 124 182 138 154 142 C136 144 122 140 112 132 Z" fill="url(#dnB)"/>
+    <path d="M132 139 l4 -6 M148 140 l3 -7 M164 137 l2 -7 M180 130 l1 -7" stroke-width="2" opacity=".45"/>
+    <g fill="#2A9A4C" stroke="none" opacity=".5"><circle cx="122" cy="92" r="6"/><circle cx="142" cy="84" r="4.5"/><circle cx="108" cy="100" r="4"/><circle cx="160" cy="96" r="3.5"/><circle cx="138" cy="104" r="3"/></g>
+    <ellipse cx="150" cy="70" rx="34" ry="7" fill="#fff" stroke="none" opacity=".28" transform="rotate(-9 150 70)"/>
   </g>
-  <!-- ocas + tělo -->
-  <g class="dn-body">
-    <g class="dn-tail">
-      <path d="M96 84 C70 86 44 92 10 98 C40 106 64 118 90 128" fill="#43C463"/>
-    </g>
-    <path d="M86 84 C112 76 140 72 162 56 L188 70 C184 94 178 112 162 128 C142 146 106 148 86 136 C70 126 64 100 86 84 Z" fill="#43C463"/>
-    <path d="M86 132 C106 144 140 140 160 124 C152 138 130 148 106 148 C98 148 90 142 86 132 Z" fill="#FFD23F"/>
-    <g fill="#6B4FA0"><path d="M62 90 L70 76 L78 87"/><path d="M84 83 L93 69 L101 80"/><path d="M107 77 L117 63 L124 74"/><path d="M130 71 L141 57 L146 68"/><path d="M150 62 L160 48 L163 59"/></g>
-    <g fill="#2E9E52" stroke="none" opacity=".55"><circle cx="112" cy="98" r="6"/><circle cx="132" cy="90" r="4.5"/><circle cx="96" cy="104" r="4"/><circle cx="148" cy="100" r="3.5"/></g>
-    <path d="M162 100 C172 101 178 107 176 114 M176 114 l5 1 M176 114 l2 5" />
-    <!-- hlava -->
-    <g class="dn-head">
-      <path d="M160 30 C176 16 216 16 236 30 C247 38 249 52 241 60 L231 67 L206 67 C200 74 190 78 178 76 C166 74 158 62 156 50 C155 41 156 34 160 30 Z" fill="#43C463"/>
-      <path d="M206 67 L241 60" />
-      <g fill="#fff" stroke-width="2"><path d="M212 64 L215 70 L218 63.5"/><path d="M222 62.6 L225 68.6 L228 62"/><path d="M231 61 L233.5 66.5 L236 60.4"/></g>
-      <circle cx="202" cy="36" r="7.5" fill="#fff"/>
-      <circle cx="204" cy="36.5" r="3.6" fill="#1B3A63" stroke="none"/>
-      <circle cx="205.3" cy="35" r="1.2" fill="#fff" stroke="none"/>
-      <path d="M230 40 l3 0" />
-      <path d="M186 50 C190 54 196 55 200 53" stroke-width="2.4"/>
-      <circle cx="190" cy="44" r="0" />
-    </g>
+  <!-- hlava -->
+  <g class="dn-head">
+    <path d="M214 70 C234 70 258 66 286 60 C284 70 268 80 246 84 C230 86 216 82 214 74 Z" fill="url(#dnD)"/>
+    <path d="M182 66 C176 44 188 24 212 18 C238 12 270 18 286 30 C296 38 296 52 288 58 L254 64 C250 74 236 82 216 82 C200 82 188 76 182 66 Z" fill="url(#dnG)"/>
+    <path d="M214 71 C236 70 262 66 288 58"/>
+    <g fill="#fff" stroke-width="2"><path d="M236 69.5 L239 75 L242 69"/><path d="M247 68.4 L250 74 L253 67.8"/><path d="M258 66.8 L261 72.4 L264 66.2"/><path d="M269 64.8 L272 70 L275 64"/><path d="M279 62.4 L281.5 67 L284 61.4"/></g>
+    <ellipse cx="226" cy="58" rx="9" ry="5" fill="#FF9FB0" stroke="none" opacity=".6"/>
+    <ellipse cx="240" cy="34" rx="8.5" ry="9" fill="#fff"/>
+    <g class="dn-pupil"><circle cx="243" cy="35" r="4.2" fill="#1B3A63" stroke="none"/><circle cx="244.6" cy="33.4" r="1.4" fill="#fff" stroke="none"/></g>
+    <path d="M228 23 C236 18 248 19 254 25" stroke-width="3.5"/>
+    <path d="M277 36 q3 -2.5 6 0" stroke-width="2.4"/>
+    <ellipse cx="236" cy="22" rx="20" ry="4" fill="#fff" stroke="none" opacity=".3" transform="rotate(-6 236 22)"/>
+    <circle class="dn-snout" cx="293" cy="44" r="1" stroke="none"/>
+    <g class="dn-dizzy" stroke-width="2"><g class="dn-dz"><path d="M236 -10 l2.6 5.4 6 .8 -4.4 4.1 1.1 5.9 -5.3 -2.9 -5.3 2.9 1.1 -5.9 -4.4 -4.1 6 -.8Z" fill="#FFD23F"/><path d="M212 4 l2 4.2 4.6 .6 -3.4 3.2 .9 4.6 -4.1 -2.2 -4.1 2.2 .9 -4.6 -3.4 -3.2 4.6 -.6Z" fill="#38B6FF"/><path d="M262 6 l2 4.2 4.6 .6 -3.4 3.2 .9 4.6 -4.1 -2.2 -4.1 2.2 .9 -4.6 -3.4 -3.2 4.6 -.6Z" fill="#FF9FB0"/></g></g>
   </g>
-  <!-- přední noha -->
-  <g class="dn-legf">
-    <path d="M110 112 C130 106 146 120 141 142 L137 166 L154 168 C159 168 160 175 154 176 L122 176 C118 176 118 170 122 168 L124 142 Z" fill="#43C463"/>
-  </g>
-</svg>
-</div></div></div><a class="di-card" href="trex.html" aria-label="Bestseller: chodící Tyranosaurus Rex, 8 000 Kč – zobrazit detail">
-  <span class="di-tag">Bestseller</span>
-  <span class="di-img"><img src="assets/maskoti/maskot-tyranosaurus-sm.webp" alt="" width="440" height="550" decoding="async"></span>
-  <span class="di-body"><small>Chodící dinosaurus</small><b>Tyranosaurus Rex</b><span class="di-meta">3× 20 minut na vaší akci · celá ČR</span>
-    <span class="di-row"><span class="di-price">8 000 Kč</span><span class="di-cta">Chci T-Rexe <i>›</i></span></span></span>
-</a><div class="di-balloons" aria-hidden="true"></div><p class="di-hint" aria-hidden="true">Klepněte kamkoliv pro přeskočení</p></div>
+  <!-- přední ručička a noha -->
+  <path d="M196 102 C206 102 214 108 215 116 C211 118 207 116 205 112 C202 115 196 114 193 110 Z" fill="url(#dnG)"/>
+  <g class="dn-legf"><path d="M132 108 C144 94 172 98 176 122 C178 136 170 146 164 150 L163 174 L182 177 C189 178 189 186 182 186 L148 186 C141 186 141 179 148 177 L149 150 C136 140 128 124 132 108 Z" fill="url(#dnG)"/><path d="M160 186 v-5 M170 186 v-5" stroke-width="2"/></g>
+</svg></div></div></div><svg class="di-crack" aria-hidden="true"></svg></div></div><div class="di-balloons" aria-hidden="true"></div><p class="di-hint" aria-hidden="true">Klepněte kamkoliv pro přeskočení</p></div>
 <div class="iballs" id="iballs" aria-hidden="true"></div>
 <div id="pbg" aria-hidden="true">
   <div class="pbw" style="top:6%;left:3%"   data-s="0.18"><span class="pb purple" style="width:74px;height:92px"></span></div>
@@ -724,7 +760,7 @@
         <p class="sub">Vyberte si jednu atrakci nebo je zkombinujte. Vše přivezeme, postavíme a po akci zase odvezeme.</p>
       </div>
     <div class="sv-layout">
-    <div class="sv-bg wv" aria-hidden="true"><div class="wv-glow"><i></i><i></i></div></div>
+    <div class="sv-drop wv-drop" aria-hidden="true"><div class="sv-bg wv"><div class="wv-glow"><i></i><i></i></div></div></div>
     <div class="tiles-row">
       <a class="tile" href="megahrady.html">
         <img class="ico" src="assets/icons/hrad.webp" width="360" height="360" loading="lazy" decoding="async" alt="Nafukovací skákací hrad s překážkovou dráhou">
@@ -892,6 +928,7 @@
 </section>
 
 <!-- ================= PACKAGES ================= -->
+<div class="wv-drop">
 <section class="block reviews wv wv-out" id="reference" style="--wv-x:-260px">
   <span class="balloon b1"></span><span class="balloon b3"></span>
   <div class="wrap">
@@ -950,6 +987,7 @@
   </div>
 
 </section>
+</div>
 
 <!-- ================= CONTACT ================= -->
 <section class="block contact" id="kontakt">
@@ -1198,6 +1236,6 @@
 })();
 </script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
-<script src="assets/js/fx.js?v=20261016a" defer></script>
+<script src="assets/js/fx.js?v=20261025a" defer></script>
 </body>
 </html>

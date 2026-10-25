@@ -1,73 +1,92 @@
 :root{--ease:cubic-bezier(.2,.8,.2,1)}
-/* ===================== úvodní dinosaurus (jen index, 1× za session) ===================== */
+/* ===================== úvodní dinosaurus (jen index, 1× za session, max ~4 s) =====================
+   dino přijde → zastaví se, zvědavě nakloní hlavu → bouchne čumákem do obrazovky → sklo praskne
+   (praskliny od místa nárazu + mini shake) → střepy odpadnou a odhalí stránku → balónky jako dozvuk */
 .dino-intro{display:none}
 html.dino .dino-intro{display:block;position:fixed;inset:-14px;z-index:2147483000;overflow:hidden;cursor:pointer;
-  animation:dinoSafe .35s 14s forwards}
-.dino-intro .di-bg{position:absolute;inset:0;background:linear-gradient(180deg,#BFE6FF 0%,#DDF2FF 62%,#FFF6DA 62.2%,#FFE9A6 100%)}
+  animation:dinoSafe .35s 9s forwards}
 html.dino:not(.dino-free) body{overflow:hidden}
 html.dino:not(.dino-free) .iballs{display:none!important}
-.dino-intro .di-scene{position:absolute;inset:0}
+.dino-intro .di-stage{position:absolute;inset:0}
+.dino-intro .di-bg{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#9FD9FF 0%,#CFEEFF 40%,#E8F7FF 62%,#FFF1BF 62.2%,#FFE08A 100%)}
+.dino-intro .di-cl{position:absolute;height:44px;border-radius:44px;background:#fff;opacity:.85;box-shadow:30px -16px 0 6px #fff,62px 2px 0 -4px #fff}
+.dino-intro .di-cl.c1{left:12%;top:14%;width:120px}.dino-intro .di-cl.c2{left:62%;top:9%;width:150px;opacity:.7}.dino-intro .di-cl.c3{left:80%;top:30%;width:96px;opacity:.6}
 .dino-intro .di-ground{position:absolute;left:0;right:0;top:62%;height:6px;background:#1B3A63;opacity:.12}
-.dino-intro .di-hint{position:absolute;right:28px;bottom:24px;margin:0;font:700 .9rem/1 'Nunito',sans-serif;color:#1B3A63;opacity:.7}
-.dino-intro .di-dino{position:absolute;left:0;top:62%;width:clamp(230px,38vw,540px);aspect-ratio:260/200;translate:-110% -88%;will-change:transform}
-.dino-intro .di-dino svg{display:block;width:100%;height:100%;overflow:visible}
-.dino-intro.go .di-dino{animation:dinoWalk 3.3s linear forwards}
-.dino-intro.go .di-bob{animation:dinoBob .8s ease-in-out infinite}
-.dino-intro .dn-legf,.dino-intro .dn-legb{transform-box:fill-box;transform-origin:50% 8%}
-.dino-intro.go .dn-legf{animation:legA .8s ease-in-out infinite}
-.dino-intro.go .dn-legb{animation:legA .8s ease-in-out infinite reverse}
-.dino-intro .dn-tail{transform-box:fill-box;transform-origin:100% 40%}
-.dino-intro.go .dn-tail{animation:tail .8s ease-in-out infinite}
-.dino-intro .dn-head{transform-box:fill-box;transform-origin:20% 80%}
-.dino-intro.go .dn-head{animation:head .8s ease-in-out infinite}
+.dino-intro .di-hint{position:absolute;right:28px;bottom:24px;margin:0;font:700 .9rem/1 'Nunito',sans-serif;color:#1B3A63;opacity:.7;transition:opacity .4s ease}
 .dino-intro .di-shake{position:absolute;inset:0}
-.dino-intro .di-shake.on{animation:shake .18s linear}
-.di-dust{position:absolute;width:var(--s,18px);height:var(--s,18px);border-radius:50%;background:#fff;border:3px solid #1B3A63;opacity:0;animation:dust .65s var(--ease) forwards}
-.di-bum{position:absolute;width:128px;height:128px;margin:-190px 0 0 30px;display:grid;place-items:center;animation:bum .7s var(--ease) forwards;opacity:0}
+.dino-intro .di-shake.on{animation:shake .32s linear}
+
+/* dino: vejde zleva a zastaví se tak, že čumák je zhruba na 60 % šířky */
+.dino-intro .di-dino{position:absolute;left:0;top:62%;width:clamp(250px,40vw,560px);aspect-ratio:300/210;translate:-110% -90%;will-change:transform}
+.dino-intro .di-lunge,.dino-intro .di-bob{width:100%;height:100%}
+.dino-intro .di-lunge{transform-origin:97% 21%}
+.dino-intro .di-dino svg{display:block;width:100%;height:100%;overflow:visible}
+.dino-intro.go .di-dino{animation:dinoIn 1.24s cubic-bezier(.3,.55,.4,1) forwards}
+/* chůze: 2 kroky po .62 s, končí v klidové pozici (0° na začátku i na konci cyklu) */
+.dino-intro .dn-legf,.dino-intro .dn-legb{transform-box:fill-box;transform-origin:50% 12%}
+.dino-intro .dn-tail{transform-box:fill-box;transform-origin:100% 70%}
+.dino-intro .dn-head{transform-box:fill-box;transform-origin:15% 85%;transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
+.dino-intro .dn-pupil{transition:transform .3s ease}
+.dino-intro .dn-shadow{transform-box:fill-box;transform-origin:50% 50%}
+.dino-intro.go .dn-legf{animation:legF .62s ease-in-out 2}
+.dino-intro.go .dn-legb{animation:legB .62s ease-in-out 2}
+.dino-intro.go .di-bob{animation:dinoBob .62s ease-in-out 2}
+.dino-intro.go .dn-tail{animation:tail .62s ease-in-out 2}
+.dino-intro.go .dn-shadow{animation:shadowStep .62s ease-in-out 2}
+/* zastaví se a zvědavě se podívá do kamery */
+.dino-intro.look .dn-head{transform:rotate(9deg)}
+.dino-intro.look .dn-pupil{transform:translate(-2px,1px)}
+/* výpad čumákem do skla: přiblížení ke kameře, náraz (zplacknutí), odraz, zamotaná hlava */
+.dino-intro.bonk .di-lunge{animation:dinoBonk 1.1s forwards}
+.dino-intro.bonk .dn-head{transform:rotate(-6deg)}
+.dino-intro .dn-dizzy{opacity:0;transition:opacity .2s ease}
+.dino-intro .dn-dz{transform-box:fill-box;transform-origin:50% 50%}
+.dino-intro.dizzy .dn-dizzy{opacity:1}
+.dino-intro.dizzy .dn-dz{animation:dizzy .9s linear infinite}
+.dino-intro.dizzy .dn-head{transform:rotate(4deg)}
+@keyframes dinoIn{from{transform:translateX(0)}to{transform:translateX(calc(16% + 57vw))}}
+@keyframes dinoBob{0%,50%,100%{transform:translateY(0)}25%,75%{transform:translateY(-3.5%)}}
+@keyframes legF{0%,100%{transform:rotate(0)}25%{transform:rotate(-17deg)}75%{transform:rotate(17deg)}}
+@keyframes legB{0%,100%{transform:rotate(0)}25%{transform:rotate(17deg)}75%{transform:rotate(-17deg)}}
+@keyframes tail{0%,50%,100%{transform:rotate(0)}25%{transform:rotate(-5deg)}75%{transform:rotate(4deg)}}
+@keyframes shadowStep{0%,50%,100%{transform:scaleX(1)}25%,75%{transform:scaleX(.9)}}
+@keyframes dinoBonk{
+  0%{transform:none;animation-timing-function:cubic-bezier(.55,0,1,.5)}
+  30%{transform:scale(1.55) rotate(-3deg);animation-timing-function:linear}
+  35%{transform:scale(1.47,1.62) rotate(-3deg);animation-timing-function:cubic-bezier(.2,.8,.3,1)}
+  58%{transform:scale(1.02) rotate(7deg)}
+  76%{transform:scale(1.05) rotate(-4deg)}
+  100%{transform:scale(1) rotate(0)}}
+@keyframes dizzy{to{transform:rotate(360deg)}}
+@keyframes shake{0%{transform:translate(0,0)}15%{transform:translate(-9px,6px)}30%{transform:translate(8px,-7px)}45%{transform:translate(-6px,5px)}60%{transform:translate(5px,-4px)}80%{transform:translate(-2px,2px)}100%{transform:translate(0,0)}}
+
+/* praskliny: JS je postaví od místa nárazu (paprsky + 2 prstence), nakreslí se pathLength 1 → 0 */
+.dino-intro .di-crack{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.di-crack path{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:crack .26s cubic-bezier(.2,.7,.3,1) var(--d,0s) forwards}
+.di-crack .k1{stroke:rgba(27,42,68,.82);stroke-width:2.6}
+.di-crack .k2{stroke:rgba(255,255,255,.95);stroke-width:1.3;transform:translate(1.5px,1.5px)}
+.di-crack .flash{fill:#fff;opacity:0;transform-box:fill-box;transform-origin:50% 50%;animation:flash .45s ease-out forwards}
+@keyframes crack{to{stroke-dashoffset:0}}
+@keyframes flash{0%{opacity:.95;transform:scale(.2)}100%{opacity:0;transform:scale(2.4)}}
+.di-bum{position:absolute;width:132px;height:132px;margin:-150px 0 0 -40px;display:grid;place-items:center;animation:bum .8s var(--ease) forwards;opacity:0;pointer-events:none}
 .di-bum svg{position:absolute;inset:0;width:100%;height:100%}
-.di-bum b{position:relative;font:900 1.7rem/1 'Baloo 2',sans-serif;color:#1B3A63;letter-spacing:.02em;rotate:-8deg}
-@keyframes dinoWalk{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 120%))}}
-@keyframes dinoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3%)}}
-@keyframes legA{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
-@keyframes tail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
-@keyframes head{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
-@keyframes shake{0%{transform:translate(0,0)}20%{transform:translate(-7px,5px)}40%{transform:translate(6px,-6px)}60%{transform:translate(-5px,4px)}80%{transform:translate(4px,-3px)}100%{transform:translate(0,0)}}
-@keyframes dust{0%{opacity:.95;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.25)}}
+.di-bum b{position:relative;font:900 1.6rem/1 'Baloo 2',sans-serif;color:#1B3A63;letter-spacing:.02em;rotate:-8deg}
 @keyframes bum{0%{opacity:0;transform:scale(.3) rotate(-14deg)}30%{opacity:1;transform:scale(1.12) rotate(4deg)}55%{transform:scale(1) rotate(0)}100%{opacity:0;transform:scale(1.05) translateY(-14px)}}
-@keyframes dinoOut{to{opacity:0;transform:scale(1.04);visibility:hidden}}
+
+/* střepy: klony scény oříznuté clip-path polygonem, odpadnou s gravitací (jen transform + opacity) */
+.dino-intro .di-shard{position:absolute;inset:0;pointer-events:none;will-change:transform,opacity;
+  animation:shard var(--t,.95s) cubic-bezier(.45,0,.85,.5) var(--d,0s) forwards}
+.dino-intro.shatter .di-stage{visibility:hidden}
+.dino-intro.shatter .di-hint{opacity:0}
+@keyframes shard{
+  0%{transform:translate(0,0) rotate(0)}
+  14%{transform:translate(var(--px),var(--py)) rotate(calc(var(--r) * .08));opacity:1}
+  65%{opacity:1}
+  100%{transform:translate(var(--tx),var(--ty)) rotate(var(--r));opacity:0}}
 @keyframes dinoSafe{to{opacity:0;visibility:hidden;pointer-events:none}}
 @media (prefers-reduced-motion:reduce){html.dino .dino-intro{display:none}}
 
-
-/* ---------- fáze 2: bestseller karta ---------- */
-.dino-intro .di-card{position:absolute;left:50%;top:50%;z-index:2;display:flex;flex-direction:column;width:min(86vw,350px);
-  translate:-50% -50%;scale:.2;opacity:0;visibility:hidden;text-decoration:none;color:#fff;border-radius:28px;
-  background:linear-gradient(160deg,#6E4DB0,#452C7C);border:3px solid #FFD23F;
-  box-shadow:0 0 0 6px #fff,0 0 34px rgba(255,210,63,.75),0 26px 60px rgba(27,58,99,.38)}
-.dino-intro.card .di-card{visibility:visible;animation:cardPop .75s cubic-bezier(.3,1.5,.5,1) forwards,cardGlow 1.8s .8s ease-in-out infinite}
-.dino-intro .di-card:hover .di-cta,.dino-intro .di-card:focus-visible .di-cta{background:#fff;color:#452C7C}
-.dino-intro .di-card:focus-visible{outline:4px solid #38B6FF;outline-offset:6px}
-.di-card .di-img{display:block;margin:12px 12px 0;border-radius:18px;overflow:hidden;aspect-ratio:5/4;border:3px solid rgba(255,255,255,.9)}
-.di-card .di-img img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.di-card .di-tag{position:absolute;left:-14px;top:-18px;z-index:1;padding:9px 18px 8px;border-radius:14px;rotate:-8deg;
-  font:900 .95rem/1 'Baloo 2',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1B3A63;
-  background:linear-gradient(135deg,#FFE27A,#FFC21A);
-  filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 6px 10px rgba(27,58,99,.35));
-  animation:tagWob 2.4s ease-in-out infinite}
-.di-card .di-body{display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 18px 20px;gap:2px}
-.di-card small{font:800 .78rem/1 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#FFD23F}
-.di-card b{font:900 clamp(1.6rem,6vw,2rem)/1.05 'Baloo 2',sans-serif;margin-top:4px}
-.di-card .di-meta{font:700 .9rem/1.4 'Nunito',sans-serif;opacity:.85}
-.di-card .di-row{display:flex;align-items:center;gap:12px;margin-top:12px}
-.di-card .di-price{padding:8px 14px 6px;border-radius:12px;font:900 1.25rem/1 'Baloo 2',sans-serif;color:#fff;
-  background:linear-gradient(135deg,#FFB547,#FF8A00);box-shadow:0 0 0 3px #fff}
-.di-card .di-cta{padding:10px 16px;border-radius:999px;font:800 .95rem/1 'Nunito',sans-serif;color:#1B3A63;background:#FFD23F;transition:background .2s,color .2s}
-.di-card .di-cta i{font-style:normal;font-weight:900}
-@keyframes cardPop{0%{opacity:0;scale:.2;rotate:-10deg}60%{opacity:1;rotate:3deg}100%{opacity:1;scale:1;rotate:0deg}}
-@keyframes cardGlow{0%,100%{box-shadow:0 0 0 6px #fff,0 0 24px rgba(255,210,63,.55),0 26px 60px rgba(27,58,99,.38)}50%{box-shadow:0 0 0 6px #fff,0 0 48px rgba(255,210,63,.95),0 26px 60px rgba(27,58,99,.38)}}
-@keyframes tagWob{0%,100%{rotate:-8deg}50%{rotate:-3deg}}
-
-/* ---------- fáze 3: balónky odhalí stránku ---------- */
+/* ---------- dozvuk: balónky ---------- */
 .dino-intro .di-balloons{position:absolute;inset:0;z-index:3;pointer-events:none}
 .di-bl{position:absolute;top:100%;left:var(--x);width:var(--w);aspect-ratio:.84;border-radius:50% 50% 47% 47%/56% 56% 44% 44%;
   background:radial-gradient(circle at 33% 27%,rgba(255,255,255,.9) 0 7%,transparent 8%),radial-gradient(circle at 42% 36%,var(--c2),var(--c) 72%);
@@ -75,9 +94,4 @@ html.dino:not(.dino-free) .iballs{display:none!important}
 .di-bl::before{content:"";position:absolute;left:50%;top:97%;width:12%;aspect-ratio:1;translate:-50% 0;background:var(--c);clip-path:polygon(50% 0,100% 100%,0 100%)}
 .di-bl::after{content:"";position:absolute;left:50%;top:108%;width:2px;height:70%;translate:-50% 0;background:rgba(27,58,99,.3)}
 @keyframes blUp{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(calc(-100vh - 260%)) rotate(calc(var(--r) * -1))}}
-.dino-intro.fly{cursor:default}
-.dino-intro.clear{pointer-events:none}
-.dino-intro .di-bg,.dino-intro .di-shake,.dino-intro .di-hint{transition:opacity .5s ease}
-.dino-intro.clear .di-bg,.dino-intro.clear .di-shake,.dino-intro.clear .di-hint{opacity:0}
-.dino-intro.clear .di-card{animation:cardOut .4s ease forwards}
-@keyframes cardOut{from{opacity:1;scale:1}to{opacity:0;scale:.86}}
+.dino-intro.clear{pointer-events:none;cursor:default}

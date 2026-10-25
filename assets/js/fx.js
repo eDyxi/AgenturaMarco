@@ -5,57 +5,95 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  /* ---------- úvodní intro: dinosaurus → bestseller karta → balónky odhalí stránku ---------- */
+  /* ---------- úvodní intro: dino přijde → bouchne čumákem do obrazovky → sklo praskne → střepy odpadnou → balónky ---------- */
   function dino(done) {
     var el = $(".dino-intro");
     if (!el || !document.documentElement.classList.contains("dino")) { if (el) el.remove(); return done(); }
-    var shake = $(".di-shake", el), dn = $(".di-dino", el), card = $(".di-card", el), box = $(".di-balloons", el);
-    var phase = 1, timers = [];
+    var stage = $(".di-stage", el), shake = $(".di-shake", el), crack = $(".di-crack", el), box = $(".di-balloons", el);
+    var phase = 0, timers = [], P = null, rays = [], H = document.documentElement, NS = "http://www.w3.org/2000/svg";
     try { sessionStorage.setItem("am-dino", "1"); } catch (e) {}
-    var COLS = [["#FFD23F", "#FFE98A"], ["#38B6FF", "#9EDCFF"], ["#9B7BE0", "#CDB8F5"], ["#FF7A8A", "#FFC0C8"], ["#43C463", "#A6EBB6"], ["#FF9F1C", "#FFD08A"]];
-    function skip(e) {
-      if (e && e.type === "pointerdown" && card && card.contains(e.target)) return; /* klik na kartu = odkaz */
-      balloons();
-    }
+    var COLS = [["#FFD23F", "#FFE98A"], ["#38B6FF", "#9EDCFF"], ["#9B7BE0", "#CDB8F5"], ["#43C463", "#A6EBB6"], ["#FF9F1C", "#FFD08A"]];
     var EV = ["pointerdown", "wheel", "touchmove", "keydown"];
-    EV.forEach(function (e) { addEventListener(e, skip, { passive: true }); });
-    function showCard() { if (phase > 1) return; phase = 2; el.classList.add("card"); }
-    function balloons() {
-      if (phase > 2) return; phase = 3;
-      timers.forEach(clearTimeout);
-      EV.forEach(function (e) { removeEventListener(e, skip); });
-      el.classList.add("fly");
-      var n = innerWidth < 700 ? 18 : 30, html = "";
-      for (var i = 0; i < n; i++) {
-        var c = COLS[i % COLS.length], w = (innerWidth < 700 ? 70 : 100) + Math.random() * (innerWidth < 700 ? 60 : 100);
-        html += '<i class="di-bl" style="--x:' + ((i / n) * 108 - 8 + Math.random() * 4).toFixed(1) + "%;--w:" + w.toFixed(0) +
-          "px;--c:" + c[0] + ";--c2:" + c[1] + ";--d:" + (Math.random() * 0.35).toFixed(2) + "s;--t:" + (1.3 + Math.random() * 0.5).toFixed(2) +
-          "s;--r:" + (Math.random() * 16 - 8).toFixed(1) + 'deg"></i>';
-      }
-      box.innerHTML = html;
-      var H = document.documentElement;
-      setTimeout(function () { el.classList.add("clear"); H.classList.add("dino-free"); done(); }, 620);
-      setTimeout(function () { el.remove(); H.classList.remove("dino", "dino-free"); }, 2400);
+    function at(t, f) { timers.push(setTimeout(f, t)); }
+    /* přeskočení: před nárazem praskne sklo hned (v místě kliku), po nárazu rovnou odpadnou střepy */
+    function skip(e) {
+      if (phase >= 3) return;
+      timers.forEach(clearTimeout); timers = [];
+      if (phase < 2) { var r = stage.getBoundingClientRect(); impact(e && e.clientX != null ? e.clientX - r.left : r.width / 2, e && e.clientY != null ? e.clientY - r.top : r.height / 2); at(240, shatter); }
+      else shatter();
     }
-    function stomp() {
-      shake.classList.remove("on"); void shake.offsetWidth; shake.classList.add("on");
-      var r = dn.getBoundingClientRect(), sr = shake.getBoundingClientRect();
-      var fx = r.left + r.width * 0.5 - sr.left, fy = r.top + r.height * 0.88 - sr.top;
-      for (var i = 0; i < 6; i++) {
-        var d = document.createElement("i"); d.className = "di-dust";
-        var a = (i / 5) * Math.PI, s = 18 + Math.random() * 20;
-        d.style.cssText = "left:" + (fx - s / 2 + (i - 2.5) * 10) + "px;top:" + (fy - s / 2) + "px;--s:" + s + "px;--dx:" + Math.round(Math.cos(a) * -70) + "px;--dy:" + Math.round(-14 - Math.sin(a) * 36) + "px";
-        shake.appendChild(d); setTimeout(d.remove.bind(d), 700);
+    EV.forEach(function (e) { addEventListener(e, skip, { passive: true }); });
+
+    /* náraz: praskliny od bodu (paprsky + 2 prstence), záblesk, BONK!, mini shake */
+    function impact(x, y) {
+      if (phase >= 2) return; phase = 2; P = [x, y];
+      var W = stage.offsetWidth, Hh = stage.offsetHeight, R = Math.hypot(W, Hh) * 1.6, n = innerWidth < 700 ? 8 : 10, a0 = Math.random() * 6.28;
+      rays = [];
+      for (var i = 0; i < n; i++) {
+        var a = a0 + (i / n) * 6.283 + (Math.random() - .5) * .35, r1 = 60 + Math.random() * 50, r2 = 190 + Math.random() * 120;
+        var j = function (r, s) { var b = a + (Math.random() - .5) * s; return [x + Math.cos(b) * r, y + Math.sin(b) * r]; };
+        rays.push([j(r1, .22), j(r2, .16), j(R, 0)]);
       }
-      var b = document.createElement("div"); b.className = "di-bum"; b.setAttribute("aria-hidden", "true");
-      b.innerHTML = '<svg viewBox="0 0 100 100"><path d="M50 4 58 22 78 12 74 34 96 38 80 52 94 70 72 70 72 92 56 80 44 96 38 76 16 86 22 64 4 56 22 44 10 26 32 28 34 6Z" fill="#FFD23F" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round"/></svg><b>BUM!</b>';
-      b.style.left = fx + "px"; b.style.top = fy + "px"; shake.appendChild(b); setTimeout(b.remove.bind(b), 760);
+      var d = "", ring = "", f = function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); };
+      rays.forEach(function (q, i) {
+        var nx = rays[(i + 1) % n], far = [x + (q[2][0] - x) * (.35 + Math.random() * .3), y + (q[2][1] - y) * (.35 + Math.random() * .3)];
+        d += "M" + x.toFixed(1) + " " + y.toFixed(1) + " L" + f(q[0]) + " L" + f(q[1]) + " L" + f(far) + " ";
+        ring += "M" + f(q[0]) + " L" + f(nx[0]) + " M" + f(q[1]) + " L" + f(nx[1]) + " ";
+      });
+      var html = '<circle class="flash" cx="' + x + '" cy="' + y + '" r="34"/>';
+      [["k1", d, 0], ["k2", d, 0], ["k1", ring, .12], ["k2", ring, .12]].forEach(function (k) { html += '<path class="' + k[0] + '" pathLength="1" style="--d:' + k[2] + 's" d="' + k[1] + '"/>'; });
+      crack.innerHTML = html;
+      shake.classList.remove("on"); void shake.offsetWidth; shake.classList.add("on");
+      var b = document.createElement("div"); b.className = "di-bum";
+      b.innerHTML = '<svg viewBox="0 0 100 100"><path d="M50 4 58 22 78 12 74 34 96 38 80 52 94 70 72 70 72 92 56 80 44 96 38 76 16 86 22 64 4 56 22 44 10 26 32 28 34 6Z" fill="#FFD23F" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round"/></svg><b>BONK!</b>';
+      b.style.left = x + "px"; b.style.top = y + "px"; shake.appendChild(b);
+      el.classList.add("dizzy");
+    }
+    /* střepy: zmrazit scénu, naklonovat ji do polygonů podle prasklin a nechat je spadnout */
+    function shatter() {
+      if (phase >= 3) return; phase = 3;
+      EV.forEach(function (e) { removeEventListener(e, skip); });
+      $$("*", stage).forEach(function (n) {
+        var cs = getComputedStyle(n);
+        if (cs.animationName !== "none") { n.style.transform = cs.transform === "none" ? "" : cs.transform; n.style.animation = "none"; }
+      });
+      $$(".di-bum", stage).forEach(function (b) { b.remove(); });
+      $$("path,circle", crack).forEach(function (p) { p.style.animation = "none"; p.style.strokeDashoffset = "0"; if (p.classList.contains("flash")) p.remove(); });
+      var n = rays.length, x = P[0], y = P[1], polys = [], f = function (p) { return p[0].toFixed(1) + "px " + p[1].toFixed(1) + "px"; };
+      rays.forEach(function (q, i) {
+        var nx = rays[(i + 1) % n];
+        polys.push([[x, y], q[0], nx[0]], [q[0], q[1], nx[1], nx[0]], [q[1], q[2], nx[2], nx[1]]);
+      });
+      var Hh = stage.offsetHeight, frag = document.createDocumentFragment();
+      polys.forEach(function (pg) {
+        var cx = 0, cy = 0; pg.forEach(function (p) { cx += p[0]; cy += p[1]; }); cx /= pg.length; cy /= pg.length;
+        var dist = Math.hypot(cx - x, cy - y), dx = (cx - x) / (dist || 1), dy = (cy - y) / (dist || 1);
+        var s = stage.cloneNode(true); s.className = "di-shard"; s.removeAttribute("style");
+        s.style.clipPath = "polygon(" + pg.map(f).join(",") + ")";
+        s.style.cssText += ";--px:" + (dx * 7).toFixed(1) + "px;--py:" + (dy * 7).toFixed(1) + "px;--tx:" + (dx * 60 + (Math.random() - .5) * 80).toFixed(0) + "px;--ty:" + (Hh * (.9 + Math.random() * .4)).toFixed(0) +
+          "px;--r:" + ((Math.random() - .5) * 70).toFixed(0) + "deg;--d:" + (Math.min(.35, dist / 2600) + Math.random() * .12).toFixed(2) + "s;--t:" + (.8 + Math.random() * .3).toFixed(2) + "s";
+        frag.appendChild(s);
+      });
+      el.insertBefore(frag, box);
+      el.classList.add("shatter", "clear"); H.classList.add("dino-free"); done();
+      var m = innerWidth < 700 ? 9 : 14, bl = "";
+      for (var i = 0; i < m; i++) {
+        var c = COLS[i % COLS.length], w = (innerWidth < 700 ? 56 : 80) + Math.random() * (innerWidth < 700 ? 40 : 70);
+        bl += '<i class="di-bl" style="--x:' + ((i / m) * 104 - 4 + Math.random() * 5).toFixed(1) + "%;--w:" + w.toFixed(0) + "px;--c:" + c[0] + ";--c2:" + c[1] +
+          ";--d:" + (.25 + Math.random() * .5).toFixed(2) + "s;--t:" + (1.6 + Math.random() * .6).toFixed(2) + "s;--r:" + (Math.random() * 16 - 8).toFixed(1) + 'deg"></i>';
+      }
+      box.innerHTML = bl;
+      setTimeout(function () { el.remove(); H.classList.remove("dino", "dino-free"); }, 3300);
     }
     requestAnimationFrame(function () {
-      el.classList.add("go");
-      [900, 1700, 2500].forEach(function (t) { timers.push(setTimeout(stomp, t)); });
-      timers.push(setTimeout(showCard, 3000));      /* dino odchází → vyskočí karta */
-      timers.push(setTimeout(balloons, 7200));      /* karta ~4 s, pak balónky */
+      el.classList.add("go"); phase = 1;
+      at(1240, function () { el.classList.add("look"); });
+      at(1600, function () { el.classList.add("bonk"); });
+      at(1930, function () {                      /* vrchol výpadu = náraz čumákem do skla */
+        var s = $(".dn-snout", el).getBoundingClientRect(), r = stage.getBoundingClientRect();
+        impact(s.left + s.width / 2 - r.left, s.top + s.height / 2 - r.top);
+      });
+      at(2800, shatter);
     });
   }
 
