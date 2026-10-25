@@ -1132,9 +1132,18 @@
     .mcar-nav[disabled]{opacity:.25;pointer-events:none}
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
+
+  /* ===== dávka 20: Praktické info – malé fialové vlnité pozadí (styl video sekcí, nižší) za obsahem; layout se nehne ===== */
+  .facts-block{position:relative;isolation:isolate}
+  .facts-block>.wrap{position:relative}
+  .fb-drop{position:absolute;left:50%;width:100vw;transform:translateX(-50%);top:-44px;bottom:-44px;z-index:-1;pointer-events:none}
+  .fb-bg{position:absolute;inset:0;background:linear-gradient(150deg,#6E56AE 0%,#43317A 100%);--wv-x:-180px}
+  .fb-bg .wv-glow i:nth-child(1){background:radial-gradient(circle,rgba(255,255,255,.34),rgba(255,255,255,0) 68%)}
+  .fb-bg .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(168,110,255,.45),rgba(168,110,255,0) 68%)}
 </style>
 <link rel="stylesheet" href="assets/css/finale.css?v=20261024a">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
+<link rel="stylesheet" href="assets/css/waves.css?v=20261025c">
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -1243,6 +1252,7 @@
 
 <section class="block facts-block">
   <div class="wrap">
+    <div class="fb-drop wv-drop" aria-hidden="true"><div class="fb-bg wv"><div class="wv-glow"><i></i><i></i></div></div></div>
     <div class="center">
       <span class="eyebrow">Praktické info</span>
       <h2 class="h2">Rychlá fakta k malování</h2>

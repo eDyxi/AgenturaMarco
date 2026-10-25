@@ -1132,6 +1132,18 @@
     .mcar-nav[disabled]{opacity:.25;pointer-events:none}
     .mcar-wrap{margin-left:-8px;margin-right:-8px;padding:0 8px}
   }
+
+  /* ===== dávka 20: video sekce o ~40 % menší (padding, nadpis, video), mezery k sousedním sekcím stejné ===== */
+  section.block.baleni{padding:42px 0}
+  .baleni .h2{font-size:clamp(1.5rem,3.2vw,2.1rem)}
+  .baleni .sub{font-size:.95rem}
+  .baleni-frame{max-width:420px;margin-top:22px}
+  .baleni-steps{margin-top:18px;gap:10px}
+  .bstep{padding:8px 16px;font-size:.84rem}
+  .baleni-badge{font-size:.85rem;padding:9px 16px;top:-20px}
+  /* obal .wv-drop přerušil sourozence: stejné odsazení jako finale.css „.baleni + section“ */
+  .wv-drop+section.block,.wv-drop+section{padding-top:38px!important}
+  @media(max-width:700px){section.block.baleni{padding:18px 0 24px}.baleni-frame{max-width:52%;margin-top:16px}.baleni .h2{font-size:1.35rem}}
 </style>
 <link rel="stylesheet" href="assets/css/finale.css?v=20261024a">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
@@ -1236,7 +1248,7 @@
 
 
 
-<section class="block baleni wv wv-out" style="--wv-x:-300px" id="video">
+<div class="wv-drop"><section class="block baleni wv wv-out" style="--wv-x:-300px" id="video">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Video</span>
@@ -1249,7 +1261,7 @@
       <button class="vplay" type="button" id="vPlay" aria-label="Přehrát video"><span></span></button>
     </div>
   </div>
-</section>
+</section></div>
 
 <section class="block facts-block">
   <div class="wrap">
