@@ -1,100 +1,181 @@
-/* AGENTURA MARCO – fx.js (sdílené pro všechny stránky): smooth scroll, reveal, jiskřičky, úvodní dinosaurus, pin služeb */
+/* AGENTURA MARCO – fx.js (sdílené pro všechny stránky): smooth scroll, reveal, jiskřičky, úvodní scénka s dinem, pin služeb */
 (function () {
   var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var FINE = matchMedia("(hover:hover) and (pointer:fine)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  /* ---------- úvodní intro: dino přijde → bouchne čumákem do obrazovky → sklo praskne → střepy odpadnou → balónky ---------- */
+  /* ---------- úvodní scénka: dino vykoukne zespodu → rozhlédne se → 3× ťukne drápem (první praskliny) → úsměv a mrknutí →
+     nápřah a úder (praskliny přes celou obrazovku) → střepy odpadnou → karta T-Rexe s ROAR! → po 1,5 s balónky odhalí stránku.
+     Plynulost: pohyblivé části jsou samostatné vrstvy (jen transform/opacity), bod úderu, praskliny i textury střepů se
+     předpočítají během úsměvu (po 1 střepu na snímek), v okamžiku úderu a rozpadu se už jen přepínají třídy. ---------- */
   function dino(done) {
     var el = $(".dino-intro");
     if (!el || !document.documentElement.classList.contains("dino")) { if (el) el.remove(); return done(); }
-    var stage = $(".di-stage", el), shake = $(".di-shake", el), crack = $(".di-crack", el), box = $(".di-balloons", el);
-    var phase = 0, timers = [], P = null, rays = [], H = document.documentElement, NS = "http://www.w3.org/2000/svg";
+    var stage = $(".di-stage", el), crack = $(".di-crack", el), shards = $(".di-shards", el), box = $(".di-balloons", el), card = $(".di-card", el);
+    var H = document.documentElement, M = innerWidth < 700, phase = 0, timers = [], fin = false, CR = [], plan = null;
     try { sessionStorage.setItem("am-dino", "1"); } catch (e) {}
     var COLS = [["#FFD23F", "#FFE98A"], ["#38B6FF", "#9EDCFF"], ["#9B7BE0", "#CDB8F5"], ["#43C463", "#A6EBB6"], ["#FF9F1C", "#FFD08A"]];
     var EV = ["pointerdown", "wheel", "touchmove", "keydown"];
     function at(t, f) { timers.push(setTimeout(f, t)); }
-    /* přeskočení: před nárazem praskne sklo hned (v místě kliku), po nárazu rovnou odpadnou střepy */
+    function cls(c) { el.classList.add(c); }
+    function finish() { if (!fin) { fin = true; H.classList.add("dino-free"); done(); } }
+    function cleanup(ms) {
+      EV.forEach(function (e) { removeEventListener(e, skip); });
+      setTimeout(function () { el.remove(); H.classList.remove("dino", "dino-free"); }, ms);
+    }
+    /* klik kamkoli = přeskočit; po odhalení vede klik na kartu na trex.html */
     function skip(e) {
-      if (phase >= 3) return;
-      timers.forEach(clearTimeout); timers = [];
-      if (phase < 2) { var r = stage.getBoundingClientRect(); impact(e && e.clientX != null ? e.clientX - r.left : r.width / 2, e && e.clientY != null ? e.clientY - r.top : r.height / 2); at(240, shatter); }
-      else shatter();
+      if (phase >= 4 && e && ((e.target && e.target.closest && e.target.closest(".di-card")) || e.key === "Tab" || e.key === "Enter")) return;
+      timers.forEach(clearTimeout); timers = []; phase = 9;
+      cls("skip"); finish(); cleanup(360);
     }
     EV.forEach(function (e) { addEventListener(e, skip, { passive: true }); });
+    if (card.querySelector("img").decode) card.querySelector("img").decode().catch(function () {});
 
-    /* náraz: praskliny od bodu (paprsky + 2 prstence), záblesk, BONK!, mini shake */
-    function impact(x, y) {
-      if (phase >= 2) return; phase = 2; P = [x, y];
-      var W = stage.offsetWidth, Hh = stage.offsetHeight, R = Math.hypot(W, Hh) * 1.6, n = innerWidth < 700 ? 8 : 10, a0 = Math.random() * 6.28;
-      rays = [];
-      for (var i = 0; i < n; i++) {
-        var a = a0 + (i / n) * 6.283 + (Math.random() - .5) * .35, r1 = 60 + Math.random() * 50, r2 = 190 + Math.random() * 120;
-        var j = function (r, s) { var b = a + (Math.random() - .5) * s; return [x + Math.cos(b) * r, y + Math.sin(b) * r]; };
-        rays.push([j(r1, .22), j(r2, .16), j(R, 0)]);
-      }
-      var d = "", ring = "", f = function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); };
-      rays.forEach(function (q, i) {
-        var nx = rays[(i + 1) % n], far = [x + (q[2][0] - x) * (.35 + Math.random() * .3), y + (q[2][1] - y) * (.35 + Math.random() * .3)];
-        d += "M" + x.toFixed(1) + " " + y.toFixed(1) + " L" + f(q[0]) + " L" + f(q[1]) + " L" + f(far) + " ";
-        ring += "M" + f(q[0]) + " L" + f(nx[0]) + " M" + f(q[1]) + " L" + f(nx[1]) + " ";
-      });
-      var html = '<circle class="flash" cx="' + x + '" cy="' + y + '" r="34"/>';
-      [["k1", d, 0], ["k2", d, 0], ["k1", ring, .12], ["k2", ring, .12]].forEach(function (k) { html += '<path class="' + k[0] + '" pathLength="1" style="--d:' + k[2] + 's" d="' + k[1] + '"/>'; });
-      crack.innerHTML = html;
-      shake.classList.remove("on"); void shake.offsetWidth; shake.classList.add("on");
-      var b = document.createElement("div"); b.className = "di-bum";
-      b.innerHTML = '<svg viewBox="0 0 100 100"><path d="M50 4 58 22 78 12 74 34 96 38 80 52 94 70 72 70 72 92 56 80 44 96 38 76 16 86 22 64 4 56 22 44 10 26 32 28 34 6Z" fill="#FFD23F" stroke="#1B3A63" stroke-width="3" stroke-linejoin="round"/></svg><b>BONK!</b>';
-      b.style.left = x + "px"; b.style.top = y + "px"; shake.appendChild(b);
-      el.classList.add("dizzy");
+    var f1 = function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); };
+    function rel(r) { var s = stage.getBoundingClientRect(); return [r[0] - s.left, r[1] - s.top]; }
+    function tip() { var s = $(".dn-tip", el).getBoundingClientRect(); return rel([s.left + s.width / 2, s.top + s.height / 2]); }
+    /* dávka prasklin = vlastní svg (tmavá + světlá čára), vystřelí od bodu o (transform-origin); malé svg sm je 240×240 kolem bodu */
+    function draw(d, o, delay, dur, sm) {
+      CR.push([d, sm]);
+      var ox = sm ? 120 : o[0], oy = sm ? 120 : o[1], pos = sm ? "left:" + (o[0] - 120).toFixed(1) + "px;top:" + (o[1] - 120).toFixed(1) + "px;" : "";
+      if (sm) d = d.replace(/(-?[\d.]+) (-?[\d.]+)/g, function (m, x, y) { return (+x - o[0] + 120).toFixed(1) + " " + (+y - o[1] + 120).toFixed(1); });
+      return '<svg class="' + (sm ? "sm" : "") + '" style="' + pos + "transform-origin:" + ox.toFixed(1) + "px " + oy.toFixed(1) + "px;--d:" + delay + "s;--t:" + dur + 's"><path class="k1" d="' + d + '"/><path class="k2" d="' + d + '"/></svg>';
     }
-    /* střepy: zmrazit scénu, naklonovat ji do polygonů podle prasklin a nechat je spadnout */
-    function shatter() {
-      if (phase >= 3) return; phase = 3;
-      EV.forEach(function (e) { removeEventListener(e, skip); });
-      $$("*", stage).forEach(function (n) {
-        var cs = getComputedStyle(n);
-        if (cs.animationName !== "none") { n.style.transform = cs.transform === "none" ? "" : cs.transform; n.style.animation = "none"; }
-      });
-      $$(".di-bum", stage).forEach(function (b) { b.remove(); });
-      $$("path,circle", crack).forEach(function (p) { p.style.animation = "none"; p.style.strokeDashoffset = "0"; if (p.classList.contains("flash")) p.remove(); });
-      var n = rays.length, x = P[0], y = P[1], polys = [], f = function (p) { return p[0].toFixed(1) + "px " + p[1].toFixed(1) + "px"; };
+    function dot(c, p) { return '<i class="' + c + '" style="left:' + p[0].toFixed(1) + "px;top:" + p[1].toFixed(1) + 'px"></i>'; }
+    var SH = { sh1: [[0, 0], [-4, 3], [4, -3], [-2, 2], [0, 0]], sh2: [[0, 0], [-11, 7], [10, -8], [-7, 6], [6, -4], [-3, 2], [0, 0]] };
+    function shakeIt(c) { stage.animate(SH[c].map(function (q) { return { transform: "translate(" + q[0] + "px," + q[1] + "px)" }; }), { duration: c === "sh1" ? 200 : 360, easing: "linear" }); }
+
+    /* ťuknutí: kroužek; 2. a 3. ťuknutí nakřupne sklo (krátké paprsky) + mini shake */
+    function tap(k) {
+      var p = tip(), h = dot("tick", p);
+      if (k < 1) return crack.insertAdjacentHTML("beforeend", h);
+      var n = k === 1 ? 5 : 4, d = "", a0 = Math.random() * 6.28;
+      for (var i = 0; i < n; i++) {
+        var a = a0 + (i / n) * 6.283 + (Math.random() - .5) * .5, b = a + (Math.random() - .5) * .5;
+        var r1 = (k === 1 ? 14 : 24) + Math.random() * 12, r2 = r1 + (k === 1 ? 24 : 42) + Math.random() * 30;
+        d += "M" + f1(p) + " L" + f1([p[0] + Math.cos(a) * r1, p[1] + Math.sin(a) * r1]) + " L" + f1([p[0] + Math.cos(b) * r2, p[1] + Math.sin(b) * r2]) + " ";
+      }
+      crack.insertAdjacentHTML("beforeend", h + draw(d, p, 0, .18, true)); shakeIt("sh1");
+    }
+
+    /* bod úderu = špička drápu v koncové póze úderu (stejná matice jako @keyframes dnPunch: origin 78,6 % 100 %,
+       translate(−1,9 %, −4 %) rotate(−8°) scale(1.42)), spočítaná z boxu ruky → praskliny i střepy jdou připravit předem */
+    function punchTip() {
+      var r = $(".di-bob", el).getBoundingClientRect(), w = r.width, h = r.height, ox = .786 * w, oy = h, px = 360 / 420 * w - ox, py = 140 / 400 * h - oy;
+      var a = -8 * Math.PI / 180, s = 1.42, x = ox - .019 * w + s * (px * Math.cos(a) - py * Math.sin(a)), y = oy - .04 * h + s * (px * Math.sin(a) + py * Math.cos(a));
+      return rel([r.left + x, r.top + y]);
+    }
+    /* plán úderu: paprsky až za okraj (pro střepy), čáry jen k okraji obrazovky (+40 px), 2 prstence, odbočky */
+    function prepare() {
+      if (phase > 2 || plan) return;
+      var p = punchTip(), x = p[0], y = p[1], W = stage.offsetWidth, Hh = stage.offsetHeight, R = Math.hypot(W, Hh) * 1.5, n = M ? 5 : 7, a0 = Math.random() * 6.28, rays = [];
+      for (var i = 0; i < n; i++) {
+        var a = a0 + (i / n) * 6.283 + (Math.random() - .5) * .3;
+        var j = function (r, s) { var b = a + (Math.random() - .5) * s; return [x + Math.cos(b) * r, y + Math.sin(b) * r]; };
+        rays.push([j(70 + Math.random() * 50, .2), j((M ? 170 : 230) + Math.random() * 110, .14), j(R, 0)]);
+      }
+      var d = "", ring = "", br = "";
       rays.forEach(function (q, i) {
-        var nx = rays[(i + 1) % n];
-        polys.push([[x, y], q[0], nx[0]], [q[0], q[1], nx[1], nx[0]], [q[1], q[2], nx[2], nx[1]]);
+        var nx = rays[(i + 1) % n], dx = q[2][0] - q[1][0], dy = q[2][1] - q[1][1], L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+        var t = Math.max(0, Math.min(ux > 0 ? (W + 40 - q[1][0]) / ux : ux < 0 ? (-40 - q[1][0]) / ux : 1e9, uy > 0 ? (Hh + 40 - q[1][1]) / uy : uy < 0 ? (-40 - q[1][1]) / uy : 1e9));
+        d += "M" + f1(p) + " L" + f1(q[0]) + " L" + f1(q[1]) + " L" + f1([q[1][0] + ux * t, q[1][1] + uy * t]) + " ";
+        ring += "M" + f1(q[0]) + " L" + f1(nx[0]) + " M" + f1(q[1]) + " L" + f1(nx[1]) + " ";
+        var s = 120 + Math.random() * 160, sx = q[1][0] + ux * s, sy = q[1][1] + uy * s, ba = (i % 2 ? .6 : -.6), bl = 50 + Math.random() * 70;
+        br += "M" + f1([sx, sy]) + " L" + f1([sx + (ux * Math.cos(ba) - uy * Math.sin(ba)) * bl, sy + (ux * Math.sin(ba) + uy * Math.cos(ba)) * bl]) + " ";
       });
-      var Hh = stage.offsetHeight, frag = document.createDocumentFragment();
-      polys.forEach(function (pg) {
-        var cx = 0, cy = 0; pg.forEach(function (p) { cx += p[0]; cy += p[1]; }); cx /= pg.length; cy /= pg.length;
-        var dist = Math.hypot(cx - x, cy - y), dx = (cx - x) / (dist || 1), dy = (cy - y) / (dist || 1);
-        var s = stage.cloneNode(true); s.className = "di-shard"; s.removeAttribute("style");
-        s.style.clipPath = "polygon(" + pg.map(f).join(",") + ")";
-        s.style.cssText += ";--px:" + (dx * 7).toFixed(1) + "px;--py:" + (dy * 7).toFixed(1) + "px;--tx:" + (dx * 60 + (Math.random() - .5) * 80).toFixed(0) + "px;--ty:" + (Hh * (.9 + Math.random() * .4)).toFixed(0) +
-          "px;--r:" + ((Math.random() - .5) * 70).toFixed(0) + "deg;--d:" + (Math.min(.35, dist / 2600) + Math.random() * .12).toFixed(2) + "s;--t:" + (.8 + Math.random() * .3).toFixed(2) + "s";
-        frag.appendChild(s);
+      plan = { p: p, rays: rays, W: W, Hh: Hh, html: draw(d, p, 0, .3) + draw(ring, p, .06, .22) + draw(br, p, .12, .22) + dot("flash", p), todo: [] };
+      var src = cracksOn(base && base[3] === W && base[4] === Hh ? base : glass(W, Hh));
+      rays.forEach(function (q, i) { var nx = rays[(i + 1) % n]; [[[x, y], q[1], nx[1]], [q[1], q[2], nx[2], nx[1]]].forEach(function (pg) { plan.todo.push(function () { shard(pg, src); }); }); });
+      (function step() { if (phase > 3 || !plan.todo.length) return; plan.todo.shift()(); requestAnimationFrame(step); })();
+    }
+    /* sklo (tma, odlesky, vinětace, parapet) do canvasu stejnými gradienty jako CSS – kreslí se hned na začátku, kdy je scéna
+       statická (první 2D canvas = kompilace shaderů); praskliny se domalují v prepare() */
+    var base = null;
+    function glass(W, Hh) {
+      var dpr = Math.min(2, devicePixelRatio || 1), cv = document.createElement("canvas"), g = cv.getContext("2d"), gr;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(Hh * dpr); g.scale(dpr, dpr);
+      gr = g.createLinearGradient(0, 0, 0, Hh); gr.addColorStop(0, "rgba(13,15,36,.9)"); gr.addColorStop(1, "rgba(24,19,56,.94)"); g.fillStyle = gr; g.fillRect(0, 0, W, Hh);
+      function ell(cx, cy, rx, ry, stops) { g.save(); g.translate(cx, cy); g.scale(rx, ry); var r = g.createRadialGradient(0, 0, 0, 0, 0, 1); stops.forEach(function (st) { r.addColorStop(st[0], st[1]); }); g.fillStyle = r; g.fillRect(-cx / rx, -cy / ry, W / rx, Hh / ry); g.restore(); }
+      ell(W / 2, Hh, W * .58, Hh * .52, [[0, "rgba(122,86,196,.5)"], [.72, "rgba(122,86,196,0)"]]);
+      var a = 112 * Math.PI / 180, ux = Math.sin(a), uy = -Math.cos(a), L = Math.abs(W * ux) + Math.abs(Hh * uy);
+      gr = g.createLinearGradient(W / 2 - ux * L / 2, Hh / 2 - uy * L / 2, W / 2 + ux * L / 2, Hh / 2 + uy * L / 2);
+      [[.16, 0], [.21, .07], [.29, .02], [.33, 0], [.57, 0], [.60, .05], [.66, 0]].forEach(function (st) { gr.addColorStop(st[0], "rgba(255,255,255," + st[1] + ")"); });
+      g.fillStyle = gr; g.fillRect(0, 0, W, Hh);
+      ell(W / 2, Hh / 2, W * .75, Hh * .7, [[.55, "rgba(0,0,0,0)"], [1, "rgba(0,0,0,.45)"]]);
+      gr = g.createLinearGradient(0, Hh, 0, Hh * .87); gr.addColorStop(0, "rgba(8,9,24,.85)"); gr.addColorStop(1, "rgba(8,9,24,0)"); g.fillStyle = gr; g.fillRect(0, Hh * .87, W, Hh * .13);
+      return [cv, dpr, g, W, Hh];
+    }
+    function cracksOn(b) {
+      var g = b[2]; g.lineCap = g.lineJoin = "round";
+      CR.forEach(function (c) { var p = new Path2D(c[0]);
+        g.strokeStyle = "rgba(10,12,30,.85)"; g.lineWidth = c[1] ? 2 : 2.6; g.stroke(p);
+        g.save(); g.translate(1.5, 1.5); g.strokeStyle = "rgba(255,255,255,.92)"; g.lineWidth = c[1] ? 1.1 : 1.3; g.stroke(p); g.restore(); });
+      return b;
+    }
+    /* střep = malý canvas o velikosti bboxu polygonu (výřez přes clip), stojí neviditelně (opacity .001 → už rastrovaný) */
+    function shard(pg, src) {
+      var W = plan.W, Hh = plan.Hh, x = plan.p[0], y = plan.p[1], dpr = src[1], bx = 1e9, by = 1e9, ex = -1e9, ey = -1e9;
+      pg.forEach(function (p) { bx = Math.min(bx, p[0]); by = Math.min(by, p[1]); ex = Math.max(ex, p[0]); ey = Math.max(ey, p[1]); });
+      bx = Math.max(0, Math.floor(bx)); by = Math.max(0, Math.floor(by)); ex = Math.min(W, Math.ceil(ex)); ey = Math.min(Hh, Math.ceil(ey));
+      if (ex - bx < 2 || ey - by < 2) return;
+      var cx = (bx + ex) / 2, cy = (by + ey) / 2, dist = Math.hypot(cx - x, cy - y), dx = (cx - x) / (dist || 1), dy = (cy - y) / (dist || 1);
+      var cv = document.createElement("canvas"), g = cv.getContext("2d"), w = ex - bx, h = ey - by;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.className = "di-shard";
+      g.scale(dpr, dpr); g.beginPath(); pg.forEach(function (p, k) { g[k ? "lineTo" : "moveTo"](p[0] - bx, p[1] - by); }); g.closePath(); g.clip();
+      g.drawImage(src[0], bx * dpr, by * dpr, w * dpr, h * dpr, 0, 0, w, h);
+      g.strokeStyle = "rgba(255,255,255,.35)"; g.lineWidth = 1.2; g.stroke();          /* světlá hrana střepu */
+      cv.style.cssText = "left:" + bx + "px;top:" + by + "px;width:" + w + "px;height:" + h + "px;--px:" + (dx * 8).toFixed(1) + "px;--py:" + (dy * 8).toFixed(1) +
+        "px;--tx:" + (dx * 70 + (Math.random() - .5) * 90).toFixed(0) + "px;--ty:" + (Hh * (.95 + Math.random() * .4)).toFixed(0) + "px;--r:" + ((Math.random() - .5) * 140).toFixed(0) +
+        "deg;--d:" + (Math.min(.26, dist / 3200) + Math.random() * .08).toFixed(2) + "s;--t:" + (.9 + Math.random() * .3).toFixed(2) + "s";
+      shards.appendChild(cv);
+    }
+    /* úder: připravené praskliny + záblesk, velký shake */
+    function impact() {
+      if (phase > 2) return; prepare(); phase = 3;
+      crack.insertAdjacentHTML("beforeend", plan.html); shakeIt("sh2");
+    }
+    function shatter() {
+      if (phase !== 3) return;
+      while (plan.todo.length) plan.todo.shift()();
+      phase = 4; cls("shatter");
+      at(80, function () { cls("reveal"); card.tabIndex = 0; });
+      at(1500, function () { shards.innerHTML = ""; });
+      at(1580, function () {                      /* karta ~1,5 s → balónky (už vložené) odhalí stránku */
+        phase = 5; cls("out"); at(1500, finish); cleanup(2300);
       });
-      el.insertBefore(frag, box);
-      el.classList.add("shatter", "clear"); H.classList.add("dino-free"); done();
-      var m = innerWidth < 700 ? 9 : 14, bl = "";
+    }
+    function balloons() {
+      var m = M ? 9 : 14, bl = "";
       for (var i = 0; i < m; i++) {
-        var c = COLS[i % COLS.length], w = (innerWidth < 700 ? 56 : 80) + Math.random() * (innerWidth < 700 ? 40 : 70);
+        var c = COLS[i % COLS.length], w = (M ? 56 : 80) + Math.random() * (M ? 40 : 70);
         bl += '<i class="di-bl" style="--x:' + ((i / m) * 104 - 4 + Math.random() * 5).toFixed(1) + "%;--w:" + w.toFixed(0) + "px;--c:" + c[0] + ";--c2:" + c[1] +
-          ";--d:" + (.25 + Math.random() * .5).toFixed(2) + "s;--t:" + (1.6 + Math.random() * .6).toFixed(2) + "s;--r:" + (Math.random() * 16 - 8).toFixed(1) + 'deg"></i>';
+          ";--d:" + (Math.random() * .35).toFixed(2) + "s;--t:" + (1.5 + Math.random() * .5).toFixed(2) + "s;--r:" + (Math.random() * 16 - 8).toFixed(1) + 'deg"></i>';
       }
       box.innerHTML = bl;
-      setTimeout(function () { el.remove(); H.classList.remove("dino", "dino-free"); }, 3300);
     }
-    requestAnimationFrame(function () {
-      el.classList.add("go"); phase = 1;
-      at(1240, function () { el.classList.add("look"); });
-      at(1600, function () { el.classList.add("bonk"); });
-      at(1930, function () {                      /* vrchol výpadu = náraz čumákem do skla */
-        var s = $(".dn-snout", el).getBoundingClientRect(), r = stage.getBoundingClientRect();
-        impact(s.left + s.width / 2 - r.left, s.top + s.height / 2 - r.top);
-      });
-      at(2800, shatter);
-    });
+    function run() {
+      cls("go"); phase = 1;
+      at(720, function () { cls("look"); });
+      at(1000, function () { cls("arm"); });
+      at(1450, function () { cls("taps"); phase = 2; });
+      [90, 290, 490].forEach(function (o, k) { at(1450 + o, function () { tap(k); }); });
+      at(2100, function () { cls("smile"); });
+      at(2160, prepare);
+      at(2520, function () { cls("wind"); });
+      at(2740, function () { cls("punch"); });
+      at(2880, impact);
+      at(3140, shatter);
+    }
+    /* načítání stránky dělá první vteřinu dlouhé snímky → překryv je vidět hned, pohyb začne, až 8 snímků po sobě stihne < 25 ms (max 1,8 s) */
+    var ok = 0, last = 0, t0 = performance.now(), ran = false;
+    requestAnimationFrame(function () { base = glass(stage.offsetWidth, stage.offsetHeight); balloons(); });
+    (function wait(t) {
+      if (ran || phase === 9) return;
+      ok = last && t - last < 25 ? ok + 1 : 0; last = t;
+      if (ok >= 8 || t - t0 > 1800) { ran = true; run(); } else requestAnimationFrame(wait);
+    })(0);
   }
 
   /* ---------- smooth scroll (Lenis) ---------- */
