@@ -1162,48 +1162,35 @@
     color:#fff;text-transform:none;transition:background .18s,color .18s}
   .navdrop-menu a:hover{background:#FDF4E2;color:#2A1E52}
   @media(max-width:900px){.navdrop-menu{display:none}}
-  /* balíčky DJ: fotokarty v rodině karet maskotů (rotující neon rám, fotka, štítek, cena), bento 2 + 3, mobil karusel */
-  .djc-row{gap:30px 26px}
-  @media(min-width:701px){
-    .bsell-block .djc-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
-    .bsell-block .djc{grid-column:span 2}
-    .bsell-block .djc.p2,.bsell-block .djc.p3{grid-column:span 3}
-  }
+  /* balíčky DJ: menší skleněné karty v iOS stylu (ŤukniTo glass + neon rám karet hradu), ikona, velká cena, 3–4 body; klik = sdílený 3D modal s galerií */
+  .djc-row{gap:18px}
+  @media(min-width:1000px){.bsell-block .djc-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}}
+  @media(min-width:701px) and (max-width:999px){.bsell-block .djc-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+    .bsell-block .djc{grid-column:span 2}.bsell-block .djc.p4{grid-column:2/span 2}.bsell-block .djc.p5{grid-column:4/span 2}}
   .djc.p2{order:-2}.djc.p3{order:-1}
-  .djc{--acc:#F0C86B;--accs:240,200,107;position:relative;display:flex;flex-direction:column;isolation:isolate;min-width:0;
-    background:linear-gradient(160deg,#6E56AE 0%,#43317A 100%);border:5px solid var(--acc);border-radius:34px;
-    outline:2px solid rgba(255,255,255,.5);outline-offset:-7px;color:#fff;text-align:left;
-    box-shadow:0 0 0 1.5px rgba(24,14,56,.45),0 20px 38px rgba(24,14,56,.3);
-    transition:transform .42s cubic-bezier(.22,.9,.3,1),box-shadow .3s ease}
-  .djc.p2,.djc.p5{--acc:#C3ABE8;--accs:195,171,232}
-  .djc.p3{--acc:#A9CFF0;--accs:169,207,240}
-  .djc:hover{transform:translateY(-8px);box-shadow:0 0 0 1.5px rgba(24,14,56,.5),0 30px 54px rgba(24,14,56,.4),0 0 26px rgba(var(--accs),.35)}
-  .djc::after{content:"";position:absolute;inset:-5px;border-radius:39px;padding:5px;pointer-events:none;z-index:4;opacity:.8;
-    background:conic-gradient(from var(--mcAng),rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 232deg,rgba(255,255,255,.25) 262deg,rgba(255,255,255,.75) 296deg,#fff 322deg,#fff 338deg,rgba(255,255,255,.7) 352deg,rgba(255,255,255,0) 360deg);
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
-    mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,.8));animation:mcSpin 7s linear infinite}
-  .djc.p3::after{animation-delay:-2.3s}.djc.p1::after{animation-delay:-4.6s}.djc.p5::after{animation-delay:-1.2s}
-  .djc:hover::after{opacity:1;animation-duration:2.6s}
-  .djc-img{position:relative;margin:9px 9px 0;aspect-ratio:16/10;border-radius:26px;overflow:hidden;box-shadow:0 0 0 2px rgba(var(--accs),.55),0 8px 18px rgba(30,18,64,.35)}
-  .djc.p1 .djc-img,.djc.p4 .djc-img,.djc.p5 .djc-img{aspect-ratio:4/3}
-  .djc-img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,.9,.3,1)}
-  .djc:hover .djc-img img{transform:scale(1.06)}
-  .djc-img::after{content:"";position:absolute;inset:0;background:linear-gradient(198deg,transparent 52%,rgba(40,25,84,.8) 100%);pointer-events:none}
-  .djc .pbadge{position:absolute;left:14px;top:14px;z-index:2;background:#FFD23F;color:#1E2A44;font:900 .74rem/1 'Baloo 2',sans-serif;letter-spacing:.08em;
-    padding:8px 13px;border-radius:12px;border:2.5px solid #1E2A44;box-shadow:3px 3px 0 #1E2A44;transform:rotate(-4deg)}
-  .djc .pbadge{right:auto}
-  .djc-body{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
-  .djc h3{font-family:'Baloo 2',sans-serif;font-weight:900;font-size:1.3rem;line-height:1.15;color:#fff;text-shadow:0 2px 10px rgba(25,15,60,.4)}
-  .djc h3::after{content:"";display:block;width:32px;height:3px;border-radius:3px;margin:8px 0 0;background:var(--acc);box-shadow:0 0 10px rgba(var(--accs),.6)}
-  .djc ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
-  .djc li{position:relative;padding-left:20px;font-size:.88rem;font-weight:700;line-height:1.35;color:rgba(255,255,255,.88)}
-  .djc li::before{content:"\2726";position:absolute;left:0;top:0;color:var(--acc)}
-  .djc-foot{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-  .djc .mprice{display:flex;align-items:baseline;gap:5px;font-family:'Baloo 2',sans-serif}
-  .djc .mprice b{font-weight:900;font-size:1.35rem;color:#FFD23F;text-shadow:0 2px 8px rgba(25,15,60,.45)}
+  .djc{--neon:255,210,63;position:relative;display:flex;flex-direction:column;min-width:0;padding:20px 18px 18px;border-radius:26px;color:#fff;text-align:left;isolation:isolate;
+    background:linear-gradient(160deg,rgba(124,92,196,.94) 0%,rgba(69,44,124,.96) 100%);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
+    border:1px solid rgba(255,255,255,.26);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 0 0 1px rgba(var(--neon),.35),0 0 24px -8px rgba(var(--neon),.7),0 18px 36px -14px rgba(30,18,64,.55);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .djc.p2{--neon:170,127,230}.djc.p3{--neon:96,190,255}.djc.p4{--neon:255,181,71}.djc.p5{--neon:155,225,93}
+  .djc::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s ease;
+    box-shadow:inset 0 0 0 1.5px rgba(var(--neon),.9),0 0 34px -4px rgba(var(--neon),.9)}
+  .djc:hover{transform:translateY(-6px)}
+  .djc:hover::after,.djc:focus-visible::after{opacity:1}
+  .djc-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:linear-gradient(145deg,rgba(var(--neon),1),rgba(var(--neon),.6));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 18px -6px rgba(var(--neon),.85)}
+  .djc-ic svg{width:28px;height:28px;fill:none;stroke:#1E2A44;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .djc .pbadge{position:absolute;top:18px;right:16px;background:#fff;color:#1E2A44;font:800 .66rem/1 'Baloo 2',sans-serif;letter-spacing:.08em;padding:6px 10px;border-radius:20px 24px 20px 6px;
+    transform:rotate(-3deg);box-shadow:0 0 0 2px rgba(var(--neon),.9),0 0 12px rgba(var(--neon),.55)}
+  .djc h3{margin-top:14px;font:900 1.12rem/1.2 'Baloo 2',sans-serif;color:#fff}
+  .djc .mprice{display:flex;align-items:baseline;gap:5px;margin-top:4px;font-family:'Baloo 2',sans-serif}
+  .djc .mprice b{font-weight:900;font-size:1.85rem;line-height:1.1;color:#FFD23F;text-shadow:0 0 14px rgba(255,210,63,.45)}
   .djc .mprice span{font-weight:700;font-size:.8rem;color:rgba(255,255,255,.75)}
-  .djc-more{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:.85rem;color:var(--acc);white-space:nowrap}
+  .djc ul{list-style:none;margin:12px 0 0;padding:12px 0 0;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;gap:7px}
+  .djc li{position:relative;padding-left:22px;font-size:.84rem;font-weight:700;line-height:1.35;color:rgba(255,255,255,.9)}
+  .djc li::before{content:"";position:absolute;left:2px;top:3px;width:5px;height:9px;border:solid rgb(var(--neon));border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .djc-more{margin-top:auto;padding-top:16px;padding-right:44px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:.82rem;color:rgb(var(--neon));white-space:nowrap}
   .djc-more i{display:inline-block;font-style:normal;transition:transform .2s ease}
   .djc:hover .djc-more i{transform:translateX(4px)}
   .djc [data-kk-slot]{position:absolute;right:12px;bottom:12px;z-index:3;display:flex}
@@ -1217,8 +1204,7 @@
   .djc .kk-prod.on{background-image:linear-gradient(158deg,rgba(74,205,136,.55),rgba(30,140,86,.35));background-size:100% 100%}
   .djc .kk-prod.on::before{content:"\2713";display:block;font-size:1.4rem;line-height:0;color:#fff}
   .djc .kk-prod:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  @media(max-width:700px){.djc{border-radius:28px;border-width:4px}.djc::after{border-radius:32px;inset:-4px;padding:4px}.djc-img{border-radius:21px;margin:7px 7px 0}}
-  @media(prefers-reduced-motion:reduce){.djc,.djc:hover{transition:none;transform:none}.djc::after{animation:none}.djc-img img,.djc:hover .djc-img img,.djc-more i{transition:none;transform:none}}
+  @media(prefers-reduced-motion:reduce){.djc,.djc:hover{transition:none;transform:none}.djc::after{transition:none}.djc-more i{transition:none;transform:none}}
   /* dropdown SLUŽBY: 12 px mezera pod bílou bublinou, neviditelný most přes mezeru, zavření se zpožděním 200 ms */
   .navdrop-menu{top:calc(100% + 30px);pointer-events:auto;transition:opacity .22s ease .2s,transform .22s ease .2s,visibility 0s linear .42s}
   .navdrop-menu::before{content:"";position:absolute;left:-16px;right:-16px;bottom:100%;height:36px}
@@ -1341,11 +1327,11 @@
       <p class="sub">Od jednoduchého ozvučení po svatební večer se živým saxofonem. Vše včetně dovozu, stavby a obsluhy.</p>
     </div>
     <div class="pkgx-row djc-row">
-      <article class="djc p1" data-pm data-gal="assets/ozvuceni/oz-ozvuceni-akce.webp,assets/ozvuceni/oz-venkovni-aparatura.webp,assets/ozvuceni/ozgal-11.webp,assets/ozvuceni/ozgal-07.webp,assets/ozvuceni/ozgal-15.webp" data-kk-item="oz-ozvuceni-akce" data-kk-name="Ozvučení akce" data-kk-img="assets/ozvuceni/oz-ozvuceni-akce.webp"><div class="djc-img"><img src="assets/ozvuceni/oz-ozvuceni-akce.webp" alt="Ozvučení akce – Agentura Marco" width="880" height="660" loading="lazy" decoding="async"><div data-kk-slot></div></div><div class="djc-body"><h3>Ozvučení akce</h3><ul><li>Profi aparatura</li><li>Hudba na míru akci</li><li>Moderování programu</li></ul><div class="djc-foot"><div class="mprice"><b>1 000 Kč</b><span>/ hod</span></div><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span></div></div></article>
-      <article class="djc p2" data-pm data-gal="assets/ozvuceni/oz-dj-moderator.webp,assets/ozvuceni/ozgal-14.webp,assets/ozvuceni/oz-dj-pult.webp,assets/ozvuceni/oz-osvetleni-salu.webp,assets/ozvuceni/ozgal-08.webp" data-kk-item="oz-dj-moderator" data-kk-name="DJ + Moderátor" data-kk-img="assets/ozvuceni/oz-dj-moderator.webp"><div class="djc-img"><img src="assets/ozvuceni/oz-dj-moderator.webp" alt="DJ + Moderátor – Agentura Marco" width="880" height="660" loading="lazy" decoding="async"><span class="pbadge">HRAD ZDARMA</span><div data-kk-slot></div></div><div class="djc-body"><h3>DJ + Moderátor</h3><ul><li>Kompletní aparatura</li><li>Světelná show</li><li>Moderátor celé akce</li><li>Skákací hrad zdarma</li></ul><div class="djc-foot"><div class="mprice"><b>15 000 Kč</b></div><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span></div></div></article>
-      <article class="djc p3" data-pm data-gal="assets/ozvuceni/oz-dj-saxofonista.webp,assets/ozvuceni/ozgal-02.webp,assets/ozvuceni/oz-mlha-prvni-tanec.webp,assets/ozvuceni/oz-osvetleni-salu.webp" data-kk-item="oz-dj-saxofonista" data-kk-name="DJ + Saxofonista" data-kk-img="assets/ozvuceni/oz-dj-saxofonista.webp"><div class="djc-img"><img src="assets/ozvuceni/oz-dj-saxofonista.webp" alt="DJ + Saxofonista – Agentura Marco" width="880" height="660" loading="lazy" decoding="async"><span class="pbadge">TOP SVATBY</span><div data-kk-slot></div></div><div class="djc-body"><h3>DJ + Saxofonista</h3><ul><li>DJ set + živý saxofon</li><li>Aparatura a světla</li><li>Skákací hrad zdarma</li></ul><div class="djc-foot"><div class="mprice"><b>20 000 Kč</b></div><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span></div></div></article>
-      <article class="djc p4" data-pm data-gal="assets/ozvuceni/oz-svatebni-efekty.webp,assets/ozvuceni/oz-laser-snih.webp,assets/ozvuceni/ozgal-16.webp" data-kk-item="oz-svatebni-efekty" data-kk-name="Svatební efekty" data-kk-img="assets/ozvuceni/oz-svatebni-efekty.webp"><div class="djc-img"><img src="assets/ozvuceni/oz-svatebni-efekty.webp" alt="Svatební efekty – Agentura Marco" width="880" height="660" loading="lazy" decoding="async"><div data-kk-slot></div></div><div class="djc-body"><h3>Svatební efekty</h3><ul><li>Plazivá mlha na parket</li><li>2× fontána jisker</li></ul><div class="djc-foot"><div class="mprice"><b>8 000 Kč</b></div><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span></div></div></article>
-      <article class="djc p5" data-pm data-gal="assets/ozvuceni/oz-led-osvetleni.webp,assets/ozvuceni/oz-mlha-prvni-tanec.webp,assets/ozvuceni/ozgal-16.webp" data-kk-item="oz-laser-snih" data-kk-name="Laser + sníh k 1. tanci" data-kk-img="assets/ozvuceni/oz-laser-snih.webp"><div class="djc-img"><img src="assets/ozvuceni/oz-led-osvetleni.webp" alt="Laser + sníh k 1. tanci – Agentura Marco" width="880" height="660" loading="lazy" decoding="async"><div data-kk-slot></div></div><div class="djc-body"><h3>Laser + sníh k 1. tanci</h3><ul><li>Kuželový laser</li><li>Sněhový efekt</li><li>Kouzelný první tanec</li></ul><div class="djc-foot"><div class="mprice"><b>6 000 Kč</b></div><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span></div></div></article>
+      <article class="djc p1" data-pm data-pm-neon="255,210,63" data-gal="assets/ozvuceni/oz-ozvuceni-akce.webp,assets/ozvuceni/oz-venkovni-aparatura.webp,assets/ozvuceni/ozgal-11.webp,assets/ozvuceni/ozgal-07.webp,assets/ozvuceni/ozgal-15.webp" data-kk-item="oz-ozvuceni-akce" data-kk-name="Ozvučení akce" data-kk-img="assets/ozvuceni/oz-ozvuceni-akce.webp"><span class="djc-ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="7" y="4" width="18" height="24" rx="4"/><circle cx="16" cy="20" r="5"/><circle cx="16" cy="10" r="2"/></svg></span><h3>Ozvučení akce</h3><div class="mprice"><b>1 000 Kč</b><span>/ hod</span></div><ul><li>Profi aparatura</li><li>Hudba na míru akci</li><li>Moderování programu</li></ul><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span><div data-kk-slot></div></article>
+      <article class="djc p2" data-pm data-pm-neon="170,127,230" data-gal="assets/ozvuceni/oz-dj-moderator.webp,assets/ozvuceni/ozgal-14.webp,assets/ozvuceni/oz-dj-pult.webp,assets/ozvuceni/oz-osvetleni-salu.webp,assets/ozvuceni/ozgal-08.webp" data-kk-item="oz-dj-moderator" data-kk-name="DJ + Moderátor" data-kk-img="assets/ozvuceni/oz-dj-moderator.webp"><span class="djc-ic" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 19v-3a10 10 0 0 1 20 0v3"/><rect x="4" y="18" width="6" height="9" rx="2.5"/><rect x="22" y="18" width="6" height="9" rx="2.5"/></svg></span><span class="pbadge">HRAD ZDARMA</span><h3>DJ + Moderátor</h3><div class="mprice"><b>15 000 Kč</b></div><ul><li>Kompletní aparatura</li><li>Světelná show</li><li>Moderátor celé akce</li><li>Skákací hrad zdarma</li></ul><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span><div data-kk-slot></div></article>
+      <article class="djc p3" data-pm data-pm-neon="96,190,255" data-gal="assets/ozvuceni/oz-dj-saxofonista.webp,assets/ozvuceni/ozgal-02.webp,assets/ozvuceni/oz-mlha-prvni-tanec.webp,assets/ozvuceni/oz-osvetleni-salu.webp" data-kk-item="oz-dj-saxofonista" data-kk-name="DJ + Saxofonista" data-kk-img="assets/ozvuceni/oz-dj-saxofonista.webp"><span class="djc-ic" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M19 4h5M20 4v14a6 6 0 0 1-12 0v-1"/><path d="M8 17l-3-1"/><circle cx="20" cy="9" r="1.2"/><circle cx="20" cy="13.5" r="1.2"/></svg></span><span class="pbadge">TOP SVATBY</span><h3>DJ + Saxofonista</h3><div class="mprice"><b>20 000 Kč</b></div><ul><li>DJ set + živý saxofon</li><li>Aparatura a světla</li><li>Skákací hrad zdarma</li></ul><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span><div data-kk-slot></div></article>
+      <article class="djc p4" data-pm data-pm-neon="255,181,71" data-gal="assets/ozvuceni/oz-svatebni-efekty.webp,assets/ozvuceni/oz-laser-snih.webp,assets/ozvuceni/ozgal-16.webp" data-kk-item="oz-svatebni-efekty" data-kk-name="Svatební efekty" data-kk-img="assets/ozvuceni/oz-svatebni-efekty.webp"><span class="djc-ic" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 28v-8M16 20l-6-8M16 20l6-8M16 20V7"/><path d="M8 9l-1.5-1.5M24 9l1.5-1.5M16 4V2.5M11 26h10"/></svg></span><h3>Svatební efekty</h3><div class="mprice"><b>8 000 Kč</b></div><ul><li>Plazivá mlha na parket</li><li>2× fontána jisker</li></ul><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span><div data-kk-slot></div></article>
+      <article class="djc p5" data-pm data-pm-neon="155,225,93" data-gal="assets/ozvuceni/oz-led-osvetleni.webp,assets/ozvuceni/oz-mlha-prvni-tanec.webp,assets/ozvuceni/ozgal-16.webp" data-kk-item="oz-laser-snih" data-kk-name="Laser + sníh k 1. tanci" data-kk-img="assets/ozvuceni/oz-laser-snih.webp"><span class="djc-ic" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4v24M5.6 10l20.8 12M5.6 22l20.8-12"/><path d="M13 6.5l3 2.5 3-2.5M13 25.5l3-2.5 3 2.5"/></svg></span><h3>Laser + sníh k 1. tanci</h3><div class="mprice"><b>6 000 Kč</b></div><ul><li>Kuželový laser</li><li>Sněhový efekt</li><li>Kouzelný první tanec</li></ul><span class="djc-more">Detail a fotky <i aria-hidden="true">→</i></span><div data-kk-slot></div></article>
     </div>
   </div>
 </section>
