@@ -26,3 +26,28 @@
 /* .wv-drop: obal vlnité sekce/vrstvy → měkký stín pod spodní hranou (maska by drop-shadow na samotném .wv ořízla).
    Obal nemá padding ani border, takže záporné marginy .wv-out jím propadnou a layout se nehne. */
 .wv-drop{filter:drop-shadow(0 16px 14px rgba(27,30,68,.22)) drop-shadow(0 4px 4px rgba(27,30,68,.12))}
+
+/* .wave-sec: sdílené vlnité pozadí sekce (Praktické info, o-nas…). Pozadí je absolutní vrstva v .wrap (.ws-drop > .ws-bg.wv),
+   přesahuje obsah o --ws-pt/--ws-pb, sekce se odsune o --ws-mt/--ws-mb (= nárůst pozadí + větší mezera k sousedům).
+   Paleta přes --ws-c1/--ws-c2 (gradient) a --ws-g1/--ws-g2 (krouživá světla) → přebarví se jednou třídou na body (.pkg-*). */
+section.wave-sec{--ws-pt:88px;--ws-pb:108px;--ws-mt:68px;--ws-mb:88px;
+  --ws-c1:#6E56AE;--ws-c2:#43317A;--ws-g1:rgba(255,255,255,.34);--ws-g2:rgba(168,110,255,.45);
+  position:relative;isolation:isolate;margin-top:var(--ws-mt);margin-bottom:var(--ws-mb)}
+.wv-drop+section.wave-sec{--ws-mt:130px}
+.wave-sec>.wrap{position:relative}
+.ws-drop{position:absolute;left:50%;width:100vw;transform:translateX(-50%);top:calc(var(--ws-pt) * -1);bottom:calc(var(--ws-pb) * -1);z-index:-1;pointer-events:none}
+.ws-bg.wv{--wv-h:60px;--wv-w:1100px;--wv-x:-180px;position:absolute;inset:0;background:linear-gradient(150deg,var(--ws-c1) 0%,var(--ws-c2) 100%)}
+.ws-bg .wv-glow i:nth-child(1){background:radial-gradient(circle,var(--ws-g1),rgba(255,255,255,0) 68%)}
+.ws-bg .wv-glow i:nth-child(2){background:radial-gradient(circle,var(--ws-g2),rgba(255,255,255,0) 68%)}
+/* víc karet (6) → kompaktnější karty, ať pozadí nevyjde obří */
+.wave-sec .facts:has(>:nth-child(4)){gap:12px}
+.wave-sec .facts:has(>:nth-child(4))>.fitem{padding:15px 18px 14px}
+@media(min-width:701px) and (max-width:900px){
+  .wave-sec .facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .wave-sec .facts>.fitem{padding:14px 14px 13px}
+  .wave-sec .fval{font-size:1.08rem}
+  .wave-sec .fnote{font-size:.78rem}}
+@media(max-width:700px){
+  section.wave-sec{--ws-pt:60px;--ws-pb:72px;--ws-mt:30px;--ws-mb:42px}
+  .wv-drop+section.wave-sec{--ws-mt:90px}
+  .ws-bg.wv{--wv-h:40px;--wv-w:640px}}
