@@ -28,7 +28,8 @@
       desc: d.pmDesc || (p ? p.textContent : ''),
       price: d.pmPrice || (priceEl ? priceEl.innerHTML : ''),
       list: list, badge: d.pmBadge || (badgeEl ? badgeEl.textContent : ''), gal: gal,
-      id: d.kkItem || '', name: d.kkName || '', img: d.kkImg || gal[0] || ''
+      id: d.kkItem || '', name: d.kkName || '', img: d.kkImg || gal[0] || '',
+      neon: d.pmNeon || (el.closest('.nsky') ? '96,190,255' : el.closest('.npur') ? '170,127,230' : '255,210,63')
     };
   }
 
@@ -38,7 +39,7 @@
   pm.innerHTML = '<div class="pm-back"></div><div class="pm-stage"><article class="pm-card"><span class="pm-glare" aria-hidden="true"></span>'
     + '<button class="pm-x" type="button" aria-label="Zavřít">×</button>'
     + '<div class="pm-gal"><div class="pm-track"></div><button class="pm-nav pm-prev" type="button" aria-label="Předchozí fotka">‹</button><button class="pm-nav pm-next" type="button" aria-label="Další fotka">›</button><div class="pm-dots"></div></div>'
-    + '<div class="pm-info"><span class="pm-badge" hidden></span><h3 id="pmTitle"></h3><p class="pm-desc"></p><div class="pm-price"></div><ul></ul><button class="pm-cta" type="button">Nezávazná poptávka</button></div>'
+    + '<div class="pm-info"><span class="pm-badge" hidden></span><h3 id="pmTitle"></h3><p class="pm-desc"></p><div class="pm-price"></div><p class="pm-lh">Co obsahuje</p><ul></ul><button class="pm-cta" type="button">Nezávazná poptávka</button></div>'
     + '</article></div>';
   document.body.appendChild(pm);
   var card = pm.querySelector('.pm-card'), track = pm.querySelector('.pm-track'), dots = pm.querySelector('.pm-dots'), glare = pm.querySelector('.pm-glare');
@@ -59,7 +60,10 @@
     pm.querySelector('#pmTitle').textContent = cur.title;
     var ds = pm.querySelector('.pm-desc'); ds.textContent = cur.desc; ds.hidden = !cur.desc;
     var pr = pm.querySelector('.pm-price'); pr.innerHTML = cur.price; pr.hidden = !cur.price;
-    var ul = pm.querySelector('.pm-info ul'); ul.innerHTML = cur.list; ul.hidden = !cur.list;
+    /* tabulka: každý řádek = ikona + text, částky v Kč zvýrazněné */
+    var ul = pm.querySelector('.pm-info ul'); ul.innerHTML = cur.list; ul.hidden = pm.querySelector('.pm-lh').hidden = !cur.list;
+    [].forEach.call(ul.children, function (li) { li.innerHTML = '<i class="pm-ic" aria-hidden="true"></i><span>' + li.innerHTML.replace(/(\d[\d\s\u00a0.]*\s?Kč(?:\s?\/\s?[a-zá-ž]+)?)/gi, '<b>$1</b>') + '</span>'; });
+    card.style.setProperty('--neon', cur.neon);
     go(0); pm.hidden = false; document.body.style.overflow = 'hidden';
     requestAnimationFrame(function () { requestAnimationFrame(function () { pm.classList.add('show'); }); });
     pm.querySelector('.pm-x').focus();
