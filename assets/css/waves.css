@@ -60,3 +60,7 @@ section.wave-sec.ws-photos{--ws-pt:60px;--ws-pb:60px;--ws-mt:0px;--ws-mb:40px}
   section.wave-sec.ws-photos{--ws-pt:44px;--ws-pb:78px;--ws-mb:20px}
   .ws-photos .gal-wrap{margin-top:82px}
   .ws-photos .fleet-hint{position:relative;color:#fff}}
+
+/* Praktické info bez vlny hned pod video sekcí: stejný vzduch jako jinde (~74 px vizuálně) */
+.wv-drop+section.facts-block:not(.wave-sec){padding-top:92px!important}
+@media(max-width:700px){.wv-drop+section.facts-block:not(.wave-sec){padding-top:70px!important}}

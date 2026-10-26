@@ -220,7 +220,9 @@
 
   /* ---------- generic section ---------- */
   section.block{padding:70px 0}
-  #balicky{padding-bottom:38px}
+  #balicky{padding-bottom:38px;padding-top:115px}
+  @media(max-width:900px){#balicky{padding-top:111px}}
+  @media(max-width:700px){#balicky{padding-top:93px}}
   .bestsellers{padding-top:18px}
   @media(max-width:900px){#balicky{padding-bottom:28px}.bestsellers{padding-top:28px}}
   .eyebrow{display:inline-block;font-family:'Baloo 2';font-weight:800;font-size:1rem;
@@ -276,6 +278,11 @@
   /* T-Rex je fotka (ne výřez) → zaoblený rámeček ve stylu karty */
   .best .bico--foto{width:152px;height:190px;object-fit:cover;border-radius:22px;border:3px solid #8B5CD6;margin-bottom:-26px}
   .best:has(.bico--foto) .badge{z-index:5}
+  /* T-Rex výřez (tělo + hlava zvlášť, hlava se natáčí při scrollu — fx.js heads) */
+  .best .bico--trex{display:block;width:172px;height:228px;margin-bottom:-36px;object-fit:initial}
+  .best .bico--trex img{position:absolute;left:50%;bottom:-4px;width:232px;height:auto;max-width:none;margin-left:-116px;pointer-events:none}
+  .best .bico--trex .bt-head{transform-origin:50.3% 50%;transition:transform .45s cubic-bezier(.2,.8,.2,1);will-change:transform}
+  .best:has(.bico--trex) .badge{z-index:5}
   .best:nth-child(3) .bico{animation-delay:2s}
   .best:hover .bico{animation:none;transform:translateY(-16px) scale(1.13) rotate(-3deg);
     filter:drop-shadow(0 12px 18px rgba(43,30,82,.28)) drop-shadow(0 0 14px rgba(139,92,214,.55))}
@@ -565,7 +572,8 @@
   @media(max-width:700px){.bestsellers .best-grid{margin-top:32px;padding-top:38px}}
 
   /* služby + air tanečník vpravo (mobil/tablet pod ikonami) */
-  #sluzby .sv-layout{position:relative;margin-top:40px}
+  #sluzby .sv-layout{position:relative;margin-top:92px}
+  @media(max-width:700px){#sluzby .sv-layout{margin-top:84px}}
   #sluzby .sv-layout>.tiles-row{margin-top:0}
   @media(min-width:1100px){#sluzby .sv-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:26px;align-items:center}
     #sluzby .sv-layout .tile{padding-left:6px;padding-right:6px}#sluzby .sv-layout .tile .name{font-size:.8rem;letter-spacing:.01em}}
@@ -627,7 +635,7 @@
 <link rel="stylesheet" href="assets/css/intro.css?v=3">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
 <link rel="stylesheet" href="assets/css/pmodal.css?v=20261025c">
-<link rel="stylesheet" href="assets/css/waves.css?v=20261026a">
+<link rel="stylesheet" href="assets/css/waves.css?v=20261026c">
 <script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
 </head>
 <body data-fx="scroll">
@@ -706,7 +714,7 @@
           <a href="fotokoutek.html">Fotokoutek</a>
           <a href="penova-party.html">Pěnová párty</a>
           <a href="malovani-na-oblicej.html">Malování na obličej</a>
-          <a href="umele-tetovani.html">Umělé tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
+          <a href="umele-tetovani.html">Airbrush tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
           <a href="avengers.html">Superhrdinská show</a>
           </span></span><span class="sep">|</span>
         <a href="#reference">RECENZE</a><span class="sep">|</span>
@@ -718,7 +726,7 @@
     </div>
   </div>
   <div class="mobmenu" id="mm">
-  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Umělé tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
+  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Airbrush tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
   <a href="#reference">Recenze</a><a href="#kontakt">Kontakt</a>
 </div>
 </header>
@@ -783,7 +791,7 @@
       </a>
       <a class="tile" href="umele-tetovani.html">
         <img class="ico" src="assets/icons/tetovani.webp" width="360" height="360" loading="lazy" decoding="async" alt="Airbrush pistole, šablony, barvy a třpytky">
-        <div class="name">Umělé tetování</div>
+        <div class="name">Airbrush tetování</div>
       </a>
       <a class="tile" href="motokary.html">
         <img class="ico" src="assets/icons/motokary.webp" width="360" height="360" loading="lazy" decoding="async" alt="Šlapací motokára se sedačkou a vlaječkou">
@@ -898,7 +906,7 @@
         <span class="sheen" aria-hidden="true"></span>
         <div class="top">
           <span class="badge" style="background:#3f66c4;color:#fff">NOVINKA</span>
-          <img class="bico bico--foto" src="assets/maskoti/maskot-tyranosaurus-sm.webp" width="440" height="550" loading="lazy" decoding="async" alt="Chodící Tyranosaurus na náměstí">
+          <span class="bico bico--trex" role="img" aria-label="Chodící Tyranosaurus"><img class="bt-body" src="assets/maskoti/trex-body.webp" width="700" height="900" loading="lazy" decoding="async" alt=""><img class="bt-head" data-headscroll src="assets/maskoti/trex-head.webp" width="700" height="900" loading="lazy" decoding="async" alt=""></span>
         </div>
         <div class="body">
           <h3>Chodící Tyranosaurus</h3>
@@ -1231,6 +1239,6 @@
 })();
 </script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
-<script src="assets/js/fx.js?v=20261026b" defer></script>
+<script src="assets/js/fx.js?v=20261026c" defer></script>
 </body>
 </html>

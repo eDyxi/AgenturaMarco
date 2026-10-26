@@ -300,7 +300,20 @@
   }
 
   /* index: data-fx="scroll" = jen plynulý scroll, zbytek stránky beze změny */
-  function start() { smooth(); if (document.body.getAttribute("data-fx") === "scroll") return; reveal(); trail(); services(); }
+  /* ---------- hlava T-Rexe: natáčí se při scrollu (karta na indexu), hover = kouknutí ---------- */
+  function heads() {
+    var H = [].slice.call(document.querySelectorAll("[data-headscroll]")); if (!H.length || RM) return;
+    var hov = H.map(function () { return 0; }), raf = 0;
+    function set() { raf = 0; var vh = innerHeight;
+      H.forEach(function (h, i) { var r = h.getBoundingClientRect(), p = (r.top + r.height / 2 - vh / 2) / vh;
+        h.style.transform = "rotate(" + (Math.max(-9, Math.min(4, p * 16)) + hov[i]).toFixed(2) + "deg)"; }); }
+    function q() { if (!raf) raf = requestAnimationFrame(set); }
+    H.forEach(function (h, i) { var card = h.closest("a,article,.best") || h;
+      card.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { hov[i] = -7; q(); } });
+      card.addEventListener("pointerleave", function () { hov[i] = 0; q(); }); });
+    addEventListener("scroll", q, { passive: true }); addEventListener("resize", q); q();
+  }
+  function start() { smooth(); heads(); trail(); if (document.body.getAttribute("data-fx") === "scroll") return; reveal(); services(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { dino(start); });
   else dino(start);
 })();
