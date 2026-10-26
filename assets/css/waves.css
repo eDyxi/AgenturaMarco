@@ -29,16 +29,15 @@
 
 /* .wave-sec: sdílené vlnité pozadí sekce (Praktické info, o-nas…). Pozadí je absolutní vrstva v .wrap (.ws-drop > .ws-bg.wv),
    přesahuje obsah o --ws-pt/--ws-pb, sekce se odsune o --ws-mt/--ws-mb (= nárůst pozadí + větší mezera k sousedům).
-   Paleta přes --ws-c1/--ws-c2 (gradient) a --ws-g1/--ws-g2 (krouživá světla) → přebarví se jednou třídou na body (.pkg-*). */
+   */
 section.wave-sec{--ws-pt:88px;--ws-pb:108px;--ws-mt:68px;--ws-mb:88px;
   position:relative;isolation:isolate;margin-top:var(--ws-mt);margin-bottom:var(--ws-mb)}
 .wv-drop+section.wave-sec{--ws-mt:130px}
-section.wave-sec+section.wave-sec{--ws-mt:100px}
 .wave-sec>.wrap{position:relative}
 .ws-drop{position:absolute;left:50%;width:100vw;transform:translateX(-50%);top:calc(var(--ws-pt) * -1);bottom:calc(var(--ws-pb) * -1);z-index:-1;pointer-events:none}
-.ws-bg.wv{--wv-h:60px;--wv-w:1100px;--wv-x:-180px;position:absolute;inset:0;background:linear-gradient(150deg,var(--ws-c0,var(--ws-c1,#6E56AE)) 0%,var(--ws-c1,#6E56AE) var(--ws-s1,0%),var(--ws-c2,#43317A) 100%)}
-.ws-bg .wv-glow i:nth-child(1){background:radial-gradient(circle,var(--ws-g1,rgba(255,255,255,.34)),rgba(255,255,255,0) 68%)}
-.ws-bg .wv-glow i:nth-child(2){background:radial-gradient(circle,var(--ws-g2,rgba(168,110,255,.45)),rgba(255,255,255,0) 68%)}
+.ws-bg.wv{--wv-h:60px;--wv-w:1100px;--wv-x:-180px;position:absolute;inset:0;background:linear-gradient(150deg,#6E56AE 0%,#43317A 100%)}
+.ws-bg .wv-glow i:nth-child(1){background:radial-gradient(circle,rgba(255,255,255,.34),rgba(255,255,255,0) 68%)}
+.ws-bg .wv-glow i:nth-child(2){background:radial-gradient(circle,rgba(168,110,255,.45),rgba(255,255,255,0) 68%)}
 /* víc karet (6) → kompaktnější karty, ať pozadí nevyjde obří */
 .wave-sec .facts:has(>:nth-child(4)){gap:12px}
 .wave-sec .facts:has(>:nth-child(4))>.fitem{padding:15px 18px 14px}
@@ -51,17 +50,8 @@ section.wave-sec+section.wave-sec{--ws-mt:100px}
 @media(max-width:700px){
   section.wave-sec{--ws-pt:60px;--ws-pb:72px;--ws-mt:30px;--ws-mb:42px}
   .wv-drop+section.wave-sec{--ws-mt:90px}
-  section.wave-sec+section.wave-sec{--ws-mt:60px}
   .page-hero+section.wave-sec{--ws-mt:84px}
   .ws-bg.wv{--wv-h:40px;--wv-w:640px}}
-/* balíčky: paleta vln podle balíčku (třída na body). Světlý tón jen v rohu bez textu (0 → --ws-s1),
-   bílá ≥ 4,5 : 1 od --ws-s1 dál (bronz 4,9 · stříbro 5,1 · zlato 4,9 → tmavší), nadpisy leží v 14–46 %. */
-.pkg-bronze{--ws-c0:#DB8C42;--ws-c1:#A95E27;--ws-s1:10%;--ws-c2:#5E2C0E;--ws-g1:rgba(255,222,180,.26);--ws-g2:rgba(255,150,70,.4)}
-.pkg-silver{--ws-c0:#AEBBD2;--ws-c1:#5F6F8E;--ws-s1:10%;--ws-c2:#303B54;--ws-g1:rgba(255,255,255,.24);--ws-g2:rgba(140,185,255,.38)}
-.pkg-gold{--ws-c0:#E9B82C;--ws-c1:#946A03;--ws-s1:10%;--ws-c2:#523600;--ws-g1:rgba(255,240,170,.24);--ws-g2:rgba(255,196,40,.4)}
-/* balíčky: #obsah a #fotky jdou těsně po sobě → mezera mezi vlnami ~48 px (mobil ~32) jako u ostatních sousedních vln */
-#obsah+#fotky.wave-sec{--ws-mt:174px}
-@media(max-width:700px){#obsah+#fotky.wave-sec{--ws-mt:112px}}
 /* .ws-photos: vlna jen za pásem fotek galerie (vrstva v .gal-wrap), nadpis sekce zůstává nad ní na pozadí stránky.
    gal-wrap odsunutý o 104 px (mobil 82) → mezi nadpisem a hřebenem vlny ~30 px; fotky mají od hrany vlny ≥ 35 px. */
 section.wave-sec.ws-photos{--ws-pt:60px;--ws-pb:60px;--ws-mt:0px;--ws-mb:40px}
