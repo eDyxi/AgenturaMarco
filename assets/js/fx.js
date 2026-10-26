@@ -1,4 +1,4 @@
-/* AGENTURA MARCO – fx.js (sdílené pro všechny stránky): smooth scroll, reveal, kometa za kurzorem, úvodní scénka s dinem, pin služeb */
+/* AGENTURA MARCO – fx.js (sdílené pro všechny stránky): smooth scroll, reveal, gumové kuličky za kurzorem, úvodní scénka s dinem, pin služeb */
 (function () {
   var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var FINE = matchMedia("(hover:hover) and (pointer:fine)").matches;
@@ -214,64 +214,60 @@
     });
   }
 
-  /* ---------- kometa za kurzorem: měkká zlato-modro-fialová stuha + konfety při kliku ---------- */
+  /* ---------- kurzor: „gumové“ balónkové kuličky (goo blob, inspirace React Bits Blob Cursor) + jiskry při kliku (Click Spark) ---------- */
   function trail() {
     if (RM || !FINE) return;
-    var c = document.createElement("canvas"); c.className = "am-trail"; c.setAttribute("aria-hidden", "true"); document.body.appendChild(c);
-    var x = c.getContext("2d"), dpr = 1, W = 0, H = 0, N = 22, P = [], B = [], raf = 0, mx = 0, my = 0, live = false, still = 0, spin = 0;
-    var COL = ["#FFD23F", "#60BEFF", "#9B7BE0", "#F5B324", "#43C463"];
-    function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px"; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    var root = document.createElement("div"); root.setAttribute("aria-hidden", "true");
+    root.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;overflow:hidden";
+    root.innerHTML = '<svg width="0" height="0" style="position:absolute"><filter id="amGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>' +
+      '<feColorMatrix in="b" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 24 -10" result="g"/><feComposite in="SourceGraphic" in2="g" operator="atop"/></filter></svg>' +
+      '<div class="am-goo" style="position:absolute;inset:0;filter:url(#amGoo);opacity:0;transition:opacity .25s"></div>';
+    document.body.appendChild(root);
+    var goo = root.lastChild, B = [], cfg = [[26, "#FFD23F", .42], [19, "#60BEFF", .24], [13, "#9B7BE0", .15], [8, "#FF8FB8", .1]];
+    cfg.forEach(function (c) { var d = document.createElement("i");
+      d.style.cssText = "position:absolute;left:0;top:0;width:" + c[0] + "px;height:" + c[0] + "px;margin:" + (-c[0] / 2) + "px 0 0 " + (-c[0] / 2) + "px;border-radius:50%;will-change:transform;" +
+        "background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.95) 0 12%,transparent 34%)," + c[1] + ";box-shadow:inset -3px -4px 6px rgba(0,0,0,.18)";
+      goo.appendChild(d); B.push({ el: d, x: -99, y: -99, k: c[2], s: 1 }); });
+    var cv = document.createElement("canvas"); cv.style.cssText = "position:absolute;inset:0;width:100%;height:100%"; root.appendChild(cv);
+    var g = cv.getContext("2d"), dpr = 1, W = 0, H = 0, S = [], mx = -99, my = -99, raf = 0, on = false, grow = 0, gT = 0;
+    var COL = ["#FFD23F", "#60BEFF", "#9B7BE0", "#43C463", "#FF8FB8"];
+    function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); }
     size(); addEventListener("resize", size);
     function kick() { if (!raf) raf = requestAnimationFrame(step); }
+    var HOT = "a,button,[data-pm],[role=button],label,summary,.tile,.best";
     addEventListener("pointermove", function (e) {
       if (e.pointerType && e.pointerType !== "mouse") return;
-      mx = e.clientX; my = e.clientY; still = 0;
-      if (!live) { P = []; for (var i = 0; i < N; i++) P.push({ x: mx, y: my }); live = true; }
-      kick();
+      mx = e.clientX; my = e.clientY;
+      if (!on) { on = true; goo.style.opacity = "1"; B.forEach(function (b) { b.x = mx; b.y = my; }); }
+      gT = e.target.closest && e.target.closest(HOT) ? 1 : 0; kick();
     }, { passive: true });
-    document.addEventListener("mouseleave", function () { live = false; });
+    document.addEventListener("mouseleave", function () { on = false; goo.style.opacity = "0"; });
     addEventListener("pointerdown", function (e) {
       if (e.pointerType && e.pointerType !== "mouse") return;
-      for (var i = 0; i < 12; i++) { var a = (i / 12) * Math.PI * 2 + Math.random() * .4, v = 2.2 + Math.random() * 2.6;
-        B.push({ x: e.clientX, y: e.clientY, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 1.2, r: 2.6 + Math.random() * 2.6, t: 0, c: COL[i % COL.length], s: i % 3 === 0, rot: Math.random() * 6 }); }
-      kick();
+      for (var i = 0; i < 10; i++) S.push({ x: e.clientX, y: e.clientY, a: i / 10 * Math.PI * 2 + .3, t: 0, c: COL[i % COL.length] });
+      B[0].s = .7; kick();
     }, { passive: true });
-    function star(px, py, r, rot) { x.beginPath(); for (var i = 0; i < 8; i++) { var rr = i % 2 ? r * .42 : r, an = rot + i * Math.PI / 4; x.lineTo(px + Math.cos(an) * rr, py + Math.sin(an) * rr); } x.closePath(); x.fill(); }
-    function ribbon(scale, alpha) {
-      var L = [], R = [], i, p, q, nx, ny, d, w;
-      for (i = 0; i < N; i++) {
-        p = P[Math.max(0, i - 1)]; q = P[Math.min(N - 1, i + 1)];
-        nx = -(q.y - p.y); ny = q.x - p.x; d = Math.hypot(nx, ny) || 1; nx /= d; ny /= d;
-        w = (1 - i / N) * 7 * scale + .4;
-        L.push([P[i].x + nx * w, P[i].y + ny * w]); R.push([P[i].x - nx * w, P[i].y - ny * w]);
-      }
-      var g = x.createLinearGradient(P[0].x, P[0].y, P[N - 1].x, P[N - 1].y);
-      g.addColorStop(0, "rgba(255,226,120," + alpha + ")"); g.addColorStop(.38, "rgba(96,190,255," + alpha * .85 + ")");
-      g.addColorStop(.75, "rgba(155,123,224," + alpha * .55 + ")"); g.addColorStop(1, "rgba(155,123,224,0)");
-      x.fillStyle = g; x.beginPath(); x.moveTo(L[0][0], L[0][1]);
-      for (i = 1; i < N; i++) x.lineTo(L[i][0], L[i][1]);
-      for (i = N - 1; i >= 0; i--) x.lineTo(R[i][0], R[i][1]);
-      x.closePath(); x.fill();
-    }
     function step() {
-      x.clearRect(0, 0, W, H); raf = 0;
-      var moving = false, len = 0, i;
-      if (P.length) {
-        P[0].x += (mx - P[0].x) * .55; P[0].y += (my - P[0].y) * .55;
-        for (i = 1; i < N; i++) { P[i].x += (P[i - 1].x - P[i].x) * .38; P[i].y += (P[i - 1].y - P[i].y) * .38; len += Math.hypot(P[i].x - P[i - 1].x, P[i].y - P[i - 1].y); }
-        moving = len > .6;
-        if (moving && live) {
-          ribbon(2.4, .16); ribbon(1, .9);                                   /* měkká záře + jádro */
-          spin += .08; x.fillStyle = "rgba(255,240,190," + Math.min(1, len / 40) + ")"; star(P[0].x, P[0].y, 5.5, spin);
-        }
-      }
-      B = B.filter(function (b) { return (b.t += 1 / 42) < 1; });
-      B.forEach(function (b) { b.vy += .14; b.vx *= .97; b.x += b.vx; b.y += b.vy; x.globalAlpha = 1 - b.t; x.fillStyle = b.c;
-        if (b.s) star(b.x, b.y, b.r * 1.4, b.rot + b.t * 4); else { x.beginPath(); x.arc(b.x, b.y, b.r * (1 - b.t * .4), 0, 7); x.fill(); } });
-      x.globalAlpha = 1;
-      if ((moving && live) || B.length || ++still < 3) raf = requestAnimationFrame(step);
+      raf = 0; var moving = false;
+      grow += (gT - grow) * .18;
+      B.forEach(function (b, i) {
+        var tx = i ? B[i - 1].x : mx, ty = i ? B[i - 1].y : my, k = i ? .38 : b.k;
+        b.x += (tx - b.x) * k; b.y += (ty - b.y) * k; b.s += (1 - b.s) * .2;
+        if (Math.abs(tx - b.x) > .15 || Math.abs(ty - b.y) > .15 || Math.abs(1 - b.s) > .01) moving = true;
+        var sc = b.s * (i ? 1 : 1 + grow * .7);
+        b.el.style.transform = "translate3d(" + b.x.toFixed(1) + "px," + b.y.toFixed(1) + "px,0) scale(" + sc.toFixed(3) + ")";
+      });
+      g.clearRect(0, 0, W, H);
+      S = S.filter(function (s) { return (s.t += 1 / 26) < 1; });
+      S.forEach(function (s) {
+        var e = 1 - Math.pow(1 - s.t, 3), r0 = 8 + e * 26, r1 = r0 + 12 * (1 - s.t);
+        g.strokeStyle = s.c; g.globalAlpha = 1 - s.t; g.lineWidth = 3; g.lineCap = "round"; g.beginPath();
+        g.moveTo(s.x + Math.cos(s.a) * r0, s.y + Math.sin(s.a) * r0); g.lineTo(s.x + Math.cos(s.a) * r1, s.y + Math.sin(s.a) * r1); g.stroke();
+      });
+      g.globalAlpha = 1;
+      if (moving || S.length || Math.abs(gT - grow) > .01) raf = requestAnimationFrame(step);
     }
-    document.addEventListener("visibilitychange", function () { if (document.hidden && raf) { cancelAnimationFrame(raf); raf = 0; x.clearRect(0, 0, W, H); } });
+    document.addEventListener("visibilitychange", function () { if (document.hidden && raf) { cancelAnimationFrame(raf); raf = 0; } });
   }
 
   /* ---------- služby: pinovaná scéna (index) ---------- */

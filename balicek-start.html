@@ -849,6 +849,17 @@
 <link rel="stylesheet" href="assets/css/finale.css?v=20261024a">
 <link rel="stylesheet" href="assets/css/footer.css?v=20261025a">
 <link rel="stylesheet" href="assets/css/pmodal.css?v=20261025c">
+<style>
+/* barva balíčku místo fialové (Fotky z akcí, Praktické info, poptávka) + boční karty Co je v balíčku vyšší */
+@media(min-width:1001px){.pcard-grid{margin-top:64px}.pcard:nth-child(1),.pcard:nth-child(4){margin-block:-56px;padding-top:56px;padding-bottom:94px}}
+.ptile{--neon:255,200,120!important;background:linear-gradient(168deg,#F5A623 0%,#E2760F 44%,#B44708 100%);border:2px solid rgba(255,225,160,.75);box-shadow:0 0 0 3px rgba(255,255,255,.5),0 0 22px rgba(226,118,15,.5),0 14px 30px rgba(90,38,4,.34),inset 0 0 22px rgba(255,222,150,.4),inset 0 2px 0 rgba(255,255,255,.5)}
+.ptile .ptile-body{text-shadow:0 1px 3px rgba(90,38,4,.55)}
+.ptile p{color:rgba(255,255,255,.95)}
+.fitem{background:linear-gradient(160deg,#EE9420 0%,#D06A0C 50%,#9C3D06 100%);border:2px solid rgba(255,225,160,.75);box-shadow:0 0 0 3px rgba(255,255,255,.5),0 0 22px rgba(226,118,15,.5),0 14px 30px rgba(90,38,4,.34),inset 0 0 22px rgba(255,222,150,.4),inset 0 2px 0 rgba(255,255,255,.5)}
+.fitem::after{box-shadow:0 0 24px rgba(255,200,120,.7),inset 0 0 16px rgba(255,200,120,.3);animation:neonThrob 2.6s ease-in-out infinite}
+.fitem .fval,.fitem .fnote,.fitem .flab{text-shadow:0 1px 3px rgba(90,38,4,.55)}
+.page-cta .btn{background:linear-gradient(160deg,#EE9420 0%,#D06A0C 50%,#9C3D06 100%);box-shadow:0 0 0 3px rgba(255,255,255,.5),0 0 22px rgba(226,118,15,.5),0 14px 30px rgba(90,38,4,.34),inset 0 1px 0 rgba(255,255,255,.4)}
+</style>
 </head>
 <body>
 <div id="pbg" aria-hidden="true"></div>
@@ -874,7 +885,7 @@
           <a href="fotokoutek.html">Fotokoutek</a>
           <a href="penova-party.html">Pěnová párty</a>
           <a href="malovani-na-oblicej.html">Malování na obličej</a>
-          <a href="umele-tetovani.html">Airbrush tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
+          <a href="airbrush-malovani.html">Airbrush malování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
           <a href="avengers.html">Superhrdinská show</a>
           </span></span><span class="sep">|</span>
         <a href="index.html#reference">RECENZE</a><span class="sep">|</span>
@@ -886,7 +897,7 @@
     </div>
   </div>
   <div class="mobmenu" id="mm">
-  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="umele-tetovani.html">Airbrush tetování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
+  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="airbrush-malovani.html">Airbrush malování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
   <a href="index.html#reference">Recenze</a><a href="index.html#kontakt">Kontakt</a>
 </div>
 </header>
@@ -1111,6 +1122,6 @@
 })();
 </script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
-<script src="assets/js/fx.js?v=20261026c" defer></script>
+<script src="assets/js/fx.js?v=20261026d" defer></script>
 </body>
 </html>
