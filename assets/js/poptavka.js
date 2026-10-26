@@ -61,6 +61,7 @@
     + '.pq-ci .th img{width:100%;height:100%;object-fit:contain}'
     + '.pq-ci .th span{font-family:"Baloo 2",system-ui,sans-serif;font-weight:900;color:#FFD23F}'
     + '.pq-ci .nm{flex:1;min-width:0;font-weight:800;font-size:.95rem}'
+    + '.pq-ci .pr{display:block;margin-top:3px;font-family:"Caveat",cursive;font-style:normal;font-weight:700;font-size:1.22rem;line-height:1;color:#FFD23F}'
     + '.pq-ci button{width:32px;height:32px;flex:0 0 auto;border:0;border-radius:50%;cursor:pointer;'
     + 'background:rgba(255,255,255,.12);color:#fff;font-size:1.1rem;line-height:1;transition:background .16s,transform .16s}'
     + '.pq-ci button:hover{background:#DA3B4B;transform:rotate(90deg)}'
@@ -167,7 +168,7 @@
         ? '<span class="th"><img src="' + it.img + '" alt=""></span>'
         : '<span class="th"><span>' + (it.badge || '?') + '</span></span>';
       return '<div class="pq-ci">' + th
-        + '<span class="nm">' + it.name + '</span>'
+        + '<span class="nm">' + it.name + (it.price ? '<em class="pr">' + it.price + '</em>' : '') + '</span>'
         + '<button type="button" data-rm="' + it.id + '" aria-label="Odebrat ' + it.name + '">&times;</button>'
         + '</div>';
     }).join('');
@@ -222,7 +223,8 @@
     if (!e.target.classList.contains('pq-send')) return;
     var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
     var picked = cartItems().map(function (i) { return i.name; });
-    var body = 'Sluzby z kosiku: ' + (picked.length ? picked.join(', ') : '(nevybrano)') + '\n'
+    var pickedP = cartItems().map(function (i) { return i.name + (i.price ? ' (' + i.price + ')' : ''); });
+    var body = 'Sluzby z kosiku: ' + (pickedP.length ? pickedP.join(', ') : '(nevybrano)') + '\n'
       + 'Stranka: ' + pageName() + '\n'
       + 'Jmeno: ' + v('pqName') + '\n'
       + 'Kontakt: ' + v('pqCon') + '\n\n'

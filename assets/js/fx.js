@@ -1,4 +1,4 @@
-/* AGENTURA MARCO – fx.js (sdílené pro všechny stránky): smooth scroll, reveal, jiskřičky, úvodní scénka s dinem, pin služeb */
+/* AGENTURA MARCO – fx.js (sdílené pro všechny stránky): smooth scroll, reveal, kometa za kurzorem, úvodní scénka s dinem, pin služeb */
 (function () {
   var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var FINE = matchMedia("(hover:hover) and (pointer:fine)").matches;
@@ -214,33 +214,64 @@
     });
   }
 
-  /* ---------- jiskřičky za kurzorem ---------- */
+  /* ---------- kometa za kurzorem: měkká zlato-modro-fialová stuha + konfety při kliku ---------- */
   function trail() {
     if (RM || !FINE) return;
     var c = document.createElement("canvas"); c.className = "am-trail"; c.setAttribute("aria-hidden", "true"); document.body.appendChild(c);
-    var x = c.getContext("2d"), P = [], raf = 0, dpr = Math.min(devicePixelRatio || 1, 2), last = 0;
-    var COL = ["#FFD23F", "#60BEFF", "#9B7BE0", "#F5B324"];
-    function size() { c.width = innerWidth * dpr; c.height = innerHeight * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    var x = c.getContext("2d"), dpr = 1, W = 0, H = 0, N = 22, P = [], B = [], raf = 0, mx = 0, my = 0, live = false, still = 0, spin = 0;
+    var COL = ["#FFD23F", "#60BEFF", "#9B7BE0", "#F5B324", "#43C463"];
+    function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px"; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
     size(); addEventListener("resize", size);
+    function kick() { if (!raf) raf = requestAnimationFrame(step); }
     addEventListener("pointermove", function (e) {
-      var now = performance.now(); if (now - last < 28) return; last = now;
-      P.push({ x: e.clientX, y: e.clientY, vx: (Math.random() - 0.5) * 0.6, vy: Math.random() * 0.5 + 0.2, r: 3 + Math.random() * 3.5, t: 0, c: COL[(Math.random() * COL.length) | 0], a: Math.random() * 6 });
-      if (P.length > 40) P.shift();
-      if (!raf) raf = requestAnimationFrame(step);
+      if (e.pointerType && e.pointerType !== "mouse") return;
+      mx = e.clientX; my = e.clientY; still = 0;
+      if (!live) { P = []; for (var i = 0; i < N; i++) P.push({ x: mx, y: my }); live = true; }
+      kick();
     }, { passive: true });
-    function star(px, py, r, rot) {
-      x.beginPath();
-      for (var i = 0; i < 8; i++) { var rr = i % 2 ? r * 0.38 : r, an = rot + (i * Math.PI) / 4; x.lineTo(px + Math.cos(an) * rr, py + Math.sin(an) * rr); }
+    document.addEventListener("mouseleave", function () { live = false; });
+    addEventListener("pointerdown", function (e) {
+      if (e.pointerType && e.pointerType !== "mouse") return;
+      for (var i = 0; i < 12; i++) { var a = (i / 12) * Math.PI * 2 + Math.random() * .4, v = 2.2 + Math.random() * 2.6;
+        B.push({ x: e.clientX, y: e.clientY, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 1.2, r: 2.6 + Math.random() * 2.6, t: 0, c: COL[i % COL.length], s: i % 3 === 0, rot: Math.random() * 6 }); }
+      kick();
+    }, { passive: true });
+    function star(px, py, r, rot) { x.beginPath(); for (var i = 0; i < 8; i++) { var rr = i % 2 ? r * .42 : r, an = rot + i * Math.PI / 4; x.lineTo(px + Math.cos(an) * rr, py + Math.sin(an) * rr); } x.closePath(); x.fill(); }
+    function ribbon(scale, alpha) {
+      var L = [], R = [], i, p, q, nx, ny, d, w;
+      for (i = 0; i < N; i++) {
+        p = P[Math.max(0, i - 1)]; q = P[Math.min(N - 1, i + 1)];
+        nx = -(q.y - p.y); ny = q.x - p.x; d = Math.hypot(nx, ny) || 1; nx /= d; ny /= d;
+        w = (1 - i / N) * 7 * scale + .4;
+        L.push([P[i].x + nx * w, P[i].y + ny * w]); R.push([P[i].x - nx * w, P[i].y - ny * w]);
+      }
+      var g = x.createLinearGradient(P[0].x, P[0].y, P[N - 1].x, P[N - 1].y);
+      g.addColorStop(0, "rgba(255,226,120," + alpha + ")"); g.addColorStop(.38, "rgba(96,190,255," + alpha * .85 + ")");
+      g.addColorStop(.75, "rgba(155,123,224," + alpha * .55 + ")"); g.addColorStop(1, "rgba(155,123,224,0)");
+      x.fillStyle = g; x.beginPath(); x.moveTo(L[0][0], L[0][1]);
+      for (i = 1; i < N; i++) x.lineTo(L[i][0], L[i][1]);
+      for (i = N - 1; i >= 0; i--) x.lineTo(R[i][0], R[i][1]);
       x.closePath(); x.fill();
     }
     function step() {
-      x.clearRect(0, 0, innerWidth, innerHeight);
-      P = P.filter(function (p) { return (p.t += 1 / 36) < 1; });
-      P.forEach(function (p) { p.x += p.vx; p.y += p.vy; x.globalAlpha = (1 - p.t) * 0.9; x.fillStyle = p.c; star(p.x, p.y, p.r * (1 - p.t * 0.5), p.a + p.t * 2); });
+      x.clearRect(0, 0, W, H); raf = 0;
+      var moving = false, len = 0, i;
+      if (P.length) {
+        P[0].x += (mx - P[0].x) * .55; P[0].y += (my - P[0].y) * .55;
+        for (i = 1; i < N; i++) { P[i].x += (P[i - 1].x - P[i].x) * .38; P[i].y += (P[i - 1].y - P[i].y) * .38; len += Math.hypot(P[i].x - P[i - 1].x, P[i].y - P[i - 1].y); }
+        moving = len > .6;
+        if (moving && live) {
+          ribbon(2.4, .16); ribbon(1, .9);                                   /* měkká záře + jádro */
+          spin += .08; x.fillStyle = "rgba(255,240,190," + Math.min(1, len / 40) + ")"; star(P[0].x, P[0].y, 5.5, spin);
+        }
+      }
+      B = B.filter(function (b) { return (b.t += 1 / 42) < 1; });
+      B.forEach(function (b) { b.vy += .14; b.vx *= .97; b.x += b.vx; b.y += b.vy; x.globalAlpha = 1 - b.t; x.fillStyle = b.c;
+        if (b.s) star(b.x, b.y, b.r * 1.4, b.rot + b.t * 4); else { x.beginPath(); x.arc(b.x, b.y, b.r * (1 - b.t * .4), 0, 7); x.fill(); } });
       x.globalAlpha = 1;
-      raf = P.length ? requestAnimationFrame(step) : 0;
-      if (!raf) x.clearRect(0, 0, innerWidth, innerHeight);
+      if ((moving && live) || B.length || ++still < 3) raf = requestAnimationFrame(step);
     }
+    document.addEventListener("visibilitychange", function () { if (document.hidden && raf) { cancelAnimationFrame(raf); raf = 0; x.clearRect(0, 0, W, H); } });
   }
 
   /* ---------- služby: pinovaná scéna (index) ---------- */

@@ -31,7 +31,7 @@ section.block.facts-block{padding-bottom:44px!important}
 .rv.in{opacity:1;translate:0 0;transition:opacity .7s var(--ease),translate .7s var(--ease);transition-delay:var(--d,0s)}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;translate:none}}
 
-/* jiskřičky za kurzorem */
+/* kometa za kurzorem */
 .am-trail{position:fixed;inset:0;z-index:9998;pointer-events:none}
 
 /* ===================== nové podstránky: mřížka produktových karet ===================== */

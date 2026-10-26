@@ -565,27 +565,12 @@
   .pcard p{color:rgba(255,255,255,.95);font-weight:600;font-size:.92rem;line-height:1.58;
     text-shadow:0 1px 2px rgba(74,53,121,.52)}
   .pcard:nth-child(2){transition-delay:.06s}.pcard:nth-child(3){transition-delay:.12s}.pcard:nth-child(4){transition-delay:.18s}
-  /* schod — nejvyssi karta vlevo, postupne se snizuji doprava */
-  .pcard-grid{align-items:start}
-  .pcard{margin-top:0}
-  .pcard:nth-child(1) .pphoto{height:174px}
-  .pcard:nth-child(2) .pphoto{height:166px}
-  .pcard:nth-child(3) .pphoto{height:158px}
-  .pcard:nth-child(4) .pphoto{height:150px}
-  .pcard:nth-child(1){padding-bottom:38px}
-  .pcard:nth-child(2){padding-bottom:34px}
-  .pcard:nth-child(3){padding-bottom:30px}
-  .pcard:nth-child(4){padding-bottom:26px}
-  @media(max-width:1000px){
-    .pcard:nth-child(1) .pphoto,.pcard:nth-child(2) .pphoto{height:166px}
-    .pcard:nth-child(3) .pphoto,.pcard:nth-child(4) .pphoto{height:152px}
-    .pcard:nth-child(1),.pcard:nth-child(2){padding-bottom:32px}
-    .pcard:nth-child(3),.pcard:nth-child(4){padding-bottom:26px}
-  }
-  @media(max-width:560px){
-    .pcard:nth-child(n) .pphoto{height:150px}
-    .pcard:nth-child(n){padding-bottom:26px}
-  }
+  /* stejně velké karty — všechny jako první (výška řádku = nejvyšší karta) */
+  .pcard-grid{align-items:stretch}
+  .pcard{margin-top:0;padding-bottom:38px}
+  .pcard .pphoto{height:174px}
+  @media(max-width:1000px){.pcard .pphoto{height:166px}.pcard{padding-bottom:32px}}
+  @media(max-width:560px){.pcard .pphoto{height:150px}.pcard{padding-bottom:26px}}
 
   @media(prefers-reduced-motion:reduce){
     .pcard{opacity:1!important;transform:none;transition:none}
@@ -728,15 +713,34 @@
   .baleni.in .bstep:nth-child(3){transition-delay:.3s}
   /* ---- gallery ---- */
     .page-cta{text-align:center;padding:70px 0 90px}
-  .page-cta .h2{font-weight:900;font-size:clamp(2.1rem,5vw,3.1rem);color:#fff;transform:skew(-4deg);text-shadow:0 2px 6px rgba(27,58,99,.65),0 0 14px rgba(255,210,63,.75),0 0 34px rgba(255,107,122,.4)}
-  .page-cta .btn{font-family:'Baloo 2';font-weight:900;font-size:1.25rem;padding:20px 46px;border-radius:60px;background:linear-gradient(120deg,var(--gold) 0%,#FF9D3F 55%,#FF6B7A 100%);color:var(--navy);border:3px solid #fff;box-shadow:0 0 0 3px rgba(255,210,63,.9),0 0 30px rgba(255,210,63,.75),0 0 64px rgba(255,107,122,.45),0 14px 30px rgba(27,58,99,.3);overflow:hidden;animation:ctaPulse 1.9s ease-in-out infinite}
-  @keyframes ctaPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+  @property --mcAng{syntax:'<angle>';initial-value:0deg;inherits:false}
+  @keyframes mcSpin{to{--mcAng:360deg}}
+  .page-cta .h2{font-weight:900;font-size:clamp(2.1rem,5vw,3.1rem);color:#fff;transform:skew(-4deg);
+    -webkit-text-stroke:2.2px #0B0F1C;paint-order:stroke fill;
+    text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 14px rgba(255,210,63,.6),0 0 30px rgba(255,107,122,.32)}
+  .page-cta .btn{position:relative;isolation:isolate;font-family:'Baloo 2';font-weight:900;
+    font-size:1.22rem;padding:19px 44px;border-radius:60px;border:0;
+    background:linear-gradient(160deg,#7A61BC 0%,#4A3684 100%);
+    color:#fff;-webkit-text-stroke:.6px rgba(11,15,28,.85);paint-order:stroke fill;
+    box-shadow:0 0 26px rgba(240,200,107,.4),0 14px 30px rgba(38,24,78,.34),
+               0 1px 0 rgba(255,255,255,.22) inset;
+    overflow:hidden;animation:ctaPulse 2.8s ease-in-out infinite}
+  @keyframes ctaPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .page-cta .btn::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:3px;
+    background:conic-gradient(from var(--mcAng),#F0C86B,#FFF3D2 16%,#C3ABE8 40%,#FFFFFF 56%,#F0C86B 82%,#F0C86B);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;pointer-events:none;z-index:2;
+    animation:mcSpin 4.5s linear infinite}
   .page-cta .btn::before{content:"";position:absolute;top:-20%;bottom:-20%;left:-30%;width:34%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg) translateX(0);animation:ctaShine 2.6s ease-in-out infinite}
   @keyframes ctaShine{0%,55%{transform:skewX(-18deg) translateX(-120%)}85%,100%{transform:skewX(-18deg) translateX(520%)}}
-  .page-cta .btn:hover{animation:none;transform:scale(1.09);box-shadow:0 0 0 3px rgba(255,255,255,1),0 0 40px rgba(255,210,63,.95),0 0 90px rgba(255,107,122,.6),0 18px 36px rgba(27,58,99,.35)}
-  .page-cta .btn:focus-visible{outline:3px solid var(--navy);outline-offset:4px}
+  .page-cta .btn:hover{animation:none;transform:scale(1.06);
+    box-shadow:0 0 34px rgba(240,200,107,.7),0 0 70px rgba(195,171,232,.4),
+               0 18px 36px rgba(38,24,78,.4),0 1px 0 rgba(255,255,255,.28) inset}
+  .page-cta .btn:hover::after{animation-duration:1.8s}
+  .page-cta .btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
   .cta-hint{display:block;font-family:'Caveat',cursive;font-size:1.4rem;color:var(--purple,#6B4FA0);margin-top:16px}
-  @media(prefers-reduced-motion:reduce){.page-cta .btn{animation:none}.page-cta .btn::before{animation:none;display:none}.page-cta .h2{transform:none}}
+  @media(prefers-reduced-motion:reduce){.page-cta .btn{animation:none}.page-cta .btn::before{animation:none;display:none}.page-cta .btn::after{animation:none}.page-cta .h2{transform:none}}
   @media(max-width:820px){
     .hrow,.hrow:nth-child(even){grid-template-columns:1fr}
     .hrow:nth-child(even) .himg{order:0}
@@ -775,7 +779,7 @@
   /* nadpisy sekcí jako megahrady: bílé, zlatý glow, podtržení */
   section#obsah .h2,#fotky .h2{font-weight:900;font-size:clamp(1.85rem,4.2vw,2.6rem);color:#fff;-webkit-text-stroke:2px #0B0F1C;paint-order:stroke fill;text-shadow:0 2px 4px rgba(14,9,36,.35),0 0 12px rgba(255,210,63,.5),0 0 26px rgba(255,210,63,.25)}
   section#obsah .h2::after,#fotky .h2::after{content:"";display:block;width:86px;height:5px;border-radius:5px;margin:13px auto 0;background:linear-gradient(90deg,var(--gold),#FF6B7A);box-shadow:0 0 16px rgba(255,210,63,.85),0 0 34px rgba(255,107,122,.4)}
-  section#obsah .sub,#fotky .sub{color:#fff;font-weight:800;font-size:1.2rem;line-height:1.66;-webkit-text-stroke:1.8px #000;paint-order:stroke fill;text-shadow:none}
+  section#obsah .sub,#fotky .sub,.page-cta .sub{color:#fff;font-weight:800;font-size:1.2rem;line-height:1.66;-webkit-text-stroke:1.8px #000;paint-order:stroke fill;text-shadow:none}
   /* dropdown SLUŽBY: 12 px mezera pod bílou bublinou, neviditelný most přes mezeru, zavření se zpožděním 200 ms */
   .navdrop-menu{top:calc(100% + 30px);pointer-events:auto;transition:opacity .22s ease .2s,transform .22s ease .2s,visibility 0s linear .42s}
   .navdrop-menu::before{content:"";position:absolute;left:-16px;right:-16px;bottom:100%;height:36px}
@@ -1062,9 +1066,9 @@
   <div class="wrap mfoot__in"><a class="mfoot__logo" href="index.html" aria-label="Agentura Marco – úvod"><img src="assets/logo.webp" width="420" height="354" loading="lazy" decoding="async" alt="Agentura Marco – zábava na klíč"></a></div>
   <p class="mfoot__meta"><b>Agentura Marco</b> · +420 736 214 975 · agenturamarco@seznam.cz</p>
 </footer>
-<script src="assets/js/kosik.js" defer></script>
-<script src="assets/js/pmodal.js?v=20261025c" defer></script>
-<script src="assets/js/poptavka.js" defer></script>
+<script src="assets/js/kosik.js?v=20261026b" defer></script>
+<script src="assets/js/pmodal.js?v=20261026b" defer></script>
+<script src="assets/js/poptavka.js?v=20261026b" defer></script>
 
 <script>
 (function(){
@@ -1110,6 +1114,6 @@
 })();
 </script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
-<script src="assets/js/fx.js?v=20261026a" defer></script>
+<script src="assets/js/fx.js?v=20261026b" defer></script>
 </body>
 </html>

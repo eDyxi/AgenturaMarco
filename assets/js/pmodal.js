@@ -107,7 +107,7 @@
     var c = cur; close();
     if (c && c.id && window.AMCart) {
       var has = window.AMCart.items().some(function (i) { return i.id === c.id; });
-      if (!has) window.AMCart.add(c.id, { name: c.name || c.title, img: c.img });
+      if (!has) window.AMCart.add(c.id, { name: c.name || c.title, img: c.img, price: c.price });
     }
     setTimeout(function () { if (window.AMPoptavka) window.AMPoptavka.open(); else location.href = 'index.html#kontakt'; }, RM ? 0 : 280);
   });

@@ -8,16 +8,16 @@
 
   /* ---------- katalog ---------- */
   var CATALOG = {
-    'megahrady.html':           { id: 'hrady',      name: 'Skákací hrady',        img: 'assets/icons/hrad.webp' },
-    'ozvuceni.html':            { id: 'ozvuceni',   name: 'Ozvučení a DJ',        img: 'assets/icons/dj.webp' },
-    'penova-party.html':        { id: 'pena',       name: 'Pěnová párty',         img: 'assets/icons/pena.webp' },
-    'malovani-na-oblicej.html': { id: 'malovani',   name: 'Malování na obličej',  img: 'assets/icons/malovani.webp' },
-    'maskoti.html':             { id: 'maskoti',    name: 'Maskoti',              img: 'assets/icons/pooh.webp' },
-    'fotokoutek.html':          { id: 'fotokoutek', name: 'Fotokoutek',           img: 'assets/icons/fotokoutek.webp' },
-    'avengers.html':            { id: 'hrdinove',   name: 'Superhrdinové',        img: 'assets/icons/hulk.webp' },
-    'balicek-start.html':       { id: 'b-start',    name: 'Balíček START',        img: '', badge: 'S' },
-    'balicek-plus.html':        { id: 'b-plus',     name: 'Balíček PLUS',         img: '', badge: 'P' },
-    'balicek-max.html':         { id: 'b-max',      name: 'Balíček MAX',          img: '', badge: 'M' }
+    'megahrady.html':           { id: 'hrady',      name: 'Skákací hrady',        img: 'assets/icons/hrad.webp', price: '2 000–10 000 Kč' },
+    'ozvuceni.html':            { id: 'ozvuceni',   name: 'Ozvučení a DJ',        img: 'assets/icons/dj.webp', price: '1 000–20 000 Kč' },
+    'penova-party.html':        { id: 'pena',       name: 'Pěnová párty',         img: 'assets/icons/pena.webp', price: '8 000 Kč' },
+    'malovani-na-oblicej.html': { id: 'malovani',   name: 'Malování na obličej',  img: 'assets/icons/malovani.webp', price: '1 000 Kč / hod' },
+    'maskoti.html':             { id: 'maskoti',    name: 'Maskoti',              img: 'assets/icons/pooh.webp', price: '3 000 Kč / hod' },
+    'fotokoutek.html':          { id: 'fotokoutek', name: 'Fotokoutek',           img: 'assets/icons/fotokoutek.webp', price: '8 000 Kč' },
+    'avengers.html':            { id: 'hrdinove',   name: 'Superhrdinové',        img: 'assets/icons/hulk.webp', price: '10 000 Kč' },
+    'balicek-start.html':       { id: 'b-start',    name: 'Balíček START',        img: '', badge: 'S', price: '20 000 Kč' },
+    'balicek-plus.html':        { id: 'b-plus',     name: 'Balíček PLUS',         img: '', badge: 'P', price: '50 000 Kč' },
+    'balicek-max.html':         { id: 'b-max',      name: 'Balíček MAX',          img: '', badge: 'M', price: '100 000 Kč' }
   };
 
   function byId(id) {
@@ -26,15 +26,25 @@
   }
 
   /* ---------- uloziste ---------- */
+  /* cena: z textu karty / atributu -> krátký tvar („3 000 Kč / akce“) */
+  function cleanPrice(t) {
+    t = String(t || '').replace(/<[^>]+>/g, ' ').replace(/[\s\u00a0]+/g, ' ').replace(/^\s*cena( balíčku)?\s*/i, '').trim();
+    if (!t) return '';
+    var m = t.match(/(od\s+)?\d[\d ]*(?:\s?[–-]\s?\d[\d ]*)?\s?Kč(?:\s?\/\s?[a-zá-ž.]+)?/i);
+    return m ? m[0].replace(/\s+/g, ' ').trim() : (t.length <= 18 ? t : '');
+  }
+  function priceOf(it) { return it.price || ((byId(it.id) || {}).price) || ''; }
+  function prTag(it) { var p = priceOf(it); return p ? '<em class="kk-pr">' + p + '</em>' : ''; }
+
   function load() {
     var raw;
     try { raw = JSON.parse(localStorage.getItem(KEY)) || []; }
     catch (e) { return []; }
     if (!raw.length) return [];
     return raw.map(function (x) {
-      if (x && typeof x === 'object' && x.id) return x;
+      if (x && typeof x === 'object' && x.id) { if (!x.price) { var cc = byId(x.id); if (cc && cc.price) x.price = cc.price; } return x; }
       var c = byId(x);
-      return c ? { id: x, name: c.name, img: c.img || '', badge: c.badge || '' } : null;
+      return c ? { id: x, name: c.name, img: c.img || '', badge: c.badge || '', price: c.price || '' } : null;
     }).filter(Boolean);
   }
   function save(list) {
@@ -60,7 +70,8 @@
       id: id,
       name: (meta && meta.name) || (c && c.name) || id,
       img: (meta && meta.img) || (c && c.img) || '',
-      badge: (meta && meta.badge) || (c && c.badge) || ''
+      badge: (meta && meta.badge) || (c && c.badge) || '',
+      price: cleanPrice(meta && meta.price) || (c && c.price) || ''
     });
     save(l);
     return true;
@@ -114,6 +125,7 @@
     + '.kk-th img{width:100%;height:100%;object-fit:contain}'
     + '.kk-th span{font-family:"Baloo 2",system-ui,sans-serif;font-weight:900;font-size:1.4rem;color:#FFD23F}'
     + '.kk-nm{flex:1;min-width:0;font-weight:800;font-size:1rem;line-height:1.25}'
+    + '.kk-pr{display:block;margin-top:3px;font-family:"Caveat",cursive;font-style:normal;font-weight:700;font-size:1.28rem;line-height:1;color:#FFD23F;text-shadow:0 0 10px rgba(255,210,63,.35)}'
     + '.kk-rm{width:34px;height:34px;flex:0 0 auto;border:0;border-radius:50%;cursor:pointer;'
     + 'background:rgba(255,255,255,.12);color:#fff;font-size:1.15rem;line-height:1;transition:background .16s,transform .16s}'
     + '.kk-rm:hover{background:#DA3B4B;transform:rotate(90deg)}'
@@ -258,7 +270,7 @@
     } else {
       listEl.innerHTML = items.map(function (it) {
         return '<div class="kk-it">' + thumb(it)
-          + '<span class="kk-nm">' + it.name + '</span>'
+          + '<span class="kk-nm">' + it.name + prTag(it) + '</span>'
           + '<button class="kk-rm" type="button" data-id="' + it.id + '" aria-label="Odebrat ' + it.name + '">&times;</button>'
           + '</div>';
       }).join('');
@@ -319,7 +331,8 @@
       if (!id) return;
       var meta = {
         name: el.getAttribute('data-kk-name') || (el.querySelector('h3') || {}).textContent || id,
-        img: el.getAttribute('data-kk-img') || ''
+        img: el.getAttribute('data-kk-img') || '',
+        price: el.getAttribute('data-kk-price') || ((el.querySelector('.pprice,.fprice,.dn-price,.mprice') || {}).textContent) || ''
       };
       var slot = el.querySelector('[data-kk-slot]') || el;
       var b = document.createElement('button');
@@ -387,7 +400,8 @@
         var ins = wrap.querySelectorAll('.field input, .field textarea');
         var val = function (i) { return ins[i] ? ins[i].value.trim() : ''; };
         var picked = getItems().map(function (x) { return x.name; });
-        var body = 'Sluzby z kosiku: ' + (picked.length ? picked.join(', ') : '(nevybrano)') + '\n'
+        var pickedP = getItems().map(function (x) { var p = priceOf(x); return x.name + (p ? ' (' + p + ')' : ''); });
+        var body = 'Sluzby z kosiku: ' + (pickedP.length ? pickedP.join(', ') : '(nevybrano)') + '\n'
           + 'Jmeno: ' + val(0) + '\n'
           + 'Kontakt: ' + val(1) + '\n\n'
           + val(2);
@@ -412,7 +426,7 @@
     }
     inlineBox.innerHTML = '<h5>Vybrané služby</h5>' + items.map(function (it) {
       return '<div class="kk-it">' + thumb(it)
-        + '<span class="kk-nm">' + it.name + '</span>'
+        + '<span class="kk-nm">' + it.name + prTag(it) + '</span>'
         + '<button class="kk-rm" type="button" data-id="' + it.id + '" aria-label="Odebrat ' + it.name + '">&times;</button>'
         + '</div>';
     }).join('');
@@ -426,6 +440,7 @@
     enhanceInline();
     paint();
   });
+  window.AMCart.price = priceOf;
 
   window.addEventListener('storage', function (e) { if (e.key === KEY) paint(); });
 })();
