@@ -1,0 +1,43 @@
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; frame-src https://www.youtube-nocookie.com; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/css/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/assets/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+/assets/icons/*
+  Cache-Control: public, max-age=2592000
+/assets/ui/*
+  Cache-Control: public, max-age=2592000
+/assets/hrady/*
+  Cache-Control: public, max-age=2592000
+/assets/hrdinove/*
+  Cache-Control: public, max-age=2592000
+/assets/hry/*
+  Cache-Control: public, max-age=2592000
+/assets/fotokoutek/*
+  Cache-Control: public, max-age=2592000
+/assets/malovani/*
+  Cache-Control: public, max-age=2592000
+/assets/maskoti/*
+  Cache-Control: public, max-age=2592000
+/assets/mirror/*
+  Cache-Control: public, max-age=2592000
+/assets/motokary/*
+  Cache-Control: public, max-age=2592000
+/assets/ozvuceni/*
+  Cache-Control: public, max-age=2592000
+/assets/pena/*
+  Cache-Control: public, max-age=2592000
+/assets/tetovani/*
+  Cache-Control: public, max-age=2592000

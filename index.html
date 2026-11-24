@@ -22,9 +22,15 @@
 <link rel="apple-touch-icon" href="assets/icons/hrad.webp">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Agentura Marco", "description": "Zábava na klíč pro děti i dospělé — skákací hrady, maskoti, ozvučení, fotokoutek a další.", "url": "https://www.agenturamarco.cz/", "email": "agenturamarco@seznam.cz", "address": {"@type": "PostalAddress", "addressLocality": "Ostrava", "addressCountry": "CZ"}, "areaServed": "CZ", "priceRange": "1000-20000 Kč"}</script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800;900&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(/assets/fonts/baloo2-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(/assets/fonts/baloo2-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 700; font-display: swap; src: url(/assets/fonts/caveat-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 700; font-display: swap; src: url(/assets/fonts/caveat-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Nunito'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/assets/fonts/nunito-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Nunito'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/assets/fonts/nunito-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+</style>
 <style>
   :root{
     --gold:#F5B324;
@@ -639,7 +645,7 @@
 <script>(function(){try{if(!sessionStorage.getItem("am-dino")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("dino")}catch(e){}})()</script>
 </head>
 <body data-fx="scroll">
-<div class="dino-intro" role="dialog" aria-label="Úvodní animace"><div class="di-reveal"><a class="di-card" href="trex.html" tabindex="-1"><span class="di-badge">BESTSELLER</span><img src="assets/maskoti/maskot-tyranosaurus-sm.webp" width="440" height="550" alt="Chodící Tyranosaurus" decoding="async"><span class="di-cbody"><b class="di-ctitle">Chodící Tyranosaurus</b><span class="di-cprice">8&nbsp;000&nbsp;Kč</span><span class="di-cgo">Chci T-Rexe →</span></span><span class="di-roar" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 3 59 21 79 10 75 33 97 37 81 52 95 70 72 71 73 93 56 81 45 97 38 77 16 87 22 64 3 57 21 44 9 25 32 28 34 5Z"/></svg><b>ROAR!</b></span></a></div><div class="di-stage" aria-hidden="true"><div class="di-dark"></div><div class="di-shards"></div><div class="di-dino"><div class="di-bob"><div class="dn-hw"><svg class="dn-hs" viewBox="0 0 420 400" fill="none" stroke="#2A1210" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" focusable="false">
+<div class="dino-intro" role="dialog" aria-label="Úvodní animace"><div class="di-reveal"><a class="di-card" href="trex" tabindex="-1"><span class="di-badge">BESTSELLER</span><img src="assets/maskoti/maskot-tyranosaurus-sm.webp" width="440" height="550" alt="Chodící Tyranosaurus" decoding="async"><span class="di-cbody"><b class="di-ctitle">Chodící Tyranosaurus</b><span class="di-cprice">8&nbsp;000&nbsp;Kč</span><span class="di-cgo">Chci T-Rexe →</span></span><span class="di-roar" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 3 59 21 79 10 75 33 97 37 81 52 95 70 72 71 73 93 56 81 45 97 38 77 16 87 22 64 3 57 21 44 9 25 32 28 34 5Z"/></svg><b>ROAR!</b></span></a></div><div class="di-stage" aria-hidden="true"><div class="di-dark"></div><div class="di-shards"></div><div class="di-dino"><div class="di-bob"><div class="dn-hw"><svg class="dn-hs" viewBox="0 0 420 400" fill="none" stroke="#2A1210" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" focusable="false">
   <defs>
     <linearGradient id="dnG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C46A55"/><stop offset=".55" stop-color="#8E3A30"/><stop offset="1" stop-color="#5A2020"/></linearGradient>
     <linearGradient id="dnD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A2E28"/><stop offset="1" stop-color="#3E1517"/></linearGradient>
@@ -700,24 +706,24 @@
       <path d="M0,0 H310 C378,10 412,58 380,110 C344,170 250,152 176,196 C100,240 44,220 0,244 Z" fill="#F5B324"/>
     </svg>
       <!-- LOGO -->
-      <a class="logo" href="index.html">
+      <a class="logo" href="/">
         <img class="mark" src="assets/ui/logo-mark.webp" fetchpriority="high" decoding="async" alt="Agentura Marco — zábava na klíč" width="150" height="126">
       </a>
       <!-- NAV -->
       <div class="topbar-right">
       <nav class="pill">
-        <a href="index.html">DOMŮ</a><span class="sep">|</span>
-        <a href="o-nas.html">O NÁS</a><span class="sep">|</span>
+        <a href="/">DOMŮ</a><span class="sep">|</span>
+        <a href="o-nas">O NÁS</a><span class="sep">|</span>
         <span class="navdrop"><a href="#sluzby">SLUŽBY</a>
           <span class="navdrop-menu">
-          <a href="megahrady.html">Skákací hrady</a>
-          <a href="maskoti.html">Maskoti</a>
-          <a href="ozvuceni.html">Ozvučení a DJ</a>
-          <a href="fotokoutek.html">Fotokoutek</a>
-          <a href="penova-party.html">Pěnová párty</a>
-          <a href="malovani-na-oblicej.html">Malování na obličej</a>
-          <a href="airbrush-malovani.html">Airbrush malování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a>
-          <a href="avengers.html">Superhrdinská show</a>
+          <a href="megahrady">Skákací hrady</a>
+          <a href="maskoti">Maskoti</a>
+          <a href="ozvuceni">Ozvučení a DJ</a>
+          <a href="fotokoutek">Fotokoutek</a>
+          <a href="penova-party">Pěnová párty</a>
+          <a href="malovani-na-oblicej">Malování na obličej</a>
+          <a href="airbrush-malovani">Airbrush malování</a><a href="motokary">Motokáry a vozítka</a><a href="hry">Hry a soutěže</a>
+          <a href="avengers">Superhrdinská show</a>
           </span></span><span class="sep">|</span>
         <a href="#reference">RECENZE</a><span class="sep">|</span>
         <a href="#kontakt">KONTAKT</a>
@@ -728,7 +734,7 @@
     </div>
   </div>
   <div class="mobmenu" id="mm">
-  <a href="index.html">Domů</a><a href="o-nas.html">O nás</a><a href="megahrady.html">Skákací hrady</a><a href="maskoti.html">Maskoti</a><a href="ozvuceni.html">Ozvučení a DJ</a><a href="fotokoutek.html">Fotokoutek</a><a href="penova-party.html">Pěnová párty</a><a href="malovani-na-oblicej.html">Malování na obličej</a><a href="airbrush-malovani.html">Airbrush malování</a><a href="motokary.html">Motokáry a vozítka</a><a href="hry.html">Hry a soutěže</a><a href="avengers.html">Superhrdinská show</a>
+  <a href="/">Domů</a><a href="o-nas">O nás</a><a href="megahrady">Skákací hrady</a><a href="maskoti">Maskoti</a><a href="ozvuceni">Ozvučení a DJ</a><a href="fotokoutek">Fotokoutek</a><a href="penova-party">Pěnová párty</a><a href="malovani-na-oblicej">Malování na obličej</a><a href="airbrush-malovani">Airbrush malování</a><a href="motokary">Motokáry a vozítka</a><a href="hry">Hry a soutěže</a><a href="avengers">Superhrdinská show</a>
   <a href="#reference">Recenze</a><a href="#kontakt">Kontakt</a>
 </div>
 </header>
@@ -767,39 +773,39 @@
     <div class="sv-layout">
     <div class="sv-drop wv-drop" aria-hidden="true"><div class="sv-bg wv"><div class="wv-glow"><i></i><i></i></div></div></div>
     <div class="tiles-row">
-      <a class="tile" href="megahrady.html">
+      <a class="tile" href="megahrady">
         <img class="ico" src="assets/icons/hrad.webp" width="360" height="360" loading="lazy" decoding="async" alt="Nafukovací skákací hrad s překážkovou dráhou">
         <div class="name">Skákací hrady</div>
       </a>
-      <a class="tile" href="maskoti.html">
+      <a class="tile" href="maskoti">
         <img class="ico" src="assets/icons/pooh.webp" width="360" height="360" loading="lazy" decoding="async" alt="Maskot na dětskou oslavu">
         <div class="name">Maskoti</div>
       </a>
-      <a class="tile" href="ozvuceni.html">
+      <a class="tile" href="ozvuceni">
         <img class="ico" src="assets/icons/dj.webp" width="360" height="360" loading="lazy" decoding="async" alt="DJ s aparaturou a notami">
         <div class="name">DJ a ozvučení</div>
       </a>
-      <a class="tile" href="fotokoutek.html">
+      <a class="tile" href="fotokoutek">
         <img class="ico" src="assets/icons/fotokoutek.webp" width="360" height="360" loading="lazy" decoding="async" alt="Fotokoutek s prstencovým světlem a pásem fotek">
         <div class="name">Fotokoutek</div>
       </a>
-      <a class="tile" href="penova-party.html">
+      <a class="tile" href="penova-party">
         <img class="ico" src="assets/icons/pena.webp" width="360" height="360" loading="lazy" decoding="async" alt="Pěnové dělo s pěnou a bublinkami">
         <div class="name">Pěnová párty</div>
       </a>
-      <a class="tile" href="malovani-na-oblicej.html">
+      <a class="tile" href="malovani-na-oblicej">
         <img class="ico" src="assets/icons/malovani.webp" width="360" height="360" loading="lazy" decoding="async" alt="Paleta barev na malování na obličej s motýlem">
         <div class="name">Malování na obličej</div>
       </a>
-      <a class="tile" href="airbrush-malovani.html">
+      <a class="tile" href="airbrush-malovani">
         <img class="ico" src="assets/icons/tetovani.webp" width="360" height="360" loading="lazy" decoding="async" alt="Airbrush pistole, šablony, barvy a třpytky">
         <div class="name">Airbrush malování</div>
       </a>
-      <a class="tile" href="motokary.html">
+      <a class="tile" href="motokary">
         <img class="ico" src="assets/icons/motokary.webp" width="360" height="360" loading="lazy" decoding="async" alt="Šlapací motokára se sedačkou a vlaječkou">
         <div class="name">Motokáry a vozítka</div>
       </a>
-      <a class="tile" href="hry.html">
+      <a class="tile" href="hry">
         <img class="ico" src="assets/icons/hry.webp" width="360" height="360" loading="lazy" decoding="async" alt="Zlatý pohár na podstavci s konfetami">
         <div class="name">Hry a soutěže</div>
       </a>
@@ -852,7 +858,7 @@
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#E0841E"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Soutěžní stanoviště</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#E0841E"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Ozvučení a moderátor</li>
         </ul>
-        <a class="btn" href="balicek-start.html">Mám zájem</a>
+        <a class="btn" href="balicek-start">Mám zájem</a>
       </div>
       <div class="pkg feat t-plus">
         <span class="flag">NEJOBLÍBENĚJŠÍ</span>
@@ -865,7 +871,7 @@
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#8477A0"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Fotokoutek s tiskem</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#8477A0"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>DJ a světelná produkce</li>
         </ul>
-        <a class="btn red" href="balicek-plus.html">Mám zájem</a>
+        <a class="btn red" href="balicek-plus">Mám zájem</a>
       </div>
       <div class="pkg t-max">
         <div class="pname">MAX</div>
@@ -877,7 +883,7 @@
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#F5B60C"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Pěnová párty</li>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#F5B60C"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Celodenní program na klíč</li>
         </ul>
-        <a class="btn" href="balicek-max.html">Mám zájem</a>
+        <a class="btn" href="balicek-max">Mám zájem</a>
       </div>
     </div>
   </div>
@@ -892,7 +898,7 @@
       <p class="sub">To nejoblíbenější z naší nabídky — přesně to, na co se rodiče i pořadatelé ptají nejčastěji.</p>
     </div>
     <div class="best-grid">
-      <a class="best" href="megahrady.html">
+      <a class="best" href="megahrady">
         <span class="sheen" aria-hidden="true"></span>
         <div class="top">
           <span class="badge">TOP</span>
@@ -904,7 +910,7 @@
           <div class="foot"><span class="go">Prohlédnout →</span></div>
         </div>
       </a>
-      <a class="best" href="trex.html">
+      <a class="best" href="trex">
         <span class="sheen" aria-hidden="true"></span>
         <div class="top">
           <span class="badge" style="background:#3f66c4;color:#fff">NOVINKA</span>
@@ -916,7 +922,7 @@
           <div class="foot"><span class="go">Prohlédnout →</span></div>
         </div>
       </a>
-      <a class="best" href="avengers.html">
+      <a class="best" href="avengers">
         <span class="sheen" aria-hidden="true"></span>
         <div class="top">
           <span class="badge" style="background:#6B4FA0;color:#fff">JEDINÍ V ČR</span>
@@ -1037,7 +1043,7 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="mfoot">
-  <div class="wrap mfoot__in"><a class="mfoot__logo" href="index.html" aria-label="Agentura Marco – úvod"><img src="assets/logo.webp" width="420" height="354" loading="lazy" decoding="async" alt="Agentura Marco – zábava na klíč"></a></div>
+  <div class="wrap mfoot__in"><a class="mfoot__logo" href="/" aria-label="Agentura Marco – úvod"><img src="assets/logo.webp" width="420" height="354" loading="lazy" decoding="async" alt="Agentura Marco – zábava na klíč"></a></div>
   <p class="mfoot__meta"><b>Agentura Marco</b> · +420 736 214 975 · agenturamarco@seznam.cz</p>
 </footer>
 
@@ -1193,9 +1199,9 @@
   else window.addEventListener('load', launchBalloons);
 })();
 </script>
-<script src="assets/js/kosik.js?v=20261026b" defer></script>
-<script src="assets/js/poptavka.js?v=20261026b" defer></script>
-<script src="assets/js/pmodal.js?v=20261026b" defer></script>
+<script src="assets/js/kosik.js?v=20261125a" defer></script>
+<script src="assets/js/poptavka.js?v=20261125a" defer></script>
+<script src="assets/js/pmodal.js?v=20261125a" defer></script>
 
 <script>
 (function(){

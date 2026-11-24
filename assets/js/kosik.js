@@ -59,7 +59,9 @@
     paint();
   }
 
-  function getItems() { return load(); }
+  /* text z localStorage nikdy nesmí nést HTML (innerHTML níže) */
+  function clean(x) { var o = {}; for (var k in x) if (Object.prototype.hasOwnProperty.call(x, k)) o[k] = typeof x[k] === 'string' ? x[k].replace(/[<>"'`]/g, '').slice(0, 160) : x[k]; return o; }
+  function getItems() { return load().map(clean); }
   function idList() { return load().map(function (x) { return x.id; }); }
   function has(id) { return idList().indexOf(id) !== -1; }
 
@@ -304,6 +306,7 @@
   /* ---------- napojeni tlacitek ---------- */
   function currentPage() {
     var f = location.pathname.split('/').pop() || 'index.html';
+    if (f.indexOf('.') === -1) f += '.html';
     return CATALOG[f] ? f : null;
   }
 

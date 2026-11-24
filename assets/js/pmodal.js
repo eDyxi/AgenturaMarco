@@ -109,7 +109,7 @@
       var has = window.AMCart.items().some(function (i) { return i.id === c.id; });
       if (!has) window.AMCart.add(c.id, { name: c.name || c.title, img: c.img, price: c.price });
     }
-    setTimeout(function () { if (window.AMPoptavka) window.AMPoptavka.open(); else location.href = 'index.html#kontakt'; }, RM ? 0 : 280);
+    setTimeout(function () { if (window.AMPoptavka) window.AMPoptavka.open(); else location.href = '/#kontakt'; }, RM ? 0 : 280);
   });
 
   /* 3D náklon: sleduje kurzor v celém okně, plynulý lerp v rAF, malá jemná záře */
